@@ -60,7 +60,7 @@ var onError = function(err) {
 */
 gulp.task('default', ['browser-sync', 'watch']);
 
-gulp.task('browser-sync', ['sass-process-minify'], function() {
+gulp.task('browser-sync', ['task-css'], function() {
 	browserSync({
 		proxy: 'localhost:4567',
 		files: ['css/style.css', 'js/main.js', '*.php', 'views/*']
@@ -68,11 +68,11 @@ gulp.task('browser-sync', ['sass-process-minify'], function() {
 });
 
 gulp.task('watch', function () {
-	gulp.watch('css/src/*.scss', ['sass-process-minify']);
-	gulp.watch('js/src/*.js', ['js-minify'])
+	gulp.watch('css/src/*.scss', ['task-css']);
+	gulp.watch('js/src/*.js', ['task-js'])
 });
 
-gulp.task('sass-process-minify', function() {
+gulp.task('task-css', function() {
 	// not being returned intentionally, see: https://github.com/dlmanning/gulp-sass/wiki/Common-Issues-and-Their-Fixes#gulp-watch-stops-working-on-an-error
 	// couldn't get it to work with plumber/notify, worth trying again in the future
 	gulp.src('css/src/style.scss')
@@ -95,7 +95,7 @@ gulp.task('sass-process-minify', function() {
 		}))
 });
 
-gulp.task('js-minify', function() {
+gulp.task('task-js', function() {
 	return gulp.src('js/src/*.js')
 		// notify not being triggered
 		.pipe(plumber(plumberOptions))
