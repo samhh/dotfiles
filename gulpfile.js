@@ -83,7 +83,7 @@ gulp.task('task-css', function() {
 		.pipe(postcss([
 			lost()
 		]))
-		.pipe(prefix(['last 10 versions', '> 5%', 'ie >= 8']))
+		.pipe(prefix(['last 3 versions', '> 5%', 'ie >= 9']))
 		.pipe(pixrem())
 		.pipe(sourcemaps.write('./', {
 			includeContent: false
