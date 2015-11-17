@@ -105,7 +105,9 @@ gulp.task('task-js', function() {
 		.pipe(jshint.reporter('default'))
 		.pipe(sourcemaps.init())
 		.pipe(concat('main.js'))
-		.pipe(babel())
+		.pipe(babel({
+      presets: ['es2015']
+    }))
 		.pipe(sourcemaps.write('./', {
 			includeContent: false
 		}))
