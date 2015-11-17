@@ -99,7 +99,9 @@ gulp.task('task-js', function() {
 	return gulp.src('js/src/*.js')
 		// notify not being triggered
 		.pipe(plumber(plumberOptions))
-		.pipe(jshint())
+		.pipe(jshint({
+			esnext: true
+		}))
 		.pipe(jshint.reporter('default'))
 		.pipe(sourcemaps.init())
 		.pipe(concat('main.js'))
