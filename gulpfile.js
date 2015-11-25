@@ -63,7 +63,7 @@ gulp.task('default', ['browser-sync', 'watch']);
 gulp.task('browser-sync', ['task-css'], function() {
 	browserSync({
 		proxy: 'localhost:4567',
-		files: ['css/style.css', 'js/main.js', '*.php', 'views/*']
+		files: ['css/main.css', 'js/main.js', '*.php', 'views/*']
 	});
 });
 
@@ -75,7 +75,7 @@ gulp.task('watch', function () {
 gulp.task('task-css', function() {
 	// not being returned intentionally, see: https://github.com/dlmanning/gulp-sass/wiki/Common-Issues-and-Their-Fixes#gulp-watch-stops-working-on-an-error
 	// couldn't get it to work with plumber/notify, worth trying again in the future
-	gulp.src('css/src/style.scss')
+	gulp.src('css/src/main.scss')
 		.pipe(sourcemaps.init())
 		.pipe(sass({
 			outputStyle: 'compressed'
