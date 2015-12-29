@@ -1,0 +1,14 @@
+directory: /Volumes/{EXTERNAL DRIVE NAME HERE}/Music
+library: /Volumes/{EXTERNAL DRIVE NAME HERE}/Music/beets.blb
+paths:
+    default: $albumartist/($year) $album%aunique{}/$track - $title
+    singleton: (Non-Album)/$artist/$title
+    comp: (Compilations)/$album%aunique{}/$track - $title
+plugins: replaygain follow fetchart
+replaygain:
+    backend: command
+follow:
+    email: {MUSPY LOGIN DETAILS HERE}
+    password: {MUSPY LOGIN DETAILS HERE}
+    userid: {MUSPY LOGIN DETAILS HERE}
+    auto: yes

@@ -1,11 +1,18 @@
-; This file is for unifying the coding style between different editors and IDEs.
-; More information at http://editorconfig.org
-
+# top-most EditorConfig file
 root = true
 
+# Unix-style newlines with a newline ending every file
 [*]
-indent_style = tab
 end_of_line = lf
 insert_final_newline = true
-trim_trailing_whitespace = true
+
+[*.{js, css, scss, sass, less, styl, jade}]
 charset = utf-8
+indent_style = space
+indent_size = 2
+
+[*.{js, css, scss, sass, less, styl}]
+trim_trailing_whitespace = true
+
+[*.jade]
+trim_trailing_whitespace = false

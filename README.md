@@ -1,2 +1,2 @@
-# web-folder-configs
-The configuration files from my root Web folder (typically ~/Web).
+# dotfiles
+My personal dotfiles and miscellaneous configs, both dev and non-dev.
