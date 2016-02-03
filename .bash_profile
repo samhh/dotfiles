@@ -17,6 +17,11 @@ cdf() {
 # Remove cruft from terminal (username etc) - possibly overridden by the git bash thing below
 export PS1="\W \$ "
 
+# cwd as iterm tab title
+if [ $ITERM_SESSION_ID ]; then
+  export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
+fi
+
 # bash-git-prompt
 if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
     source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
