@@ -48,6 +48,9 @@ cdf() {
 export NVM_DIR="$HOME/.nvm"
 . "$(brew --prefix nvm)/nvm.sh"
 
+# Yarn
+export PATH="$PATH:$HOME/.yarn/bin"
+
 # recursively remove .DS_Store
 alias rmds='find . -name "*.DS_Store" -type f -delete'
 
