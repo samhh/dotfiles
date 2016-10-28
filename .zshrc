@@ -51,6 +51,10 @@ export NVM_DIR="$HOME/.nvm"
 # Yarn
 export PATH="$PATH:$HOME/.yarn/bin"
 
+# Use nano as default cli editor
+export VISUAL=nano
+export EDITOR="$VISUAL"
+
 # recursively remove .DS_Store
 alias rmds='find . -name "*.DS_Store" -type f -delete'
 
