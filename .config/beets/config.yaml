@@ -1,5 +1,5 @@
-directory: /Volumes/{EXTERNAL DRIVE NAME HERE}/Music
-library: /Volumes/{EXTERNAL DRIVE NAME HERE}/Music/beets.blb
+directory: {PATH TO MUSIC}/Music
+library: {PATH TO MUSIC}/Music/beets.blb
 paths:
     default: $albumartist/($year) $album%aunique{}/$track - $title
     singleton: (Non-Album)/$artist/$title
