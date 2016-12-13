@@ -1,36 +1,54 @@
-# The following lines were added by compinstall
-zstyle :compinstall filename '/Users/[USERNAME]/.zshrc'
-
+# Enable tab completion
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
-# Lines configured by zsh-newuser-install
+
+# Save input history
 HISTFILE=~/.histfile
 HISTSIZE=250
 SAVEHIST=250
+
+# Emacs mode bindings
 bindkey -e
-# End of lines configured by zsh-newuser-install
 
-# Enable Antigen and desired plugins
-source $(brew --prefix)/share/antigen/antigen.zsh
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-history-substring-search
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle djui/alias-tips
-antigen bundle supercrabtree/k
-antigen theme S1cK94/minimal minimal
-antigen apply
-
-# Configure zsh-history-substring-search
-zmodload zsh/terminfo
-bindkey "$terminfo[cuu1]" history-substring-search-up
-bindkey "$terminfo[cud1]" history-substring-search-down
+# Use nano as default cli editor
+export VISUAL=nano
+export EDITOR="$VISUAL"
 
 # Current dir as iTerm tab title
 precmd() {
   echo -ne "\e]1;${PWD##*/}\a"
 }
 
+# Yarn
+export PATH="$PATH:$HOME/.yarn/bin"
+
+# autojump
+# adds ~150ms startup time
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
+# nvm - alternative nvm startup from: https://github.com/creationix/nvm/issues/860#issuecomment-242157535 - do not install nvm via Homebrew as that adds an additional ~500ms startup time
+export NVM_DIR="$HOME/.nvm"
+. "$NVM_DIR/nvm.sh" --no-use
+export PATH="${PATH}:${NVM_DIR}/versions/node/${NODE_VERSION}/bin"
+
+# Enable zplug and desired plugins/themes
+# adds ~400ms startup time
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "djui/alias-tips"
+zplug "supercrabtree/k"
+zplug "mollifier/cd-gitroot"
+zplug "subnixr/minimal"
+zplug load
+
+# Bind zsh-history-substring-search to up and down arrow keys in iTerm
+bindkey "$terminfo[cuu1]" history-substring-search-up
+bindkey "$terminfo[cud1]" history-substring-search-down
+
+# Helper function aliases
 # cd to the path of the front Finder window
 cdf() {
   target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
@@ -41,25 +59,16 @@ cdf() {
   fi
 }
 
-# autojump
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+# Generic aliases
+alias rmds='find . -name "*.DS_Store" -type f -delete' # recursively remove .DS_Store
+alias npmlsg='npm ls -g --depth=0' # npm global packages
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias cdgit='cd-gitroot'
 
-# nvm
-export NVM_DIR="$HOME/.nvm"
-. "$(brew --prefix nvm)/nvm.sh"
-
-# Yarn
-export PATH="$PATH:$HOME/.yarn/bin"
-
-# Use nano as default cli editor
-export VISUAL=nano
-export EDITOR="$VISUAL"
-
-# recursively remove .DS_Store
-alias rmds='find . -name "*.DS_Store" -type f -delete'
-
-# Impero deployment helpers
-alias dokku='$HOME/.dokku/contrib/dokku_client.sh'
-alias prw='DOKKU_HOST=prd.prw.paas.impero.me dokku'
+# Impero aliases
+alias dokku='bash $HOME/.dokku/contrib/dokku_client.sh'
 alias stg='DOKKU_HOST=stg.paas.impero.me dokku'
 alias prd='DOKKU_HOST=prd.paas.impero.me dokku'
