@@ -1,11 +1,5 @@
 [core]
 	excludesfile = /Users/samhh/.gitignore_global
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [push]
 	default = simple
 [user]
@@ -18,10 +12,11 @@
   # View the current working tree status using the short format
   st = status --short
 
-  # Other general shortcuts
+  # Other aliases
   br = branch
   co = checkout
   ps = push
   pl = pull
   cam = commit -am
+  camend = commit --amend
   ft = fetch
