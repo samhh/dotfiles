@@ -39,41 +39,7 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="${PATH}:${NVM_DIR}/versions/node/${NODE_VERSION}/bin"
 
 # Configure minimal theme (to be loaded by zplug)
-# The custom function is to enable a unique color (white) for unpushed changes,
-# like S1cK94's original minimal theme
 MINIMAL_PWD_CHAR_LEN=25
-minimal_vcs() {
-  # git
-  local branchName
-  branchName="$(git rev-parse --abbrev-ref HEAD 2> /dev/null)"
-
-  if [ -n "$branchName" ]; then
-    local localRemoteState
-    localRemoteState="$(git status --porcelain -b)"
-
-    local color
-    if echo "$localRemoteState" | grep -v '^##' &> /dev/null; then
-      # dirty
-      color="1" # red
-    elif echo "$localRemoteState" | grep '^## .*diverged' &> /dev/null; then
-      # diverged
-      color="5" # magenta
-    elif echo "$localRemoteState" | grep '^## .*behind' &> /dev/null; then
-      # behind
-      color="4" # blue
-    elif echo "$localRemoteState" | grep '^## .*ahead' &> /dev/null; then
-      # ahead
-      color="7" # white
-    else
-      # clean
-      color=$MINIMAL_OK_COLOR # green by default
-    fi
-
-    local formattedColor="%{\e[0;3${color}m%}"
-
-    echo -n " $formattedColor$branchName%{\e[0m%}"
-  fi
-}
 
 # Enable zplug and desired plugins/themes
 # adds ~400ms startup time
