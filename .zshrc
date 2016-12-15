@@ -51,6 +51,7 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug "djui/alias-tips"
 zplug "supercrabtree/k"
 zplug "mollifier/cd-gitroot"
+zplug "samhh/minimal-colorful-git-status"
 zplug "subnixr/minimal"
 zplug load
 
