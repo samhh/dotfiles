@@ -33,10 +33,22 @@ export PATH="$PATH:$HOME/.yarn/bin"
 # adds ~150ms startup time
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
-# nvm - alternative nvm startup from: https://github.com/creationix/nvm/issues/860#issuecomment-242157535 - do not install nvm via Homebrew as that adds an additional ~500ms startup time
-export NVM_DIR="$HOME/.nvm"
-. "$NVM_DIR/nvm.sh" --no-use
-export PATH="${PATH}:${NVM_DIR}/versions/node/${NODE_VERSION}/bin"
+# nvm
+# do not install nvm via Homebrew as that adds an additional ~500ms startup time
+# alternative lazy load startup from: https://www.reddit.com/r/node/comments/4tg5jg/lazy_load_nvm_for_faster_shell_start/d5ib9fs/
+declare -a NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
+
+NODE_GLOBALS+=("node")
+NODE_GLOBALS+=("nvm")
+
+load_nvm () {
+    export NVM_DIR=~/.nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+}
+
+for cmd in "${NODE_GLOBALS[@]}"; do
+    eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
+done
 
 # Configure minimal theme (to be loaded by zplug)
 MINIMAL_PWD_CHAR_LEN=25
