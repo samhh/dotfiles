@@ -42,12 +42,12 @@ NODE_GLOBALS+=("node")
 NODE_GLOBALS+=("nvm")
 
 load_nvm () {
-    export NVM_DIR=~/.nvm
-    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  export NVM_DIR=~/.nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 }
 
 for cmd in "${NODE_GLOBALS[@]}"; do
-    eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
+  eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
 done
 
 # Configure minimal theme (to be loaded by zplug)
@@ -65,6 +65,12 @@ zplug "supercrabtree/k"
 zplug "mollifier/cd-gitroot"
 zplug "samhh/minimal-colorful-git-status"
 zplug "subnixr/minimal"
+if ! zplug check --verbose; then
+  printf "Install? [y/N]: "
+  if read -q; then
+    echo; zplug install
+  fi
+fi
 zplug load
 
 # Bind zsh-history-substring-search to up and down arrow keys in iTerm
