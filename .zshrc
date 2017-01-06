@@ -97,6 +97,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias cdgit='cd-gitroot'
+alias nvmup='nvm install node --reinstall-packages-from=node'
 
 # Impero aliases
 alias dokku='bash $HOME/.dokku/contrib/dokku_client.sh'
