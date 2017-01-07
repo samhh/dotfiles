@@ -97,7 +97,10 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias cdgit='cd-gitroot'
+alias code='subl .'
 alias nvmup='nvm install node --reinstall-packages-from=node'
+alias gitrmmerged='git br --merged | grep -Ev "(\*|master|develop)" | xargs -n 1 git br -d'
+unalias run-help
 
 # Impero aliases
 alias dokku='bash $HOME/.dokku/contrib/dokku_client.sh'
