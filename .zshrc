@@ -100,6 +100,7 @@ alias cdgit='cd-gitroot'
 alias code='subl .'
 alias nvmup='nvm install node --reinstall-packages-from=node'
 alias gitrmmerged='git br --merged | grep -Ev "(\*|master|develop)" | xargs -n 1 git br -d'
+alias clean='brew cleanup -s'
 unalias run-help
 
 # Impero aliases
