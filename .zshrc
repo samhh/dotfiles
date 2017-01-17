@@ -7,8 +7,17 @@ HISTFILE=~/.histfile
 HISTSIZE=250
 SAVEHIST=250
 
+# Prevent saving the same history twice in a row
+setopt histignoredups
+
 # Emacs mode bindings
 bindkey -e
+
+# Enable changing directory without cd
+setopt autocd
+
+# Enable matching dotfiles in globs without specifying dot
+setopt globdots
 
 # Use nano as default cli editor
 export VISUAL=nano
@@ -23,19 +32,19 @@ precmd() {
 autoload -Uz bashcompinit
 bashcompinit
 
-# LastPass CLI Bash completions
-source /usr/local/Cellar/lastpass-cli/1.0.0/share/bash-completion/completions/lpass
-
 # Yarn
+# Negligible addition to startup time
 export PATH="$PATH:$HOME/.yarn/bin"
 
 # autojump
-# adds ~150ms startup time
+# Adds ~150ms startup time
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 # nvm
-# do not install nvm via Homebrew as that adds an additional ~500ms startup time
-# alternative lazy load startup from: https://www.reddit.com/r/node/comments/4tg5jg/lazy_load_nvm_for_faster_shell_start/d5ib9fs/
+# Do not install nvm via Homebrew as that adds an additional ~500ms startup time
+# Alternative lazy load startup from: https://www.reddit.com/r/node/comments/4tg5jg/lazy_load_nvm_for_faster_shell_start/d5ib9fs/
+# Negligible addition to startup time with lazy loading
+# Adds at least ~1200ms startup time without lazy loading
 declare -a NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
 
 NODE_GLOBALS+=("node")
@@ -54,7 +63,7 @@ done
 MINIMAL_PWD_CHAR_LEN=25
 
 # Enable zplug and desired plugins/themes
-# adds ~400ms startup time
+# Adds ~400ms startup time
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 zplug "zsh-users/zsh-syntax-highlighting"
