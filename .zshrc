@@ -85,9 +85,9 @@ zplug load
 # Fix incompatibility between minimal theme and zsh-autosuggestions
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=minimal-magic-enter
 
-# Bind zsh-history-substring-search to up and down arrow keys in iTerm
-bindkey "$terminfo[cuu1]" history-substring-search-up
-bindkey "$terminfo[cud1]" history-substring-search-down
+# Bind zsh-history-substring-search to up and down arrow keys
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 # Helper function aliases
 # cd to the path of the front Finder window
