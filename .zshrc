@@ -82,6 +82,9 @@ if ! zplug check --verbose; then
 fi
 zplug load
 
+# Fix incompatibility between minimal theme and zsh-autosuggestions
+ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=minimal-magic-enter
+
 # Bind zsh-history-substring-search to up and down arrow keys in iTerm
 bindkey "$terminfo[cuu1]" history-substring-search-up
 bindkey "$terminfo[cud1]" history-substring-search-down
