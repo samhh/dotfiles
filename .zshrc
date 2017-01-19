@@ -104,6 +104,7 @@ cdf() {
 alias rmds='find . -name "*.DS_Store" -type f -delete' # recursively remove .DS_Store
 alias rmall='rm -rf * && rm .*'
 alias npmlsg='npm ls -g --depth=0' # npm global packages
+alias c='clear'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
