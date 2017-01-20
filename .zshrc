@@ -19,8 +19,8 @@ setopt autocd
 # Enable matching dotfiles in globs without specifying dot
 setopt globdots
 
-# Use nano as default cli editor
-export VISUAL=nano
+# Use Neovim as default cli editor
+export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 # Current dir as iTerm tab title
