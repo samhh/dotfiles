@@ -32,6 +32,9 @@ precmd() {
 autoload -Uz bashcompinit
 bashcompinit
 
+# Source tmuxinator completions
+source /usr/local/share/zsh/site-functions/_tmuxinator
+
 # Yarn
 # Negligible addition to startup time
 export PATH="$PATH:$HOME/.yarn/bin"
