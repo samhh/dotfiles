@@ -138,7 +138,13 @@ alias vi='nvim'
 alias rg='rg -uu'
 alias nvmup='nvm install node --reinstall-packages-from=node'
 alias gitrmmerged='git br --merged | grep -Ev "(\*|master|develop)" | xargs -n 1 git br -d'
-if [[ $OS == 'osx' ]]; then
+if [[ $OS == 'linux' ]]; then
+  alias setclip='xclip -selection c'
+  alias getclip='xclip -selection clipboard -o'
+elif [[ $OS == 'osx' ]]; then
+  alias setclip='pbcopy'
+  alias getclip='pbpaste'
+
   alias vc='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt'
   alias brewup='brew update && brew upgrade && brew cu && brew cleanup'
   alias clean='brew cleanup -s'
