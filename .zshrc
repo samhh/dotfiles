@@ -1,3 +1,10 @@
+# Detect OS (Linux or macOS) for later
+if [[ `uname` == 'Linux' ]]; then
+  export OS=linux
+elif [[ `uname` == 'Darwin' ]]; then
+  export OS=osx
+fi
+
 # Enable tab completion
 autoload -Uz compinit
 compinit
@@ -41,7 +48,11 @@ export PATH="$PATH:$HOME/.yarn/bin"
 
 # autojump
 # Adds ~150ms startup time
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+if [[ $OS == 'linux' ]]; then
+  source /etc/profile.d/autojump.sh
+elif [[ $OS == 'osx' ]]; then
+  [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+fi
 
 # nvm
 # Do not install nvm via Homebrew as that adds an additional ~500ms startup time
@@ -54,8 +65,12 @@ NODE_GLOBALS+=("node")
 NODE_GLOBALS+=("nvm")
 
 load_nvm () {
-  export NVM_DIR=~/.nvm
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  if [[ $OS == 'linux' ]]; then
+    source /usr/share/nvm/init-nvm.sh
+  elif [[ $OS == 'osx' ]]; then
+    export NVM_DIR=~/.nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  fi
 }
 
 for cmd in "${NODE_GLOBALS[@]}"; do
@@ -67,7 +82,11 @@ MINIMAL_PWD_CHAR_LEN=25
 
 # Enable zplug and desired plugins/themes
 # Adds ~400ms startup time
-export ZPLUG_HOME=/usr/local/opt/zplug
+if [[ $OS == 'linux' ]]; then
+  export ZPLUG_HOME=/usr/share/zsh/scripts/zplug
+elif [[ $OS == 'osx' ]]; then
+  export ZPLUG_HOME=/usr/local/opt/zplug
+fi
 source $ZPLUG_HOME/init.zsh
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search"
@@ -94,14 +113,16 @@ bindkey '^[[B' history-substring-search-down
 
 # Helper function aliases
 # cd to the path of the front Finder window
-cdf() {
-  target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
-  if [ "$target" != "" ]; then
-    cd "$target"; pwd
-  else
-    echo 'No Finder window found' >&2
-  fi
-}
+if [[ $OS == 'osx' ]]; then
+  cdf() {
+    target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
+    if [ "$target" != "" ]; then
+      cd "$target"; pwd
+    else
+      echo 'No Finder window found' >&2
+    fi
+  }
+fi
 
 # Generic aliases
 alias rmds='find . -name "*.DS_Store" -type f -delete' # recursively remove .DS_Store
@@ -114,9 +135,14 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias cdgit='cd-gitroot'
 alias vi='nvim'
+alias rg='rg -uu'
 alias nvmup='nvm install node --reinstall-packages-from=node'
 alias gitrmmerged='git br --merged | grep -Ev "(\*|master|develop)" | xargs -n 1 git br -d'
-alias clean='brew cleanup -s'
+if [[ $OS == 'osx' ]]; then
+  alias vc='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt'
+  alias brewup='brew update && brew upgrade && brew cu && brew cleanup'
+  alias clean='brew cleanup -s'
+fi
 unalias run-help
 
 # Impero aliases
