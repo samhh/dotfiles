@@ -1,0 +1,50 @@
+{
+	"always_show_minimap_viewport": true,
+	"color_scheme": "Packages/Color Schemes by carlcalderon/Calydon/Calydon.tmTheme",
+	"detect_indentation": false,
+	"draw_minimap_border": true,
+	"file_exclude_patterns":
+	[
+		".DS_Store"
+	],
+	"folder_exclude_patterns":
+	[
+		".git",
+		".sass-cache",
+		"node_modules",
+		"vendor",
+		"dist"
+	],
+	"font_face": "Fira Code",
+	"font_options":
+	[
+		"gray_antialias"
+	],
+	"font_size": 14,
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
+	"ignored_packages":
+	[
+		"Hayaku - tools for writing CSS faster",
+		"Phpcs",
+		"Vintage"
+	],
+	"indent_guide_options":
+	[
+		"draw_normal",
+		"draw_active"
+	],
+	"line_padding_bottom": 1,
+	"line_padding_top": 1,
+	"overlay_scroll_bars": "enabled",
+	"rulers":
+	[
+		80
+	],
+	"status_bar_brighter": true,
+	"tab_size": 2,
+	"tabs_small": true,
+	"theme": "Afterglow-blue.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"word_wrap": true
+}
