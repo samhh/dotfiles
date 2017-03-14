@@ -17,6 +17,6 @@
   co = checkout
   ps = push
   pl = pull
-  cam = commit -am
+  call = commit -am
   camend = commit --amend
   ft = fetch
