@@ -1,5 +1,7 @@
 [core]
 	excludesfile = /Users/samhh/.gitignore_global
+[init]
+	templatedir = ~/.git-repo-template/
 [push]
 	default = simple
 [user]
