@@ -42,6 +42,9 @@ bashcompinit
 # Source tmuxinator completions
 source /usr/local/share/zsh/site-functions/_tmuxinator
 
+# Source Pass completions
+source /usr/local/etc/bash_completion.d/pass
+
 # Yarn
 # Negligible addition to startup time
 export PATH="$PATH:$HOME/.yarn/bin"
