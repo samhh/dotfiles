@@ -17,8 +17,9 @@ SAVEHIST=250
 # Prevent saving the same history twice in a row
 setopt histignoredups
 
-# Emacs mode bindings
-bindkey -e
+# Vi mode keybindings
+bindkey -v
+export KEYTIMEOUT=1
 
 # Enable changing directory without cd
 setopt autocd
