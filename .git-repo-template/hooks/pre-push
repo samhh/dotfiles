@@ -17,8 +17,9 @@ do
 	else
 		if [ "$remote_sha" = $z40 ]
 		then
-			# New branch, examine all commits
-			range="$local_sha"
+			# New branch, examine 5 most recent commits
+			# Don't examine older commits as they may contain old WIP commits that are now too deep to amend
+			range="HEAD~5..HEAD"
 		else
 			# Update to existing branch, examine new commits
 			range="$remote_sha..$local_sha"
