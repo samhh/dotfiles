@@ -154,8 +154,3 @@ elif [[ $OS == 'osx' ]]; then
   alias clean='brew cleanup -s'
 fi
 unalias run-help
-
-# Impero aliases
-alias dokku='bash $HOME/.dokku/contrib/dokku_client.sh'
-alias stg='DOKKU_HOST=stg.paas.impero.me dokku'
-alias prd='DOKKU_HOST=prd.paas.impero.me dokku'
