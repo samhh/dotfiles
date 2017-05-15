@@ -1,5 +1,8 @@
 [core]
- excludesfile = /Users/samhh/.gitignore_global
+  excludesfile = /Users/samhh/.gitignore_global
+
+  # Pipe diffs through diff-so-fancy with custom tab sizing
+  pager = diff-so-fancy | less --tabs=2 -RFX
 
 [init]
   templatedir = ~/.git-repo-template/
@@ -14,14 +17,12 @@
 [alias]
   # View abbreviated SHA, description, and history graph of the latest 20 commits
   lg = log --graph --pretty=format:'%Cblue%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold red)[%an]%Creset' --abbrev-commit --date=relative
-  
-  # View diffs using diff-so-fancy with custom tab spacing
-  df = diff --color "$@" | diff-so-fancy | less --tabs=2 -RFX
 
   # View the current working tree status using the short format
   st = status --short
 
   # Other aliases
+  df = diff
   br = branch
   co = checkout
   ps = push
