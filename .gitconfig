@@ -14,6 +14,9 @@
 [alias]
   # View abbreviated SHA, description, and history graph of the latest 20 commits
   lg = log --graph --pretty=format:'%Cblue%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold red)[%an]%Creset' --abbrev-commit --date=relative
+  
+  # View diffs using diff-so-fancy with custom tab spacing
+  df = diff --color "$@" | diff-so-fancy | less --tabs=2 -RFX
 
   # View the current working tree status using the short format
   st = status --short
@@ -23,7 +26,6 @@
   co = checkout
   ps = push
   pl = pull
-  df = diff --color "$@" | diff-so-fancy | less --tabs=2 -RFX
   cm = commit
   call = commit -am
   cam = commit --amend
