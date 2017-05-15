@@ -23,6 +23,7 @@
   co = checkout
   ps = push
   pl = pull
+  df = diff --color "$@" | diff-so-fancy | less --tabs=2 -RFX
   cm = commit
   call = commit -am
   cam = commit --amend
