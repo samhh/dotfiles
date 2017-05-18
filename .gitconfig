@@ -29,6 +29,6 @@
   pl = pull
   cm = commit
   call = commit -am
-  cam = commit --amend
-  camsg = commit --amend --no-edit
+  cam = commit --amend --no-edit
+  camsg = commit --amend
   ft = fetch
