@@ -27,8 +27,8 @@
   co = checkout
   ps = push
   pl = pull
-  cm = commit
-  call = commit -am
-  cam = commit --amend --no-edit
-  camsg = commit --amend
+  cm = commit -m
+  cma = commit -am
+  ca = commit --amend --no-edit
+  cam = commit --amend
   ft = fetch
