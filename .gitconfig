@@ -23,9 +23,11 @@
 
   # Other aliases
   df = diff
+  dfs = diff --staged
   br = branch
   co = checkout
   ps = push
+  psf = push --force
   pl = pull
   cm = commit -m
   cma = commit -am
