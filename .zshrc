@@ -81,6 +81,9 @@ for cmd in "${NODE_GLOBALS[@]}"; do
   eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
 done
 
+# thefuck
+eval "$(thefuck --alias)"
+
 # Configure minimal theme (to be loaded by zplug)
 MINIMAL_PWD_CHAR_LEN=25
 
