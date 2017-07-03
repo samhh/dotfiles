@@ -1,0 +1,21 @@
+[location]
+source_directories: /<absolute_path_to_backup_dir>/
+
+repository: /<absolute_path_to_repo_dir>/
+
+[storage]
+encryption_passphrase: <repo_password>
+
+compression: lz4
+
+[retention]
+keep_daily: 7
+keep_weekly: 4
+keep_monthly: 6
+keep_yearly: 1
+
+[consistency]
+checks: repository archives
+
+check_last: 3
+
