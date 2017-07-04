@@ -1,0 +1,3 @@
+# Run borgmatic nightly at 11PM
+
+0 3 * * * <username> PATH=$PATH:/usr/local/bin /usr/local/bin/borgmatic
