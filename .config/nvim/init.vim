@@ -42,3 +42,6 @@ set autoread
 "Exclude anything in .gitignore from fuzzy find
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
+"Fix editing crontab
+au BufEnter /private/tmp/crontab.* setl backupcopy=yes
+
