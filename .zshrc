@@ -121,9 +121,25 @@ ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=minimal-magic-enter
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-# Helper function aliases
-# cd to the path of the front Finder window
-if [[ $OS == 'osx' ]]; then
+# Generic aliases
+alias c='clear'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias rmds='find . -name "*.DS_Store" -type f -delete' # recursively remove .DS_Store
+alias rmall='rm -rf * && rm .*'
+alias nvmup='nvm install node --reinstall-packages-from=node'
+alias npmlsg='npm ls -g --depth=0' # npm global packages
+alias cdgit='cd-gitroot'
+alias gitrmmerged='git br --merged | grep -Ev "(\*|master|develop)" | xargs -n 1 git br -d'
+
+# OS-specific aliases
+if [[ $OS == 'linux' ]]; then
+  alias setclip='xclip -selection c'
+  alias getclip='xclip -selection clipboard -o'
+  
+  # cd to the path of the front Finder window
   cdf() {
     target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
     if [ "$target" != "" ]; then
@@ -132,31 +148,24 @@ if [[ $OS == 'osx' ]]; then
       echo 'No Finder window found' >&2
     fi
   }
-fi
-
-# Generic aliases
-alias rmds='find . -name "*.DS_Store" -type f -delete' # recursively remove .DS_Store
-alias rmall='rm -rf * && rm .*'
-alias npmlsg='npm ls -g --depth=0' # npm global packages
-alias c='clear'
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-alias cdgit='cd-gitroot'
-alias vi='nvim'
-alias rg='rg -uu'
-alias nvmup='nvm install node --reinstall-packages-from=node'
-alias gitrmmerged='git br --merged | grep -Ev "(\*|master|develop)" | xargs -n 1 git br -d'
-if [[ $OS == 'linux' ]]; then
-  alias setclip='xclip -selection c'
-  alias getclip='xclip -selection clipboard -o'
 elif [[ $OS == 'osx' ]]; then
   alias setclip='pbcopy'
   alias getclip='pbpaste'
 
   alias vc='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt'
   alias brewup='brew update && brew upgrade && brew cu && brew cleanup'
-  alias clean='brew cleanup -s'
 fi
-unalias run-help
+
+# Default replacement aliases
+alias vi='nvim'
+alias _vi='command vi'
+
+alias ls='exa'
+alias _ls='command ls'
+
+alias cat='ccat'
+alias _cat='command cat'
+
+alias grep='rg -uu'
+alias _grep='command grep'
+
