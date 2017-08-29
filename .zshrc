@@ -1,7 +1,7 @@
 # Detect OS (Linux or macOS) for later
-if [[ `uname` == 'Linux' ]]; then
+if [[ $(uname) == 'Linux' ]]; then
   export OS=linux
-elif [[ `uname` == 'Darwin' ]]; then
+elif [[ $(uname) == 'Darwin' ]]; then
   export OS=osx
 fi
 
@@ -33,7 +33,7 @@ export EDITOR="$VISUAL"
 
 # Current dir as iTerm tab title
 precmd() {
-  echo -ne "\e]1;${PWD##*/}\a"
+  echo -ne "\\e]1;${PWD##*/}\\a"
 }
 
 # Enable compatibility with Bash completions
@@ -58,7 +58,7 @@ export PATH="$PATH:$HOME/.yarn/bin"
 if [[ $OS == 'linux' ]]; then
   source /etc/profile.d/autojump.sh
 elif [[ $OS == 'osx' ]]; then
-  [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+  [[ -s "$(brew --prefix)"/etc/profile.d/autojump.sh ]] && . "$(brew --prefix)"/etc/profile.d/autojump.sh
 fi
 
 # nvm
@@ -101,7 +101,9 @@ source $ZPLUG_HOME/init.zsh
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-autosuggestions"
-zplug "djui/alias-tips"
+# Disabled due to [rip]grep alias error, see:
+# https://github.com/djui/alias-tips/issues/40
+# zplug "djui/alias-tips"
 zplug "supercrabtree/k"
 zplug "mollifier/cd-gitroot"
 zplug "samhh/minimal-colorful-git-status"
@@ -138,22 +140,22 @@ alias gitrmmerged='git br --merged | grep -Ev "(\*|master|develop)" | xargs -n 1
 if [[ $OS == 'linux' ]]; then
   alias setclip='xclip -selection c'
   alias getclip='xclip -selection clipboard -o'
-  
-  # cd to the path of the front Finder window
-  cdf() {
-    target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
-    if [ "$target" != "" ]; then
-      cd "$target"; pwd
-    else
-      echo 'No Finder window found' >&2
-    fi
-  }
 elif [[ $OS == 'osx' ]]; then
   alias setclip='pbcopy'
   alias getclip='pbpaste'
 
   alias vc='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt'
   alias brewup='brew update && brew upgrade && brew cu && brew cleanup'
+
+  # cd to the path of the front Finder window
+  cdf() {
+    target=$(osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)')
+    if [ "$target" != "" ]; then
+      cd "$target" || return; pwd
+    else
+      echo 'No Finder window found' >&2
+    fi
+  }
 fi
 
 # Default replacement aliases
@@ -168,4 +170,3 @@ alias _cat='command cat'
 
 alias grep='rg -uu'
 alias _grep='command grep'
-
