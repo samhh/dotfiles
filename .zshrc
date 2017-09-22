@@ -40,9 +40,6 @@ precmd() {
 autoload -Uz bashcompinit
 bashcompinit
 
-# Source tmuxinator completions
-source /usr/local/share/zsh/site-functions/_tmuxinator
-
 # Source Pass completions
 source /usr/local/etc/bash_completion.d/pass
 
@@ -101,6 +98,7 @@ source $ZPLUG_HOME/init.zsh
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-completions"
 # Disabled due to [rip]grep alias error, see:
 # https://github.com/djui/alias-tips/issues/40
 # zplug "djui/alias-tips"
