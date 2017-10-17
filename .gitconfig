@@ -1,5 +1,5 @@
 [core]
-  excludesfile = /Users/samhh/.gitignore_global
+  excludesfile = ~/.gitignore_global
 
   # Pipe diffs through diff-so-fancy with custom tab sizing
   pager = diff-so-fancy | less --tabs=2 -RFX
