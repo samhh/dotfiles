@@ -46,9 +46,6 @@ set autoread
 "Exclude anything in .gitignore from fuzzy find
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
-"Enable JSX syntax highlighting for all JS files
-let g:jsx_ext_required = 0
-
 "Fix editing crontab
 au BufEnter /private/tmp/crontab.* setl backupcopy=yes
 
