@@ -31,64 +31,50 @@ setopt globdots
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-# Current dir as iTerm tab title
+# Set iTerm tab title to: `prevDir/currDir (command)`
 precmd() {
-  echo -ne "\\e]1;${PWD##*/}\\a"
+  # number of characters to appear before truncation from the left
+  rlength="20"
+
+  tab_label="$PWD:h:t/$PWD:t"
+
+  echo -ne "\e]1;${(l:rlength:)tab_label}\a"
 }
 
 # Enable compatibility with Bash completions
 autoload -Uz bashcompinit
 bashcompinit
 
-# Source Pass completions
+# Pass completions
 source /usr/local/etc/bash_completion.d/pass
 
 # Rust/Cargo
 export PATH="$PATH:$HOME/.cargo/bin"
 
 # Yarn
-# Negligible addition to startup time
 export PATH="$PATH:$HOME/.yarn/bin"
 
 # autojump
-# Adds ~150ms startup time
 if [[ $OS == 'linux' ]]; then
   source /etc/profile.d/autojump.sh
 elif [[ $OS == 'osx' ]]; then
-  [[ -s "$(brew --prefix)"/etc/profile.d/autojump.sh ]] && . "$(brew --prefix)"/etc/profile.d/autojump.sh
+  [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 fi
 
 # nvm
 # Do not install nvm via Homebrew as that adds an additional ~500ms startup time
-# Alternative lazy load startup from: https://www.reddit.com/r/node/comments/4tg5jg/lazy_load_nvm_for_faster_shell_start/d5ib9fs/
-# Negligible addition to startup time with lazy loading
-# Adds at least ~1200ms startup time without lazy loading
-declare -a NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
-
-NODE_GLOBALS+=("node")
-NODE_GLOBALS+=("nvm")
-
-load_nvm () {
-  if [[ $OS == 'linux' ]]; then
-    source /usr/share/nvm/init-nvm.sh
-  elif [[ $OS == 'osx' ]]; then
-    export NVM_DIR=~/.nvm
-    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-  fi
-}
-
-for cmd in "${NODE_GLOBALS[@]}"; do
-  eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
-done
-
-# thefuck
-eval "$(thefuck --alias)"
+# "--no-use" disables nvm until you explicitly call it with "nvm use", helping startup time. Can alternatively lazy load (look online for scripts)
+if [[ $OS == 'linux' ]]; then
+  source /usr/share/nvm/init-nvm.sh
+elif [[ $OS == 'osx' ]]; then
+  export NVM_DIR=~/.nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
+fi
 
 # Configure minimal theme (to be loaded by zplug)
 MINIMAL_PWD_CHAR_LEN=25
 
 # Enable zplug and desired plugins/themes
-# Adds ~400ms startup time
 if [[ $OS == 'linux' ]]; then
   export ZPLUG_HOME=/usr/share/zsh/scripts/zplug
 elif [[ $OS == 'osx' ]]; then
@@ -102,7 +88,6 @@ zplug "zsh-users/zsh-completions"
 # Disabled due to [rip]grep alias error, see:
 # https://github.com/djui/alias-tips/issues/40
 # zplug "djui/alias-tips"
-zplug "supercrabtree/k"
 zplug "mollifier/cd-gitroot"
 zplug "samhh/minimal-colorful-git-status"
 zplug "subnixr/minimal"
@@ -142,7 +127,6 @@ elif [[ $OS == 'osx' ]]; then
   alias setclip='pbcopy'
   alias getclip='pbpaste'
 
-  alias vc='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt'
   alias brewup='brew update && brew upgrade && brew cu && brew cleanup'
 
   # cd to the path of the front Finder window
