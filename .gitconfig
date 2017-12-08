@@ -13,6 +13,10 @@
 [user]
   email = samhh.web@gmail.com
   name = Sam A. Horvath-Hunt
+  signingkey = <GPG_KEY_ID>
+
+[commit]
+	gpgsign = true
 
 [alias]
   # View abbreviated SHA, description, and history graph of the latest 20 commits
