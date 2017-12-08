@@ -2,18 +2,13 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 "Load plugins
-Plug 'pangloss/vim-javascript'
 Plug 'bling/vim-airline'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'airblade/vim-gitgutter'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'ap/vim-css-color'
 Plug 'grod/sublime-color-schemes.vim'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'valloric/youcompleteme'
-Plug 'valloric/matchtagalways'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'scrooloose/nerdtree'
 Plug 'terryma/vim-multiple-cursors'
 
 "Initialise plugin system
@@ -23,6 +18,15 @@ call plug#end()
 
 "Theming
 colorscheme Calydon
+
+"Indent based upon file's indentation
+filetype plugin indent on
+
+"Tabs to spaces and sizing
+set tabstop=8
+set expandtab
+set shiftwidth=2
+set softtabstop=2
 
 "Always show line numbers
 set number
@@ -41,6 +45,9 @@ set autoread
 
 "Exclude anything in .gitignore from fuzzy find
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+
+"Enable JSX syntax highlighting for all JS files
+let g:jsx_ext_required = 0
 
 "Fix editing crontab
 au BufEnter /private/tmp/crontab.* setl backupcopy=yes
