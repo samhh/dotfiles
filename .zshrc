@@ -38,7 +38,7 @@ precmd() {
 
   tab_label="$PWD:h:t/$PWD:t"
 
-  echo -ne "\e]1;${(l:rlength:)tab_label}\a"
+  echo -ne "\\e]1;${(l:rlength:)tab_label}\\a"
 }
 
 # Enable compatibility with Bash completions
