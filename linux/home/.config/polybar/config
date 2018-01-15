@@ -1,0 +1,196 @@
+[colors]
+;primary = #0A84FF
+;warning = #F8EA06
+;alert = #BD2C40
+
+primary = #458588
+warning = #D79921
+alert = #CC241D
+background = #1d2021
+
+[bar/main]
+monitor = eDP1
+bottom = false
+;width = 2848
+height = 45
+radius = 2
+;offset-x = 16
+;offset-y = 16
+;override-redirect = true
+;wm-restack = i3
+fixed-center = true
+padding-right = 3
+module-margin = 1
+tray-position = right
+tray-padding = 2
+; Transparency is not yet properly supported in the tray; only fully opaque and fully transparent work
+;tray-background = #99000000
+tray-background = ${colors.background}
+
+;background = #99000000
+background = ${colors.background}
+foreground = #BDBDBD
+
+font-0 = Font Awesome 5 Free:style=Solid:size=13;3
+font-1 = Font Awesome 5 Free:style=Regular:size=13;3
+font-2 = Font Awesome 5 Brands:style=Regular:size=13;3
+font-3 = Monaco:size=12;2
+
+modules-left = wm updates github
+modules-center = window_title music
+modules-right = cpu ping wifi volume battery date power
+
+[module/wm]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = true
+
+label-focused-foreground = ${colors.primary}
+label-urgent-foreground = ${colors.alert}
+label-focused = %index% %icon%
+label-unfocused = %index% %icon%
+label-visible = %index% %icon%
+label-urgent = %index% %icon%
+label-focused-padding = 1
+label-unfocused-padding = 1
+label-visible-padding = 1
+label-urgent-padding = 1
+
+fuzzy-match = true
+ws-icon-0 = web;
+ws-icon-1 = code;
+ws-icon-2 = social;
+ws-icon-3 = email;
+ws-icon-4 = misc;
+
+[module/window_title]
+type = internal/xwindow
+label = %title:0:75:...%
+
+[module/music]
+type = custom/script
+exec = ~/scripts/music.sh
+interval = 2
+label =  %output:0:75:...%
+label-foreground = ${colors.primary}
+
+[module/ping]
+type = custom/script
+exec = ~/scripts/ping.sh
+; Display output only if connected to a WiFi network
+exec-if = tail -n+3 /proc/net/wireless | grep -q .
+interval = 15
+label =  %output%
+
+[module/updates]
+type = custom/script
+exec = ~/scripts/updates.sh
+; Display output only if connected to a WiFi network
+exec-if = tail -n+3 /proc/net/wireless | grep -q .
+interval = 300
+label =  %output%
+
+[module/github]
+type = internal/github
+; Display output only if connected to a WiFi network
+exec-if = tail -n+3 /proc/net/wireless | grep -q .
+token = ${file:~/.config/polybar/github.token}
+empty-notifications = false
+interval = 300
+label =  %notifications%
+
+[module/backlight]
+type = internal/xbacklight
+output = eDP1
+
+format = <label>
+label =  %percentage%%
+
+[module/cpu]
+type = internal/cpu
+interval = 1
+format = <label>
+label =  %percentage%%
+
+[module/wifi]
+type = internal/network
+interface = wlp3s0
+interval = 1
+
+format-connected = <label-connected>
+label-connected =  (%downspeed%)
+
+format-disconnected = <label-disconnected>
+label-disconnected = 
+label-disconnect-foreground = ${color.alert}
+
+[module/date]
+type = internal/date
+interval = 1
+format =  <label>
+
+date = %a %b %d
+time = %H:%M
+
+label = %date%, %time%
+
+[module/volume]
+type = internal/volume
+
+format-volume = <label-volume>
+label-volume =  %percentage%%
+
+format-muted = <label-muted>
+label-muted =  0%
+label-muted-foreground = ${colors.warning}
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 96
+poll-interval = 10
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+label-full =  %percentage%%
+
+ramp-capacity-0 = 
+ramp-capacity-0-foreground = ${colors.warning}
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-framerate = 750
+
+[module/temperature]
+type = internal/temperature
+interval = 2
+thermal-zone = 0
+warn-temperature = 75
+
+format = <label>
+format-warn = <label-warn>
+format-warn-foreground = ${colors.warning}
+
+label =  %temperature%
+label-warn =  %temperature%
+
+[module/power]
+type = custom/menu
+format = <menu> <label-toggle>
+format-padding = 1
+format-margin = 0
+
+menu-0-0 =  shutdown
+menu-0-0-exec = shutdown now
+menu-0-1 =  restart
+menu-0-1-exec = shutdown -r now
+menu-0-2 =  suspend
+menu-0-2-exec = systemctl suspend
+
+label-open = 
+label-close =  cancel

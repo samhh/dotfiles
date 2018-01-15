@@ -1,0 +1,15 @@
+rofi.font: PragmataPro Nerd Font 14
+rofi.hide-scrollbar: true
+rofi.color-enabled: true
+rofi.separator-style: none
+rofi.line-padding: 8
+rofi.width: 20
+rofi.location: 2
+rofi.yoffset: 350
+rofi.lines: 1
+rofi.padding: 20
+rofi.bw: 5
+
+rofi.color-window: #000000, #0a84ff, #0a84ff
+rofi.color-normal: #000000,  #ffffff,  #000000,  #0a84ff,  #ffffff
+

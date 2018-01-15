@@ -1,0 +1,8 @@
+[Unit]
+Description=Change wallpaper every hour
+
+[Timer]
+Persistent=false
+OnActiveSec=1sec
+OnUnitActiveSec=1hour
+

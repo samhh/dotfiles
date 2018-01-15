@@ -1,0 +1,7 @@
+[Unit]
+Description=Run borgmatic daily
+
+[Timer]
+OnActiveSec=1hour
+OnUnitActiveSec=1day
+
