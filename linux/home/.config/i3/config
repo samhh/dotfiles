@@ -17,6 +17,9 @@ set $mod Mod4
 # Start a terminal
 bindsym $mod+Return exec kitty
 
+# Start a terminal in the same directory as the currently/last focused terminal
+bindsym $mod+Shift+Return exec kitty -d="$(xcwd)"
+
 # Kill focused window
 bindsym $mod+Shift+q kill
 
