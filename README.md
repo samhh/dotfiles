@@ -6,6 +6,8 @@ My personal dotfiles and miscellaneous configs.
 
 I spend most of my personal time on the Arch partition of my MBP, however my work laptop is stuck with macOS. As such, I've tried to make working with both of these simultaneously as seemless as possible. For example, my experience in the terminal and the editor should be close to identical on each OS.
 
+As of time of writing, most of the Linux configs adhere to the [Gruvbox Dark](https://github.com/morhetz/gruvbox) color scheme for visual cohesion.
+
 ## Project Structure
 
 Everything is split up into four dirs:
