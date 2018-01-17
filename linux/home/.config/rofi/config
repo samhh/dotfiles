@@ -6,10 +6,9 @@ rofi.line-padding: 8
 rofi.width: 20
 rofi.location: 2
 rofi.yoffset: 350
-rofi.lines: 1
+rofi.lines: 3
 rofi.padding: 20
-rofi.bw: 5
+rofi.bw: 0
 
-rofi.color-window: #000000, #0a84ff, #0a84ff
-rofi.color-normal: #000000,  #ffffff,  #000000,  #0a84ff,  #ffffff
-
+rofi.color-window: #1d2021, #458588, #000000
+rofi.color-normal: #1d2021,  #ffffff,  #1d2021,  #458588,  #ffffff
