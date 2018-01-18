@@ -24,7 +24,7 @@ bindsym $mod+Shift+Return exec kitty -d="$(xcwd)"
 bindsym $mod+Shift+q kill
 
 # Launcher
-bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun -drun-match-fields name -matching fuzzy
+bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun -drun-match-fields name
 
 # Pass(words)
 bindsym $mod+shift+d exec --no-startup-id passmenu
