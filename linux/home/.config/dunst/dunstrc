@@ -4,7 +4,7 @@
     follow = keyboard
 
     # Window size / position & general theming
-    geometry = "500x5-30+50"
+    geometry = "500x5-30+73"
     font = Monaco 13
     line_height = 0
     shrink = no
