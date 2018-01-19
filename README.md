@@ -24,5 +24,5 @@ There are plenty of software prerequisites as these are the configs I use every 
 Note that under Linux there are presently configs for three different terminals, all of which suffer different defects. Pick whichever one suits you best. For reference, here are said terminals and accompanying defects:
 
 - Alacritty: No scrollback, no font ligatures.
-- Kitty: Weird visual bug with the cursor when the window is inactive.
+- Kitty: Weird visual bug with the cursor when the window is inactive, inconsistent scrollback behaviour, inconsistent exit behaviour.
 - Termite: No font ligatures, supposedly comparatively poor performance.
