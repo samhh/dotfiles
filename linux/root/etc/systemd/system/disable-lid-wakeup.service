@@ -1,0 +1,11 @@
+[Unit]
+Description=Disable lid wakeup trigger in /proc/acpi/wakeup
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "echo LID0 > /proc/acpi/wakeup"
+ExecStop=/bin/sh -c "echo LID0 > /proc/acpi/wakeup"
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
