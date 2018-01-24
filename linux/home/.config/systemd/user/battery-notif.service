@@ -1,0 +1,10 @@
+# This was a copy/paste job... test what can be removed TODO
+# Environment var is required for feh when running via systemd, for some reason
+
+[Unit]
+Description=Check battery and potentially send critical notif
+
+[Service]
+Type=oneshot
+Environment=DISPLAY=:0.0
+ExecStart=%h/scripts/battery-notif.sh
