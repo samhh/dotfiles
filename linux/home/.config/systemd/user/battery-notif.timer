@@ -1,0 +1,10 @@
+[Unit]
+Description=Check battery and potentially send critical notif every few minute
+
+[Install]
+WantedBy=multi-user.target
+
+[Timer]
+Persistent=false
+OnActiveSec=1sec
+OnUnitActiveSec=1min
