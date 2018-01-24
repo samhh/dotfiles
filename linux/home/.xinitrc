@@ -13,9 +13,6 @@ xset s off -dpms
 # Note that xss-lock hooks into systemd, so just call "systemctl suspend" whenever you want to sleep/lock
 xss-lock -- i3lock -i ~/pics/lock/rick-morty.png -c 161616 &
 
-# Start automatic wallpaper shuffle
-systemctl --user start wallpaper.timer
-
 # Notifications
 dunst &
 
