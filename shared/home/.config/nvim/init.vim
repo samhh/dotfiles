@@ -6,10 +6,13 @@ Plug 'bling/vim-airline'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'airblade/vim-gitgutter'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'grod/sublime-color-schemes.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-commentary'
+Plug 'myusuf3/numbers.vim'
+Plug 'thiagoalessio/rainbow_levels.vim'
+Plug 'morhetz/gruvbox'
 
 "Initialise plugin system
 call plug#end()
@@ -17,7 +20,9 @@ call plug#end()
 "** Settings
 
 "Theming
-colorscheme Calydon
+colorscheme gruvbox
+set background=dark
+hi Normal guibg=NONE ctermbg=NONE
 
 "Indent based upon file's indentation
 filetype plugin indent on
