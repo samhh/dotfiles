@@ -1,0 +1,65 @@
+{
+  "update.channel": "none",
+  "editor.fontFamily": "Fira Code",
+  "editor.fontSize": 14,
+  "editor.fontLigatures": true,
+  "editor.tabSize": 2,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true
+  },
+  "editor.wordWrap": "on",
+  "editor.tabCompletion": true,
+  "editor.dragAndDrop": false,
+  "editor.minimap.renderCharacters": false,
+  "editor.rulers": [
+    80
+  ],
+  "javascript.implicitProjectConfig.checkJs": true,
+  "workbench.iconTheme": "vscode-icons",
+  "search.useRipgrep": true,
+  "telemetry.enableCrashReporter": false,
+  "telemetry.enableTelemetry": false,
+  "workbench.colorTheme": "Gruvbox Dark (Hard)",
+  "editor.codeLens": true,
+  "explorer.autoReveal": false,
+  "workbench.startupEditor": "newUntitledFile",
+  "vsicons.dontShowNewVersionMessage": true,
+  "files.associations": {
+    "*.ron": "rust"
+  },
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.snippetSuggestions": "top",
+  "editor.formatOnPaste": true,
+  "window.zoomLevel": 1,
+  "window.menuBarVisibility": "toggle",
+  "vim.useSystemClipboard": true,
+  "vim.cmdLineInitialColon": true,
+  "vim.handleKeys": {
+    "<C-b>": false,
+    "<C-c>": false
+  },
+  "vim.enableNeovim": true,
+  "vim.neovimPath": "/usr/bin/nvim",
+  // Causes massive CPU spikes
+  "vim.statusBarColorControl": false,
+  "vim.statusBarColors" : {
+    "normal": "#60a100",
+    "insert": "#0a84ff",
+    "visual": "#550000",
+    "visualline": "#005f87",
+    "visualblock": "#86592d",
+    "replace": "#000000"
+  },
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#0a84ff",
+    "statusBar.noFolderBackground": "#0a84ff",
+    "statusBar.debuggingBackground": "#0a84ff"
+  },
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false
+}
