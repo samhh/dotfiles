@@ -95,7 +95,7 @@ label =  %output%
 type = internal/github
 ; Display output only if connected to a WiFi network
 exec-if = tail -n+3 /proc/net/wireless | grep -q .
-token = ${file:~/.config/polybar/github.token}
+token = ${file:~/.github.token}
 empty-notifications = false
 interval = 300
 label =  %notifications%
