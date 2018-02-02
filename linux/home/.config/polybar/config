@@ -36,7 +36,9 @@ font-1 = Font Awesome 5 Free:style=Regular:size=13;3
 font-2 = Font Awesome 5 Brands:style=Regular:size=13;3
 font-3 = Monaco:size=12;2
 
-modules-left = wm updates github
+; GitHub module causing crashes
+;modules-left = wm updates github
+modules-left = wm updates
 modules-center = window_title music
 modules-right = cpu ping wifi volume battery date power
 
