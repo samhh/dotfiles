@@ -13,7 +13,7 @@ if [ `uname` == 'Linux' ]; then
     exit 126
   fi
 
-  stow root -d $osdir -t /
+  stow -R root -d $osdir -t /
 
 elif [ `uname` == 'Darwin' ]; then
   osdir="macos"
@@ -21,6 +21,6 @@ else
   exit 1
 fi
 
-stow home -d $osdir -t $HOME
-stow home -d shared -t $HOME
+stow -R home -d $osdir -t $HOME
+stow -R home -d shared -t $HOME
 
