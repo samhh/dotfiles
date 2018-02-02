@@ -1,3 +1,8 @@
+# Autostart Xorg
+if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+  startx
+fi
+
 # Enable tab completion
 autoload -Uz compinit
 compinit
