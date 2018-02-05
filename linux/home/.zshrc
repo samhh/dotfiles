@@ -136,7 +136,7 @@ alias un='pacaur -Rs'
 # Fix SSH environments
 # See: https://unix.stackexchange.com/a/67541
 alias ssh='TERM=xterm ssh'
-#
+
 # Hack to make sudo use aliases always
 alias sudo='sudo '
 
@@ -145,4 +145,5 @@ alias ls='exa'
 alias cat='ccat'
 alias grep='rg -uu'
 alias rm='trash-put'
+alias top='htop'
 
