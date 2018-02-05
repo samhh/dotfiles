@@ -4,11 +4,14 @@ compinit
 
 # Save input history
 HISTFILE=~/.histfile
-HISTSIZE=250
-SAVEHIST=250
+HISTSIZE=1000
+SAVEHIST=1000
+
+# Add history to shared histfile immediately
+setopt inc_append_history
 
 # Prevent saving the same history twice in a row
-setopt histignoredups
+setopt histignorealldups
 
 # Vi mode keybindings
 bindkey -v
@@ -19,6 +22,10 @@ setopt autocd
 
 # Enable matching dotfiles in globs without specifying dot
 setopt globdots
+
+# Don't send kill signal to jobs started in shell
+setopt no_hup
+setopt no_check_jobs
 
 # Use Neovim as default cli editor
 export VISUAL=nvim
@@ -56,10 +63,11 @@ export NVM_DIR=~/.nvm
 # Configure minimal theme (to be loaded by zplug)
 MINIMAL_PWD_CHAR_LEN=25
 
-# Enable zplug and desired plugins/themes
+# Source Zplug (ZSH plugin manager)
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
+# Zplug plugins
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-autosuggestions"
@@ -70,12 +78,16 @@ zplug "zsh-users/zsh-completions"
 zplug "mollifier/cd-gitroot"
 zplug "samhh/minimal-colorful-git-status"
 zplug "subnixr/minimal"
-if ! zplug check --verbose; then
+
+# Check if any plugins aren't yet installed and offer to install them
+if ! zplug check; then
   printf "Install? [y/N]: "
   if read -q; then
     echo; zplug install
   fi
 fi
+
+# Load plugins
 zplug load
 
 # Fix incompatibility between minimal theme and zsh-autosuggestions
