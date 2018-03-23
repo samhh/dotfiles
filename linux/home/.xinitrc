@@ -11,7 +11,7 @@ xset s off -dpms
 
 # Lock immediately after awaking from sleep
 # Note that xss-lock hooks into systemd, so just call "systemctl suspend" whenever you want to sleep/lock
-xss-lock -- i3lock -i ~/pics/lock/rick-morty.png -c 161616 &
+xss-lock -- i3lock -n -i ~/pics/lock/rick-morty.png -c 161616 &
 
 # Notifications
 dunst &
