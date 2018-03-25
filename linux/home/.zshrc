@@ -126,10 +126,10 @@ alias gitrmmerged='git br --merged | grep -Ev "(\*|master|develop)" | xargs -n 1
 alias setclip='xclip -selection c'
 alias getclip='xclip -selection clipboard -o'
 
-alias up='pacaur -Syu'
-alias upf='pacaur -Syyu'
-alias in='pacaur -S'
-alias un='pacaur -Rs'
+alias up='aurman -Syu'
+alias upf='aurman -Syyu'
+alias in='aurman -S'
+alias un='aurman -Rs'
 
 # Fix SSH environments
 # See: https://unix.stackexchange.com/a/67541
