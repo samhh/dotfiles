@@ -3,8 +3,8 @@ Description=Disable lid wakeup trigger in /proc/acpi/wakeup
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c "echo LID0 > /proc/acpi/wakeup"
-ExecStop=/bin/sh -c "echo LID0 > /proc/acpi/wakeup"
+ExecStart=/bin/sh -c "echo LID0 > /proc/acpi/wakeup && echo ARPT > /proc/acpi/wakeup && echo XHC1 > /proc/acpi/wakeup"
+ExecStop=/bin/sh -c "echo LID0 > /proc/acpi/wakeup && echo ARPT > /proc/acpi/wakeup && echo XHC1 > /proc/acpi/wakeup"
 RemainAfterExit=yes
 
 [Install]
