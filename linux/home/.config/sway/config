@@ -1,181 +1,156 @@
-### Variables
-#
-# CMD/Windows key
-set $mod Mod4
-# Home row direction keys, like vim
-set $left h
-set $down j
-set $up k
-set $right l
-# Your preferred terminal emulator
-set $term termite
-# Your preferred application launcher
-set $menu dmenu_run
-
-### Output configuration
-#
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+# Output settings
 output * bg /usr/share/backgrounds/sam.jpg fill
-
 output eDP-1 scale 1
 
-### Key bindings
-#
-# Basics:
-#
-    # start a terminal
-    bindsym $mod+Return exec $term
+# General settings
+focus_follows_mouse no
 
-    # kill focused window
-    bindsym $mod+Shift+q kill
+# General theming
+font pango:Monaco 11
+client.focused #458588 #000000 #eeeeee #458588 #458588
+client.unfocused #222222 #000000 #eeeeee #222222 #222222
+client.focused_inactive #222222 #000000 #eeeeee #222222 #222222
+for_window [class="^.*"] border pixel 4
+gaps outer 0
+gaps inner 16
+smart_borders on
 
-    # start your launcher
-    bindsym $mod+d exec $menu
+# Mod key
+set $mod Mod4
 
-    # Drag floating windows by holding down $mod and left mouse button.
-    # Resize them with right mouse button + $mod.
-    # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
-    floating_modifier $mod normal
+# Start a terminal
+bindsym $mod+Return exec kitty
 
-    # reload the configuration file
-    bindsym $mod+Shift+c reload
+# Start a terminal in the same directory as the currently/last focused terminal
+bindsym $mod+Shift+Return exec kitty -d="$(xcwd)"
 
-    # exit sway (logs you out of your wayland session)
-    bindsym $mod+Shift+e exit
-#
-# Moving around:
-#
-    # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
-    # or use $mod+[up|down|left|right]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
+# Kill focused window
+bindsym $mod+Shift+q kill
 
-    # _move_ the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
-    # ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
-#
-# Workspaces:
-#
-    # switch to workspace
-    bindsym $mod+1 workspace 1
-    bindsym $mod+2 workspace 2
-    bindsym $mod+3 workspace 3
-    bindsym $mod+4 workspace 4
-    bindsym $mod+5 workspace 5
-    bindsym $mod+6 workspace 6
-    bindsym $mod+7 workspace 7
-    bindsym $mod+8 workspace 8
-    bindsym $mod+9 workspace 9
-    bindsym $mod+0 workspace 10
-    # move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace 1
-    bindsym $mod+Shift+2 move container to workspace 2
-    bindsym $mod+Shift+3 move container to workspace 3
-    bindsym $mod+Shift+4 move container to workspace 4
-    bindsym $mod+Shift+5 move container to workspace 5
-    bindsym $mod+Shift+6 move container to workspace 6
-    bindsym $mod+Shift+7 move container to workspace 7
-    bindsym $mod+Shift+8 move container to workspace 8
-    bindsym $mod+Shift+9 move container to workspace 9
-    bindsym $mod+Shift+0 move container to workspace 10
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
-#
-# Layout stuff:
-#
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+# Launcher
+bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun -drun-match-fields name
 
-    # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+# Pass(words)
+bindsym $mod+shift+d exec --no-startup-id passmenu
 
-    # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+# Clipboard
+exec_always --no-startup-id greenclip daemon
+bindsym $mod+shift+p exec --no-startup-id rofi -lines 5 -modi "clipboard:greenclip print" -show clipboard
 
-    # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+# Calculator & conversions
+bindsym $mod+shift+k exec --no-startup-id rofi -show calc -modi "calc:qalc +u8"
 
-    # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+# Wallpaper
+bindsym $mod+shift+w exec --no-startup-id systemctl --user start wallpaper
 
-    # move focus to the parent container
-    bindsym $mod+a focus parent
-#
-# Scratchpad:
-#
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
+# Change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
 
-    # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
+# Move focused container around
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
 
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
-#
-# Resizing containers:
-#
+# Split horizontally / vertically
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+# Toggle fullscreen for focused
+bindsym $mod+f fullscreen toggle
+
+# Change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# Change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# Switch to workspace
+bindsym $mod+1 workspace 1 web
+bindsym $mod+2 workspace 2 code1
+bindsym $mod+3 workspace 3 code2
+bindsym $mod+4 workspace 4 code3
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8 social
+bindsym $mod+9 workspace 9 email
+bindsym $mod+0 workspace 10 misc
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1 web
+bindsym $mod+Shift+2 move container to workspace 2 code1
+bindsym $mod+Shift+3 move container to workspace 3 code2
+bindsym $mod+Shift+4 move container to workspace 4 code3
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8 social
+bindsym $mod+Shift+9 move container to workspace 9 email
+bindsym $mod+Shift+0 move container to workspace 10 misc
+
+# Assign apps to specific workspaces by default
+assign [class="Discord"] 8 social
+assign [class="Slack"] 8 social
+assign [class="Telegram"] 8 social
+assign [class="Mozilla Thunderbird"] 9 email
+assign [class="Spotify"] 10 misc
+assign [class="Todoist"] 10 misc
+
+# Reload config
+bindsym $mod+Shift+c reload
+
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# Exit i3 (logs you out of your X session) (requires mouse confirmation)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# Resize mode
 mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym $left resize shrink width 10 px or 10 ppt
-    bindsym $down resize grow height 10 px or 10 ppt
-    bindsym $up resize shrink height 10 px or 10 ppt
-    bindsym $right resize grow width 10 px or 10 ppt
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
 
-    # ditto, with arrow keys
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
-
-    # return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+        # Leave resize mode w/ Enter or Esc
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
 }
+
 bindsym $mod+r mode "resize"
 
-include /etc/sway/config.d/*
+# Volume control
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
+bindsym XF86AudioMute exec amixer -q set Master toggle
 
-# Set natural scrolling for touchpad, and disable mouse accleration
-input "1452:628:bcm" {
-	natural_scroll enabled
-	pointer_accel 1
-        accel_profile flat
-}
+# Screen brightness control
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
-# i3status
-bar {
-	position top
-	status_command i3status
-}
+# Keyboard backlight control
+bindsym XF86KbdBrightnessUp exec xbacklight -ctrl smc::kbd_backlight -inc 10
+bindsym XF86KbdBrightnessDown exec xbacklight -ctrl smc::kbd_backlight -dec 10
 
-# gaps
-gaps outer 3
-gaps inner 10
+# Media control
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
-# border / title bar
-border pixel 4
+# Menubar & persistent systray
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id nm-applet
 
