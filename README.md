@@ -18,7 +18,7 @@ At its core, everything is split up into five basic dirs:
 - **NAS**: Configs for my home NAS (running off a Raspberry Pi).
 - **Misc**: At the moment this is exclusively a CS:GO config (that I happen to use on Windows).
 
-You can use the included `./link.sh` helper on Linux/macOS to automatically set up syslinks for all configs. This uses Stow under the hood.
+You can use the included `./link.sh` helper on Linux/macOS to automatically set up syslinks for all configs. This uses Stow under the hood. Note that this does not apply to NAS configs.
 
 Any configs that require user input due to user secrets (e.g. GPG key in Git config) are placed in appended *_secret* dirs, separately from the clean configs. You will need to manually manage these.
 
