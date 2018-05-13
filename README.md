@@ -10,11 +10,12 @@ As of time of writing, most of the Linux configs adhere to the [Gruvbox Dark](ht
 
 ## Project Structure
 
-At its core, everything is split up into four basic dirs:
+At its core, everything is split up into five basic dirs:
 
 - **Linux**
 - **macOS**
-- **Shared**: Stuff that should work out of the box on both Linux and macOS.
+- **Shared**: Configs that should work out of the box on both Linux and macOS.
+- **NAS**: Configs for my home NAS (running off a Raspberry Pi).
 - **Misc**: At the moment this is exclusively a CS:GO config (that I happen to use on Windows).
 
 You can use the included `./link.sh` helper on Linux/macOS to automatically set up syslinks for all configs. This uses Stow under the hood.
