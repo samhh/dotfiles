@@ -36,6 +36,9 @@ bindsym $mod+shift+p exec --no-startup-id rofi -lines 5 -modi "clipboard:greencl
 # Calculator & conversions
 bindsym $mod+shift+k exec --no-startup-id rofi -show calc -modi "calc:qalc +u8"
 
+# Translations
+bindsym $mod+shift+t exec --no-startup-id rofi -show trans -modi "trans:trans -brief"
+
 # Wallpaper
 bindsym $mod+shift+w exec --no-startup-id systemctl --user start wallpaper
 
