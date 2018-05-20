@@ -11,7 +11,7 @@
   default = simple
 
 [user]
-  email = samhh.web@gmail.com
+  email = git@samhh.com
   name = Sam A. Horvath-Hunt
   signingkey = <GPG_KEY_ID>
 
