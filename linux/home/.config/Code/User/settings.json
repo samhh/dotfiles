@@ -61,5 +61,6 @@
     "statusBar.debuggingBackground": "#0a84ff"
   },
   "explorer.confirmDelete": false,
-  "explorer.confirmDragAndDrop": false
+  "explorer.confirmDragAndDrop": false,
+  "typescript.updateImportsOnFileMove.enabled": "never"
 }

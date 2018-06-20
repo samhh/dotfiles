@@ -19,6 +19,8 @@ border-left = 17
 border-right = 17
 cursor-click = pointer
 
+tray-position = right
+
 background = ${colors.background}
 foreground = ${colors.foreground}
 
