@@ -16,8 +16,8 @@ xss-lock -- i3lock-next &
 # Notifications
 dunst &
 
-# Screen colour temperature
-redshift-gtk &
+# Screen colour temperature (London coords)
+redshift -l 51.5:-0.11
 
 # Compositor (transparency & misc)
 compton -b -c --inactive-dim .1 --backend glx --vsync drm
