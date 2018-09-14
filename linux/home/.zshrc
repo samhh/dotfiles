@@ -123,9 +123,6 @@ alias npmlsg='npm ls -g --depth=0' # npm global packages
 alias cdgit='cd-gitroot'
 alias gitrmmerged='git br --merged | grep -Ev "(\*|master|develop)" | xargs -n 1 git br -d'
 
-alias setclip='xclip -selection c'
-alias getclip='xclip -selection clipboard -o'
-
 alias up='aurman -Syu'
 alias upf='aurman -Syyu'
 alias in='aurman -S'
