@@ -16,6 +16,9 @@ xss-lock -- i3lock-next &
 # Notifications
 dunst &
 
+# Clipboard manager
+greenclip daemon &
+
 # Screen colour temperature (London coords)
 redshift -l 51.5:-0.11
 
