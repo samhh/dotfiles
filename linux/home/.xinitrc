@@ -20,7 +20,7 @@ dunst &
 greenclip daemon &
 
 # Screen colour temperature (London coords)
-redshift -l 51.5:-0.11
+redshift -l 51.5:-0.11 &
 
 # Compositor (transparency & misc)
 compton -b -c --inactive-dim .1 --backend glx --vsync drm
