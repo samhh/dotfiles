@@ -123,10 +123,11 @@ alias npmlsg='npm ls -g --depth=0' # npm global packages
 alias cdgit='cd-gitroot'
 alias gitrmmerged='git br --merged | grep -Ev "(\*|master|develop)" | xargs -n 1 git br -d'
 
-alias up='aurman -Syu'
-alias upf='aurman -Syyu'
-alias in='aurman -S'
-alias un='aurman -Rs'
+alias up='yay -Syu'
+alias upf='yay -Syyu'
+alias in='yay -S'
+alias un='ya -Rs'
+alias clear_cache='paccache -r && yay -S -c'
 
 # Fix SSH environments
 # See: https://unix.stackexchange.com/a/67541
