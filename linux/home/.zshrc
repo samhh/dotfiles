@@ -126,7 +126,7 @@ alias gitrmmerged='git br --merged | grep -Ev "(\*|master|develop)" | xargs -n 1
 alias up='yay -Syu'
 alias upf='yay -Syyu'
 alias in='yay -S'
-alias un='ya -Rs'
+alias un='yay -Rs'
 alias clear_cache='paccache -r && yay -S -c'
 
 # Fix SSH environments
