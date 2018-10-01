@@ -28,7 +28,7 @@ font:
   italic:
     family: 'Fira Code'
 
-  size: 11.5
+  size: 5.5
 
   # Effectively: x is lettet spacing, y is line height
   offset:
