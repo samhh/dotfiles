@@ -15,10 +15,10 @@ smart_borders on
 set $mod Mod4
 
 # Start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec --no-startup-id alacritty
 
 # Start a terminal in the same directory as the currently/last focused terminal
-bindsym $mod+Shift+Return exec kitty -d="$(xcwd)"
+bindsym $mod+Shift+Return exec --no-startup-id alacritty --working-directory "$(xcwd)"
 
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -132,22 +132,22 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Volume control
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
-bindsym XF86AudioMute exec amixer -q set Master toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 5%+ unmute
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 5%- unmute
+bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
 
 # Screen brightness control
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 
 # Keyboard backlight control
-bindsym XF86KbdBrightnessUp exec xbacklight -ctrl smc::kbd_backlight -inc 10
-bindsym XF86KbdBrightnessDown exec xbacklight -ctrl smc::kbd_backlight -dec 10
+bindsym XF86KbdBrightnessUp exec --no-startup-id xbacklight -ctrl smc::kbd_backlight -inc 10
+bindsym XF86KbdBrightnessDown exec --no-startup-id xbacklight -ctrl smc::kbd_backlight -dec 10
 
 # Media control
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
 # Menubar & persistent systray
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
