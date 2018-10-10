@@ -25,6 +25,9 @@
   # View the current working tree status using the short format
   st = status --short
 
+  # Full path of root of Git repo. Useful in command substitution to change directory to the root
+  root = rev-parse --show-toplevel
+
   # Other aliases
   df = diff
   dfs = diff --staged
