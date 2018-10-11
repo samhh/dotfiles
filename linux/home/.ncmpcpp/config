@@ -1,4 +1,0 @@
-mpd_host = "{LOCAL NAS IP}"
-mpd_port = "6600"
-mpd_music_dir = "{PATH TO MUSIC DIR ON NAS}"
-
