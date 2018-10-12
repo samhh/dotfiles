@@ -17,9 +17,9 @@ At its core, everything is split up into four basic dirs:
 - **Shared**: Configs that should work out of the box on both Linux and macOS.
 - **Controller**: Configs for my home controller (a Raspberry Pi that's always on).
 
-You can use the included `./link.sh` helper on Linux/macOS to automatically set up syslinks for all configs. This uses Stow under the hood. Note that this does not apply to NAS configs.
+You can use the included `./link.sh` helper on Linux/macOS to automatically set up syslinks for all configs. This uses Stow under the hood. Note that this does not apply to Controller configs.
 
-Any configs that require user input due to user secrets (e.g. GPG key in Git config) are placed in appended *_secret* dirs, separately from the clean configs. You will need to manually manage these.
+Any configs that belong outside of the user home directory or require user input due to user secrets (e.g. GPG key in Git config) are placed in appended *_manual* dirs, separately from the clean configs. You will need to manually manage these.
 
 There are plenty of software prerequisites as these are the configs I use every day down to a byte. Read the files you're downloading to understand what they are and what might be required for them to work.
 
