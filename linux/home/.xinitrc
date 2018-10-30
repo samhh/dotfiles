@@ -26,7 +26,7 @@ redshift -l 51.5:-0.11 &
 compton -b -c --inactive-dim .1 --backend glx --vsync drm
 
 # Set transparency dynamically on entire windows
-devilspie -a &
+devilspie &
 
 # WM
 exec i3

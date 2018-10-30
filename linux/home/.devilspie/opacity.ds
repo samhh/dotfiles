@@ -1,0 +1,7 @@
+( if
+( contains ( window_class ) "oni" )
+( begin
+( spawn_async (str "transset-df -i " (window_xid) " 0.95" ))
+)
+)
+
