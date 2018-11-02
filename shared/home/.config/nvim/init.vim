@@ -33,6 +33,9 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 
+"Use bash as internal shell
+set shell=bash
+
 "Always show line numbers
 set number
 
