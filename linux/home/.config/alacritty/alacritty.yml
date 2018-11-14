@@ -11,8 +11,8 @@ window:
 
   # Padding units are physical pixels / not DPI-aware
   padding:
-    x: 10
-    y: 10
+    x: 5
+    y: 5
 
   # Title bar & border
   decorations: false
