@@ -11,7 +11,6 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-commentary'
 Plug 'myusuf3/numbers.vim'
-Plug 'thiagoalessio/rainbow_levels.vim'
 Plug 'morhetz/gruvbox'
 
 "Initialise plugin system
