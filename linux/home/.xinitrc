@@ -23,7 +23,7 @@ greenclip daemon &
 redshift -l 51.5:-0.11 &
 
 # Compositor (transparency & misc)
-compton -b -c --inactive-dim .1 --backend glx --vsync drm
+compton -b -c --inactive-dim .1 --backend glx --xrender-sync
 
 # Set transparency dynamically on entire windows
 devilspie &
