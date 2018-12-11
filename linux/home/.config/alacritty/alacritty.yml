@@ -15,7 +15,7 @@ window:
     y: 5
 
   # Title bar & border
-  decorations: false
+  decorations: 'none'
 
 tabspaces: 2
 draw_bold_text_with_bright_colors: true
@@ -32,16 +32,16 @@ font:
 
   # Effectively: x is lettet spacing, y is line height
   offset:
-    x: 0.0
-    y: 0.0
+    x: 0
+    y: 0
 
   # TODO
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increase the x offset to move the glyph to
   # the right, increase the y offset to move the glyph upward.
   glyph_offset:
-    x: 0.0
-    y: 0.0
+    x: 0
+    y: 0
 
 # Colors (Gruvbox Dark)
 colors:
@@ -80,7 +80,7 @@ background_opacity: 0.9
 
 mouse:
   # Number of lines to scroll with mouse in apps like man, less, etc
-  faux_scrollback_lines: 2
+  faux_scrolling_lines: 2
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
