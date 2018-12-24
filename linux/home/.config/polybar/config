@@ -33,7 +33,7 @@ font-3 = Monaco:size=12;2
 ; WARNING: GitHub module causes crashes
 modules-left = wm
 modules-center = window_title music
-modules-right = updates wifi volume battery date power
+modules-right = updates tasks wifi volume battery date power
 
 [module/wm]
 type = internal/i3
@@ -86,6 +86,12 @@ exec = ~/scripts/updates.sh
 exec-if = tail -n+3 /proc/net/wireless | grep -q .
 interval = 300
 label =  %output%
+
+[module/tasks]
+type = custom/script
+exec = ~/scripts/tasks-due.sh
+interval = 3600
+label =  %output%
 
 [module/github]
 type = internal/github
