@@ -1,8 +1,5 @@
 # Lots of apps leave auto-generated files in the same config dirs we're linking. Here we will ignore all of them
 
-**/kitty/*
-!**/kitty/kitty.conf
-
 **/Code/*
 !**/Code/User/settings.json
 
