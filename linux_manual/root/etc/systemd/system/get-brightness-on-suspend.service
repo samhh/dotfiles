@@ -1,0 +1,11 @@
+[Unit]
+Description=Get and save screen brightness to file on suspend
+Before=sleep.target
+
+[Service]
+Type=simple
+ExecStart=/bin/sh -c "xbacklight -get > /tmp/brightness-value"
+
+[Install]
+WantedBy=sleep.target
+
