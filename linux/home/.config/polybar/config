@@ -90,6 +90,7 @@ label =  %output%
 [module/tasks]
 type = custom/script
 exec = ~/scripts/tasks-due.sh
+exec-if = expr $(~/scripts/tasks-due.sh) \> 0
 interval = 3600
 label =  %output%
 
