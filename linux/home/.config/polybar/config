@@ -82,8 +82,7 @@ label =  %output%
 [module/updates]
 type = custom/script
 exec = ~/scripts/updates.sh
-; Display output only if connected to a WiFi network
-exec-if = tail -n+3 /proc/net/wireless | grep -q .
+exec-if = expr $(~/scripts/updates.sh) \> 0
 interval = 300
 label =  %output%
 
