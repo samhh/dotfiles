@@ -26,8 +26,11 @@ bindsym $mod+Shift+q kill
 # Launcher
 bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun -drun-match-fields name
 
-# Pass(words)
-bindsym $mod+shift+d exec --no-startup-id passmenu
+# Buku
+bindsym $mod+shift+d exec --no-startup-id buku -p -f 3 | dmenu -i | cut -d ' ' -f 1 | xargs --no-run-if-empty buku -o
+
+# Pass
+bindsym $mod+shift+x exec --no-startup-id passmenu
 
 # Clipboard
 exec_always --no-startup-id greenclip daemon
