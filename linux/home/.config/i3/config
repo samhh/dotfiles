@@ -31,6 +31,8 @@ bindsym $mod+shift+d exec --no-startup-id buku -p -f 3 | dmenu -i | cut -d ' ' -
 
 # Pass
 bindsym $mod+shift+x exec --no-startup-id passmenu
+bindsym $mod+shift+n exec --no-startup-id ~/scripts/passmenu-prefixed-line.sh 'username: '
+bindsym $mod+shift+m exec --no-startup-id ~/scripts/passmenu-prefixed-line.sh 'email: '
 
 # Clipboard
 exec_always --no-startup-id greenclip daemon
