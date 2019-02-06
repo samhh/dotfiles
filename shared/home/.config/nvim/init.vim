@@ -76,3 +76,10 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 "Fix editing crontab
 au BufEnter /private/tmp/crontab.* setl backupcopy=yes
 
+"Keybinds
+""Disable arrow keys because old habits die hard
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
