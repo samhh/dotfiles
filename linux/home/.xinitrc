@@ -28,5 +28,8 @@ compton -b -c --inactive-dim .1 --backend glx --xrender-sync
 # Set transparency dynamically on entire windows
 devilspie &
 
+# Load custom keybinds
+[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
+
 # WM
 exec i3
