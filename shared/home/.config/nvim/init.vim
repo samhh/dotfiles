@@ -2,7 +2,6 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 "Load plugins
-Plug 'bling/vim-airline'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'airblade/vim-gitgutter'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -10,6 +9,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-commentary'
+Plug 'farmergreg/vim-lastplace'
 Plug 'myusuf3/numbers.vim'
 Plug 'morhetz/gruvbox'
 
@@ -23,6 +23,26 @@ colorscheme gruvbox
 set background=dark
 hi Normal guibg=NONE ctermbg=NONE
 
+"Statusline
+set laststatus=2
+
+function! StatusLineGit()
+  let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+endfunction
+
+set statusline=
+set statusline+=%#PmenuSel#
+set statusline+=%{StatusLineGit()}
+set statusline+=%#LineNr#
+set statusline+=\ %f
+set statusline+=%m
+set statusline+=%=
+set statusline+=\ %#CursorColumn#
+set statusline+=\ %y
+set statusline+=\ %l:%c
+set statusline+=\ 
+
 "Indent based upon file's indentation
 filetype plugin indent on
 
@@ -32,8 +52,8 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 
-"Use bash as internal shell
-set shell=bash
+"Use fish as internal shell
+set shell=fish
 
 "Always show line numbers
 set number
