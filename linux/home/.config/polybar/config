@@ -33,7 +33,7 @@ font-3 = Monaco:size=12;2
 ; WARNING: GitHub module causes crashes
 modules-left = wm
 modules-center = window_title music
-modules-right = updates tasks wifi volume battery date power
+modules-right = reddit updates tasks wifi volume battery date power
 
 [module/wm]
 type = internal/i3
@@ -78,6 +78,13 @@ exec = ~/scripts/ping.sh
 exec-if = tail -n+3 /proc/net/wireless | grep -q .
 interval = 15
 label =  %output%
+
+[module/reddit]
+type = custom/script
+exec = ~/scripts_secret/reddit-num-unread.sh
+exec-if = expr $(~/scripts_secret/reddit-num-unread.sh) \> 0
+interval = 3600
+label =  %output%
 
 [module/updates]
 type = custom/script
