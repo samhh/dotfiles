@@ -11,7 +11,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-commentary'
 Plug 'farmergreg/vim-lastplace'
 Plug 'myusuf3/numbers.vim'
-Plug 'morhetz/gruvbox'
+Plug 'lifepillar/vim-gruvbox8'
 
 "Initialise plugin system
 call plug#end()
@@ -19,8 +19,7 @@ call plug#end()
 "** Settings
 
 "Theming
-colorscheme gruvbox
-set background=dark
+colorscheme gruvbox8
 hi Normal guibg=NONE ctermbg=NONE
 
 "Statusline
