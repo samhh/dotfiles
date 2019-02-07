@@ -39,7 +39,7 @@ exec_always --no-startup-id greenclip daemon
 bindsym $mod+shift+p exec --no-startup-id rofi -lines 5 -modi "clipboard:greenclip print" -show clipboard
 
 # Calculator & conversions
-bindsym $mod+shift+k exec --no-startup-id rofi -show calc -modi "calc:qalc +u8"
+bindsym $mod+shift+o exec --no-startup-id rofi -show calc -modi "calc:qalc +u8"
 
 # Translations
 bindsym $mod+shift+t exec --no-startup-id rofi -show trans -modi "trans:trans -brief"
@@ -48,19 +48,19 @@ bindsym $mod+shift+t exec --no-startup-id rofi -show trans -modi "trans:trans -b
 bindsym $mod+shift+w exec --no-startup-id systemctl --user start wallpaper
 
 # Change focus
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # Move focused container around
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # Split horizontally / vertically
-bindsym $mod+h split h
+bindsym $mod+c split h
 bindsym $mod+v split v
 
 # Toggle fullscreen for focused
@@ -124,10 +124,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # Leave resize mode w/ Enter or Esc
         bindsym Return mode "default"
