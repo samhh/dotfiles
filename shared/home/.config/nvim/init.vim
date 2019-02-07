@@ -6,10 +6,10 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'airblade/vim-gitgutter'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-commentary'
-Plug 'farmergreg/vim-lastplace'
+Plug 'tpope/vim-surround'
+Plug 'justinmk/vim-sneak'
 Plug 'myusuf3/numbers.vim'
 Plug 'lifepillar/vim-gruvbox8'
 
@@ -24,6 +24,10 @@ hi Normal guibg=NONE ctermbg=NONE
 
 "Statusline
 set laststatus=2
+
+function! CountBuffer()
+  return len(filter(copy(getbufinfo()), 'v:val.listed'))
+endfunction
 
 function! StatusLineGit()
   let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
@@ -41,6 +45,8 @@ set statusline+=\ %#CursorColumn#
 set statusline+=\ %y
 set statusline+=\ %l:%c
 set statusline+=\ 
+set statusline+=\ %n
+set statusline+=/%{CountBuffer()}
 
 "Indent based upon file's indentation
 filetype plugin indent on
@@ -81,4 +87,7 @@ noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
+
+""Convenient buffer selection
+nnoremap gb :ls<CR>:b<Space>
 
