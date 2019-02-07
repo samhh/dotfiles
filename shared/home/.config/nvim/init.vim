@@ -1,7 +1,6 @@
-"Specify plugin directory
+"Plugins
 call plug#begin('~/.local/share/nvim/plugged')
 
-"Load plugins
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'airblade/vim-gitgutter'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -13,40 +12,11 @@ Plug 'justinmk/vim-sneak'
 Plug 'myusuf3/numbers.vim'
 Plug 'lifepillar/vim-gruvbox8'
 
-"Initialise plugin system
 call plug#end()
-
-"** Settings
 
 "Theming
 colorscheme gruvbox8
 hi Normal guibg=NONE ctermbg=NONE
-
-"Statusline
-set laststatus=2
-
-function! CountBuffer()
-  return len(filter(copy(getbufinfo()), 'v:val.listed'))
-endfunction
-
-function! StatusLineGit()
-  let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
-endfunction
-
-set statusline=
-set statusline+=%#PmenuSel#
-set statusline+=%{StatusLineGit()}
-set statusline+=%#LineNr#
-set statusline+=\ %f
-set statusline+=%m
-set statusline+=%=
-set statusline+=\ %#CursorColumn#
-set statusline+=\ %y
-set statusline+=\ %l:%c
-set statusline+=\ 
-set statusline+=\ %n
-set statusline+=/%{CountBuffer()}
 
 "Indent based upon file's indentation
 filetype plugin indent on
@@ -75,8 +45,8 @@ set breakindent
 "Automatically read newly updated file in buffer
 set autoread
 
-"Exclude anything in .gitignore from fuzzy find
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+"Folding
+set foldmethod=syntax
 
 "Fix editing crontab
 au BufEnter /private/tmp/crontab.* setl backupcopy=yes
@@ -90,4 +60,40 @@ noremap <Right> <NOP>
 
 ""Convenient buffer selection
 nnoremap gb :ls<CR>:b<Space>
+
+"Statusline
+set laststatus=2
+
+function! CountBuffer()
+  return len(filter(copy(getbufinfo()), 'v:val.listed'))
+endfunction
+
+function! StatusLineGit()
+  let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+endfunction
+
+set statusline=
+set statusline+=%#PmenuSel#
+set statusline+=%{StatusLineGit()}
+set statusline+=%#LineNr#
+set statusline+=\ %f
+set statusline+=%m
+set statusline+=%=
+set statusline+=\ %#CursorColumn#
+set statusline+=\ %y
+set statusline+=\ %l:%c
+set statusline+=\ 
+set statusline+=\ %n
+set statusline+=/%{CountBuffer()}
+
+"Markdown preview
+function! OpenMarkdownPreview()
+  if !exists('s:markdown_preview_job')
+    let s:markdown_preview_job = jobstart('grip')
+  endif
+  silent exec '!open http://localhost:6419/' . expand('%')
+endfunction
+
+noremap <silent> <leader>md :call OpenMarkdownPreview()<cr>
 
