@@ -61,6 +61,17 @@ noremap <Right> <NOP>
 ""Convenient buffer selection
 nnoremap gb :ls<CR>:b<Space>
 
+""Add newlines from normal mode
+""Note that the shift enter bind doesn't appear to work
+noremap <Enter> o<Esc>k
+noremap <S-Enter> O<Esc>
+
+""Toggle to last open file in buffer
+noremap <Space> <C-^>
+
+""Remove highlight
+nnoremap <C-l> :nohl<CR><C-l>
+
 "Statusline
 set laststatus=2
 
