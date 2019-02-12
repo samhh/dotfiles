@@ -32,7 +32,7 @@ alias un='yay -Rs'
 alias clear_cache='paccache -r; and yay -S -c'
 
 # Use shell environment in sudo so that sudo knows the above aliases
-alias sudo='sudo -sE'
+alias sudo='sudo -s'
 
 # Autostart Xorg
 if status is-login
