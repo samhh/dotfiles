@@ -1,7 +1,7 @@
 ( if
-( contains ( window_class ) "oni" )
+( contains ( window_class ) "mpv" )
 ( begin
-( spawn_async (str "transset-df -i " (window_xid) " 0.95" ))
+( spawn_async (str "transset-df -i " (window_xid) " 0.8" ))
 )
 )
 

@@ -18,10 +18,10 @@ set $mod Mod4
 bindsym $mod+Return exec --no-startup-id alacritty
 
 # Start a terminal in the same directory as the currently/last focused terminal
-bindsym $mod+Shift+Return exec --no-startup-id alacritty --working-directory "$(xcwd)"
+bindsym $mod+shift+Return exec --no-startup-id alacritty --working-directory "$(xcwd)"
 
 # Kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+shift+q kill
 
 # Launcher
 bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun -drun-match-fields name
@@ -54,10 +54,10 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # Move focused container around
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+shift+h move left
+bindsym $mod+shift+j move down
+bindsym $mod+shift+k move up
+bindsym $mod+shift+l move right
 
 # Split horizontally / vertically
 bindsym $mod+c split h
@@ -72,10 +72,16 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # Toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+shift+space floating toggle
 
 # Change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
+
+# Toggle sticky
+bindsym $mod+shift+s sticky toggle
+
+# Enable floating video mode
+bindsym $mod+shift+a floating enable; sticky enable; resize set 880 495; move window to position 1970 1270
 
 # Switch to workspace
 bindsym $mod+1 workspace 1 web
@@ -90,16 +96,16 @@ bindsym $mod+9 workspace 9 email
 bindsym $mod+0 workspace 10 task
 
 # Move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1 web
-bindsym $mod+Shift+2 move container to workspace 2 code1
-bindsym $mod+Shift+3 move container to workspace 3 code2
-bindsym $mod+Shift+4 move container to workspace 4 code3
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7 music
-bindsym $mod+Shift+8 move container to workspace 8 social
-bindsym $mod+Shift+9 move container to workspace 9 email
-bindsym $mod+Shift+0 move container to workspace 10 task
+bindsym $mod+shift+1 move container to workspace 1 web
+bindsym $mod+shift+2 move container to workspace 2 code1
+bindsym $mod+shift+3 move container to workspace 3 code2
+bindsym $mod+shift+4 move container to workspace 4 code3
+bindsym $mod+shift+5 move container to workspace 5
+bindsym $mod+shift+6 move container to workspace 6
+bindsym $mod+shift+7 move container to workspace 7 music
+bindsym $mod+shift+8 move container to workspace 8 social
+bindsym $mod+shift+9 move container to workspace 9 email
+bindsym $mod+shift+0 move container to workspace 10 task
 
 # Assign apps to specific workspaces by default
 assign [class="Discord"] 8 social
@@ -111,13 +117,13 @@ assign [class="Spotify"] 7 music
 assign [class="Todoist"] 10 misc
 
 # Reload config
-bindsym $mod+Shift+c reload
+bindsym $mod+shift+c reload
 
 # Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $mod+shift+r restart
 
 # Exit i3 (logs you out of your X session) (requires mouse confirmation)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Resize mode
 mode "resize" {
