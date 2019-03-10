@@ -46,8 +46,10 @@ set breakindent
 "Automatically read newly updated file in buffer
 set autoread
 
-"Folding
-set foldmethod=syntax
+"Disable any expensive folding on load to improve performance of massive files
+"Enable folding manually with foldmethod `syntax` or `indent`
+set foldmethod=manual
+set nofoldenable
 
 "Fix editing crontab
 au BufEnter /private/tmp/crontab.* setl backupcopy=yes
