@@ -1,5 +1,5 @@
 {
-  "update.channel": "none",
+  "update.mode": "none",
   "keyboard.dispatch": "keyCode",
   "editor.fontFamily": "Fira Code",
   "editor.fontSize": 14,
@@ -14,6 +14,7 @@
   "editor.multiCursorModifier": "ctrlCmd",
   "window.zoomLevel": 1,
   "window.menuBarVisibility": "toggle",
+  "emmet.showExpandedAbbreviation": "never",
   "workbench.colorTheme": "Gruvbox Dark (Hard)",
   "workbench.iconTheme": "vscode-icons",
   "workbench.colorCustomizations": {

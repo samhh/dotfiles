@@ -11,6 +11,7 @@
   "editor.codeLens": true,
   "editor.multiCursorModifier": "ctrlCmd",
   "window.zoomLevel": 1,
+  "emmet.showExpandedAbbreviation": "never",
   "workbench.colorTheme": "Gruvbox Dark (Hard)",
   "workbench.iconTheme": "vscode-icons",
   "workbench.colorCustomizations": {
