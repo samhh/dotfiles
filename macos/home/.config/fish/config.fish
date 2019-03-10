@@ -24,7 +24,7 @@ alias vi='nvim'
 alias npmlsg='npm ls -g --depth=0'
 
 # Arch package management-specific aliases
-alias up='brew update; and brew upgrade'
+alias up='brew update; and brew upgrade; and fisher'
 alias clear_cache='brew cu; and brew cleanup'
 
 # Use shell environment in sudo so that sudo knows the above aliases

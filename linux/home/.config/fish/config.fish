@@ -25,7 +25,7 @@ alias top='htop'
 alias npmlsg='npm ls -g --depth=0'
 
 # Arch package management-specific aliases
-alias up='yay -Syu'
+alias up='yay -Syu; and fisher'
 alias upf='yay -Syyu'
 alias in='yay -S'
 alias un='yay -Rs'
