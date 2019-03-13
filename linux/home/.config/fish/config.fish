@@ -5,6 +5,7 @@ set fish_greeting
 # Exported variables
 set -x VISUAL nvim
 set -x EDITOR $VISUAL
+set -x TASKRC ~/.config/task/config
 
 # Generic aliases
 alias c='clear'
