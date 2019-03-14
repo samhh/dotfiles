@@ -1,7 +1,0 @@
-[Unit]
-Description=Run borgmatic
-
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/borgmatic
-

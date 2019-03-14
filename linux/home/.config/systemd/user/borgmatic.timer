@@ -1,9 +1,0 @@
-[Unit]
-Description=Run borgmatic daily
-
-[Install]
-WantedBy=multi-user.target
-
-[Timer]
-OnActiveSec=1hour
-OnUnitActiveSec=1day
