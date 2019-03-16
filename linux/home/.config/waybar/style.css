@@ -1,0 +1,112 @@
+* {
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+window#waybar {
+  font-family: undefined;
+  background: rgba(0, 0, 0, .7);
+  color: white;
+}
+
+window#waybar > * {
+  margin: 0 -4px;
+}
+
+#workspaces button,
+#mode,
+#network,
+#battery,
+#clock,
+#custom-alsa,
+#custom-music,
+#custom-updates,
+#custom-tasks,
+#custom-reddit {
+  margin: 0 4px;
+  padding: 0 16px;
+}
+
+#workspaces button {
+  background: #cce3ff;
+  color: #431826;
+  transition: none;
+}
+
+#workspaces button.focused {
+  background: #9999ff;
+}
+
+#workspaces button:not(.focused):hover {
+  background: #bbbeff;
+}
+
+#mode {
+  background: #c8a6b5;
+}
+
+#network {
+  background: #2980b9;
+}
+
+#network.disconnected {
+  background: #f53c3c;
+}
+
+#battery {
+  background: #ffffff;
+  color: #000000;
+}
+
+#battery.charging {
+  background: #26A65B;
+  color: #ffffff;
+}
+
+@keyframes blink {
+  to {
+    background: #ffffff;
+    color: #000000;
+  }
+}
+
+#battery.critical:not(.charging) {
+  background: #f53c3c;
+  color: #ffffff;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#clock {
+  background: #53616c;
+}
+
+#custom-alsa {
+  background: #f1c40f;
+  color: #000000;
+}
+
+#custom-alsa.muted {
+  background: #90b1b1;
+  color: #2a5c45;
+}
+
+#custom-music {
+  background: #66cc99;
+  color: #2a5c45;
+}
+
+#custom-updates {
+  background: #f0908a;
+  color: white;
+}
+
+#custom-tasks {
+  background: #f8df98;
+  color: black;
+}
+

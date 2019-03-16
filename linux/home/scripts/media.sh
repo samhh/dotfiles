@@ -5,11 +5,9 @@ if [[ $? -eq 0 ]]; then
   metadata="$(playerctl metadata artist) - $(playerctl metadata title)"
 fi
 
-if [[ $player_status = "Playing" ]]; then
-  echo $metadata
-elif [[ $player_status = "Paused" ]]; then
+if [[ $player_status = "Playing" || $player_status = "Paused" ]]; then
   echo $metadata
 else
-  echo ""
+  exit 1
 fi
 

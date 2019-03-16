@@ -8,5 +8,9 @@ if [[ -z $feed ]]; then exit 1; fi
 private_feed="https://www.reddit.com/message/unread/.json?feed=$feed"
 user_agent='random'
 
-echo $(curl -s $private_feed -A $user_agent | jq -r '.data.dist')
+num_msgs=$(curl -s $private_feed -A $user_agent | jq -r '.data.dist')
+
+if (( num_msgs == 0 )); then exit 1; fi
+
+echo $num_msgs
 

@@ -1,16 +1,44 @@
-# Output settings
-output * bg /usr/share/backgrounds/sam.jpg fill
-output eDP-1 scale 1
+# Variables
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+set $term alacritty
+# set $menu dmenu_path | dmenu | xargs swaymsg exec # Note: it's recommended that you pass the final command to sway
 
-# General settings
+# Output
+output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+
+# Idling & Locking
+# exec swayidle -w \
+#   timeout 300 'swaylock -f -c 000000' \
+#   timeout 600 'swaymsg "output * dpms off"' \
+#   resume 'swaymsg "output * dpms on"' \
+#   before-sleep 'swaylock -f -c 000000'
+
+# Trackpad
+input "1452:628:bcm5974" {
+  dwt enabled
+  natural_scroll enabled
+}
+
+# Keyboard
+input "1452:628:Apple_Inc._Apple_Internal_Keyboard_/_Trackpad" {
+  xkb_model apple_laptop
+  xkb_layout gb(mac)
+  xkb_options caps:swapescape
+}
+
+# General
 focus_follows_mouse no
 
-# General theming
-font pango:Monaco 11
-client.focused #458588 #000000 #eeeeee #458588 #458588
-client.unfocused #222222 #000000 #eeeeee #222222 #222222
+# Theming
+font pango:Monaco 12
+client.focused #222222 #000000 #eeeeee #458588 #458588
+client.unfocused #222222 #000000 #999999 #222222 #222222
 client.focused_inactive #222222 #000000 #eeeeee #222222 #222222
-for_window [class="^.*"] border pixel 4
+for_window [class="^.*"] border pixel 3
 gaps outer 0
 gaps inner 16
 smart_borders on
@@ -19,44 +47,51 @@ smart_borders on
 set $mod Mod4
 
 # Start a terminal
-bindsym $mod+Return exec kitty
-
-# Start a terminal in the same directory as the currently/last focused terminal
-bindsym $mod+Shift+Return exec kitty -d="$(xcwd)"
+bindsym $mod+Return exec alacritty
 
 # Kill focused window
 bindsym $mod+Shift+q kill
 
+# TEMP launcher
+# bindsym $mod+d exec dmenu_path | dmenu | xargs swaymsg exec
 # Launcher
-bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun -drun-match-fields name
+bindsym $mod+d exec rofi -modi drun -show drun -drun-match-fields name
 
-# Pass(words)
-bindsym $mod+shift+d exec --no-startup-id passmenu
+# Buku
+# bindsym $mod+Shift+d exec buku -p -f 3 | rofi -dmenu -p bookmark | cut -d ' ' -f 1 | xargs --no-run-if-empty buku -o
+
+# Pass
+bindsym $mod+Shift+x exec ~/scripts/pass-rofi-password.sh password
+bindsym $mod+Shift+n exec ~/scripts/pass-rofi-prefixed-line.sh 'username: ' username
+bindsym $mod+Shift+m exec ~/scripts/pass-rofi-prefixed-line.sh 'email: ' email
 
 # Clipboard
-exec_always --no-startup-id greenclip daemon
-bindsym $mod+shift+p exec --no-startup-id rofi -lines 5 -modi "clipboard:greenclip print" -show clipboard
+# exec_always greenclip daemon
+# bindsym $mod+Shift+p exec rofi -lines 5 -modi "clipboard:greenclip print" -show clipboard
 
 # Calculator & conversions
-bindsym $mod+shift+k exec --no-startup-id rofi -show calc -modi "calc:qalc +u8"
+bindsym $mod+Shift+o exec rofi -show calc -modi "calc:qalc +u8"
+
+# Translations
+bindsym $mod+Shift+t exec rofi -show trans -modi "trans:trans -brief"
 
 # Wallpaper
-bindsym $mod+shift+w exec --no-startup-id systemctl --user start wallpaper
+# bindsym $mod+Shift+w exec systemctl --user start wallpaper
 
 # Change focus
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # Move focused container around
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # Split horizontally / vertically
-bindsym $mod+h split h
+bindsym $mod+c split h
 bindsym $mod+v split v
 
 # Toggle fullscreen for focused
@@ -68,10 +103,16 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # Toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+Space floating toggle
 
 # Change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+Space focus mode_toggle
+
+# Toggle sticky
+bindsym $mod+Shift+s sticky toggle
+
+# Enable floating video mode
+bindsym $mod+Shift+a floating enable; sticky enable; resize set 880 495; move window to position 1970 1270
 
 # Switch to workspace
 bindsym $mod+1 workspace 1 web
@@ -80,10 +121,10 @@ bindsym $mod+3 workspace 3 code2
 bindsym $mod+4 workspace 4 code3
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
+bindsym $mod+7 workspace 7 music
 bindsym $mod+8 workspace 8 social
 bindsym $mod+9 workspace 9 email
-bindsym $mod+0 workspace 10 misc
+bindsym $mod+0 workspace 10 task
 
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1 web
@@ -92,38 +133,31 @@ bindsym $mod+Shift+3 move container to workspace 3 code2
 bindsym $mod+Shift+4 move container to workspace 4 code3
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+7 move container to workspace 7 music
 bindsym $mod+Shift+8 move container to workspace 8 social
 bindsym $mod+Shift+9 move container to workspace 9 email
-bindsym $mod+Shift+0 move container to workspace 10 misc
+bindsym $mod+Shift+0 move container to workspace 10 task
 
-# Assign apps to specific workspaces by default
+# Assign GUI apps to specific workspaces by default
+assign [class="Spotify"] 7 music
 assign [class="Discord"] 8 social
 assign [class="Slack"] 8 social
 assign [class="Telegram"] 8 social
+assign [class="Protonmail Desktop"] 9 email
 assign [class="Mozilla Thunderbird"] 9 email
-assign [class="Spotify"] 10 misc
-assign [class="Todoist"] 10 misc
 
 # Reload config
 bindsym $mod+Shift+c reload
 
-# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-
-# Exit i3 (logs you out of your X session) (requires mouse confirmation)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# Exit Sway (requires mouse confirmation)
+bindsym $mod+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit Sway? This will end your Wayland session.' -b 'Yes, exit Sway' 'swaymsg exit'"
 
 # Resize mode
 mode "resize" {
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # Leave resize mode w/ Enter or Esc
         bindsym Return mode "default"
@@ -138,19 +172,19 @@ bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
 bindsym XF86AudioMute exec amixer -q set Master toggle
 
 # Screen brightness control
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec light -A 10
+bindsym XF86MonBrightnessDown exec light -U 10
 
 # Keyboard backlight control
-bindsym XF86KbdBrightnessUp exec xbacklight -ctrl smc::kbd_backlight -inc 10
-bindsym XF86KbdBrightnessDown exec xbacklight -ctrl smc::kbd_backlight -dec 10
+bindsym XF86KbdBrightnessUp exec light -A 20 -s sysfs/leds/smc::kbd_backlight
+bindsym XF86KbdBrightnessDown exec light -U 20 -s sysfs/leds/smc::kbd_backlight
 
 # Media control
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-# Menubar & persistent systray
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always --no-startup-id nm-applet
+bar {
+  swaybar_command waybar
+}
 

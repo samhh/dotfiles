@@ -1,0 +1,67 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 40,
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["custom/music"],
+    "modules-right": ["custom/reddit", "custom/updates", "custom/tasks", "network", "custom/alsa", "battery", "clock"],
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "format": "{icon}",
+        "format-icons": {
+            "1 web": "",
+            "2 code1": "",
+            "3 code2": "",
+            "7 music": "",
+            "8 social": "",
+            "9 email": "",
+            "10 task": "",
+            "default": ""
+        }
+    },
+    "clock": {
+        "format": "{:%H:%M, %d/%m}"
+    },
+    "battery": {
+        "states": {
+            "warning": 40,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "network": {
+        "format-wifi": "{essid} ",
+        "format-disconnected": "Disconnected ⚠"
+    },
+    "custom/alsa": {
+      "exec": "~/scripts/alsa.sh",
+      "interval": 1,
+      "format": "{} "
+    },
+    "custom/music": {
+      "exec": "~/scripts/media.sh",
+      "interval": 1,
+      "format": " {}",
+      "max-length": 75
+    },
+    "custom/updates": {
+      "exec": "~/scripts/updates.sh",
+      "exec-if": "~/scripts/updates.sh",
+      "interval": 300,
+      "format": " {}"
+    },
+    "custom/tasks": {
+      "exec": "~/scripts/tasks-due.sh",
+      "exec-if": "~/scripts/tasks-due.sh",
+      "interval": 60,
+      "format": " {}"
+    },
+    "custom/reddit": {
+      "exec": "~/scripts/reddit-num-unread.sh",
+      "exec-if": "~/scripts/reddit-num-unread.sh",
+      "interval": 3600,
+      "format": " {}"
+    }
+}
+
