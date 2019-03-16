@@ -5,10 +5,6 @@ set $down j
 set $up k
 set $right l
 set $term alacritty
-# set $menu dmenu_path | dmenu | xargs swaymsg exec # Note: it's recommended that you pass the final command to sway
-
-# Output
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 # Idling & Locking
 # exec swayidle -w \
@@ -52,13 +48,11 @@ bindsym $mod+Return exec alacritty
 # Kill focused window
 bindsym $mod+Shift+q kill
 
-# TEMP launcher
-# bindsym $mod+d exec dmenu_path | dmenu | xargs swaymsg exec
 # Launcher
 bindsym $mod+d exec rofi -modi drun -show drun -drun-match-fields name
 
 # Buku
-# bindsym $mod+Shift+d exec buku -p -f 3 | rofi -dmenu -p bookmark | cut -d ' ' -f 1 | xargs --no-run-if-empty buku -o
+bindsym $mod+Shift+d exec buku -p -f 3 | rofi -dmenu -p bookmark | cut -d ' ' -f 1 | xargs --no-run-if-empty buku -o
 
 # Pass
 bindsym $mod+Shift+x exec ~/scripts/pass-rofi-password.sh password
@@ -76,7 +70,7 @@ bindsym $mod+Shift+o exec rofi -show calc -modi "calc:qalc +u8"
 bindsym $mod+Shift+t exec rofi -show trans -modi "trans:trans -brief"
 
 # Wallpaper
-# bindsym $mod+Shift+w exec systemctl --user start wallpaper
+bindsym $mod+Shift+w exec ~/scripts/wallpaper.sh
 
 # Change focus
 bindsym $mod+h focus left
@@ -154,14 +148,14 @@ bindsym $mod+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut.
 
 # Resize mode
 mode "resize" {
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+  bindsym h resize shrink width 10 px or 10 ppt
+  bindsym j resize grow height 10 px or 10 ppt
+  bindsym k resize shrink height 10 px or 10 ppt
+  bindsym l resize grow width 10 px or 10 ppt
 
-        # Leave resize mode w/ Enter or Esc
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+  # Leave resize mode w/ Enter or Esc
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"

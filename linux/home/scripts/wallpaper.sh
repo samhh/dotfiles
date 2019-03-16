@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if feh --bg-fill --randomize ~/pics/bg/*; then
-  echo "Changed wallpaper"
-fi
+random_selected=$(ls ~/pics/bg/* | xargs shuf -n1 -e)
+
+swaymsg "output * bg $random_selected fill"
 
