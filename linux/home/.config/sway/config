@@ -30,14 +30,14 @@ input "1452:628:Apple_Inc._Apple_Internal_Keyboard_/_Trackpad" {
 focus_follows_mouse no
 
 # Theming
-font pango:Monaco 12
+font pango:Monaco 11
 client.focused #222222 #000000 #eeeeee #458588 #458588
-client.unfocused #222222 #000000 #999999 #222222 #222222
-client.focused_inactive #222222 #000000 #eeeeee #222222 #222222
-for_window [class="^.*"] border pixel 3
+client.unfocused #222222 #333333 #999999 #222222 #222222
+client.focused_inactive #222222 #222222 #eeeeee #222222 #222222
+default_border pixel 3
+smart_borders on
 gaps outer 0
 gaps inner 16
-smart_borders on
 
 # Mod key
 set $mod Mod4
