@@ -1,7 +1,0 @@
-! General Colors
-! Need full path here
-#include "/home/sam/.colors/gruvbox-dark"
-
-! Set cursor theme (from ~/.icons/)
-Xcursor.theme: Breeze-Adapta
-Xcursor.size: 32

@@ -1,7 +1,0 @@
-( if
-( contains ( window_class ) "mpv" )
-( begin
-( spawn_async (str "transset-df -i " (window_xid) " 0.8" ))
-)
-)
-
