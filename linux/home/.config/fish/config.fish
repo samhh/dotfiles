@@ -24,7 +24,7 @@ alias rmds='find . -name "*.DS_Store" -type f -delete'
 alias grep='rg -uu'
 alias rm='trash-put'
 alias vi='nvim'
-alias top='htop'
+alias top='gotop'
 
 # App-specific (excl/ package management) aliases
 alias npmlsg='npm ls -g --depth=0'
