@@ -38,7 +38,11 @@ window#waybar > * {
   background: #9999ff;
 }
 
-#workspaces button:not(.focused):hover {
+#workspaces button.urgent {
+  background: #ff6666;
+}
+
+#workspaces button:not(.focused):not(.urgent):hover {
   background: #bbbeff;
 }
 
@@ -64,10 +68,13 @@ window#waybar > * {
   color: #ffffff;
 }
 
+#battery.warning:not(.charging) {
+  background: orange;
+}
+
 @keyframes blink {
   to {
-    background: #ffffff;
-    color: #000000;
+    background: #000000;
   }
 }
 
