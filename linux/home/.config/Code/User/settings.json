@@ -4,7 +4,6 @@
   "editor.fontFamily": "Fira Code",
   "editor.fontSize": 14,
   "editor.fontLigatures": true,
-  "editor.tabSize": 2,
   "editor.wordWrap": "on",
   "editor.tabCompletion": "on",
   "editor.dragAndDrop": false,
@@ -16,7 +15,6 @@
   "window.menuBarVisibility": "toggle",
   "emmet.showExpandedAbbreviation": "never",
   "workbench.colorTheme": "Gruvbox Dark (Hard)",
-  "workbench.iconTheme": "vscode-icons",
   "workbench.colorCustomizations": {
     "statusBar.background": "#0a84ff",
     "statusBar.noFolderBackground": "#0a84ff",
@@ -30,6 +28,7 @@
   "javascript.updateImportsOnFileMove.enabled": "never",
   "typescript.updateImportsOnFileMove.enabled": "never",
   "files.exclude": {
+    ".vscode": true,
     "**/.git": true,
     "**/node_modules": true
   },
@@ -43,7 +42,6 @@
   "vim.handleKeys": {
     "<C-b>": false,
     "<C-c>": false
-  },
-  "vsicons.dontShowNewVersionMessage": true
+  }
 }
 
