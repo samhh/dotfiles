@@ -48,7 +48,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec rofi -modi drun -show drun -drun-match-fields name
 
 # Buku
-bindsym $mod+Shift+d exec buku -p -f 3 | rofi -dmenu -p bookmark | cut -d ' ' -f 1 | xargs --no-run-if-empty buku -o
+bindsym $mod+Shift+d exec bukubrow -l | rofi -dmenu -p bookmark | cut -d ' ' -f 1 | xargs --no-run-if-empty bukubrow -o
 
 # Pass
 bindsym $mod+Shift+x exec ~/scripts/pass-rofi-password.sh password
