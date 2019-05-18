@@ -99,6 +99,7 @@ nnoremap <C-l> :nohl<CR><C-l>
 "" Navigate coc diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 
 "" coc gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -108,6 +109,9 @@ nmap <silent> gr <Plug>(coc-references)
 
 "" Rename coc symbol
 nmap <leader>rn <Plug>(coc-rename)
+
+"" Trigger coc completions
+inoremap <silent><expr> <c-space> coc#refresh()
 
 " Statusline
 set laststatus=2
