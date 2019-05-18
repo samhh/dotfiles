@@ -12,6 +12,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'justinmk/vim-sneak'
 Plug 'myusuf3/numbers.vim'
+Plug 'rstacruz/vim-closer'
 
 "" Color schemes
 Plug 'lifepillar/vim-gruvbox8'
