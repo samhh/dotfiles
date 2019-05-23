@@ -38,6 +38,9 @@ gaps inner 16
 # Mod key
 set $mod Mod4
 
+# Toggle trackpad
+bindsym $mod+Shift+z input "1452:628:bcm5974" events toggle
+
 # Start a terminal
 bindsym $mod+Return exec alacritty
 
