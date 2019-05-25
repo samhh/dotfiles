@@ -47,7 +47,7 @@ set path=**
 
 " File searching
 set wildmenu
-set wildignore+=**/node_modules/**
+set wildignore+=*/node_modules/*,*/target/*
 
 " Use fish as internal shell
 set shell=fish
