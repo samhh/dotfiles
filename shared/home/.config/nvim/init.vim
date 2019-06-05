@@ -49,9 +49,6 @@ set path=**
 set wildmenu
 set wildignore+=*/node_modules/*,*/target/*
 
-" Use fish as internal shell
-set shell=fish
-
 " Always show line numbers
 set number
 
