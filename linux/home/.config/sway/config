@@ -25,15 +25,19 @@ input "1452:628:Apple_Inc._Apple_Internal_Keyboard_/_Trackpad" {
 # General
 focus_follows_mouse no
 
-# Theming
+# Theming (Nord colors)
 font pango:Monaco 11
-client.focused #222222 #000000 #eeeeee #458588 #458588
-client.unfocused #222222 #333333 #999999 #222222 #222222
-client.focused_inactive #222222 #222222 #eeeeee #222222 #222222
 default_border pixel 3
 smart_borders on
 gaps outer 0
 gaps inner 16
+
+## Colors
+##                        border    bg        text      indicator child border
+client.focused            #4c566a   #434c5e   #e5e9f0   #4c566a   #4c566a
+client.unfocused          #2e3440   #2e3440   #d8dee9   #4c566a   #2e3440
+client.focused_inactive   #2e3440   #3b4252   #d8dee9   #4c556a   #2e3440
+client.urgent             #bf616a   #bf616a   #eceff4   #4c566a   #4c566a
 
 # Mod key
 set $mod Mod4

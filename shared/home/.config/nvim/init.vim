@@ -15,7 +15,8 @@ Plug 'myusuf3/numbers.vim'
 Plug 'rstacruz/vim-closer'
 
 "" Color schemes
-Plug 'lifepillar/vim-gruvbox8'
+Plug 'arcticicestudio/nord-vim'
+Plug 'itchyny/lightline.vim'
 
 "" Language syntax
 Plug 'pangloss/vim-javascript'
@@ -24,14 +25,14 @@ Plug 'ianks/vim-tsx'
 
 "" Language servers
 " let g:coc_start_at_startup = 0
-" Plug 'neoclide/coc.nvim'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 
 call plug#end()
 
 " Theming
-colorscheme gruvbox8
-hi Normal guibg=NONE ctermbg=NONE
+colorscheme nord
+let g:lightline = { 'colorscheme': 'nord' }
+set noshowmode
 
 " Indent based upon file's indentation
 filetype plugin indent on
@@ -111,31 +112,16 @@ nmap <leader>rn <Plug>(coc-rename)
 "" Trigger coc completions
 inoremap <silent><expr> <c-space> coc#refresh()
 
-" Statusline
-set laststatus=2
+"" Show documentation (type info) in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-function! CountBuffer()
-  return len(filter(copy(getbufinfo()), 'v:val.listed'))
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
 endfunction
-
-function! StatusLineGit()
-  let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
-endfunction
-
-set statusline=
-set statusline+=%#PmenuSel#
-set statusline+=%{StatusLineGit()}
-set statusline+=%#LineNr#
-set statusline+=\ %f
-set statusline+=%m
-set statusline+=%=
-set statusline+=\ %#CursorColumn#
-set statusline+=\ %y
-set statusline+=\ %l:%c
-set statusline+=\ 
-set statusline+=\ %n
-set statusline+=/%{CountBuffer()}
 
 " Markdown preview
 function! OpenMarkdownPreview()

@@ -1,20 +1,32 @@
+@define-color nord0 #2e3440;
+@define-color nord1 #3b4252;
+@define-color nord2 #434c5e;
+@define-color nord3 #4c566a;
+@define-color nord4 #d8dee9;
+@define-color nord5 #e5e9f0;
+@define-color nord6 #eceff4;
+@define-color nord7 #8fbcbb;
+@define-color nord8 #88c0d0;
+@define-color nord9 #81a1c1;
+@define-color nord10 #5e81ac;
+@define-color nord11 #bf616a;
+@define-color nord12 #d08770;
+@define-color nord13 #ebcb8b;
+@define-color nord14 #a3be8c;
+@define-color nord15 #b48ead;
+
 * {
   border: none;
   box-shadow: none;
   border-radius: 0;
+  color: @nord6;
 }
 
 window#waybar {
   font-family: undefined;
-  background: rgba(0, 0, 0, .7);
-  color: white;
+  background: @nord0;
 }
 
-window#waybar > * {
-  margin: 0 -4px;
-}
-
-#workspaces button,
 #mode,
 #network,
 #battery,
@@ -24,63 +36,52 @@ window#waybar > * {
 #custom-updates,
 #custom-tasks,
 #custom-reddit {
-  margin: 0 4px;
+  margin: 0 3px;
   padding: 0 16px;
 }
 
+#workspaces {
+  margin: 0 0 0 -3px;
+}
+
 #workspaces button {
-  background: #cce3ff;
-  color: #431826;
+  margin: 0 3px;
+  background: @nord1;
   transition: none;
 }
 
 #workspaces button.focused {
-  background: #9999ff;
+  background: @nord2;
 }
 
 #workspaces button.urgent {
-  background: #ff6666;
+  background: @nord11;
 }
 
 #workspaces button:not(.focused):not(.urgent):hover {
-  background: #bbbeff;
+  background: @nord2;
 }
 
 #mode {
-  background: #c8a6b5;
-}
-
-#network {
-  background: #2980b9;
+  background: @nord15;
 }
 
 #network.disconnected {
-  background: #f53c3c;
-}
-
-#battery {
-  background: #ffffff;
-  color: #000000;
-}
-
-#battery.charging {
-  background: #26A65B;
-  color: #ffffff;
+  color: @nord11;
 }
 
 #battery.warning:not(.charging) {
-  background: orange;
+  color: @nord12;
 }
 
 @keyframes blink {
   to {
-    background: #000000;
+    color: @nord12;
   }
 }
 
 #battery.critical:not(.charging) {
-  background: #f53c3c;
-  color: #ffffff;
+  color: @nord11;
   animation-name: blink;
   animation-duration: 0.5s;
   animation-timing-function: linear;
@@ -88,32 +89,12 @@ window#waybar > * {
   animation-direction: alternate;
 }
 
-#clock {
-  background: #53616c;
+#custom-alsa:not(.muted) {
+  color: @nord13;
 }
 
-#custom-alsa {
-  background: #f1c40f;
-  color: #000000;
-}
-
-#custom-alsa.muted {
-  background: #90b1b1;
-  color: #2a5c45;
-}
-
-#custom-music {
-  background: #66cc99;
-  color: #2a5c45;
-}
-
+#custom-tasks,
 #custom-updates {
-  background: #f0908a;
-  color: white;
-}
-
-#custom-tasks {
-  background: #f8df98;
-  color: black;
+  color: @nord8;
 }
 
