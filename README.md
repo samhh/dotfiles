@@ -4,9 +4,7 @@ My personal dotfiles and miscellaneous configs.
 
 ## Overview
 
-I spend most of my personal time on the Arch partition of my MBP, however my work laptop is stuck with macOS. As such, I've tried to make working with both of these simultaneously as seemless as possible. For example, my experience in the terminal and the editor should be close to identical on each OS.
-
-As of time of writing, most of the Linux configs loosely adhere to the [Gruvbox Dark](https://github.com/morhetz/gruvbox) color scheme for visual cohesion.
+I spend most of my personal time on the Arch partition of my Macbook, however my work laptop is stuck with macOS. As such, I've tried to make working with both of these simultaneously as seemless as possible. For example, my experience in the terminal and the editor should be close to identical on each OS. The colour scheme I've tried to utilise where possible is [Nord](https://www.nordtheme.com).
 
 ## Project Structure
 
@@ -15,7 +13,7 @@ At its core, everything is split up into four basic dirs:
 - **Linux**
 - **macOS**
 - **Shared**: Configs that should work out of the box on both Linux and macOS.
-- **Controller**: Configs for my home controller (a Raspberry Pi that's always on).
+- **Controller**: Configs for my home "controller", an always-on Raspberry Pi that I primarily use to interface with my NAS.
 
 You can use the included `./link.sh` helper on Linux/macOS to automatically set up syslinks for all configs. This uses Stow under the hood. Note that this does not apply to Controller configs.
 
