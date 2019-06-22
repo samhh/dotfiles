@@ -9,6 +9,9 @@ set $term alacritty
 # Locking
 exec swayidle -w before-sleep 'swaylock -f -c 000000'
 
+# Notifications
+exec mako
+
 # Trackpad
 input "1452:628:bcm5974" {
   dwt enabled

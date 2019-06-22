@@ -1,0 +1,21 @@
+layer=overlay
+sort=-priority
+format=<b>%s</b> (%a)\n%b
+width=350
+height=100
+margin=10
+padding=10
+border-size=0
+border-radius=2
+font=monaco 10
+background-color=#eceff4
+text-color=#2e3440
+
+[grouped]
+format="(%g) <b>%s</b> (%a)\n%b"
+
+[urgency=high]
+background-color=#d08770
+text-color=#eceff4
+
+
