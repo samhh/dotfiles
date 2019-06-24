@@ -72,6 +72,10 @@ bindsym $mod+Shift+m exec ~/scripts/pass-rofi-prefixed-line.sh 'email: ' email
 # Screenshot region and copy to clipboard
 bindsym $mod+Shift+p exec grim -g \"$(slurp)" - | wl-copy
 
+# Dismiss notifications
+bindsym Ctrl+Space exec makoctl dismiss
+bindsym Ctrl+Shift+Space exec makoctl dismiss --all
+
 # Calculator & conversions
 bindsym $mod+Shift+o exec rofi -show calc -modi "calc:qalc +u8"
 
