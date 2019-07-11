@@ -18,16 +18,12 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
-alias rmds='find . -name "*.DS_Store" -type f -delete'
 
 # Command drop-in replacement aliases
 alias grep='rg -uu'
 alias rm='trash-put'
 alias vi='nvim'
 alias top='gotop'
-
-# App-specific (excl/ package management) aliases
-alias npmlsg='npm ls -g --depth=0'
 
 # Arch package management-specific aliases
 alias up='yay -Syu; and fisher'
