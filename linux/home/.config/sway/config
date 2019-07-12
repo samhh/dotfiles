@@ -80,7 +80,8 @@ bindsym Ctrl+Shift+Space exec makoctl dismiss --all
 bindsym $mod+Shift+o exec rofi -show calc -modi "calc:qalc +u8"
 
 # Translations
-bindsym $mod+Shift+t exec rofi -show trans -modi "trans:trans -brief"
+bindsym $mod+Shift+t exec rofi -show trans -modi "trans:trans -brief -s it -t en"
+bindsym $mod+Shift+y exec rofi -show trans -modi "trans:trans -brief -s en -t it"
 
 # Wallpaper
 bindsym $mod+Shift+w exec ~/scripts/wallpaper.sh
