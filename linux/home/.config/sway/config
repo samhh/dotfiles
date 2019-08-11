@@ -1,11 +1,3 @@
-# Variables
-set $mod Mod4
-set $left h
-set $down j
-set $up k
-set $right l
-set $term alacritty
-
 # Locking
 exec swayidle -w before-sleep 'swaylock -f -c 000000'
 
@@ -42,6 +34,10 @@ client.unfocused          #2e3440   #2e3440   #d8dee9   #4c566a   #2e3440
 client.focused_inactive   #2e3440   #3b4252   #d8dee9   #4c556a   #2e3440
 client.urgent             #bf616a   #bf616a   #eceff4   #4c566a   #4c566a
 
+# Custom launchers
+set $launcher_window_title launcher
+for_window [title="^launcher$"] floating enable, border pixel
+
 # Mod key
 set $mod Mod4
 
@@ -55,15 +51,15 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # Launcher
-bindsym $mod+d exec rofi -modi drun -show drun -drun-match-fields name
+bindsym $mod+d exec ~/scripts/launcher.sh "dmenu_path | fzf | xargs swaymsg exec" $launcher_window_title
 
 # Buku
-bindsym $mod+Shift+d exec bukubrow -l | rofi -dmenu -i -p bookmark | cut -d ' ' -f 1 | xargs --no-run-if-empty bukubrow -o
+bindsym $mod+Shift+d exec ~/scripts/launcher.sh "bukubrow -l | fzf | cut -d ' ' -f 1 | xargs --no-run-if-empty bukubrow -o" $launcher_window_title
 
 # Pass
-bindsym $mod+Shift+x exec ~/scripts/pass-rofi-password.sh password
-bindsym $mod+Shift+n exec ~/scripts/pass-rofi-prefixed-line.sh 'username: ' username
-bindsym $mod+Shift+m exec ~/scripts/pass-rofi-prefixed-line.sh 'email: ' email
+bindsym $mod+Shift+x exec ~/scripts/launcher.sh "~/scripts/pass-fzf-password.sh" $launcher_window_title
+bindsym $mod+Shift+n exec ~/scripts/launcher.sh "~/scripts/pass-fzf-prefixed-line.sh 'username: ' username" $launcher_window_title
+bindsym $mod+Shift+m exec ~/scripts/launcher.sh "~/scripts/pass-fzf-prefixed-line.sh 'email: ' email" $launcher_window_title
 
 # Clipboard
 # exec_always greenclip daemon
@@ -77,11 +73,11 @@ bindsym Ctrl+Space exec makoctl dismiss
 bindsym Ctrl+Shift+Space exec makoctl dismiss --all
 
 # Calculator & conversions
-bindsym $mod+Shift+o exec rofi -show calc -modi "calc:qalc +u8"
+bindsym $mod+Shift+o exec ~/scripts/launcher.sh "qalc" $launcher_window_title
 
 # Translations
-bindsym $mod+Shift+t exec rofi -show trans -modi "trans:trans -brief -s it -t en"
-bindsym $mod+Shift+y exec rofi -show trans -modi "trans:trans -brief -s en -t it"
+bindsym $mod+Shift+t exec ~/scripts/launcher.sh "trans -brief -s it -t en" $launcher_window_title
+bindsym $mod+Shift+y exec ~/scripts/launcher.sh "trans -brief -s en -t it" $launcher_window_title
 
 # Wallpaper
 bindsym $mod+Shift+w exec ~/scripts/wallpaper.sh

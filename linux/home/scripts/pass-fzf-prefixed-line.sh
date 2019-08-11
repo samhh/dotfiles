@@ -12,7 +12,7 @@ all_paths=( "$base_path"/**/*.gpg )
 all_paths=( "${all_paths[@]#"$base_path"/}" )
 all_paths=( "${all_paths[@]%.gpg}" )
 
-selected_path=$(printf '%s\n' "${all_paths[@]}" | rofi -dmenu "$@" -p "$friendly_name")
+selected_path=$(printf '%s\n' "${all_paths[@]}" | fzf)
 
 [[ -n $selected_path ]] || exit
 
@@ -26,7 +26,7 @@ for line in "${lines[@]}"; do
   result=$(echo $line | sed -ne "s/$regex//p")
 
   if [[ ! -z $result ]]; then
-    echo $result | xclip -selection clipboard
+    swaymsg exec "wl-copy $result"
     echo "Copied $friendly_name from $selected_path to clipboard."
 
     break
