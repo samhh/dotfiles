@@ -74,6 +74,7 @@ set foldmethod=manual
 set nofoldenable
 
 " Keybinds
+let mapleader = ' '
 
 "" Disable arrow keys because old habits die hard
 nnoremap <Up> <NOP>
@@ -90,7 +91,7 @@ nnoremap <Enter> o<Esc>k
 nnoremap <S-Enter> O<Esc>
 
 "" Toggle to last open file in buffer
-nnoremap <Space> <C-^>
+nnoremap <Leader><Bs> <C-^>
 
 "" Remove highlight
 nnoremap <C-l> :nohl<CR><C-l>
