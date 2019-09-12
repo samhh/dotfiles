@@ -13,6 +13,7 @@ Plug 'tpope/vim-repeat'
 Plug 'justinmk/vim-sneak'
 Plug 'myusuf3/numbers.vim'
 Plug 'rstacruz/vim-closer'
+Plug 'junegunn/fzf.vim'
 
 "" Color schemes
 Plug 'arcticicestudio/nord-vim'
@@ -82,8 +83,8 @@ nnoremap <Down> <NOP>
 nnoremap <Left> <NOP>
 nnoremap <Right> <NOP>
 
-"" Convenient buffer selection
-nnoremap gb :ls<CR>:b<Space>
+"" Buffer selection
+nnoremap <Leader>b :Buffers<CR>
 
 "" Add newlines from normal mode
 "" Note that the shift enter bind doesn't appear to work
@@ -95,6 +96,22 @@ nnoremap <Leader><Bs> <C-^>
 
 "" Remove highlight
 nnoremap <C-l> :nohl<CR><C-l>
+
+"" Fuzzy find files
+nnoremap <Leader>p :GFiles<CR>
+nnoremap <Leader>P :Files<CR>
+
+"" Fuzzy find code
+nnoremap <Leader>f :Lines<CR>
+nnoremap <Leader>F :Rg<CR>
+
+""" Customised fzf.vim Rg implementation to ignore lockfiles
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg -g "!*.lock" --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
 
 "" Navigate coc diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
