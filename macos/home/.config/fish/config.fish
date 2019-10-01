@@ -7,6 +7,9 @@ set -x VISUAL nvim
 set -x EDITOR $VISUAL
 set -x TASKRC ~/.config/task/config
 
+# Source nodenv
+status --is-interactive; and source (nodenv init -|psub)
+
 # Generic aliases
 alias c='clear'
 alias cdc='cd; and clear'
