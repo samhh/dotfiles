@@ -13,6 +13,8 @@ Plug 'tpope/vim-repeat'
 Plug 'justinmk/vim-sneak'
 Plug 'myusuf3/numbers.vim'
 Plug 'rstacruz/vim-closer'
+""" The first of these lines is required on macOS
+Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
 "" Color schemes
