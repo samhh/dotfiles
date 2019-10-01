@@ -1,6 +1,8 @@
 *~
 .vscode/
 .DS_Store
+.yalc/
+yalc.lock
 
 # Java (VSCode?)
 
