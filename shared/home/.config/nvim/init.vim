@@ -28,7 +28,7 @@ Plug 'ianks/vim-tsx'
 
 "" Language servers
 " let g:coc_start_at_startup = 0
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
