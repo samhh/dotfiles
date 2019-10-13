@@ -11,6 +11,9 @@ set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 ## Use taskrc outside of home dir
 set -x TASKRC ~/.config/task/config
 
+# Extend PATH for Stack
+set -Ua fish_user_paths ~/.local/bin/
+
 # Generic aliases
 alias c='clear'
 alias cdc='cd; and clear'
