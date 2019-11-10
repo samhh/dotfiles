@@ -43,8 +43,8 @@ filetype plugin indent on
 " Tabs to spaces and sizing
 set tabstop=8
 set expandtab
-set shiftwidth=2
-set softtabstop=2
+set shiftwidth=4
+set softtabstop=4
 
 " Path for finding files
 set path=**
