@@ -1,4 +1,16 @@
 {
-  "suggest.autoTrigger": "trigger"
+  "suggest.autoTrigger": "trigger",
+  "languageserver": {
+    "haskell": {
+      "command": "hie-wrapper",
+      "rootPatterns": [".stack.yaml", "cabal.config", "package.yaml"],
+      "filetypes": ["hs", "lhs", "haskell"],
+      "initializationOptions": {
+        "languageServerHaskell": {
+          "hlintOn": true
+        }
+      }
+    }
+  }
 }
 
