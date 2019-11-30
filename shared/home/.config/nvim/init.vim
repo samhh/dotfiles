@@ -6,12 +6,9 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'airblade/vim-gitgutter'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
 Plug 'justinmk/vim-sneak'
-Plug 'myusuf3/numbers.vim'
 Plug 'rstacruz/vim-closer'
 """ The first of these lines is required on macOS
 Plug '/usr/local/opt/fzf'
@@ -25,9 +22,10 @@ Plug 'itchyny/lightline.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
+Plug 'purescript-contrib/purescript-vim'
+Plug 'neovimhaskell/haskell-vim'
 
 "" Language servers
-" let g:coc_start_at_startup = 0
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
