@@ -1,6 +1,8 @@
 data.location=~/docs/personal/tasks
 urgency.blocking.coefficient=1.0
 
+uda.priority.default=L
+
 report.todo.description=Next report with my preferred formatting
 report.todo.columns=id,entry.age,depends,priority,project,due.relative,description.truncated_count,urgency
 report.todo.labels=id,age,deps,pri,proj,due,desc,urg
