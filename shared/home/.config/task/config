@@ -1,14 +1,9 @@
 data.location=~/docs/personal/tasks
 urgency.blocking.coefficient=1.0
 
-uda.size.type=string
-uda.size.label=Size
-uda.size.values=L,M,S
-uda.size.default=S
-
 report.todo.description=Next report with my preferred formatting
-report.todo.columns=id,entry.age,depends,priority,project,due.relative,description.truncated_count,size,urgency
-report.todo.labels=id,age,deps,pri,proj,due,desc,size,urg
+report.todo.columns=id,entry.age,depends,priority,project,due.relative,description.truncated_count,urgency
+report.todo.labels=id,age,deps,pri,proj,due,desc,urg
 report.todo.sort=urgency-,due+,priority-
 report.todo.filter=status:pending
 
