@@ -1,7 +1,10 @@
 {
     "layer": "top",
-    "position": "top",
-    "height": 40,
+    "position": "bottom",
+    "width": 1200,
+    "height": 45,
+    "margin-bottom": 15,
+    "margin-left": 840,
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["custom/music"],
     "modules-right": ["custom/reddit", "custom/updates", "custom/tasks", "network", "custom/alsa", "battery", "clock"],
