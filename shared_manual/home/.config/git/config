@@ -26,7 +26,6 @@
     df = diff
     dfs = diff --staged
     br = branch
-    co = checkout
     ps = push
     psf = push --force-with-lease
     pl = pull
@@ -35,4 +34,7 @@
     ca = commit --amend --no-edit
     cam = commit --amend
     ft = fetch
+    rs = restore
+    rss = restore --staged
+    sw = switch
 
