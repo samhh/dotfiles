@@ -3,7 +3,7 @@
     "position": "bottom",
     "width": 1200,
     "height": 45,
-    "margin-bottom": 15,
+    "margin-bottom": 16,
     "margin-left": 840,
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["custom/music"],

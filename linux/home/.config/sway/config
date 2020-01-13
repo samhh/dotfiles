@@ -23,16 +23,25 @@ focus_follows_mouse no
 # Theming (Nord colors)
 font pango:Monaco 11
 default_border pixel 3
-smart_borders on
+smart_borders off
 gaps outer 0
 gaps inner 16
 
 ## Colors
-##                        border    bg        text      indicator child border
-client.focused            #4c566a   #434c5e   #e5e9f0   #4c566a   #4c566a
-client.unfocused          #2e3440   #2e3440   #d8dee9   #4c566a   #2e3440
-client.focused_inactive   #2e3440   #3b4252   #d8dee9   #4c556a   #2e3440
-client.urgent             #bf616a   #bf616a   #eceff4   #4c566a   #4c566a
+set $nord0  #2e3440
+set $nord1  #3b4252
+set $nord2  #434c5e
+set $nord3  #4c556a
+set $nord4  #d8dee9
+set $nord5  #e5e9f0
+set $nord6  #eceff4
+set $nord11 #bf616a
+
+### target                border    background   text     indicator   child_border
+client.focused            $nord3    $nord2       $nord5   $nord3      $nord3
+client.unfocused          $nord0    $nord0       $nord4   $nord3      $nord0
+client.focused_inactive   $nord0    $nord1       $nord4   $nord3      $nord0
+client.urgent             $nord11   $nord11      $nord6   $nord3      $nord3
 
 # Custom launchers
 set $launcher_window_title launcher
@@ -143,10 +152,8 @@ bindsym $mod+Shift+9 move container to workspace 9 email
 bindsym $mod+Shift+0 move container to workspace 10 task
 
 # Assign GUI apps to specific workspaces by default
-assign [class="Spotify"] 7 music
-assign [class="Discord"] 8 social
-assign [class="Slack"] 8 social
 assign [class="Telegram"] 8 social
+assign [class="Slack"] 8 social
 assign [class="Protonmail Desktop"] 9 email
 assign [class="Mozilla Thunderbird"] 9 email
 
