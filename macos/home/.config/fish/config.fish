@@ -20,7 +20,6 @@ alias ......='cd ../../../../..'
 alias rmds='find . -name "*.DS_Store" -type f -delete'
 
 # Command drop-in replacement aliases
-alias grep='rg -uu'
 alias rm='trash'
 alias vi='nvim'
 
