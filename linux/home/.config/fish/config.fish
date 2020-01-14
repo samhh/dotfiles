@@ -12,28 +12,32 @@ set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 set -x TASKRC ~/.config/task/config
 
 # Extend PATH for Stack
+## TODO this is harming performance
 set -Ua fish_user_paths ~/.local/bin/
 
 # Generic aliases
-alias c='clear'
-alias cdc='cd; and clear'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-alias ......='cd ../../../../..'
+abbr c 'clear'
+abbr cdc 'cd; and clear'
+abbr ... 'cd ../..'
+abbr .... 'cd ../../..'
+abbr ..... 'cd ../../../..'
+abbr ...... 'cd ../../../../..'
 
 # Command drop-in replacement aliases
-alias rm='trash-put'
-alias vi='nvim'
-alias top='gotop'
+abbr rm 'trash-put'
+abbr vi 'nvim'
+abbr top 'gotop'
 
 # Arch package management-specific aliases
-alias up='yay -Syu; and fisher'
-alias upf='yay -Syyu'
-alias in='yay -S'
-alias un='yay -Rs'
-alias clear_cache='paccache -r; and yay -S -c'
+abbr up 'yay -Syu; and fisher'
+abbr upf 'yay -Syyu'
+abbr in 'yay -S'
+abbr un 'yay -Rs'
+abbr clear_cache 'paccache -r; and yay -S -c'
 
-# Use shell environment in sudo so that sudo knows the above aliases
-alias sudo='sudo -s'
+# Create directory path and cd into it
+function mkcd
+    mkdir -p $argv;
+    cd $argv;
+end
 
