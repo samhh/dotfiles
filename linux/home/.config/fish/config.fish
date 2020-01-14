@@ -35,6 +35,9 @@ abbr in 'yay -S'
 abbr un 'yay -Rs'
 abbr clear_cache 'paccache -r; and yay -S -c'
 
+# Misc/specific aliases
+abbr todo 'clear; and task todo'
+
 # Create directory path and cd into it
 function mkcd
     mkdir -p $argv;
