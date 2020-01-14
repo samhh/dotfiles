@@ -12,8 +12,7 @@ set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 set -x TASKRC ~/.config/task/config
 
 # Extend PATH for Stack
-## TODO this is harming performance
-set -Ua fish_user_paths ~/.local/bin/
+set -a fish_user_paths ~/.local/bin/
 
 # Generic aliases
 abbr c 'clear'
