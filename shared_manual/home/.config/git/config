@@ -37,4 +37,7 @@
     rs = restore
     rss = restore --staged
     sw = switch
+    rx = reset
+    rxh = reset --hard
+    rb = rebase
 
