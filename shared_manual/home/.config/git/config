@@ -13,31 +13,24 @@
     gpgsign = true
 
 [alias]
-    # View abbreviated SHA, description, and history graph of the latest 20 commits
-    lg = log --graph --pretty=format:'%Cblue%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold red)[%an]%Creset' --abbrev-commit --date=relative
-
-    # View the current working tree status using the short format
-    st = status --short
-
-    # Full path of root of Git repo. Useful in command substitution to change directory to the root
-    root = rev-parse --show-toplevel
-
-    # Other aliases
+    br = branch
     df = diff
     dfs = diff --staged
-    br = branch
-    ps = push
-    psf = push --force-with-lease
-    pl = pull
-    cm = commit -m
-    cma = commit -am
     ca = commit --amend --no-edit
     cam = commit --amend
+    cm = commit -m
+    cma = commit -am
     ft = fetch
+    lg = log --graph --pretty=format:'%Cblue%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold red)[%an]%Creset' --abbrev-commit --date=relative
+    pl = pull
+    ps = push
+    psf = push --force-with-lease
+    rb = rebase
+    root = rev-parse --show-toplevel
     rs = restore
     rss = restore --staged
-    sw = switch
     rx = reset
     rxh = reset --hard
-    rb = rebase
+    st = status --short
+    sw = switch
 
