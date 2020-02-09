@@ -35,12 +35,16 @@ let g:lightline = {
 \    'colorscheme': 'nord',
 \    'active': {
 \        'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ],
-\        'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'buffer' ], [ 'filetype' ] ]
+\        'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'buffer' ], [ 'filetype' ], [ 'cocstatus' ] ],
 \    },
 \    'component': {
-\        'buffer': "%n/%{len(filter(range(1,bufnr('$')),'buflisted(v:val)'))}"
+\        'buffer': "%n/%{len(filter(range(1,bufnr('$')),'buflisted(v:val)'))}",
+\    },
+\    'component_function': {
+\        'cocstatus': 'coc#status',
 \    },
 \ }
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 set noshowmode
 
 " Indent based upon file's indentation
