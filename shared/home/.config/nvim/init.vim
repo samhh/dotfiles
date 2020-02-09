@@ -31,7 +31,16 @@ call plug#end()
 
 " Theming
 colorscheme nord
-let g:lightline = { 'colorscheme': 'nord' }
+let g:lightline = {
+\    'colorscheme': 'nord',
+\    'active': {
+\        'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ],
+\        'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'buffer' ], [ 'filetype' ] ]
+\    },
+\    'component': {
+\        'buffer': "%n/%{len(filter(range(1,bufnr('$')),'buflisted(v:val)'))}"
+\    },
+\ }
 set noshowmode
 
 " Indent based upon file's indentation
