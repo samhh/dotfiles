@@ -10,6 +10,8 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'justinmk/vim-sneak'
 Plug 'rstacruz/vim-closer'
+Plug 'moll/vim-bbye'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 """ The first of these lines is required on macOS
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
@@ -24,9 +26,6 @@ Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
 Plug 'purescript-contrib/purescript-vim'
 Plug 'neovimhaskell/haskell-vim'
-
-"" Language servers
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -86,13 +85,16 @@ nnoremap <Right> <NOP>
 "" Buffer selection
 nnoremap <Leader>b :Buffers<CR>
 
+"" Toggle to last open file in buffer
+nnoremap <Leader><Bs> <C-^>
+
+"" Delete buffer (and use plugin for it to preserve layouts)
+nnoremap <Leader>q :Bd<CR>
+
 "" Add newlines from normal mode
 "" Note that the shift enter bind doesn't appear to work
 nnoremap <Enter> o<Esc>k
 nnoremap <S-Enter> O<Esc>
-
-"" Toggle to last open file in buffer
-nnoremap <Leader><Bs> <C-^>
 
 "" Remove highlight
 nnoremap <C-l> :nohl<CR><C-l>
