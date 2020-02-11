@@ -115,6 +115,12 @@ nnoremap <C-l> :nohl<CR><C-l>
 "" Fuzzy find files
 nnoremap <Leader>p :GFiles<CR>
 nnoremap <Leader>P :Files<CR>
+nnoremap <Leader>l :<C-U>call ABFiles()<CR>
+
+"" Custom fzf find files in directory of active buffer
+function! ABFiles()
+  execute 'FZF' expand('%:p:h')
+endfunction
 
 "" Fuzzy find code
 nnoremap <Leader>f :Lines<CR>
