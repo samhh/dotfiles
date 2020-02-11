@@ -140,7 +140,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 "" Rename coc symbol
-nmap <leader>rn <Plug>(coc-rename)
+nmap <Leader>rn <Plug>(coc-rename)
 
 "" Trigger coc completions
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -164,5 +164,5 @@ function! OpenMarkdownPreview()
   silent exec '!open http://localhost:6419/' . expand('%')
 endfunction
 
-noremap <silent> <leader>md :call OpenMarkdownPreview()<cr>
+noremap <silent> <Leader>md :call OpenMarkdownPreview()<cr>
 
