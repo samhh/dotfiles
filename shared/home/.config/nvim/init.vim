@@ -38,7 +38,7 @@ let g:lightline = {
 \        'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'buffer' ], [ 'filetype' ], [ 'cocstatus' ] ],
 \    },
 \    'component': {
-\        'buffer': "%n/%{len(filter(range(1,bufnr('$')),'buflisted(v:val)'))}",
+\        'buffer': "%{len(filter(range(1,bufnr('$')),'buflisted(v:val)'))}b",
 \    },
 \    'component_function': {
 \        'cocstatus': 'coc#status',
