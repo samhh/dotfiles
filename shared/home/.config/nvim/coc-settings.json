@@ -10,6 +10,12 @@
           "hlintOn": true
         }
       }
+    },
+    "purescript": {
+      "command": "purescript-language-server",
+      "args": ["--stdio"],
+      "filetypes": ["purescript"],
+      "rootPatterns": ["spago.dhall"]
     }
   }
 }
