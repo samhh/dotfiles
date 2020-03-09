@@ -4,4 +4,5 @@
 .yalc/
 yalc.lock
 .psc-ide-port
+.psci_modules/
 
