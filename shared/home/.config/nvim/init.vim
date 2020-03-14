@@ -56,13 +56,6 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 
-" Path for finding files
-set path=**
-
-" File searching
-set wildmenu
-set wildignore+=*/node_modules/*,*/target/*
-
 " Always show line numbers
 set number
 
