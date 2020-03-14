@@ -155,13 +155,3 @@ function! s:show_documentation()
   endif
 endfunction
 
-" Markdown preview
-function! OpenMarkdownPreview()
-  if !exists('s:markdown_preview_job')
-    let s:markdown_preview_job = jobstart('grip')
-  endif
-  silent exec '!open http://localhost:6419/' . expand('%')
-endfunction
-
-noremap <silent> <Leader>md :call OpenMarkdownPreview()<cr>
-
