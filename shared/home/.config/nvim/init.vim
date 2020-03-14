@@ -103,7 +103,7 @@ nnoremap <Enter> o<Esc>k
 nnoremap <S-Enter> O<Esc>
 
 "" Remove highlight
-nnoremap <C-l> :nohl<CR><C-l>
+nnoremap <C-l> :nohl<CR>
 
 "" Fuzzy find files
 nnoremap <Leader>p :GFiles<CR>
