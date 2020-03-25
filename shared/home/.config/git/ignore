@@ -5,4 +5,5 @@
 yalc.lock
 .psc-ide-port
 .psci_modules/
+hie.yaml
 
