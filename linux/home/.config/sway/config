@@ -183,8 +183,8 @@ bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
 bindsym XF86AudioMute exec amixer -q set Master toggle
 
 # Screen brightness control
-bindsym XF86MonBrightnessUp exec light -A 10
-bindsym XF86MonBrightnessDown exec light -U 10
+bindsym XF86MonBrightnessUp exec light -T 1.4
+bindsym XF86MonBrightnessDown exec light -T 0.6
 
 # Keyboard backlight control
 bindsym XF86KbdBrightnessUp exec light -A 20 -s sysfs/leds/smc::kbd_backlight
