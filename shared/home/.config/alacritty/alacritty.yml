@@ -9,13 +9,13 @@ dynamic_title: true
 live_config_reload: true
 
 font:
-    size: 12
+    size: 13
     normal:
-        family: 'Fira Code'
+        family: 'Hasklig'
     bold:
-        family: 'Fira Code'
+        family: 'Hasklig'
     italic:
-        family: 'Fira Code'
+        family: 'Hasklig'
 
 # Nord colors
 colors:
