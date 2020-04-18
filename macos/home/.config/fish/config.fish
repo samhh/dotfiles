@@ -3,8 +3,10 @@ fish_vi_key_bindings
 set fish_greeting
 
 # Exported variables
+## Use Nvim as editor wherever possible
 set -x VISUAL nvim
 set -x EDITOR $VISUAL
+## Use taskrc outside of home dir
 set -x TASKRC ~/.config/task/config
 
 # Source nodenv
@@ -26,6 +28,9 @@ abbr vi 'nvim'
 # Arch package management-specific aliases
 abbr up 'brew update; and brew upgrade; and fisher'
 abbr clear_cache 'brew cu; and brew cleanup'
+
+# Misc/specific aliases
+abbr todo 'clear; and task todo'
 
 # Create directory path and cd into it
 function mkcd
