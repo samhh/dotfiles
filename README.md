@@ -4,7 +4,7 @@ My personal dotfiles and miscellaneous configs.
 
 ## Overview
 
-I spend most of my personal time on the Arch partition of my Macbook, however my work laptop is stuck with macOS. As such, I've tried to make working with both of these simultaneously as seemless as possible. For example, my experience in the terminal and the editor should be close to identical on each OS. The colour scheme I've tried to utilise where possible is [Nord](https://www.nordtheme.com).
+I spend most of my personal time on the Arch partition of my Macbook, however my work laptop is stuck with macOS. As such, I've tried to make working with both of these simultaneously as seamless as possible. For example, my experience in the terminal and the editor should be close to identical on each OS. The colour scheme I've tried to utilise where possible is [Nord](https://www.nordtheme.com).
 
 ## Project Structure
 
