@@ -23,7 +23,7 @@ Plug 'itchyny/lightline.vim'
 "" Language syntax
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
-Plug 'ianks/vim-tsx'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'purescript-contrib/purescript-vim'
 Plug 'neovimhaskell/haskell-vim'
 
