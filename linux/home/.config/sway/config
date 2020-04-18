@@ -78,8 +78,8 @@ bindsym $mod+Shift+m exec ~/scripts/launcher.sh "~/scripts/pass-fzf-prefixed-lin
 bindsym $mod+Shift+p exec grim -g \"$(slurp)" - | wl-copy
 
 # Dismiss notifications
-bindsym --release Ctrl+Space exec makoctl dismiss
-bindsym --release Ctrl+Shift+Space exec makoctl dismiss --all
+bindsym Ctrl+Space exec makoctl dismiss
+bindsym Ctrl+Shift+Space exec makoctl dismiss --all
 
 # Calculator & conversions
 bindsym $mod+Shift+o exec ~/scripts/launcher.sh "qalc" $launcher_window_title
