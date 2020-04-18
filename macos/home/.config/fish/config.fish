@@ -19,7 +19,6 @@ abbr ... 'cd ../..'
 abbr .... 'cd ../../..'
 abbr ..... 'cd ../../../..'
 abbr ...... 'cd ../../../../..'
-abbr rmds 'find . -name "*.DS_Store" -type f -delete'
 
 # Command drop-in replacement aliases
 abbr rm 'trash'
