@@ -60,12 +60,12 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # Launcher
-bindsym $mod+d exec ~/scripts/launcher.sh "dmenu_path | fzf | xargs swaymsg exec" $launcher_window_title
+bindsym $mod+d exec ~/scripts/launcher.sh "dmenu_path | fzf | xargs --no-run-if-empty swaymsg exec" $launcher_window_title
 
-# Buku
-bindsym $mod+Shift+d exec ~/scripts/launcher.sh "bukubrow -l | fzf | cut -d ' ' -f 1 | xargs --no-run-if-empty bukubrow -o" $launcher_window_title
+# Bookmarks
+bindsym $mod+Shift+d exec ~/scripts/launcher.sh "~/scripts/flatmarks.sh | xargs --no-run-if-empty swaymsg exec xdg-open" $launcher_window_title
 
-# Pass
+# Passwords
 bindsym $mod+Shift+x exec ~/scripts/launcher.sh "~/scripts/pass-fzf-password.sh" $launcher_window_title
 bindsym $mod+Shift+n exec ~/scripts/launcher.sh "~/scripts/pass-fzf-prefixed-line.sh 'username: ' username" $launcher_window_title
 bindsym $mod+Shift+m exec ~/scripts/launcher.sh "~/scripts/pass-fzf-prefixed-line.sh 'email: ' email" $launcher_window_title
