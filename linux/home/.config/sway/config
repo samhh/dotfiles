@@ -88,8 +88,9 @@ bindsym $mod+Shift+o exec ~/scripts/launcher.sh "qalc" $launcher_window_title
 bindsym $mod+Shift+t exec ~/scripts/launcher.sh "trans -brief -s it -t en" $launcher_window_title
 bindsym $mod+Shift+y exec ~/scripts/launcher.sh "trans -brief -s en -t it" $launcher_window_title
 
-# Wallpaper
+# Wallpaper, and run once immediately
 bindsym $mod+Shift+w exec ~/scripts/wallpaper.sh
+exec ~/scripts/wallpaper.sh
 
 # Change focus
 bindsym $mod+h focus left
