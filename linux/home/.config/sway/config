@@ -178,9 +178,9 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Volume control
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
-bindsym XF86AudioMute exec amixer -q set Master toggle
+bindsym XF86AudioRaiseVolume exec pulsemixer --unmute --change-volume 5
+bindsym XF86AudioLowerVolume exec pulsemixer --unmute --change-volume -5
+bindsym XF86AudioMute exec pulsemixer --toggle-mute
 
 # Screen brightness control
 bindsym XF86MonBrightnessUp exec light -T 1.4
