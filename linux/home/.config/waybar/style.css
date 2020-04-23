@@ -31,7 +31,7 @@ window#waybar {
 #network,
 #battery,
 #clock,
-#custom-alsa,
+#pulseaudio,
 #custom-music,
 #custom-updates,
 #custom-tasks,
@@ -89,8 +89,12 @@ window#waybar {
   animation-direction: alternate;
 }
 
-#custom-alsa:not(.muted) {
+#pulseaudio.warning:not(.muted) {
   color: @nord13;
+}
+
+#pulseaudio.critical:not(.muted) {
+  color: @nord11;
 }
 
 #custom-tasks,

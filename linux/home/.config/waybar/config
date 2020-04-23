@@ -7,7 +7,7 @@
     "margin-right": 840,
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["custom/music"],
-    "modules-right": ["custom/reddit", "custom/updates", "custom/tasks", "network", "custom/alsa", "battery", "clock"],
+    "modules-right": ["custom/reddit", "custom/updates", "custom/tasks", "network", "pulseaudio", "battery", "clock"],
     "sway/workspaces": {
         "disable-scroll": true,
         "format": "{icon}",
@@ -27,6 +27,7 @@
         "format": "{:%H:%M, %d/%m}"
     },
     "battery": {
+        "full-at": 72,
         "states": {
             "warning": 30,
             "critical": 15
@@ -38,10 +39,13 @@
         "format-wifi": "{essid} ",
         "format-disconnected": "Disconnected ⚠"
     },
-    "custom/alsa": {
-      "exec": "~/scripts/alsa.sh",
-      "interval": 1,
-      "format": "{} "
+    "pulseaudio": {
+        "format": "{volume}% ",
+        "format-muted": "0% ",
+        "states": {
+            "warning": 1,
+            "critical": 101
+        }
     },
     "custom/music": {
       "exec": "~/scripts/media.sh",
