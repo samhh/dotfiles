@@ -60,29 +60,29 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # Launcher
-bindsym $mod+d exec ~/scripts/launcher.sh "dmenu_path | fzf | xargs --no-run-if-empty swaymsg exec" $launcher_window_title
+bindsym $mod+g exec ~/scripts/launcher.sh "dmenu_path | fzf | xargs --no-run-if-empty swaymsg exec" $launcher_window_title
 
 # Bookmarks
-bindsym $mod+Shift+d exec ~/scripts/launcher.sh "~/scripts/flatmarks.sh | xargs --no-run-if-empty swaymsg exec xdg-open" $launcher_window_title
+bindsym $mod+d exec ~/scripts/launcher.sh "~/scripts/flatmarks.sh | xargs --no-run-if-empty swaymsg exec xdg-open" $launcher_window_title
 
 # Passwords
-bindsym $mod+Shift+x exec ~/scripts/launcher.sh "~/scripts/pass-fzf-password.sh" $launcher_window_title
-bindsym $mod+Shift+n exec ~/scripts/launcher.sh "~/scripts/pass-fzf-prefixed-line.sh 'username: ' username" $launcher_window_title
-bindsym $mod+Shift+m exec ~/scripts/launcher.sh "~/scripts/pass-fzf-prefixed-line.sh 'email: ' email" $launcher_window_title
+bindsym $mod+x exec ~/scripts/launcher.sh "~/scripts/pass-fzf-password.sh" $launcher_window_title
+bindsym $mod+n exec ~/scripts/launcher.sh "~/scripts/pass-fzf-prefixed-line.sh 'username: ' username" $launcher_window_title
+bindsym $mod+m exec ~/scripts/launcher.sh "~/scripts/pass-fzf-prefixed-line.sh 'email: ' email" $launcher_window_title
 
 # Screenshot region and copy to clipboard
-bindsym $mod+Shift+p exec grim -g \"$(slurp)" - | wl-copy
+bindsym $mod+p exec grim -g \"$(slurp)" - | wl-copy
 
 # Dismiss notifications
 bindsym Ctrl+Space exec makoctl dismiss
 bindsym Ctrl+Shift+Space exec makoctl dismiss --all
 
 # Calculator & conversions
-bindsym $mod+Shift+o exec ~/scripts/launcher.sh "qalc" $launcher_window_title
+bindsym $mod+o exec ~/scripts/launcher.sh "qalc" $launcher_window_title
 
 # Translations
-bindsym $mod+Shift+t exec ~/scripts/launcher.sh "trans -brief -s it -t en" $launcher_window_title
-bindsym $mod+Shift+y exec ~/scripts/launcher.sh "trans -brief -s en -t it" $launcher_window_title
+bindsym $mod+t exec ~/scripts/launcher.sh "trans -brief -s it -t en" $launcher_window_title
+bindsym $mod+y exec ~/scripts/launcher.sh "trans -brief -s en -t it" $launcher_window_title
 
 # Wallpaper, and run once immediately
 bindsym $mod+Shift+w exec ~/scripts/wallpaper.sh
