@@ -7,7 +7,7 @@
     "margin-right": 840,
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["custom/music"],
-    "modules-right": ["custom/reddit", "custom/updates", "custom/tasks", "network", "pulseaudio", "battery", "clock"],
+    "modules-right": ["custom/updates", "custom/tasks", "network", "pulseaudio", "battery", "clock"],
     "sway/workspaces": {
         "disable-scroll": true,
         "format": "{icon}",
@@ -64,12 +64,6 @@
       "exec-if": "~/scripts/tasks-due.sh",
       "interval": 60,
       "format": " {}"
-    },
-    "custom/reddit": {
-      "exec": "~/scripts/reddit-num-unread.sh",
-      "exec-if": "~/scripts/reddit-num-unread.sh",
-      "interval": 3600,
-      "format": " {}"
     }
 }
 
