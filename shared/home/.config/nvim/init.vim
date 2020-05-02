@@ -1,33 +1,35 @@
 " Plugins
-call plug#begin('~/.local/share/nvim/plugged')
+if exists('*minpac#init')
+    call minpac#init()
+    call minpac#add('k-takata/minpac', {'type': 'opt'})
 
-"" General
-Plug 'bronson/vim-trailing-whitespace'
-Plug 'airblade/vim-gitgutter'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-Plug 'justinmk/vim-sneak'
-Plug 'rstacruz/vim-closer'
-Plug 'moll/vim-bbye'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-""" The first of these lines is required on macOS
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
+    "" General
+    call minpac#add('bronson/vim-trailing-whitespace')
+    call minpac#add('airblade/vim-gitgutter')
+    call minpac#add('nathanaelkane/vim-indent-guides')
+    call minpac#add('editorconfig/editorconfig-vim')
+    call minpac#add('tpope/vim-commentary')
+    call minpac#add('tpope/vim-surround')
+    call minpac#add('justinmk/vim-sneak')
+    call minpac#add('rstacruz/vim-closer')
+    call minpac#add('moll/vim-bbye')
+    call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
+    call minpac#add('junegunn/fzf.vim')
 
-"" Color schemes
-Plug 'arcticicestudio/nord-vim'
-Plug 'itchyny/lightline.vim'
+    "" Color schemes
+    call minpac#add('arcticicestudio/nord-vim')
+    call minpac#add('itchyny/lightline.vim')
 
-"" Language syntax
-Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'purescript-contrib/purescript-vim'
-Plug 'neovimhaskell/haskell-vim'
+    "" Language syntax
+    call minpac#add('pangloss/vim-javascript')
+    call minpac#add('leafgarland/typescript-vim')
+    call minpac#add('peitalin/vim-jsx-typescript')
+    call minpac#add('purescript-contrib/purescript-vim')
+    call minpac#add('neovimhaskell/haskell-vim')
+endif
 
-call plug#end()
+command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update('', {'do': 'call minpac#status()'})
+command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
 
 " Theming
 colorscheme nord
