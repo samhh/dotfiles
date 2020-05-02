@@ -12,4 +12,5 @@ set hint-timeout=0
 set hint-match-element=false
 
 nmap d <C-q>
+nmap u <C-o>
 
