@@ -94,7 +94,7 @@ nnoremap <Right> <NOP>
 nnoremap <Leader>b :Buffers<CR>
 
 "" Toggle to last open file in buffer
-nnoremap <Leader><Bs> <C-^>
+nnoremap <Leader>v <C-^>
 
 "" Delete buffer (and use plugin for it to preserve layouts)
 nnoremap <Leader>q :Bd<CR>
@@ -130,9 +130,9 @@ command! -bang -nargs=* Rg
   \   <bang>0)
 
 "" Navigate coc diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+nmap <silent> <Leader>k <Plug>(coc-diagnostic-prev)
+nmap <silent> <Leader>j <Plug>(coc-diagnostic-next)
+nnoremap <silent> <Leader>a  :<C-u>CocList diagnostics<cr>
 
 "" coc gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -141,10 +141,10 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 "" Rename coc symbol
-nmap <Leader>rn <Plug>(coc-rename)
+nmap <Leader>r <Plug>(coc-rename)
 
 "" Trigger coc completions
-inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <Leader>x coc#refresh()
 
 "" Show documentation (type info) in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
