@@ -10,13 +10,12 @@ if exists('*minpac#init')
     call minpac#add('editorconfig/editorconfig-vim')
     call minpac#add('tpope/vim-commentary')
     call minpac#add('tpope/vim-surround')
-    call minpac#add('justinmk/vim-sneak')
     call minpac#add('rstacruz/vim-closer')
     call minpac#add('moll/vim-bbye')
     call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
     call minpac#add('junegunn/fzf.vim')
 
-    "" Color schemes
+    "" Theming
     call minpac#add('arcticicestudio/nord-vim')
     call minpac#add('itchyny/lightline.vim')
 
