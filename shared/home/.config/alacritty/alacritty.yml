@@ -9,7 +9,7 @@ dynamic_title: true
 live_config_reload: true
 
 font:
-    size: 13
+    size: 17
     normal:
         family: 'Hasklig'
     bold:

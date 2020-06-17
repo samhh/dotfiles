@@ -17,6 +17,7 @@
 
 * {
   border: none;
+  font-size: 18px;
   box-shadow: none;
   border-radius: 0;
   color: @nord6;
@@ -46,6 +47,7 @@ window#waybar {
 
 #workspaces button {
   margin: 0 3px;
+  padding: 0 20px;
   background: @nord1;
   transition: none;
 }

@@ -1,3 +1,7 @@
+# Explicit display scale
+# Don't scale, because 2x is equivalent to 1440x900 (yuck) and fractional scaling looks bad
+output eDP-1 scale 1
+
 # Locking
 exec swayidle -w before-sleep 'swaylock -f -c 000000'
 
@@ -21,7 +25,7 @@ input "1452:628:Apple_Inc._Apple_Internal_Keyboard_/_Trackpad" {
 focus_follows_mouse no
 
 # Theming (Nord colors)
-font pango:Monaco 11
+font pango:Monaco 16
 default_border pixel 3
 smart_borders off
 gaps outer 0

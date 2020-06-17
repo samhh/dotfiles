@@ -1,10 +1,10 @@
 {
     "layer": "top",
     "position": "bottom",
-    "height": 45,
+    "height": 55,
     "margin-bottom": 16,
-    "margin-left": 840,
-    "margin-right": 840,
+    "margin-left": 720,
+    "margin-right": 720,
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["custom/music"],
     "modules-right": ["custom/updates", "custom/tasks", "network", "pulseaudio", "battery", "clock"],
