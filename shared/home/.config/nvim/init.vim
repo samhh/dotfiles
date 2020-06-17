@@ -142,8 +142,9 @@ nmap <silent> gr <Plug>(coc-references)
 "" Rename coc symbol
 nmap <Leader>r <Plug>(coc-rename)
 
-"" Workspace symbols search
-nnoremap <silent> <Leader>s :<C-u>CocList symbols<cr>
+"" Symbols search
+nnoremap <silent> <Leader>s :<C-u>CocList outline<cr>
+nnoremap <silent> <Leader>S :<C-u>CocList symbols<cr>
 
 "" Trigger coc completions
 inoremap <silent><expr> <C-space> coc#refresh()
