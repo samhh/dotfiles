@@ -1,5 +1,6 @@
 {
   "suggest.autoTrigger": "trigger",
+  "list.source.symbols.excludes": ["node_modules/**/*"],
   "languageserver": {
     "haskell": {
       "command": "hie-wrapper",
