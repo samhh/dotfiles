@@ -3,10 +3,15 @@
   "list.source.symbols.excludes": ["node_modules/**/*"],
   "languageserver": {
     "haskell": {
-      "command": "hie-wrapper",
+      "command": "haskell-language-server-wrapper",
       "args": ["--lsp"],
-      "rootPatterns": ["*.cabal", "stack.yaml", "cabal.config", "package.yaml"],
-      "filetypes": ["hs", "lhs", "haskell"]
+      "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml"],
+      "filetypes": ["hs", "lhs", "haskell"],
+      "initializationOptions": {
+          "haskell": {
+              "formattingProvider": "ormolu"
+          }
+      }
     },
     "purescript": {
       "command": "purescript-language-server",
