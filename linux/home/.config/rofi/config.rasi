@@ -7,10 +7,11 @@ configuration {
 	padding: 10;
 	yoffset: 450;
 	matching: "fuzzy";
+	sort: true;
 	line-padding: 6;
 	separator-style: "none";
 	hide-scrollbar: true;
-	color-normal: "#1d2021, #ffffff, #1d2021, #458588, #ffffff";
-	color-window: "#1d2021, #458588, #000000";
+	color-normal: "#3b4252, #eceff4, #3b4252, #2e3440, #eceff4";
+	color-window: "#3b4252, #000000, #000000";
 }
 
