@@ -1,0 +1,36 @@
+[global]
+    geometry = "325x5-24+40"
+    font = Monaco 9
+    line_height = 3
+    separator_height = 3
+    padding = 12
+    horizontal_padding = 15
+    separator_color = "#2e3440"
+    word_wrap = true
+    corner_radius = 1
+    idle_threshold = 60
+    show_age_threshold = 60
+    format = "<b>%a</b>\n<b>%s</b> %p\n%b"
+    markup = full
+    dmenu = /usr/bin/rofi -show notif -dmenu
+    browser = /usr/bin/vimb
+
+[shortcuts]
+    close = ctrl+space
+    close_all = ctrl+shift+space
+
+[urgency_low]
+    background = "#3b4252"
+    foreground = "#eceff4"
+    timeout = 10
+
+[urgency_normal]
+    background = "#3b4252"
+    foreground = "#eceff4"
+    timeout = 20
+
+[urgency_critical]
+    background = "#bf616a"
+    foreground = "#eceff4"
+    timeout = 0
+
