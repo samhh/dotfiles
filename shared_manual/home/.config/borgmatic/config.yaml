@@ -5,9 +5,6 @@ location:
     repositories:
         - ~/path/to/repo/dir/
 
-    exclude_patterns:
-        - .DS_Store
-
 storage:
     encryption_passphrase: <repo_password>
 
