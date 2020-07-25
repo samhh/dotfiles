@@ -1,6 +1,6 @@
 set dark-mode=true
 set sans-serif-font=Arial
-set default-zoom=130
+set default-zoom=100
 set scroll-step=125
 set closed-max-items=1
 set history-max-items=0
@@ -10,8 +10,8 @@ set hint-keys=qwertyuiopasdfghjklzxcvbnm
 set hint-keys-same-length=true
 set hint-timeout=0
 set hint-match-element=false
-set status-css=font-size: 20px;
-set input-css=font-size: 24px;
+set status-css=font-size: 13px;
+set input-css=font-size: 16px;
 
 nmap d <C-q>
 nmap u <C-o>
