@@ -19,7 +19,7 @@ I've tried to utilise the [Nord](https://www.nordtheme.com) colour scheme where 
 
 A shell script (`./link.sh`) is included that sets up symlinks for everything. This uses Stow under the hood.
 
-Any configs that belong outside of the user home directory or require user input due to user secrets (e.g. GPG key in Git config) are placed in appended *_manual* dirs, separately from the clean configs. These must be manually managed.
+Any configs that belong outside of the user home directory or require user input due to user secrets are placed in the `manual` directory and must be manually managed.
 
 There are plenty of implicit software prerequisites as these are the configs I use every day down to a byte.
 
