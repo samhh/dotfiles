@@ -1,16 +1,22 @@
 #!/usr/bin/env bash
 
+shopt -s nullglob globstar
+
 base=~/.bookmarks/
-cd $base
 
-path=$(fzf)
+# Find everything in bookmarks dir not a directory and not matching git pattern
+readarray -d '' paths < <(find $base -type f -not -path '*/.git*' -print0)
 
-# If we didn't select anything in fzf then bail
-if [ -z "$path" ]; then
-    exit 0
-fi
+# Remove prefix from strings
+paths=( "${paths[@]#"$base"}" )
 
-url=$(head -1 "$base$path")
+selected=$(printf '%s\n' "${paths[@]}" | rofi -window-title bookmark -dmenu)
 
-echo $url
+[[ -n $selected ]] || exit
+
+file="$base$selected"
+
+url=$(head -1 $file)
+
+xdg-open $url
 
