@@ -153,6 +153,7 @@ main =
                 ((nomod, xK_MediaTogglePlay), spawn "playerctl play-pause"),
                 ((nomod, xK_MediaNext), spawn "playerctl next"),
                 ((super, xK_g), spawn "rofi -show run"),
+                ((super, xK_t), spawn "~/scripts/web-search.sh"),
                 ((super, xK_d), spawn "~/scripts/flatmarks.sh"),
                 ((super, xK_x), spawn "~/scripts/passmenu.sh"),
                 ((super, xK_n), spawn "~/scripts/pass-prefixed-line.sh \"username: \" username"),
