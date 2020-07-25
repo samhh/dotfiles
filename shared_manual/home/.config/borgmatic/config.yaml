@@ -1,9 +1,9 @@
 location:
     source_directories:
-        - ~/path/to/backup/dir/
+        - ~/docs/
 
     repositories:
-        - ~/path/to/repo/dir/
+        - ~/.docs_repo/
 
 storage:
     encryption_passphrase: <repo_password>
