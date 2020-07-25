@@ -44,7 +44,7 @@ colors:
         cyan: '0x8FBCBB'
         white: '0xECEFF4'
 
-background_opacity: .95
+background_opacity: 1
 
 key_bindings:
     - { key: Return,   mods: Command|Shift,    action: SpawnNewInstance    }
