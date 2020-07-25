@@ -1,23 +1,25 @@
 # dotfiles
 
-My personal dotfiles and miscellaneous configs.
+Here are my dotfiles, separated by branch for four different machines:
 
-## Overview
+- desktop: Arch, xmonad
+- laptop: Arch, Sway
+- work: macOS
+- controller: Raspberry Pi OS
 
-I spend most of my personal time on the Arch partition of my Macbook, however my work laptop is stuck with macOS. As such, I've tried to make working with both of these simultaneously as seamless as possible. For example, my experience in the terminal and the editor should be close to identical on each OS. The colour scheme I've tried to utilise where possible is [Nord](https://www.nordtheme.com).
+I spend most of my personal time on the desktop, however my work machine is stuck with macOS. As such, I've tried to make working with both of these simultaneously as seamless as possible. For example, my experience in the terminal and the editor should be close to identical on each OS.
 
-## Project Structure
+My desktop runs xmonad as my Nvidia video card isn't Sway-compatible, and I love the flexibility of defining its behaviour in Haskell. My laptop continues to run Sway as it's tear-free and I don't feel compelled to change it when it's stable and working well.
 
-At its core, everything is split up into four basic dirs:
+The "controller" is a Raspberry Pi that's sitting out of the way somewhere. It handles home automation tasks.
 
-- **Linux**
-- **macOS**
-- **Shared**: Configs that should work out of the box on both Linux and macOS.
-- **Controller**: Configs for my home "controller", an always-on Raspberry Pi that I primarily use to interface with my NAS.
+I've tried to utilise the [Nord](https://www.nordtheme.com) colour scheme where possible.
 
-You can use the included `./link.sh` helper on Linux/macOS to automatically set up syslinks for all configs. This uses Stow under the hood. Note that this does not apply to Controller configs.
+## Symlinking
 
-Any configs that belong outside of the user home directory or require user input due to user secrets (e.g. GPG key in Git config) are placed in appended *_manual* dirs, separately from the clean configs. You will need to manually manage these.
+A shell script (`./link.sh`) is included that sets up symlinks for everything. This uses Stow under the hood.
 
-There are plenty of software prerequisites as these are the configs I use every day down to a byte. Read the files you're downloading to understand what they are and what might be required for them to work.
+Any configs that belong outside of the user home directory or require user input due to user secrets (e.g. GPG key in Git config) are placed in appended *_manual* dirs, separately from the clean configs. These must be manually managed.
+
+There are plenty of implicit software prerequisites as these are the configs I use every day down to a byte.
 
