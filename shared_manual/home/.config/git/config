@@ -4,6 +4,9 @@
 [push]
     default = simple
 
+[pull]
+    ff = only
+
 [user]
     email = git@samhh.com
     name = Sam A. Horvath-Hunt
