@@ -23,7 +23,6 @@ abbr ..... 'cd ../../../..'
 abbr ...... 'cd ../../../../..'
 
 # Command drop-in replacement aliases
-abbr rm 'trash-put'
 abbr vi 'nvim'
 abbr top 'gotop'
 
