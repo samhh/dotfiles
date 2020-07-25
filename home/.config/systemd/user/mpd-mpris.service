@@ -1,0 +1,11 @@
+[Unit]
+Description=mpd-mpris
+After=mpd.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/mpd-mpris
+
+[Install]
+WantedBy=default.target
+
