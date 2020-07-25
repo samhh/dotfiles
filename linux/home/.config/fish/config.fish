@@ -11,8 +11,8 @@ set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 ## Use taskrc outside of home dir
 set -x TASKRC ~/.config/task/config
 
-# Extend PATH for Stack (Haskell) and Yarn (PureScript)
-set -a fish_user_paths ~/.local/bin/ ~/.yarn/bin/
+# Extend PATH for ghcup and Cabal (Haskell), and Yarn (PureScript)
+set -a fish_user_paths ~/.ghcup/bin/ ~/.cabal/bin/ ~/.yarn/bin/
 
 # Generic aliases
 abbr c 'clear'
