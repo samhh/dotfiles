@@ -149,6 +149,9 @@ nnoremap <silent> <Leader>S :<C-u>CocList symbols<cr>
 "" Trigger coc completions
 inoremap <silent><expr> <C-space> coc#refresh()
 
+"" Format active buffer
+nnoremap <silent> <Leader>z :call CocAction('format')<cr>
+
 "" Show documentation (type info) in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
