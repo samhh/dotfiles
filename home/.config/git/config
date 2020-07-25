@@ -10,7 +10,7 @@
 [user]
     email = git@samhh.com
     name = Sam A. Horvath-Hunt
-    signingkey = <GPG_KEY_ID>
+    signingkey = 0402D196C09D7AA7
 
 [commit]
     gpgsign = true
