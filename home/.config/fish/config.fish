@@ -25,6 +25,7 @@ abbr ...... 'cd ../../../../..'
 # Command drop-in replacement aliases
 abbr vi 'nvim'
 abbr top 'gotop'
+abbr mpc 'vimpc'
 
 # Arch package management-specific aliases
 abbr up 'yay -Syu; and fisher'
