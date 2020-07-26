@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-shopt -s nullglob globstar
-
 base=~/.bookmarks/
 
 # Find everything in bookmarks dir not a directory and not matching git pattern
