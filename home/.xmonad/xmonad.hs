@@ -12,6 +12,14 @@ import XMonad.Layout.NoBorders (smartBorders)
 import XMonad.Layout.Reflect (reflectHoriz)
 import qualified XMonad.StackSet as W
 
+-- Blackbird operator for composition over two arguments
+($.) :: (c -> d) -> (a -> b -> c) -> a -> b -> d
+($.) = (.) . (.)
+
+-- Predicate and two branches on two arguments
+if2 :: (a -> b -> Bool) -> (a -> b -> c) -> (a -> b -> c) -> a -> b -> c
+if2 p f g x y = if p x y then f x y else g x y
+
 nomod :: KeyMask
 nomod = 0
 
@@ -94,16 +102,23 @@ centreRect = W.RationalRect (1 / 3) (1 / 3) (1 / 3) (1 / 3)
 videoRect :: W.RationalRect
 videoRect = W.RationalRect (3 / 4) (3 / 4) (1 / 5) (1 / 5)
 
--- TODO improve this
--- from: https://www.reddit.com/r/xmonad/comments/hm2tg0/how_to_toggle_floating_state_on_a_window/fx41xx4/
-toggleFloat :: Window -> X ()
-toggleFloat w =
-  windows
-    ( \s ->
-        if M.member w (W.floating s)
-          then W.sink w s
-          else W.float w centreRect s
-    )
+isFloating :: Window -> WindowSet -> Bool
+isFloating w s = M.member w (W.floating s)
+
+enableFloat :: W.RationalRect -> Window -> (WindowSet -> WindowSet)
+enableFloat = flip W.float
+
+enableFloat' :: W.RationalRect -> Window -> X ()
+enableFloat' = windows $. enableFloat
+
+disableFloat :: Window -> (WindowSet -> WindowSet)
+disableFloat = W.sink
+
+disableFloat' :: Window -> X ()
+disableFloat' = windows . disableFloat
+
+toggleFloat :: W.RationalRect -> Window -> X ()
+toggleFloat r = windows . if2 isFloating disableFloat (enableFloat r)
 
 layout = avoidStruts $ smartBorders $ mkToggle (single FULL) $ tiled ||| reflectHoriz tiled
   where
@@ -142,9 +157,9 @@ main =
                 ((super, xK_f), sendMessage (Toggle FULL) <> sendMessage ToggleStruts),
                 ((super, xK_q), sendMessage $ IncMasterN (-1)),
                 ((super, xK_e), sendMessage $ IncMasterN 1),
-                ((super, xK_s), withFocused toggleFloat),
-                ((super, xK_a), windows copyToAll), -- TODO enable float here with videoRect
-                ((super .|. shiftMask, xK_a), killAllOtherCopies), -- TODO disable float here
+                ((super, xK_s), withFocused $ toggleFloat centreRect),
+                ((super, xK_a), windows copyToAll <> withFocused (enableFloat' videoRect)),
+                ((super .|. shiftMask, xK_a), killAllOtherCopies <> withFocused disableFloat'),
                 ((nomod, xK_VolDown), spawn "amixer -Mq sset Master 1%-"),
                 ((nomod, xK_VolUp), spawn "amixer -Mq sset Master 1%+"),
                 ((nomod, xK_ToggleMute), spawn "amixer -q set Master toggle"),
