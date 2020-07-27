@@ -108,7 +108,7 @@ cfg =
           Run $
             MPD
               [ "--template",
-                "<fc=#81a1c1><state></fc>: <artist> - <title>"
+                "<fc=#81a1c1><state></fc>: <artist> - <title> (<volume>%)"
               ]
               10,
           Run $ Date "<fc=#e5e9f0>%H:%M, %d/%m</fc>" "date" 10
