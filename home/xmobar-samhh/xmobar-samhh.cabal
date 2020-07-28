@@ -1,0 +1,14 @@
+cabal-version:       >= 2.0
+version:             0.0.0
+name:                xmobar-samhh
+build-type:          Simple
+
+executable xmobar-samhh
+  main-is:             Main.hs
+  build-depends:         base == 4.*
+                       , relude == 0.7.*
+                       , xmobar
+  mixins:                base hiding (Prelude)
+                       , relude (Relude as Prelude)
+  default-language:    Haskell2010
+
