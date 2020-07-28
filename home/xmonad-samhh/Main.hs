@@ -1,5 +1,6 @@
+module Main where
+
 import qualified Data.Map as M
-import System.Exit (exitSuccess)
 import XMonad
 import XMonad.Actions.CopyWindow (copyToAll, killAllOtherCopies)
 import XMonad.Config.Desktop (desktopConfig)
