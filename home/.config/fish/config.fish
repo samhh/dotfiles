@@ -6,8 +6,10 @@ set fish_greeting
 ## Use Nvim as editor wherever possible
 set -x VISUAL nvim
 set -x EDITOR $VISUAL
+
 ## Inform shell environment of preexisting ssh-agent socket
 set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
+
 ## Use taskrc outside of home dir
 set -x TASKRC ~/.config/task/config
 
