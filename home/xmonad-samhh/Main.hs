@@ -8,7 +8,7 @@ import qualified Data.Map as M
 import XMonad
 import XMonad.Actions.CopyWindow (copyToAll, killAllOtherCopies)
 import XMonad.Config.Desktop (desktopConfig)
-import qualified XMonad.Hooks.DynamicLog as DL (statusBar)
+import qualified XMonad.Hooks.DynamicLog as DL
 import XMonad.Hooks.InsertPosition (Focus (..), Position (..), insertPosition)
 import XMonad.Hooks.ManageDocks (AvoidStruts, ToggleStruts (ToggleStruts), avoidStruts, docks)
 import XMonad.Layout.LayoutModifier (ModifiedLayout (ModifiedLayout))
@@ -80,7 +80,10 @@ statusBar ::
   LayoutClass a Window =>
   XConfig a ->
   IO (XConfig (ModifiedLayout AvoidStruts a))
-statusBar = DL.statusBar barCmd def ((,xK_b) . modMask)
+statusBar = DL.statusBar barCmd fmt ((,xK_b) . modMask)
+  where
+    fmt :: DL.PP
+    fmt = def {DL.ppSep = " | "}
 
 type Workspace = (String, KeySym)
 
