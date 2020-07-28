@@ -1,12 +1,17 @@
+{-# LANGUAGE FlexibleContexts #-}
+{-# LANGUAGE TupleSections #-}
+
 module Main where
 
+import Data.Default (def)
 import qualified Data.Map as M
 import XMonad
 import XMonad.Actions.CopyWindow (copyToAll, killAllOtherCopies)
 import XMonad.Config.Desktop (desktopConfig)
-import XMonad.Hooks.DynamicLog (xmobar)
+import qualified XMonad.Hooks.DynamicLog as DL (statusBar)
 import XMonad.Hooks.InsertPosition (Focus (..), Position (..), insertPosition)
-import XMonad.Hooks.ManageDocks (ToggleStruts (ToggleStruts), avoidStruts, docks)
+import XMonad.Hooks.ManageDocks (AvoidStruts, ToggleStruts (ToggleStruts), avoidStruts, docks)
+import XMonad.Layout.LayoutModifier (ModifiedLayout (ModifiedLayout))
 import XMonad.Layout.MultiToggle (Toggle (Toggle), mkToggle, single)
 import XMonad.Layout.MultiToggle.Instances (StdTransformers (FULL))
 import XMonad.Layout.NoBorders (smartBorders)
@@ -20,6 +25,9 @@ import qualified XMonad.StackSet as W
 -- Predicate and two branches on two arguments
 if2 :: (a -> b -> Bool) -> (a -> b -> c) -> (a -> b -> c) -> a -> b -> c
 if2 p f g x y = if p x y then f x y else g x y
+
+barCmd :: String
+barCmd = "xmobar-samhh"
 
 nomod :: KeyMask
 nomod = 0
@@ -67,6 +75,12 @@ nord6 = "#eceff4"
 
 nord11 :: HexColor
 nord11 = "#bf616a"
+
+statusBar ::
+  LayoutClass a Window =>
+  XConfig a ->
+  IO (XConfig (ModifiedLayout AvoidStruts a))
+statusBar = DL.statusBar barCmd def ((,xK_b) . modMask)
 
 type Workspace = (String, KeySym)
 
@@ -131,7 +145,7 @@ layout = avoidStruts $ smartBorders $ mkToggle (single FULL) $ tiled ||| reflect
 main :: IO ()
 main =
   (xmonad . docks)
-    =<< xmobar
+    =<< statusBar
       desktopConfig
         { terminal = "alacritty",
           modMask = mod4Mask,

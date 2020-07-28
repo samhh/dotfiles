@@ -8,6 +8,7 @@ executable xmonad-samhh
   build-depends:         base == 4.*
                        , relude == 0.7.*
                        , containers
+                       , data-default
                        , xmonad
                        , xmonad-contrib
   mixins:                base hiding (Prelude)
