@@ -1,0 +1,10 @@
+[Unit]
+Description=Hydroxide
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/hydroxide serve
+
+[Install]
+WantedBy=default.target
+
