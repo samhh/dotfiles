@@ -1,5 +1,4 @@
 {-# LANGUAGE FlexibleContexts #-}
-{-# LANGUAGE TupleSections #-}
 
 module Main where
 
@@ -8,7 +7,7 @@ import qualified Data.Map as M
 import XMonad
 import XMonad.Actions.CopyWindow (copyToAll, killAllOtherCopies)
 import XMonad.Config.Desktop (desktopConfig)
-import qualified XMonad.Hooks.DynamicLog as DL
+import XMonad.Hooks.DynamicLog (PP (PP), dynamicLogWithPP, ppOutput, ppSep)
 import XMonad.Hooks.InsertPosition (Focus (..), Position (..), insertPosition)
 import XMonad.Hooks.ManageDocks (AvoidStruts, ToggleStruts (ToggleStruts), avoidStruts, docks)
 import XMonad.Layout.LayoutModifier (ModifiedLayout (ModifiedLayout))
@@ -16,7 +15,8 @@ import XMonad.Layout.MultiToggle (Toggle (Toggle), mkToggle, single)
 import XMonad.Layout.MultiToggle.Instances (StdTransformers (FULL))
 import XMonad.Layout.NoBorders (smartBorders)
 import XMonad.Layout.Reflect (reflectHoriz)
-import XMonad.Layout.Spacing (spacingRaw, Border (Border))
+import XMonad.Layout.Spacing (Border (Border), spacingRaw)
+import XMonad.Util.Run (hPutStrLn, spawnPipe)
 import qualified XMonad.StackSet as W
 
 -- Blackbird operator for composition over two arguments
@@ -77,14 +77,30 @@ nord6 = "#eceff4"
 nord11 :: HexColor
 nord11 = "#bf616a"
 
+-- | Like `XMonad.Hooks.DynamicLog::statusBar`, but doesn't require a toggle
+-- hotkey.
+createStatusBarKeyless ::
+  LayoutClass l Window =>
+  String ->
+  PP ->
+  XConfig l ->
+  IO (XConfig (ModifiedLayout AvoidStruts l))
+createStatusBarKeyless cmd pp cfg = do
+  h <- spawnPipe cmd
+  pure $
+    docks $
+      cfg
+        { layoutHook = avoidStruts (layoutHook cfg),
+          logHook = do
+            logHook cfg
+            dynamicLogWithPP pp {ppOutput = hPutStrLn h}
+        }
+
 statusBar ::
   LayoutClass a Window =>
   XConfig a ->
   IO (XConfig (ModifiedLayout AvoidStruts a))
-statusBar = DL.statusBar barCmd fmt ((,xK_b) . modMask)
-  where
-    fmt :: DL.PP
-    fmt = def {DL.ppSep = " | "}
+statusBar = createStatusBarKeyless barCmd $ def {ppSep = " | "}
 
 type Workspace = (String, KeySym)
 
