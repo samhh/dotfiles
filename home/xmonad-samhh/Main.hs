@@ -8,6 +8,7 @@ import qualified Data.Map as M
 import XMonad
 import XMonad.Actions.CopyWindow (copyToAll, killAllOtherCopies)
 import XMonad.Config.Desktop (desktopConfig)
+import XMonad.Config.Prime (Query)
 import XMonad.Hooks.DynamicLog (PP (PP), dynamicLogWithPP, ppOutput, ppSep)
 import XMonad.Hooks.InsertPosition (Focus (..), Position (..), insertPosition)
 import XMonad.Hooks.ManageDocks (AvoidStruts, ToggleStruts (ToggleStruts), avoidStruts, docks)
@@ -156,12 +157,35 @@ disableFloat' = windows . disableFloat
 toggleFloat :: W.RationalRect -> Window -> X ()
 toggleFloat r = windows . if2 isFloating disableFloat (enableFloat r)
 
+toggleFullscreen' :: X ()
+toggleFullscreen' = sendMessage (Toggle FULL) <> sendMessage ToggleStruts
+
+layoutName :: Query String
+layoutName = liftX . gets $ description . W.layout . W.workspace . W.current . windowset
+
+isFullscreenQuery :: Query Bool
+isFullscreenQuery = layoutName =? show Full
+
+-- | On destroy window event, check if the window is fullscreen and if so
+-- toggle it.
+fullscreenEventHook :: Event -> X All
+fullscreenEventHook DestroyWindowEvent {ev_window = w, ev_event = evt} = do
+  -- The `DestroyWindowEvent` is emitted a lot, the condition verifies it's
+  -- actually what we're looking for. See also:
+  -- https://github.com/xmonad/xmonad-contrib/blob/4a6bbb63b4e4c470e01a6c81bf168b81952b85d6/XMonad/Hooks/WindowSwallowing.hs#L122
+  when (w == evt) $ whenX (runQuery isFullscreenQuery w) toggleFullscreen'
+  pure $ All True
+fullscreenEventHook _ = pure $ All True
+
 layout = avoidStruts $ smartBorders $ mkToggle (single FULL) $ tiled ||| reflectHoriz tiled
   where
     tiled = spacingRaw False (Border 6 6 6 6) True (Border 6 6 6 6) True $ Tall numMaster resizeDelta masterRatio
     numMaster = 1
     resizeDelta = 3 / 100
     masterRatio = 1 / 2
+
+resetLayout :: XConfig Layout -> X ()
+resetLayout = setLayout . layoutHook
 
 main :: IO ()
 main =
@@ -173,14 +197,15 @@ main =
           focusFollowsMouse = False,
           clickJustFocuses = False,
           manageHook = insertPosition Below Newer,
+          handleEventHook = fullscreenEventHook,
           workspaces = fmap wsName ws,
           borderWidth = 3,
           normalBorderColor = nord0,
           focusedBorderColor = nord3,
           layoutHook = layout,
-          keys = \cfg@XConfig {XMonad.modMask = super} ->
+          keys = \cfg@XConfig {XMonad.modMask = super, XMonad.terminal = term} ->
             M.fromList $
-              [ ((super, xK_Return), spawn $ XMonad.terminal cfg),
+              [ ((super, xK_Return), spawn term),
                 ((super .|. shiftMask, xK_q), kill),
                 ((super .|. shiftMask, xK_r), io exitSuccess),
                 ((super, xK_j), windows W.focusDown),
@@ -188,9 +213,9 @@ main =
                 ((super .|. shiftMask, xK_j), windows W.swapDown),
                 ((super .|. shiftMask, xK_k), windows W.swapUp),
                 ((super .|. shiftMask, xK_m), windows W.swapMaster),
-                ((super, xK_r), setLayout $ XMonad.layoutHook cfg),
+                ((super, xK_r), resetLayout cfg),
                 ((super, xK_v), sendMessage NextLayout),
-                ((super, xK_f), sendMessage (Toggle FULL) <> sendMessage ToggleStruts),
+                ((super, xK_f), toggleFullscreen'),
                 ((super, xK_q), sendMessage $ IncMasterN (-1)),
                 ((super, xK_e), sendMessage $ IncMasterN 1),
                 ((super, xK_s), withFocused $ toggleFloat centreRect),
