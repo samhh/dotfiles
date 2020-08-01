@@ -202,6 +202,7 @@ main =
                 ((nomod, xK_MediaPrev), spawn "playerctl previous"),
                 ((nomod, xK_MediaTogglePlay), spawn "playerctl play-pause"),
                 ((nomod, xK_MediaNext), spawn "playerctl next"),
+                ((super, xK_w), spawn "systemctl --user start wallpaper"),
                 ((super, xK_g), spawn "rofi -show run"),
                 ((super, xK_t), spawn "~/scripts/web-search.sh"),
                 ((super, xK_d), spawn "~/scripts/flatmarks.sh"),
