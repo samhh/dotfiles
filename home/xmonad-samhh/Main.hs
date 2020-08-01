@@ -16,6 +16,7 @@ import XMonad.Layout.MultiToggle (Toggle (Toggle), mkToggle, single)
 import XMonad.Layout.MultiToggle.Instances (StdTransformers (FULL))
 import XMonad.Layout.NoBorders (smartBorders)
 import XMonad.Layout.Reflect (reflectHoriz)
+import XMonad.Layout.Spacing (spacingRaw, Border (Border))
 import qualified XMonad.StackSet as W
 
 -- Blackbird operator for composition over two arguments
@@ -140,7 +141,7 @@ toggleFloat r = windows . if2 isFloating disableFloat (enableFloat r)
 
 layout = avoidStruts $ smartBorders $ mkToggle (single FULL) $ tiled ||| reflectHoriz tiled
   where
-    tiled = Tall numMaster resizeDelta masterRatio
+    tiled = spacingRaw False (Border 6 6 6 6) True (Border 6 6 6 6) True $ Tall numMaster resizeDelta masterRatio
     numMaster = 1
     resizeDelta = 3 / 100
     masterRatio = 1 / 2
