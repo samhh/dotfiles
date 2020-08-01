@@ -1,0 +1,12 @@
+[Unit]
+Description=Set the wallpaper randomly
+After=graphical.target network.target mnt-nas.mount
+
+[Service]
+Environment=DISPLAY=:0
+Type=oneshot
+ExecStart=/usr/bin/feh --bg-scale --randomize /mnt/nas/bgs/
+
+[Install]
+WantedBy=default.target
+
