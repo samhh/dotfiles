@@ -4,6 +4,7 @@ if exists('*minpac#init')
     call minpac#add('k-takata/minpac', {'type': 'opt'})
 
     "" General
+    call minpac#add('tpope/vim-sleuth')
     call minpac#add('bronson/vim-trailing-whitespace')
     call minpac#add('airblade/vim-gitgutter')
     call minpac#add('nathanaelkane/vim-indent-guides')
@@ -47,15 +48,6 @@ let g:lightline = {
 \ }
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 set noshowmode
-
-" Indent based upon file's indentation
-filetype plugin indent on
-
-" Tabs to spaces and sizing
-set tabstop=8
-set expandtab
-set shiftwidth=4
-set softtabstop=4
 
 " Always show line numbers
 set number
