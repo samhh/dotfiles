@@ -15,6 +15,7 @@ set input-css=font-size: 16px;
 
 nmap d <C-q>
 nmap u <C-o>
+nmap x :e! document.documentElement.style.filter = 'invert(1)'<CR>
 nmap v :sh! streamlink "${VIMB_URI}"<CR>
 nmap <C-p> :sh! vimb -i<CR>
 
