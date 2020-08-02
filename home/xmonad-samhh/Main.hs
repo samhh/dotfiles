@@ -9,7 +9,7 @@ import XMonad
 import XMonad.Actions.CopyWindow (copyToAll, killAllOtherCopies)
 import XMonad.Config.Desktop (desktopConfig)
 import XMonad.Config.Prime (Query)
-import XMonad.Hooks.DynamicLog (PP (PP), dynamicLogWithPP, ppOutput, ppSep)
+import XMonad.Hooks.DynamicLog (PP (PP), dynamicLogWithPP, ppOrder, ppOutput, ppSep)
 import XMonad.Hooks.InsertPosition (Focus (..), Position (..), insertPosition)
 import XMonad.Hooks.ManageDocks (AvoidStruts, ToggleStruts (ToggleStruts), avoidStruts, docks)
 import XMonad.Layout.LayoutModifier (ModifiedLayout (ModifiedLayout))
@@ -102,7 +102,7 @@ statusBar ::
   LayoutClass a Window =>
   XConfig a ->
   IO (XConfig (ModifiedLayout AvoidStruts a))
-statusBar = createStatusBarKeyless barCmd $ def {ppSep = " | "}
+statusBar = createStatusBarKeyless barCmd $ def {ppOrder = \(w : _ : t : _) -> [w, t], ppSep = " | "}
 
 type Workspace = (String, KeySym)
 
