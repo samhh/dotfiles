@@ -81,6 +81,12 @@ nnoremap <Down> <NOP>
 nnoremap <Left> <NOP>
 nnoremap <Right> <NOP>
 
+"" Disable unneeded Ex mode bind that's easy to mistakenly hit
+nnoremap Q <NOP>
+
+"" Remap a questionable default for more consistency with C and D
+nnoremap Y y$
+
 "" Buffer selection
 nnoremap <Leader>b :Buffers<CR>
 
