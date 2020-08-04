@@ -3,13 +3,15 @@
 
 module Main where
 
+import Data.Char (isSpace)
 import Data.Default (def)
+import Data.List (dropWhileEnd)
 import qualified Data.Map as M
 import XMonad
 import XMonad.Actions.CopyWindow (copyToAll, killAllOtherCopies)
 import XMonad.Config.Desktop (desktopConfig)
 import XMonad.Config.Prime (Query)
-import XMonad.Hooks.DynamicLog (PP (PP), dynamicLogWithPP, ppOrder, ppOutput, ppSep)
+import XMonad.Hooks.DynamicLog (PP (PP), dynamicLogWithPP, ppOrder, ppOutput, ppSep, ppTitle)
 import XMonad.Hooks.InsertPosition (Focus (..), Position (..), insertPosition)
 import XMonad.Hooks.ManageDocks (AvoidStruts, ToggleStruts (ToggleStruts), avoidStruts, docks)
 import XMonad.Layout.LayoutModifier (ModifiedLayout (ModifiedLayout))
@@ -28,6 +30,15 @@ import qualified XMonad.StackSet as W
 -- Predicate and two branches on two arguments
 if2 :: (a -> b -> Bool) -> (a -> b -> c) -> (a -> b -> c) -> a -> b -> c
 if2 p f g x y = if p x y then f x y else g x y
+
+trimStart :: String -> String
+trimStart = dropWhile isSpace
+
+trimEnd :: String -> String
+trimEnd = dropWhileEnd isSpace
+
+trim :: String -> String
+trim = trimEnd . trimStart
 
 barCmd :: String
 barCmd = "xmobar-samhh"
@@ -102,7 +113,13 @@ statusBar ::
   LayoutClass a Window =>
   XConfig a ->
   IO (XConfig (ModifiedLayout AvoidStruts a))
-statusBar = createStatusBarKeyless barCmd $ def {ppOrder = \(w : _ : t : _) -> [w, t], ppSep = " | "}
+statusBar =
+  createStatusBarKeyless barCmd $
+    def
+      { ppOrder = \(w : _ : t : _) -> [w, t],
+        ppSep = " | ",
+        ppTitle = trim
+      }
 
 type Workspace = (String, KeySym)
 
