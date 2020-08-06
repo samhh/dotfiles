@@ -3,7 +3,6 @@ Description=Compositor
 After=graphical.target
 
 [Service]
-Environment=DISPLAY=:0
 Type=simple
 ExecStart=/usr/bin/xcompmgr
 
