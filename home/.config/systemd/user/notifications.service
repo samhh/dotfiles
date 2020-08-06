@@ -1,0 +1,10 @@
+[Unit]
+Description=Notifications
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/dunst
+
+[Install]
+WantedBy=xorg.target
+
