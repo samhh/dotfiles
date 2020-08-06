@@ -1,0 +1,5 @@
+[Unit]
+Description=Xorg is up
+Requires=default.target
+After=default.target
+

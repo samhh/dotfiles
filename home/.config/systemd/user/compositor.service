@@ -1,11 +1,10 @@
 [Unit]
 Description=Compositor
-After=graphical.target
 
 [Service]
 Type=simple
 ExecStart=/usr/bin/xcompmgr
 
 [Install]
-WantedBy=default.target
+WantedBy=xorg.target
 
