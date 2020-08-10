@@ -1,0 +1,10 @@
+[Unit]
+Description=Gamma management
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/redshift
+
+[Install]
+WantedBy=xorg.target
+
