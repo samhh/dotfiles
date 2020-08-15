@@ -163,3 +163,9 @@ nnoremap <silent> <Leader>z :call CocAction('format')<cr>
 "" Show documentation (type info) in preview window
 nnoremap <silent> K :call CocAction('doHover')<CR>
 
+"" Function text objects
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+
