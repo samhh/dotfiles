@@ -196,7 +196,8 @@ fullscreenEventHook _ = pure $ All True
 
 layout = avoidStruts $ smartBorders $ mkToggle (single FULL) $ tiled ||| reflectHoriz tiled
   where
-    tiled = spacingRaw False (Border 6 6 6 6) True (Border 6 6 6 6) True $ Tall numMaster resizeDelta masterRatio
+    tiled = spacingRaw False gaps True gaps True $ Tall numMaster resizeDelta masterRatio
+    gaps = Border 6 6 6 6
     numMaster = 1
     resizeDelta = 3 / 100
     masterRatio = 1 / 2
