@@ -73,6 +73,9 @@ set autoread
 set foldmethod=manual
 set nofoldenable
 
+" Live substitution
+set inccommand=nosplit
+
 " Keybinds
 let mapleader = ' '
 
