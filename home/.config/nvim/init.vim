@@ -76,6 +76,10 @@ set nofoldenable
 " Write swap file faster so that plugins like gitgutter are more responsive
 set updatetime=50
 
+" Always leave space for sign column so (dis)appearance of signs in a buffer
+" doesn't cause the text to shift
+set signcolumn=yes
+
 " Live substitution
 set inccommand=nosplit
 
