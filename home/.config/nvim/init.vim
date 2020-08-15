@@ -83,6 +83,9 @@ set signcolumn=yes
 " Live substitution
 set inccommand=nosplit
 
+" Highlight references to symbol under cursor
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
 " Keybinds
 let mapleader = ' '
 
