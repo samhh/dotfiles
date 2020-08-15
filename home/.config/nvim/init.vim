@@ -155,13 +155,5 @@ inoremap <silent><expr> <C-space> coc#refresh()
 nnoremap <silent> <Leader>z :call CocAction('format')<cr>
 
 "" Show documentation (type info) in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
+nnoremap <silent> K :call CocAction('doHover')<CR>
 
