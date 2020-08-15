@@ -73,6 +73,9 @@ set autoread
 set foldmethod=manual
 set nofoldenable
 
+" Write swap file faster so that plugins like gitgutter are more responsive
+set updatetime=50
+
 " Live substitution
 set inccommand=nosplit
 
