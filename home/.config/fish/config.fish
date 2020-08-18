@@ -13,6 +13,9 @@ set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 ## Use taskrc outside of home dir
 set -x TASKRC ~/.config/task/config
 
+## Don't store less pager history
+set -x LESSHISTFILE /dev/null
+
 # Extend PATH for ghcup and Cabal (Haskell), and Yarn (PureScript)
 set -a fish_user_paths ~/.ghcup/bin/ ~/.cabal/bin/ ~/.yarn/bin/
 
