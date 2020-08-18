@@ -11,20 +11,15 @@ https://www.newstatesman.com/feeds/site_feed.rss "~New Statesman" politics
 https://www.npr.org/rss/rss.php?id=1001 "~NPR" politics
 https://api.axios.com/feed/top "~Axios" politics
 https://foreignpolicy.com/feed "~Foreign Policy" politics
-http://www.repubblica.it/rss/politica/rss2.0.xml "~La Repubblica" politics
 
 https://increment.com/feed.xml "~Increment" dev
 https://hacks.mozilla.org/feed/ "~Mozilla Hacks" dev
 https://alistapart.com/main/feed/ "~A List Apart" dev
-https://css-tricks.com/feed/ "~CSS Tricks" dev
-https://scotch.io/feed "~Scotch" dev
 https://lexi-lambda.github.io/feeds/all.rss.xml "~Lexi Lambda" dev
 https://codersteve.dev/post/index.xml "~Coder Steve" dev
-https://www.sarasoueidan.com/blog/index.xml "~Sara Soueidan" dev
 
 https://itsfoss.com/feed/ "~It's FOSS" tech
 https://www.phonedog.com/rss "~PhoneDog" tech
-https://feeds.feedburner.com/TechCrunch "~TechCrunch" tech
 https://feeds.feedburner.com/thenextweb "~The Next Web" tech
 
 https://feeds.feedburner.com/RockPaperShotgun "~RockPaperShotgun" gaming
