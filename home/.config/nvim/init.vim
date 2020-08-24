@@ -27,6 +27,7 @@ if exists('*minpac#init')
     call minpac#add('purescript-contrib/purescript-vim')
     call minpac#add('neovimhaskell/haskell-vim')
     call minpac#add('cespare/vim-toml')
+    call minpac#add('vmchale/dhall-vim')
 endif
 
 command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update('', {'do': 'call minpac#status()'})
