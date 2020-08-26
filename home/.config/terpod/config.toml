@@ -1,0 +1,14 @@
+download-path = "~/pods/"
+
+[sources]
+30min-italian = { url = "https://30minuteitalian.libsyn.com/rss" }
+bad-voltage = { url = "https://www.badvoltage.org/feed/mp3/" }
+freakonomics = { url = "http://feeds.feedburner.com/freakonomicsradio" }
+friday-night-comedy = { url = "https://podcasts.files.bbci.co.uk/p02pc9pj.rss" }
+ft-politics = { url = "https://rss.acast.com/ft-politics" }
+guardian-politics = { url = "https://www.theguardian.com/politics/series/politicsweekly/podcast.xml" }
+hackable = { url = "https://feeds.hackablepodcast.com/hackable" }
+intercepted = { url = "https://feeds.feedburner.com/InterceptedWithJeremyScahill" }
+nutrition-facts = { url = "http://nutritionfacts.org/audio/feed/podcast/" }
+talking-politics = { url = "https://rss.acast.com/talkingpolitics" }
+
