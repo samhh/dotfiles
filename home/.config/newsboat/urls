@@ -5,6 +5,7 @@ https://www.newstatesman.com/feeds/site_feed.rss "~New Statesman" politics
 https://api.axios.com/feed/top "~Axios" politics
 https://foreignpolicy.com/feed "~Foreign Policy" politics
 
+https://www.samhh.com/rss.xml "~samhh" dev
 https://increment.com/feed.xml "~Increment" dev
 https://hacks.mozilla.org/feed/ "~Mozilla Hacks" dev
 https://alistapart.com/main/feed/ "~A List Apart" dev
