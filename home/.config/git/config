@@ -8,9 +8,9 @@
     ff = only
 
 [user]
-    email = git@samhh.com
+    email = hello@samhh.com
     name = Sam A. Horvath-Hunt
-    signingkey = 0402D196C09D7AA7
+    signingkey = 4667250BD56735A8
 
 [sendemail]
     smtpserver = localhost
