@@ -25,11 +25,10 @@ abbr top 'gotop'
 abbr mpc 'vimpc'
 
 # Arch package management-specific aliases
-abbr up 'yay -Syu; and fisher'
-abbr upf 'yay -Syyu'
-abbr in 'yay -S'
-abbr un 'yay -Rs'
-abbr clear_cache 'paccache -r; and yay -S -c'
+abbr in 'sudo pacman -S'
+abbr ina 'sudo aura -A'
+abbr up 'sudo pacman -Syu; and sudo aura -Auk'
+abbr un 'sudo pacman -Rs'
 
 # Misc/specific aliases
 abbr todo 'clear; and task todo'
