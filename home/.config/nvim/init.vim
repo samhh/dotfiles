@@ -16,6 +16,10 @@ if exists('*minpac#init')
     call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
     call minpac#add('junegunn/fzf.vim')
 
+    "" Writing
+    call minpac#add('junegunn/goyo.vim')
+    call minpac#add('junegunn/limelight.vim')
+
     "" Theming
     call minpac#add('arcticicestudio/nord-vim')
     call minpac#add('itchyny/lightline.vim')
@@ -50,6 +54,7 @@ let g:lightline = {
 \ }
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 set noshowmode
+let g:limelight_conceal_ctermfg = 'gray'
 
 " Always show line numbers
 set number
@@ -119,13 +124,13 @@ nnoremap <S-Enter> O<Esc>
 "" Remove highlight
 nnoremap <C-l> :noh<CR>
 
-"" Fuzzy find files
+"" Fuzzy find filenames
 nnoremap <Leader>p :GFiles<CR>
 nnoremap <Leader>P :Files<CR>
 """ In directory of active buffer
 nnoremap <Leader>l :execute 'FZF' expand('%:p:h')<CR>
 
-"" Fuzzy find code
+"" Fuzzy find text
 nnoremap <Leader>f :Lines<CR>
 nnoremap <Leader>F :Rg<CR>
 
@@ -136,6 +141,31 @@ command! -bang -nargs=* Rg
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
+
+"" Toggle writing plugins
+nnoremap <silent> <Leader>w :Goyo<CR>:Limelight!!<CR>
+
+"" In Goyo, actually quit vim fully on :q
+function! s:goyo_enter()
+  let b:quitting = 0
+  let b:quitting_bang = 0
+  autocmd QuitPre <buffer> let b:quitting = 1
+  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+endfunction
+
+function! s:goyo_leave()
+  " Quit Vim if this is the only remaining buffer
+  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+    if b:quitting_bang
+      qa!
+    else
+      qa
+    endif
+  endif
+endfunction
+
+autocmd! User GoyoEnter call <SID>goyo_enter()
+autocmd! User GoyoLeave call <SID>goyo_leave()
 
 "" Navigate coc diagnostics
 nmap <silent> <Leader>k <Plug>(coc-diagnostic-prev)
