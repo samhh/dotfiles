@@ -19,14 +19,6 @@ set -x LESSHISTFILE /dev/null
 # Extend PATH for ghcup and Cabal (Haskell), and Yarn (PureScript)
 set -a fish_user_paths ~/.ghcup/bin/ ~/.cabal/bin/ ~/.yarn/bin/
 
-# Generic aliases
-abbr c 'clear'
-abbr cdc 'cd; and clear'
-abbr ... 'cd ../..'
-abbr .... 'cd ../../..'
-abbr ..... 'cd ../../../..'
-abbr ...... 'cd ../../../../..'
-
 # Command drop-in replacement aliases
 abbr vi 'nvim'
 abbr top 'gotop'
