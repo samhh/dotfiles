@@ -248,7 +248,8 @@ main =
                 ((super, xK_w), spawn "systemctl --user start wallpaper"),
                 -- Need to sleep to allow for keys to be released for scrot
                 ((super, xK_p), spawn "sleep 0.1; scrot -s"),
-                ((super, xK_g), spawn "rofi -show run"),
+                ((super, xK_g), spawn "~/scripts/apps.sh"),
+                ((super .|. shiftMask, xK_g), spawn "rofi -show run"),
                 ((super, xK_t), spawn "~/scripts/web-search.sh"),
                 ((super, xK_d), spawn "~/scripts/flatmarks.sh"),
                 ((super, xK_x), spawn "~/scripts/passmenu.sh"),
