@@ -14,7 +14,7 @@ cfg =
       position = Top,
       sepChar = "%", -- delineator between plugin names and straight text
       alignSep = "}{", -- separator between left-right alignment
-      template = " %StdinReader% | %cpu% | %memory% | %dynnetwork% }{ %mpd% | %alsa:default:Master% | %date% ",
+      template = " %StdinReader% | %cpu% | %memory% | %dynnetwork% }{ %mpris2%%mpd% | %alsa:default:Master% | %date% ",
       lowerOnStart = True, -- send to bottom of window stack on start
       hideOnStart = False, -- start with window unmapped (hidden)
       allDesktops = True, -- show on all desktops
@@ -105,6 +105,15 @@ cfg =
                 "--offc",
                 "#d8dee9"
               ],
+          Run $
+            Mpris2
+              "mpv"
+              [ "--template",
+                "<title> / ",
+                "--nastring",
+                ""
+              ]
+              10,
           Run $
             MPD
               [ "--template",
