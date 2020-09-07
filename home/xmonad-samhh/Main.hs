@@ -20,8 +20,8 @@ import XMonad.Layout.MultiToggle.Instances (StdTransformers (FULL))
 import XMonad.Layout.NoBorders (smartBorders)
 import XMonad.Layout.Reflect (reflectHoriz)
 import XMonad.Layout.Spacing (Border (Border), spacingRaw)
-import XMonad.Util.Run (hPutStrLn, spawnPipe)
 import qualified XMonad.StackSet as W
+import XMonad.Util.Run (hPutStrLn, spawnPipe)
 
 -- Blackbird operator for composition over two arguments
 ($.) :: (c -> d) -> (a -> b -> c) -> a -> b -> d
@@ -118,8 +118,13 @@ statusBar =
     def
       { ppOrder = \(w : _ : t : _) -> [w, t],
         ppSep = " | ",
-        ppTitle = trim
+        ppTitle = limit . trim
       }
+  where
+    limit :: String -> String
+    limit xs
+      | length xs > 75 = take 72 xs <> "..."
+      | otherwise = xs
 
 type Workspace = (String, KeySym)
 
