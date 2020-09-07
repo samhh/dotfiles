@@ -249,6 +249,7 @@ main =
                 ((nomod, xK_ToggleMute), spawn "amixer -q set Master toggle"),
                 ((nomod, xK_MediaPrev), spawn "playerctl previous -p mpd"),
                 ((nomod, xK_MediaTogglePlay), spawn "playerctl play-pause -p mpd"),
+                ((super, xK_space), spawn "playerctl play-pause -p mpv"),
                 ((nomod, xK_MediaNext), spawn "playerctl next -p mpd"),
                 ((super, xK_w), spawn "systemctl --user start wallpaper"),
                 -- Need to sleep to allow for keys to be released for scrot
