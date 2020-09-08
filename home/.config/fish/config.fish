@@ -31,6 +31,7 @@ abbr up 'sudo pacman -Syu; and sudo aura -Auk'
 abbr un 'sudo pacman -Rs'
 
 # Misc/specific aliases
+abbr s 'systemctl'
 abbr todo 'clear; and task todo'
 
 # Create directory path and cd into it
