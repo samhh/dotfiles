@@ -159,7 +159,10 @@ centreRect :: W.RationalRect
 centreRect = W.RationalRect (1 / 3) (1 / 3) (1 / 3) (1 / 3)
 
 videoRect :: W.RationalRect
-videoRect = W.RationalRect (3 / 4) (3 / 4) (1 / 5) (1 / 5)
+videoRect = W.RationalRect offset offset size size
+  where
+    size = 1 / 4
+    offset = 1 - size - (size / 8)
 
 isFloating :: Window -> WindowSet -> Bool
 isFloating w s = M.member w (W.floating s)
