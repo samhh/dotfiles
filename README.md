@@ -1,14 +1,13 @@
 # dotfiles
 
-Here are my dotfiles, separated by branch for three different machines:
+Here are my dotfiles, separated by branch for two different machines:
 
-- desktop: Arch, xmonad
-- laptop: Arch, Sway
-- work: macOS, Amethyst
+- desktop / personal: Arch, xmonad
+- laptop / work: macOS, Amethyst
 
 I spend most of my personal time on the desktop, however my work machine is stuck with macOS. As such, I've tried to make working with both of these simultaneously as seamless as possible. For example, my experience in the terminal and the editor should be close to identical on each OS.
 
-My desktop runs xmonad as my Nvidia video card isn't Sway-compatible, and I love the flexibility of defining its behaviour in Haskell. My laptop continues to run Sway as it's tear-free and I don't feel compelled to change it when it's stable and working well.
+My desktop runs xmonad as my Nvidia video card isn't Sway-compatible, and I love the flexibility of defining its behaviour in Haskell.
 
 I've tried to utilise the [Nord](https://www.nordtheme.com) colour scheme where possible.
 
