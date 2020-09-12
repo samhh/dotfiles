@@ -3,7 +3,7 @@ Description=Compositor
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/xcompmgr
+ExecStart=/usr/bin/picom --experimental-backends
 
 [Install]
 WantedBy=xorg.target
