@@ -1,10 +1,4 @@
 #!/bin/sh
 
-SRC_DIR=~/xmonad-samhh/
-EXE_NAME=xmonad-samhh
-
-output_file=$1; shift
-
-cd $SRC_DIR
-find dist-newstyle -type f -executable -name $EXE_NAME -exec cp -u '{}' $output_file ';'
+find ~/xmonad-samhh/dist-newstyle/ -type f -executable -name xmonad-samhh -exec cp '{}' $1 ';'
 
