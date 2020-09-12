@@ -251,6 +251,8 @@ main =
                 ((super .|. shiftMask, xK_space), spawn "dunstctl close-all"),
                 ((nomod, xK_VolDown), spawn "amixer -Mq sset Master 1%-"),
                 ((nomod, xK_VolUp), spawn "amixer -Mq sset Master 1%+"),
+                ((super, xK_VolDown), spawn "playerctl -p mpv volume 0.05-"),
+                ((super, xK_VolUp), spawn "playerctl -p mpv volume 0.05+"),
                 ((nomod, xK_ToggleMute), spawn "amixer -q set Master toggle"),
                 ((nomod, xK_MediaPrev), spawn "playerctl previous -p mpd"),
                 ((nomod, xK_MediaTogglePlay), spawn "playerctl play-pause -p mpd"),
