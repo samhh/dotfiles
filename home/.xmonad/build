@@ -6,8 +6,5 @@ EXE_NAME=xmonad-samhh
 output_file=$1; shift
 
 cd $SRC_DIR
-cabal new-configure --enable-optimization --enable-executable-stripping
-cabal new-build
-
 find dist-newstyle -type f -executable -name $EXE_NAME -exec cp -u '{}' $output_file ';'
 
