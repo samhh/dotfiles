@@ -9,7 +9,7 @@ cfg :: Config
 cfg =
   defaultConfig
     { font = "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=true",
-      bgColor = "#3b4252",
+      bgColor = "#2e3440",
       fgColor = "#d8dee9",
       position = Top,
       sepChar = "%", -- delineator between plugin names and straight text
