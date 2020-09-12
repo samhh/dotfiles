@@ -15,10 +15,6 @@
     dmenu = /usr/bin/rofi -show notif -dmenu
     browser = /usr/bin/vimb
 
-[shortcuts]
-    close = ctrl+space
-    close_all = ctrl+shift+space
-
 [urgency_low]
     background = "#3b4252"
     foreground = "#eceff4"
