@@ -19,6 +19,7 @@ import XMonad.Layout.MultiToggle (Toggle (Toggle), mkToggle, single)
 import XMonad.Layout.MultiToggle.Instances (StdTransformers (FULL))
 import XMonad.Layout.NoBorders (smartBorders)
 import XMonad.Layout.Reflect (reflectHoriz)
+import XMonad.Layout.ResizableTile (MirrorResize (MirrorExpand, MirrorShrink), ResizableTall (ResizableTall))
 import XMonad.Layout.Spacing (Border (Border), spacingRaw)
 import qualified XMonad.StackSet as W
 import XMonad.Util.Run (hPutStrLn, spawnPipe)
@@ -204,7 +205,7 @@ fullscreenEventHook _ = pure $ All True
 
 layout = avoidStruts $ smartBorders $ mkToggle (single FULL) $ tiled ||| reflectHoriz tiled
   where
-    tiled = spacingRaw False gaps True gaps True $ Tall numMaster resizeDelta masterRatio
+    tiled = spacingRaw False gaps True gaps True $ ResizableTall numMaster resizeDelta masterRatio mempty
     gaps = Border 6 6 6 6
     numMaster = 1
     resizeDelta = 3 / 100
@@ -239,6 +240,8 @@ main =
                 ((super .|. shiftMask, xK_j), windows W.swapDown),
                 ((super .|. shiftMask, xK_k), windows W.swapUp),
                 ((super .|. shiftMask, xK_m), windows W.swapMaster),
+                ((super, xK_h), sendMessage MirrorShrink <> sendMessage MirrorShrink),
+                ((super, xK_l), sendMessage MirrorExpand <> sendMessage MirrorExpand),
                 ((super, xK_r), resetLayout cfg),
                 ((super, xK_v), sendMessage NextLayout),
                 ((super, xK_f), toggleFullscreen'),
