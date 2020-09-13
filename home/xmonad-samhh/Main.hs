@@ -14,6 +14,7 @@ import XMonad.Config.Prime (Query)
 import XMonad.Hooks.DynamicLog (PP (PP), dynamicLogWithPP, ppOrder, ppOutput, ppSep, ppTitle)
 import XMonad.Hooks.InsertPosition (Focus (..), Position (..), insertPosition)
 import XMonad.Hooks.ManageDocks (AvoidStruts, ToggleStruts (ToggleStruts), avoidStruts, docks)
+import XMonad.Layout (IncMasterN (IncMasterN), Resize (Expand, Shrink))
 import XMonad.Layout.LayoutModifier (ModifiedLayout (ModifiedLayout))
 import XMonad.Layout.MultiToggle (Toggle (Toggle), mkToggle, single)
 import XMonad.Layout.MultiToggle.Instances (StdTransformers (FULL))
@@ -242,6 +243,8 @@ main =
                 ((super .|. shiftMask, xK_m), windows W.swapMaster),
                 ((super, xK_h), sendMessage MirrorShrink <> sendMessage MirrorShrink),
                 ((super, xK_l), sendMessage MirrorExpand <> sendMessage MirrorExpand),
+                ((super .|. shiftMask, xK_h), sendMessage Shrink),
+                ((super .|. shiftMask, xK_l), sendMessage Expand),
                 ((super, xK_r), resetLayout cfg),
                 ((super, xK_v), sendMessage NextLayout),
                 ((super, xK_f), toggleFullscreen'),
