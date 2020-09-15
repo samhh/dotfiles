@@ -174,8 +174,6 @@ nnoremap <silent> <Leader>a :<C-u>CocList diagnostics<cr>
 
 "" coc gotos
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 "" Rename coc symbol
