@@ -1,4 +1,5 @@
 {
+  "diagnostic.displayByAle": true,
   "suggest.autoTrigger": "trigger",
   "list.source.symbols.excludes": ["node_modules/**/*"],
   "languageserver": {

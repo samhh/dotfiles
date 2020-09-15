@@ -1,4 +1,6 @@
 " Plugins
+let g:ale_disable_lsp = 1
+
 if exists('*minpac#init')
     call minpac#init()
     call minpac#add('k-takata/minpac', {'type': 'opt'})
@@ -13,6 +15,7 @@ if exists('*minpac#init')
     call minpac#add('tpope/vim-surround')
     call minpac#add('rstacruz/vim-closer')
     call minpac#add('moll/vim-bbye')
+    call minpac#add('dense-analysis/ale')
     call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
     call minpac#add('junegunn/fzf.vim')
 
@@ -39,17 +42,29 @@ command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
 
 " Theming
 colorscheme nord
+function! DiagnosticsStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'ok' : printf(
+    \   '%dW %de',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
 let g:lightline = {
 \    'colorscheme': 'nord',
 \    'active': {
 \        'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ],
-\        'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'buffer' ], [ 'filetype' ], [ 'cocstatus' ] ],
+\        'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'buffers' ], [ 'filetype' ], [ 'diagnostics' ] ],
 \    },
 \    'component': {
-\        'buffer': "%{len(filter(range(1,bufnr('$')),'buflisted(v:val)'))}b",
+\        'buffers': "%{len(filter(range(1,bufnr('$')),'buflisted(v:val)'))}b",
 \    },
 \    'component_function': {
-\        'cocstatus': 'coc#status',
+\        'diagnostics': 'DiagnosticsStatus',
 \    },
 \ }
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
@@ -167,27 +182,26 @@ endfunction
 autocmd! User GoyoEnter call <SID>goyo_enter()
 autocmd! User GoyoLeave call <SID>goyo_leave()
 
-"" Navigate coc diagnostics
-nmap <silent> <Leader>k <Plug>(coc-diagnostic-prev)
-nmap <silent> <Leader>j <Plug>(coc-diagnostic-next)
-nnoremap <silent> <Leader>a :<C-u>CocList diagnostics<cr>
+"" Navigate location list
+nmap <silent> <Leader>k :lprev<cr>
+nmap <silent> <Leader>j :lnext<cr>
 
-"" coc gotos
+"" LSP gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 
-"" Rename coc symbol
+"" Rename LSP symbol
 nmap <Leader>r <Plug>(coc-rename)
 
 "" Symbols search
 nnoremap <silent> <Leader>s :<C-u>CocList outline<cr>
 nnoremap <silent> <Leader>S :<C-u>CocList symbols<cr>
 
-"" Trigger coc completions
+"" Trigger LSP completions
 inoremap <silent><expr> <C-space> coc#refresh()
 
-"" Format active buffer
-nnoremap <silent> <Leader>z :call CocAction('format')<cr>
+"" Format/fix active buffer
+nnoremap <silent> <Leader>z :ALEFix<cr>
 
 "" Show documentation (type info) in preview window
 nnoremap <silent> K :call CocAction('doHover')<CR>
