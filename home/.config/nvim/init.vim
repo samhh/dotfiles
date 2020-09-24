@@ -49,7 +49,7 @@ function! DiagnosticsStatus() abort
     let l:all_non_errors = l:counts.total - l:all_errors
 
     return l:counts.total == 0 ? 'ok' : printf(
-    \   '%dW %de',
+    \   '%dw %de',
     \   all_non_errors,
     \   all_errors
     \)
