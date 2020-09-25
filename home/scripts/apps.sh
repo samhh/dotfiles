@@ -7,6 +7,7 @@ element-desktop
 factorio
 firefox-developer-edition
 fm20
+hades
 multimc
 nvidia-settings
 piper
