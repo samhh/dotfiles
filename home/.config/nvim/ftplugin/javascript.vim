@@ -1,0 +1,2 @@
+runtime ftplugin/typescript.vim
+

@@ -16,9 +16,9 @@ set hidden
 " Automatically read newly updated file in buffer
 set autoread
 
-" Disable any expensive folding on load to improve performance of massive files
-set foldmethod=manual
+" Disable folding on load by default to improve performance in massive files
 set nofoldenable
+set foldmethod=manual
 
 " Write swap file faster so that plugins like gitgutter are more responsive
 set updatetime=50
