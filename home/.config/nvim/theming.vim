@@ -27,7 +27,6 @@ let g:lightline = {
 \    },
 \ }
 
-autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 set noshowmode
 let g:limelight_conceal_ctermfg = 'gray'
 
