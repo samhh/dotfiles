@@ -28,7 +28,7 @@ if exists('*minpac#init')
 
     " Language syntax
     call minpac#add('pangloss/vim-javascript')
-    call minpac#add('leafgarland/typescript-vim')
+    call minpac#add('herringtondarkholme/yats.vim')
     call minpac#add('peitalin/vim-jsx-typescript')
     call minpac#add('purescript-contrib/purescript-vim')
     call minpac#add('neovimhaskell/haskell-vim')
