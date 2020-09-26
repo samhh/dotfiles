@@ -53,4 +53,5 @@ key_bindings:
     - { key: Key0,     mods: Control,          action: ResetFontSize       }
     - { key: Equals,   mods: Control,          action: IncreaseFontSize    }
     - { key: Subtract, mods: Control,          action: DecreaseFontSize    }
+    - { key: Return,   mods: Shift,            chars: "\x1b[13;2u" }
 
