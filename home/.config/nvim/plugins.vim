@@ -27,9 +27,7 @@ call minpac#add('arcticicestudio/nord-vim')
 call minpac#add('itchyny/lightline.vim')
 
 " Language syntax
-call minpac#add('pangloss/vim-javascript')
 call minpac#add('herringtondarkholme/yats.vim')
-call minpac#add('peitalin/vim-jsx-typescript')
 call minpac#add('purescript-contrib/purescript-vim')
 call minpac#add('neovimhaskell/haskell-vim')
 call minpac#add('cespare/vim-toml')
