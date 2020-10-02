@@ -29,6 +29,9 @@
 [mergetool "vimdiff"]
     path = nvim
 
+[blame]
+    date = short
+
 [alias]
     br = branch
     co = checkout
