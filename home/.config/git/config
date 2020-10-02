@@ -22,6 +22,7 @@
 
 [alias]
     br = branch
+    co = checkout
     df = diff
     dfs = diff --staged
     ca = commit --amend --no-edit
