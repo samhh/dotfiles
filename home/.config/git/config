@@ -38,6 +38,7 @@
 
 [alias]
     br = branch
+    bs = bisect
     co = checkout
     df = diff
     dfs = diff --staged
@@ -45,6 +46,7 @@
     cam = commit --amend
     cm = commit -m
     cma = commit -am
+    cp = cherry-pick
     ft = fetch
     lg = log --graph --pretty=format:'%Cblue%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold red)[%an]%Creset' --abbrev-commit --date=relative
     pl = pull
