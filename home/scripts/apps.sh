@@ -1,7 +1,7 @@
 #!/bin/sh
 
 read -r -d '' apps << fin
-baba-is-you
+android-studio
 discord
 element-desktop
 factorio
@@ -15,6 +15,7 @@ slack
 steam
 telegram-desktop
 vimb
+vimb-work
 fin
 
 app=$(echo "$apps" | rofi -window-title gui -dmenu)
