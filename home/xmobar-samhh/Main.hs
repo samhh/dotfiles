@@ -14,7 +14,7 @@ cfg =
       position = Top,
       sepChar = "%", -- delineator between plugin names and straight text
       alignSep = "}{", -- separator between left-right alignment
-      template = " %StdinReader% | %cpu% | %memory% | %dynnetwork% }{ %mpris2%%mpd% | %alsa:default:Master% | %email% unread | %date% ",
+      template = " %StdinReader% | %cpu% | %cputemps% | %memory% | %dynnetwork% }{ %mpris2%%mpd% | %alsa:default:Master% | %email% unread | %date% ",
       lowerOnStart = True, -- send to bottom of window stack on start
       hideOnStart = False, -- start with window unmapped (hidden)
       allDesktops = True, -- show on all desktops
@@ -63,7 +63,7 @@ cfg =
           --                      , "--high"     , "#ebcb8b"
           --                      ] 50
 
-          -- , Run $ CommandReader  "~/scripts/cpu-temps.sh" "cputemps"
+          Run $ CommandReader "~/scripts/poll-script.sh ~/scripts/cpu-temps.sh 2s" "cputemps",
 
           Run $ CommandReader "~/scripts/poll-script.sh ~/scripts/email-unread.sh 15m" "email",
 
