@@ -1,6 +1,7 @@
 setlocal foldenable
 setlocal foldmethod=indent
 setlocal makeprg=yarn
+let g:test#javascript#jest#file_pattern = '\v(tests?\/.+|\.test\.)(j|t)sx?$'
 let b:ale_fixers = ['prettier']
 
 func Eatchar(pat)
