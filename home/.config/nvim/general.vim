@@ -33,3 +33,10 @@ set inccommand=nosplit
 " Highlight references to symbol under cursor
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+augroup TerminalBehavior
+  " Remove number/sign columns in terminal
+  autocmd TermOpen * setlocal nonumber signcolumn=no
+  " Immediately enter insert mode in terminal
+  autocmd TermOpen * startinsert
+augroup END
+
