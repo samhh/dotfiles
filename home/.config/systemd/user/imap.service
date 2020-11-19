@@ -1,0 +1,10 @@
+[Unit]
+Description=IMAP
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/hydroxide imap
+
+[Install]
+WantedBy=default.target
+

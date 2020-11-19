@@ -1,9 +1,9 @@
 [Unit]
-Description=Hydroxide
+Description=SMTP
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/hydroxide serve
+ExecStart=/usr/bin/hydroxide smtp
 
 [Install]
 WantedBy=default.target
