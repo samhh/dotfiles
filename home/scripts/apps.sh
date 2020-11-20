@@ -16,6 +16,7 @@ steam
 telegram-desktop
 vimb
 vimb-work
+zoom
 fin
 
 app=$(echo "$apps" | rofi -window-title gui -dmenu)
