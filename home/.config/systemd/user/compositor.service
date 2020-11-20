@@ -3,7 +3,7 @@ Description=Compositor
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/picom --experimental-backends
+ExecStart=/usr/bin/picom --experimental-backends --shadow-exclude "class_g = 'zoom'" --shadow-exclude "bounding_shaped" --blur-background-exclude "class_g = 'zoom'"
 
 [Install]
 WantedBy=xorg.target
