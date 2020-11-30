@@ -47,11 +47,11 @@ colors:
 background_opacity: .95
 
 key_bindings:
-    - { key: Return,   mods: Command|Shift,    action: SpawnNewInstance    }
-    - { key: V,        mods: Control|Shift,    action: Paste               }
-    - { key: C,        mods: Control|Shift,    action: Copy                }
-    - { key: Key0,     mods: Control,          action: ResetFontSize       }
-    - { key: Equals,   mods: Control,          action: IncreaseFontSize    }
-    - { key: Subtract, mods: Control,          action: DecreaseFontSize    }
-    - { key: Return,   mods: Shift,            chars: "\x1b[13;2u" }
+    - { key: Return,         mods: Command|Shift,    action: SpawnNewInstance    }
+    - { key: V,              mods: Control|Shift,    action: Paste               }
+    - { key: C,              mods: Control|Shift,    action: Copy                }
+    - { key: Key0,           mods: Control,          action: ResetFontSize       }
+    - { key: Equals,         mods: Control,          action: IncreaseFontSize    }
+    - { key: NumpadSubtract, mods: Control,          action: DecreaseFontSize    }
+    - { key: Return,         mods: Shift,            chars: "\x1b[13;2u" }
 
