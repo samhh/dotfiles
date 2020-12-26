@@ -271,6 +271,7 @@ main =
                 ((super .|. shiftMask, xK_g), spawn "rofi -show run"),
                 ((super, xK_t), spawn "~/scripts/web-search.sh"),
                 ((super, xK_d), spawn "~/scripts/flatmarks.sh"),
+                ((super .|. shiftMask, xK_d), spawn "~/scripts/flatmarks-work.sh"),
                 ((super, xK_x), spawn "~/scripts/passmenu.sh"),
                 ((super, xK_n), spawn "~/scripts/pass-prefixed-line.sh \"username: \" username"),
                 ((super, xK_m), spawn "~/scripts/pass-prefixed-line.sh \"email: \" email")
