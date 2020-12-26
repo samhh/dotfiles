@@ -10,6 +10,7 @@ fm20
 hades
 multimc
 nvidia-settings
+pavucontrol
 piper
 slack
 steam

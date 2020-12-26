@@ -14,7 +14,7 @@ cfg =
       position = Top,
       sepChar = "%",
       alignSep = "}{",
-      template = " %StdinReader% | %cpu% | %cputemps% | %memory% | %dynnetwork% }{ %mpris2%%mpd% | %alsa:default:Master% | %email% unread | %date% ",
+      template = " %StdinReader% | %cpu% | %cputemps% | %memory% | %dynnetwork% }{ %mpris2%%mpd% | %default:Master% | %email% unread | %date% ",
       lowerOnStart = True,
       hideOnStart = False,
       allDesktops = True,
@@ -80,30 +80,18 @@ cfg =
               10,
 
           Run $
-            Alsa
+            Volume
               "default"
               "Master"
               [ "--template",
-                "Out: <dB>dB <status>",
+                "Out: <volume>% <status>",
                 "--",
-                "--onc",
+                "-C",
                 "#d8dee9",
-                "--offc",
+                "-c",
                 "#ebcb8b"
-              ],
-
-          Run $
-            Alsa
-              "pcm.usb"
-              "Mic"
-              [ "--template",
-                "In: <volumestatus> <status> <volumeipat> (TODO)",
-                "--",
-                "--onc",
-                "#d08770",
-                "--offc",
-                "#d8dee9"
-              ],
+              ]
+              10,
 
           Run $
             Mpris2
