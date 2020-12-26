@@ -14,7 +14,7 @@ cfg =
       position = Top,
       sepChar = "%",
       alignSep = "}{",
-      template = " %StdinReader% | %cpu% | %cputemps% | %memory% | %dynnetwork% }{ %mpris2%%mpd% | %default:Master% | %email% unread | %date% ",
+      template = " %StdinReader% | %cpu% | %cputemps% | %memory% | docker: %docker% | %dynnetwork% }{ %mpris2%%mpd% | %default:Master% | %email% unread | %date% ",
       lowerOnStart = True,
       hideOnStart = False,
       allDesktops = True,
@@ -78,6 +78,8 @@ cfg =
                 "#ebcb8b"
               ]
               10,
+
+          Run $ CommandReader "~/scripts/poll-script.sh ~/scripts/docker-status.sh 1m" "docker",
 
           Run $
             Volume
