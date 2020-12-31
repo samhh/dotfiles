@@ -21,6 +21,9 @@
     smtpencryption = plain
     smtpuser = samhh95
 
+[init]
+    defaultBranch = master
+
 [commit]
     gpgsign = true
 
