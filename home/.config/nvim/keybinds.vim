@@ -73,8 +73,8 @@ autocmd! User GoyoLeave call <SID>goyo_leave()
 
 " Navigate location list
 nmap <silent> <Leader>h :ll<cr>
-nmap <silent> <Leader>k :lprev<cr>
-nmap <silent> <Leader>j :lnext<cr>
+nmap <silent> <Leader>k :labove<cr>
+nmap <silent> <Leader>j :lbelow<cr>
 
 " LSP gotos
 nmap <silent> gd <Plug>(coc-definition)
