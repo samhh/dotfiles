@@ -81,7 +81,7 @@ nmap <silent> gd <cmd>lua vim.lsp.buf.definition()<cr>
 nmap <silent> gr <cmd>lua vim.lsp.buf.references()<cr>
 
 " Rename LSP symbol
-nmap <Leader>r <cmd>lua vim.lsp.buf:rename()<cr>
+nmap <Leader>r <cmd>lua vim.lsp.buf.rename()<cr>
 
 " Symbols search
 nnoremap <silent> <Leader>s <cmd>lua vim.lsp.buf.document_symbol()<cr>
