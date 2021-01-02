@@ -26,6 +26,7 @@ lua <<EOF
   require'lspconfig'.purescriptls.setup{}
 
   vim.cmd([[ autocmd ColorScheme * :lua require('vim.lsp.diagnostic')._define_default_signs_and_highlights() ]])
+  vim.cmd([[ autocmd ColorScheme * :highlight LspReferenceRead ctermbg=0 ]])
 
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -35,6 +36,11 @@ lua <<EOF
       underline = true,
     }
   )
+
+  vim.cmd([[autocmd CursorHold   * lua vim.lsp.buf.document_highlight()]])
+  vim.cmd([[autocmd CursorHoldI  * lua vim.lsp.buf.document_highlight()]])
+  vim.cmd([[autocmd CursorMoved  * lua vim.lsp.buf.clear_references()]])
+  vim.cmd([[autocmd CursorMovedI * lua vim.lsp.buf.clear_references()]])
 EOF
 
 " Writing
