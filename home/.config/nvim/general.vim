@@ -30,8 +30,8 @@ set signcolumn=yes
 " Live substitution
 set inccommand=nosplit
 
-" Highlight references to symbol under cursor
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" Remove default scratch/preview window from autocomplete
+set completeopt=menu
 
 augroup TerminalBehavior
   " Remove number/sign columns in terminal
@@ -39,4 +39,16 @@ augroup TerminalBehavior
   " Immediately enter insert mode in terminal
   autocmd TermOpen * startinsert
 augroup END
+
+" Configure LSP client
+lua << EOF
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = false,
+      signs = true,
+      update_in_insert = false,
+      underline = true,
+    }
+  )
+EOF
 

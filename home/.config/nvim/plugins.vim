@@ -16,8 +16,15 @@ call minpac#add('rstacruz/vim-closer')
 call minpac#add('moll/vim-bbye')
 call minpac#add('vim-test/vim-test')
 call minpac#add('dense-analysis/ale')
-call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
 call minpac#add('junegunn/fzf.vim')
+
+" LSP
+call minpac#add('neovim/nvim-lspconfig')
+lua <<EOF
+  require'lspconfig'.tsserver.setup{}
+  require'lspconfig'.hls.setup{}
+  require'lspconfig'.purescriptls.setup{}
+EOF
 
 " Writing
 call minpac#add('junegunn/goyo.vim')

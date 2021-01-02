@@ -1,3 +1,4 @@
+setlocal omnifunc=v:lua.vim.lsp.omnifunc
 setlocal foldenable
 setlocal foldmethod=indent
 setlocal makeprg=yarn

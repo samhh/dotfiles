@@ -13,30 +13,30 @@ nnoremap Q <NOP>
 nnoremap Y y$
 
 " Buffer selection
-nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>b :Buffers<cr>
 
 " Toggle to last open file in buffer
 nnoremap <Leader>v <C-^>
 
 " Delete buffer (and use plugin for it to preserve layouts)
-nnoremap <Leader>q :Bd<CR>
+nnoremap <Leader>q :Bd<cr>
 
 " Add newlines from normal mode
 nnoremap <Enter> o<Esc>k
 nnoremap <S-Enter> O<Esc>
 
 " Remove highlight
-nnoremap <C-l> :noh<CR>
+nnoremap <C-l> :noh<cr>
 
 " Fuzzy find filenames
-nnoremap <Leader>p :GFiles<CR>
-nnoremap <Leader>P :Files<CR>
+nnoremap <Leader>p :GFiles<cr>
+nnoremap <Leader>P :Files<cr>
 "" In directory of active buffer
-nnoremap <Leader>l :execute 'FZF' expand('%:p:h')<CR>
+nnoremap <Leader>l :execute 'FZF' expand('%:p:h')<cr>
 
 " Fuzzy find text
-nnoremap <Leader>f :Lines<CR>
-nnoremap <Leader>F :Rg<CR>
+nnoremap <Leader>f :Lines<cr>
+nnoremap <Leader>F :Rg<cr>
 
 "" Customised fzf.vim Rg implementation to ignore lockfiles
 command! -bang -nargs=* Rg
@@ -47,7 +47,7 @@ command! -bang -nargs=* Rg
   \   <bang>0)
 
 " Toggle writing plugins
-nnoremap <silent> <Leader>w :Goyo<CR>:Limelight!!<CR>
+nnoremap <silent> <Leader>w :Goyo<cr>:Limelight!!<cr>
 
 " In Goyo, actually quit vim fully on :q
 function! s:goyo_enter()
@@ -77,28 +77,31 @@ nmap <silent> <C-k> :labove<cr>
 nmap <silent> <C-j> :lbelow<cr>
 
 " LSP gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gd <cmd>lua vim.lsp.buf.definition()<cr>
+nmap <silent> gr <cmd>lua vim.lsp.buf.references()<cr>
 
 " Rename LSP symbol
-nmap <Leader>r <Plug>(coc-rename)
+nmap <Leader>r <cmd>lua vim.lsp.buf:rename()<cr>
 
 " Symbols search
-nnoremap <silent> <Leader>s :<C-u>CocList outline<cr>
-nnoremap <silent> <Leader>S :<C-u>CocList symbols<cr>
+nnoremap <silent> <Leader>s <cmd>lua vim.lsp.buf.document_symbol()<cr>
+nnoremap <silent> <Leader>S <cmd>lua vim.lsp.buf.workspace_symbol()<cr>
 
 " Trigger LSP completions
-inoremap <silent><expr> <C-space> coc#refresh()
+inoremap <silent><expr> <C-space> "<C-x><C-o>"
 
 " Format/fix active buffer
 nnoremap <silent> <Leader>z :ALEFix<cr>
 
 " Show documentation (type info) in preview window
-nnoremap <silent> K :call CocAction('doHover')<CR>
+nnoremap <silent> <Leader>d <cmd>lua vim.lsp.buf.hover()<cr>
+
+" Show diagnostics in popup
+nnoremap <silent> <Leader>e <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>
 
 " Function text objects
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
+" xmap if <Plug>(coc-funcobj-i)
+" omap if <Plug>(coc-funcobj-i)
+" xmap af <Plug>(coc-funcobj-a)
+" omap af <Plug>(coc-funcobj-a)
 
