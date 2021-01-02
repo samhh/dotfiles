@@ -31,7 +31,7 @@ set signcolumn=yes
 set inccommand=nosplit
 
 " Remove default scratch/preview window from autocomplete
-set completeopt=menu
+set completeopt=menuone,noinsert
 
 augroup TerminalBehavior
   " Remove number/sign columns in terminal
