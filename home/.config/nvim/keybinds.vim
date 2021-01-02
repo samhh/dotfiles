@@ -102,9 +102,3 @@ nnoremap <silent> <Leader>e <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<
 " Offer code actions
 nnoremap <silent> <Leader>g <cmd>lua vim.lsp.buf.code_action()<cr>
 
-" Function text objects
-" xmap if <Plug>(coc-funcobj-i)
-" omap if <Plug>(coc-funcobj-i)
-" xmap af <Plug>(coc-funcobj-a)
-" omap af <Plug>(coc-funcobj-a)
-
