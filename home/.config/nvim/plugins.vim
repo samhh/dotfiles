@@ -24,6 +24,8 @@ lua <<EOF
   require'lspconfig'.tsserver.setup{}
   require'lspconfig'.hls.setup{}
   require'lspconfig'.purescriptls.setup{}
+
+  vim.cmd([[ autocmd ColorScheme * :lua require('vim.lsp.diagnostic')._define_default_signs_and_highlights() ]])
 EOF
 
 " Writing
