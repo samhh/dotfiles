@@ -13,6 +13,8 @@ set hint-match-element=false
 set status-css=font-size: 13px;
 set input-css=font-size: 16px;
 
+au LoadCommitted *reddit.com* :e! document.documentElement.style.filter = 'invert(1)'
+
 nmap d <C-q>
 nmap u <C-o>
 nmap x :e! document.documentElement.style.filter = 'invert(1)'<CR>
