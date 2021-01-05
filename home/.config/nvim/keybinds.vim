@@ -13,7 +13,7 @@ nnoremap Q <NOP>
 nnoremap Y y$
 
 " Buffer selection
-nnoremap <Leader>b :Buffers<cr>
+nnoremap <Leader>b :Telescope buffers<cr>
 
 " Toggle to last open file in buffer
 nnoremap <Leader>v <C-^>
@@ -29,22 +29,14 @@ nnoremap <S-Enter> O<Esc>
 nnoremap <C-l> :noh<cr>
 
 " Fuzzy find filenames
-nnoremap <Leader>p :GFiles<cr>
-nnoremap <Leader>P :Files<cr>
+nnoremap <Leader>p :Telescope git_files<cr>
+nnoremap <Leader>P :Telescope find_files<cr>
 "" In directory of active buffer
-nnoremap <Leader>l :execute 'FZF' expand('%:p:h')<cr>
+nnoremap <expr> <Leader>l ":Telescope find_files cwd=" . expand('%:p:h') . "<cr>"
 
 " Fuzzy find text
-nnoremap <Leader>f :Lines<cr>
-nnoremap <Leader>F :Rg<cr>
-
-"" Customised fzf.vim Rg implementation to ignore lockfiles
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg -g "!*.lock" --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
+nnoremap <Leader>f :Telescope current_buffer_fuzzy_find<cr>
+nnoremap <Leader>F :Telescope live_grep<cr>
 
 " Toggle writing plugins
 nnoremap <silent> <Leader>w :Goyo<cr>:Limelight!!<cr>
