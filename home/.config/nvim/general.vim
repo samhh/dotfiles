@@ -19,6 +19,7 @@ set autoread
 " Disable folding on load by default to improve performance in massive files
 set nofoldenable
 set foldmethod=manual
+set foldexpr=nvim_treesitter#foldexpr()
 
 " Write swap file faster so that plugins like gitgutter are more responsive
 set updatetime=50

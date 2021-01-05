@@ -17,6 +17,14 @@ call minpac#add('moll/vim-bbye')
 call minpac#add('vim-test/vim-test')
 call minpac#add('dense-analysis/ale')
 call minpac#add('junegunn/fzf.vim')
+call minpac#add('nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'})
+lua <<EOF
+  require'nvim-treesitter.configs'.setup {
+    ensure_installed = "maintained",
+    highlight = { enable = true },
+    indent = { enable = true },
+  }
+EOF
 
 " LSP
 call minpac#add('neovim/nvim-lspconfig')
@@ -52,10 +60,8 @@ call minpac#add('arcticicestudio/nord-vim')
 call minpac#add('itchyny/lightline.vim')
 
 " Language syntax
-call minpac#add('herringtondarkholme/yats.vim')
 call minpac#add('purescript-contrib/purescript-vim')
 call minpac#add('neovimhaskell/haskell-vim')
-call minpac#add('cespare/vim-toml')
 call minpac#add('vmchale/dhall-vim')
 
 command! PackUpdate call minpac#update()
