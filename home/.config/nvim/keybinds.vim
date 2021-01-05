@@ -88,7 +88,7 @@ nnoremap <silent> <Leader>s <cmd>lua vim.lsp.buf.document_symbol()<cr>
 nnoremap <silent> <Leader>S <cmd>lua vim.lsp.buf.workspace_symbol()<cr>
 
 " Trigger LSP completions
-inoremap <silent><expr> <C-space> "<C-x><C-o>"
+inoremap <silent> <C-space> <C-x><C-o>
 
 " Format/fix active buffer
 nnoremap <silent> <Leader>z :ALEFix<cr>
