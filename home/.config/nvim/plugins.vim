@@ -1,4 +1,5 @@
 let g:ale_disable_lsp = 1
+let g:ale_echo_cursor = 0
 
 packadd minpac
 call minpac#init()
