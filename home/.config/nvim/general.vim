@@ -33,6 +33,14 @@ set inccommand=nosplit
 " Remove default scratch/preview window from autocomplete
 set completeopt=menuone,noinsert
 
+" Highlight references to symbol under cursor
+autocmd ColorScheme  * lua require('vim.lsp.diagnostic')._define_default_signs_and_highlights()
+autocmd ColorScheme  * highlight LspReferenceRead ctermbg=0
+autocmd CursorHold   * lua vim.lsp.buf.document_highlight()
+autocmd CursorHoldI  * lua vim.lsp.buf.document_highlight()
+autocmd CursorMoved  * lua vim.lsp.buf.clear_references()
+autocmd CursorMovedI * lua vim.lsp.buf.clear_references()
+
 augroup TerminalBehavior
   " Remove number/sign columns in terminal
   autocmd TermOpen * setlocal nonumber signcolumn=no
