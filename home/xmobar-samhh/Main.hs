@@ -14,7 +14,7 @@ cfg =
       position = Top,
       sepChar = "%",
       alignSep = "}{",
-      template = " %StdinReader% | %cpu% | %cputemps% | %memory% | docker: %docker% | %dynnetwork% }{ %mpris2%%mpd% | %default:Master% | %email% unread | %date% ",
+      template = " %StdinReader% | %cpu% | %cputemps% | %memory% | docker: %docker% | %wlo1% }{ %mpris2%%mpd% | %default:Master% | %email% unread | %date% ",
       lowerOnStart = True,
       hideOnStart = False,
       allDesktops = True,
@@ -25,9 +25,9 @@ cfg =
         [ Run StdinReader,
 
           Run $
-            DynNetwork
+            Network "wlo1"
               [ "--template",
-                "<dev>: <tx> kB/s up, <rx> kB/s down",
+                "net: <tx> kB/s up, <rx> kB/s down",
                 "--Low",
                 "50000",
                 "--High",
