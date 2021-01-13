@@ -1,5 +1,4 @@
 let g:ale_disable_lsp = 1
-let g:ale_echo_cursor = 0
 
 packadd minpac
 call minpac#init()
@@ -29,11 +28,12 @@ EOF
 
 " LSP
 call minpac#add('neovim/nvim-lspconfig')
-call minpac#add('nathunsmitty/nvim-ale-diagnostic')
 lua <<EOF
-  require'lspconfig'.tsserver.setup{}
-  require'lspconfig'.hls.setup{}
-  require'lspconfig'.purescriptls.setup{}
+  local lspc = require'lspconfig'
+
+  lspc.tsserver.setup {}
+  lspc.hls.setup {}
+  lspc.purescriptls.setup {}
 
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
@@ -41,7 +41,7 @@ lua <<EOF
       virtual_text = false,
       signs = true,
       update_in_insert = false,
-      underline = false,
+      underline = true,
     }
   )
 EOF
