@@ -13,6 +13,8 @@ set hint-match-element=false
 set status-css=font-size: 13px;
 set input-css=font-size: 16px;
 
+handler-add zoommtg=zoom %s
+
 au LoadCommitted *reddit.com* :e! (() => { const el = document.createElement('style'); document.head.appendChild(el); el.sheet.insertRule('html, img, video { filter: invert(1) }'); })()
 au LoadCommitted *news.ycombinator.com* :e! (() => { const el = document.createElement('style'); document.head.appendChild(el); el.sheet.insertRule('html, img, video { filter: invert(1) }'); })()
 
