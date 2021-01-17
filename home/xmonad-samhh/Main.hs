@@ -193,16 +193,20 @@ layoutName = liftX . gets $ description . W.layout . W.workspace . W.current . w
 isFullscreenQuery :: Query Bool
 isFullscreenQuery = layoutName =? show Full
 
--- | On destroy window event, check if the window is fullscreen and if so
--- toggle it.
-fullscreenEventHook :: Event -> X All
-fullscreenEventHook DestroyWindowEvent {ev_window = w, ev_event = evt} = do
+data OnFullscreenDestroy
+  = Retain
+  | Exit
+
+-- | On destroy window event, potentially check if the window is fullscreen and
+-- if so toggle it.
+getFullscreenEventHook :: OnFullscreenDestroy -> Event -> X All
+getFullscreenEventHook Exit DestroyWindowEvent {ev_window = w, ev_event = evt} = do
   -- The `DestroyWindowEvent` is emitted a lot, the condition verifies it's
   -- actually what we're looking for. See also:
   -- https://github.com/xmonad/xmonad-contrib/blob/4a6bbb63b4e4c470e01a6c81bf168b81952b85d6/XMonad/Hooks/WindowSwallowing.hs#L122
   when (w == evt) $ whenX (runQuery isFullscreenQuery w) toggleFullscreen'
   pure $ All True
-fullscreenEventHook _ = pure $ All True
+getFullscreenEventHook _ _ = pure $ All True
 
 layout = avoidStruts $ smartBorders $ mkToggle (single FULL) $ tiled ||| reflectHoriz tiled
   where
@@ -225,7 +229,7 @@ main =
           focusFollowsMouse = False,
           clickJustFocuses = False,
           manageHook = insertPosition Below Newer,
-          handleEventHook = fullscreenEventHook,
+          handleEventHook = getFullscreenEventHook Exit,
           workspaces = fmap wsName ws,
           borderWidth = 3,
           normalBorderColor = nord0,
