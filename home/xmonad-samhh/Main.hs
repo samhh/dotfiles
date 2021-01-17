@@ -19,6 +19,7 @@ import           XMonad.Hooks.InsertPosition         (Focus (..), Position (..),
 import           XMonad.Hooks.ManageDocks            (AvoidStruts,
                                                       ToggleStruts (ToggleStruts),
                                                       avoidStruts, docks)
+import           XMonad.Hooks.RefocusLast            (refocusLastLayoutHook, refocusLastWhen, refocusingIsActive)
 import           XMonad.Layout                       (IncMasterN (IncMasterN),
                                                       Resize (Expand, Shrink))
 import           XMonad.Layout.LayoutModifier        (ModifiedLayout (ModifiedLayout))
@@ -207,7 +208,7 @@ data OnFullscreenDestroy
   | Exit
 
 -- | On destroy window event, potentially check if the window is fullscreen and
--- if so toggle it.
+-- if so toggle it, else refocus the last focused window.
 getFullscreenEventHook :: OnFullscreenDestroy -> Event -> X All
 getFullscreenEventHook Exit DestroyWindowEvent {ev_window = w, ev_event = evt} = do
   -- The `DestroyWindowEvent` is emitted a lot, the condition verifies it's
@@ -215,9 +216,9 @@ getFullscreenEventHook Exit DestroyWindowEvent {ev_window = w, ev_event = evt} =
   -- https://github.com/xmonad/xmonad-contrib/blob/4a6bbb63b4e4c470e01a6c81bf168b81952b85d6/XMonad/Hooks/WindowSwallowing.hs#L122
   when (w == evt) $ whenX (runQuery isFullscreenQuery w) toggleFullscreen'
   pure $ All True
-getFullscreenEventHook _ _ = pure $ All True
+getFullscreenEventHook _ evt = refocusLastWhen refocusingIsActive evt
 
-layout = avoidStruts $ smartBorders $ mkToggle (single FULL) $ tiled ||| reflectHoriz tiled
+layout = avoidStruts $ smartBorders $ refocusLastLayoutHook $ mkToggle (single FULL) $ tiled ||| reflectHoriz tiled
   where
     tiled = spacingRaw False gaps True gaps True $ ResizableTall numMaster resizeDelta masterRatio mempty
     gaps = Border 6 6 6 6
