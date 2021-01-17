@@ -2,27 +2,37 @@
 
 module Main where
 
-import Data.Char (isSpace)
-import Data.Default (def)
-import Data.List (dropWhileEnd)
-import qualified Data.Map as M
-import XMonad
-import XMonad.Actions.CopyWindow (copyToAll, killAllOtherCopies)
-import XMonad.Config.Desktop (desktopConfig)
-import XMonad.Config.Prime (Query)
-import XMonad.Hooks.DynamicLog (PP (PP), dynamicLogWithPP, ppOrder, ppOutput, ppSep, ppTitle)
-import XMonad.Hooks.InsertPosition (Focus (..), Position (..), insertPosition)
-import XMonad.Hooks.ManageDocks (AvoidStruts, ToggleStruts (ToggleStruts), avoidStruts, docks)
-import XMonad.Layout (IncMasterN (IncMasterN), Resize (Expand, Shrink))
-import XMonad.Layout.LayoutModifier (ModifiedLayout (ModifiedLayout))
-import XMonad.Layout.MultiToggle (Toggle (Toggle), mkToggle, single)
-import XMonad.Layout.MultiToggle.Instances (StdTransformers (FULL))
-import XMonad.Layout.NoBorders (smartBorders)
-import XMonad.Layout.Reflect (reflectHoriz)
-import XMonad.Layout.ResizableTile (MirrorResize (MirrorExpand, MirrorShrink), ResizableTall (ResizableTall))
-import XMonad.Layout.Spacing (Border (Border), spacingRaw)
-import qualified XMonad.StackSet as W
-import XMonad.Util.Run (hPutStrLn, spawnPipe)
+import           Data.Char                           (isSpace)
+import           Data.Default                        (def)
+import           Data.List                           (dropWhileEnd)
+import qualified Data.Map                            as M
+import           XMonad
+import           XMonad.Actions.CopyWindow           (copyToAll,
+                                                      killAllOtherCopies)
+import           XMonad.Config.Desktop               (desktopConfig)
+import           XMonad.Config.Prime                 (Query)
+import           XMonad.Hooks.DynamicLog             (PP (PP), dynamicLogWithPP,
+                                                      ppOrder, ppOutput, ppSep,
+                                                      ppTitle)
+import           XMonad.Hooks.InsertPosition         (Focus (..), Position (..),
+                                                      insertPosition)
+import           XMonad.Hooks.ManageDocks            (AvoidStruts,
+                                                      ToggleStruts (ToggleStruts),
+                                                      avoidStruts, docks)
+import           XMonad.Layout                       (IncMasterN (IncMasterN),
+                                                      Resize (Expand, Shrink))
+import           XMonad.Layout.LayoutModifier        (ModifiedLayout (ModifiedLayout))
+import           XMonad.Layout.MultiToggle           (Toggle (Toggle), mkToggle,
+                                                      single)
+import           XMonad.Layout.MultiToggle.Instances (StdTransformers (FULL))
+import           XMonad.Layout.NoBorders             (smartBorders)
+import           XMonad.Layout.Reflect               (reflectHoriz)
+import           XMonad.Layout.ResizableTile         (MirrorResize (MirrorExpand, MirrorShrink),
+                                                      ResizableTall (ResizableTall))
+import           XMonad.Layout.Spacing               (Border (Border),
+                                                      spacingRaw)
+import qualified XMonad.StackSet                     as W
+import           XMonad.Util.Run                     (hPutStrLn, spawnPipe)
 
 -- Blackbird operator for composition over two arguments
 ($.) :: (c -> d) -> (a -> b -> c) -> a -> b -> d
