@@ -1,5 +1,4 @@
 {- HLINT ignore "Use camelCase" -}
-{-# LANGUAGE FlexibleContexts #-}
 
 module Main where
 
