@@ -10,8 +10,9 @@ import           XMonad
 import           XMonad.Actions.CopyWindow           (copyToAll,
                                                       killAllOtherCopies)
 import           XMonad.Config.Desktop               (desktopConfig)
-import           XMonad.Config.Prime                 (Query)
-import           XMonad.Hooks.DynamicLog             (PP (PP), dynamicLogWithPP,
+import           XMonad.Config.Prime                 (Query, WindowSpace)
+import           XMonad.Hooks.DynamicLog             (PP (PP, ppHidden),
+                                                      dynamicLogWithPP, pad,
                                                       ppOrder, ppOutput, ppSep,
                                                       ppTitle)
 import           XMonad.Hooks.InsertPosition         (Focus (..), Position (..),
@@ -106,6 +107,25 @@ nord6 = "#eceff4"
 nord11 :: HexColor
 nord11 = "#bf616a"
 
+-- | A list of hidden workspaces containing a copy of the focused window and
+--   nothing else.
+wsWithOnlyFocusedCopy :: X [WorkspaceId]
+wsWithOnlyFocusedCopy = do
+    ws <- gets windowset
+    pure $ case W.peek ws of
+      Nothing -> []
+      Just fw -> spacesContainingOnly fw (W.hidden ws)
+
+spacesContainingOnly :: Window -> [WindowSpace] -> [WorkspaceId]
+spacesContainingOnly x = fmap W.tag . filter (uncurry (&&) . (hasWindow x &&& hasSingleWindow))
+  where hasWindow :: Window -> WindowSpace -> Bool
+        hasWindow w = (w `elem`) . W.integrate' . W.stack
+
+        hasSingleWindow :: WindowSpace -> Bool
+        hasSingleWindow w = case W.stack w of
+          Nothing -> False
+          Just s  -> null $ W.up s <> W.down s
+
 -- | Like `XMonad.Hooks.DynamicLog::statusBar`, but doesn't require a toggle
 -- hotkey.
 createStatusBarKeyless ::
@@ -121,8 +141,11 @@ createStatusBarKeyless cmd pp cfg = do
       cfg
         { layoutHook = avoidStruts (layoutHook cfg),
           logHook = do
+            copies <- wsWithOnlyFocusedCopy
+            let check ws | ws `elem` copies = mempty
+                         | otherwise        = ws
             logHook cfg
-            dynamicLogWithPP pp {ppOutput = hPutStrLn h}
+            dynamicLogWithPP pp {ppOutput = hPutStrLn h, ppHidden = check}
         }
 
 statusBar ::
