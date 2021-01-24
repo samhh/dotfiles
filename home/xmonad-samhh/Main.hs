@@ -249,7 +249,6 @@ main =
             M.fromList $
               [ ((super, xK_Return), spawn term),
                 ((super .|. shiftMask, xK_q), kill),
-                ((super .|. shiftMask, xK_r), io exitSuccess),
                 ((super, xK_j), windows W.focusDown),
                 ((super, xK_k), windows W.focusUp),
                 ((super .|. shiftMask, xK_j), windows W.swapDown),
