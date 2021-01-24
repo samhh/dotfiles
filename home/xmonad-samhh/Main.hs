@@ -24,6 +24,7 @@ import           XMonad.Hooks.RefocusLast            (refocusLastLayoutHook,
                                                       refocusingIsActive)
 import           XMonad.Layout                       (IncMasterN (IncMasterN),
                                                       Resize (Expand, Shrink))
+import           XMonad.Layout.IfMax                 (ifMax)
 import           XMonad.Layout.LayoutModifier        (ModifiedLayout (ModifiedLayout))
 import qualified XMonad.Layout.Magnifier             as Mag
 import           XMonad.Layout.MultiToggle           (Toggle (Toggle), mkToggle,
@@ -221,10 +222,14 @@ getFullscreenEventHook Exit DestroyWindowEvent {ev_window = w, ev_event = evt} =
   pure $ All True
 getFullscreenEventHook _ evt = refocusLastWhen refocusingIsActive evt
 
-layout = avoidStruts $ smartBorders $ Mag.maximizeVertical $ refocusLastLayoutHook $ mkToggle (single FULL) $ tiled ||| reflectHoriz tiled
+layout = withUniAcc $ ifMax 1 (withFixedAcc tiled) (withTiledAcc tiled)
   where
-    tiled = spacingRaw False gaps True gaps True $ ResizableTall numMaster resizeDelta masterRatio mempty
-    gaps = Border 6 6 6 6
+    withUniAcc = avoidStruts . smartBorders . mkToggle (single FULL)
+    withFixedAcc = getGaps (Border 6 6 250 250)
+    withTiledAcc = Mag.maximizeVertical . refocusLastLayoutHook . flippable . getGaps (Border 6 6 6 6)
+    flippable x = x ||| reflectHoriz x
+    getGaps x = spacingRaw False x True x True
+    tiled = ResizableTall numMaster resizeDelta masterRatio mempty
     numMaster = 1
     resizeDelta = 3 / 100
     masterRatio = 1 / 2
