@@ -19,10 +19,13 @@ import           XMonad.Hooks.InsertPosition         (Focus (..), Position (..),
 import           XMonad.Hooks.ManageDocks            (AvoidStruts,
                                                       ToggleStruts (ToggleStruts),
                                                       avoidStruts, docks)
-import           XMonad.Hooks.RefocusLast            (refocusLastLayoutHook, refocusLastWhen, refocusingIsActive)
+import           XMonad.Hooks.RefocusLast            (refocusLastLayoutHook,
+                                                      refocusLastWhen,
+                                                      refocusingIsActive)
 import           XMonad.Layout                       (IncMasterN (IncMasterN),
                                                       Resize (Expand, Shrink))
 import           XMonad.Layout.LayoutModifier        (ModifiedLayout (ModifiedLayout))
+import qualified XMonad.Layout.Magnifier             as Mag
 import           XMonad.Layout.MultiToggle           (Toggle (Toggle), mkToggle,
                                                       single)
 import           XMonad.Layout.MultiToggle.Instances (StdTransformers (FULL))
@@ -218,7 +221,7 @@ getFullscreenEventHook Exit DestroyWindowEvent {ev_window = w, ev_event = evt} =
   pure $ All True
 getFullscreenEventHook _ evt = refocusLastWhen refocusingIsActive evt
 
-layout = avoidStruts $ smartBorders $ refocusLastLayoutHook $ mkToggle (single FULL) $ tiled ||| reflectHoriz tiled
+layout = avoidStruts $ smartBorders $ Mag.maximizeVertical $ refocusLastLayoutHook $ mkToggle (single FULL) $ tiled ||| reflectHoriz tiled
   where
     tiled = spacingRaw False gaps True gaps True $ ResizableTall numMaster resizeDelta masterRatio mempty
     gaps = Border 6 6 6 6
@@ -261,6 +264,7 @@ main =
                 ((super, xK_r), resetLayout cfg),
                 ((super, xK_v), sendMessage NextLayout),
                 ((super, xK_f), toggleFullscreen'),
+                ((super, xK_z), sendMessage Mag.Toggle),
                 ((super, xK_q), sendMessage $ IncMasterN (-1)),
                 ((super, xK_e), sendMessage $ IncMasterN 1),
                 ((super, xK_s), withFocused $ toggleFloat centreRect),
