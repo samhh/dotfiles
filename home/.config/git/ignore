@@ -1,6 +1,4 @@
 *~
-.vscode/
-.DS_Store
 .yalc/
 yalc.lock
 .psc-ide-port
