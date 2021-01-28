@@ -27,7 +27,6 @@ import           XMonad.Layout                       (IncMasterN (IncMasterN),
                                                       Resize (Expand, Shrink))
 import           XMonad.Layout.IfMax                 (ifMax)
 import           XMonad.Layout.LayoutModifier        (ModifiedLayout (ModifiedLayout))
-import qualified XMonad.Layout.Magnifier             as Mag
 import           XMonad.Layout.MultiToggle           (Toggle (Toggle), mkToggle,
                                                       single)
 import           XMonad.Layout.MultiToggle.Instances (StdTransformers (FULL))
@@ -249,7 +248,7 @@ layout = withUniAcc $ ifMax 1 (withFixedAcc tiled) (withTiledAcc tiled)
   where
     withUniAcc = avoidStruts . smartBorders . mkToggle (single FULL)
     withFixedAcc = getGaps (Border 6 6 250 250)
-    withTiledAcc = Mag.maximizeVertical . refocusLastLayoutHook . flippable . getGaps (Border 6 6 6 6)
+    withTiledAcc = refocusLastLayoutHook . flippable . getGaps (Border 6 6 6 6)
     flippable x = x ||| reflectHoriz x
     getGaps x = spacingRaw False x True x True
     tiled = ResizableTall numMaster resizeDelta masterRatio mempty
@@ -292,7 +291,6 @@ main =
                 ((super, xK_r), resetLayout cfg),
                 ((super, xK_v), sendMessage NextLayout),
                 ((super, xK_f), toggleFullscreen'),
-                ((super, xK_z), sendMessage Mag.Toggle),
                 ((super, xK_q), sendMessage $ IncMasterN (-1)),
                 ((super, xK_e), sendMessage $ IncMasterN 1),
                 ((super, xK_s), withFocused $ toggleFloat centreRect),
