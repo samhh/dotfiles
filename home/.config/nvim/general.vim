@@ -10,7 +10,7 @@ set wrap linebreak nolist
 " Keep indentation aligned when line wrapping
 set breakindent
 
-" Allow hidden buffers (for coc)
+" Allow background closing/hiding of buffers with unsaved changes
 set hidden
 
 " Automatically read newly updated file in buffer
