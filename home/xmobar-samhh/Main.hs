@@ -15,12 +15,6 @@ cfg =
       sepChar = "%",
       alignSep = "}{",
       template = " %StdinReader% | %cpu% | %cputemps% | %memory% | docker: %docker% | %wlo1% }{ %mpris2%%mpd% | %default:Master% | rss: %rss% | email: %email% | %date% ",
-      lowerOnStart = True,
-      hideOnStart = False,
-      allDesktops = True,
-      overrideRedirect = True,
-      pickBroadest = False,
-      persistent = True,
       commands =
         [ Run StdinReader,
 
