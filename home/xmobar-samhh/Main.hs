@@ -1,6 +1,6 @@
 module Main where
 
-import Xmobar
+import           Xmobar
 
 main :: IO ()
 main = xmobar cfg
