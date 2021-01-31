@@ -10,9 +10,6 @@ set -x EDITOR $VISUAL
 ## Inform shell environment of preexisting ssh-agent socket
 set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 
-## Use taskrc outside of home dir
-set -x TASKRC ~/.config/task/config
-
 ## Don't store less pager history
 set -x LESSHISTFILE /dev/null
 
@@ -32,7 +29,6 @@ abbr un 'sudo pacman -Rs'
 
 # Misc/specific aliases
 abbr s 'systemctl'
-abbr todo 'clear; and task todo'
 
 # Create directory path and cd into it
 function mkcd
