@@ -1,6 +1,9 @@
 module Main where
 
-import           Xmobar
+import           Xmobar (CommandReader (CommandReader), Config (..),
+                         Date (Date), Monitors (..), Runnable (Run),
+                         StdinReader (StdinReader), XPosition (Top),
+                         defaultConfig, xmobar)
 
 main :: IO ()
 main = xmobar cfg
