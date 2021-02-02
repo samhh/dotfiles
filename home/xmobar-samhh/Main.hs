@@ -14,7 +14,7 @@ cfg =
       position = Top,
       sepChar = "%",
       alignSep = "}{",
-      template = " %StdinReader% | %cpu% | %cputemps% | %memory% | docker: %docker% | %wlo1% }{ %mpris2%%mpd% | %default:Master% | rss: %rss% | email: %email% | %date% ",
+      template = " %StdinReader% | %cpu% | %cputemps% | %memory% | docker: %docker% | %wlo1% }{ %mpris2%%mpd% | %default:Master% | %default:Capture% | rss: %rss% | email: %email% | %date% ",
       commands =
         [ Run StdinReader
         , Run $ CommandReader "~/scripts/poll-script.sh ~/scripts/cpu-temps.sh 2s" "cputemps"
@@ -68,6 +68,18 @@ cfg =
             ]
             10
         , Run $ Volume
+            "default"
+            "Capture"
+            [ "--template"
+            , "In: <volume>% <status>"
+            , "--"
+            , "-C"
+            , "#ebcb8b"
+            , "-c"
+            , "#d8dee9"
+            ]
+            10
+, Run $ Volume
             "default"
             "Master"
             [ "--template"
