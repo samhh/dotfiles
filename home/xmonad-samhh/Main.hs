@@ -303,6 +303,7 @@ main =
                 ((super, xK_VolDown), spawn "playerctl -p mpv volume 0.05-"),
                 ((super, xK_VolUp), spawn "playerctl -p mpv volume 0.05+"),
                 ((nomod, xK_ToggleMute), spawn "amixer -q set Master toggle"),
+                ((super, xK_ToggleMute), spawn "amixer -q set Capture toggle"),
                 ((nomod, xK_MediaPrev), spawn "playerctl previous -p mpd"),
                 ((nomod, xK_MediaTogglePlay), spawn "playerctl play-pause -p mpd"),
                 ((super, xK_MediaTogglePlay), spawn "playerctl play-pause -p mpv"),
