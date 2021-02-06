@@ -3,9 +3,12 @@ fish_vi_key_bindings
 set fish_greeting
 
 # Exported variables
-## Use Nvim as editor wherever possible
+## Use nvim as editor wherever possible
 set -x VISUAL nvim
 set -x EDITOR $VISUAL
+
+## Use nvim for man pages
+set -x MANPAGER nvim +Man!
 
 ## Inform shell environment of preexisting ssh-agent socket
 set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
