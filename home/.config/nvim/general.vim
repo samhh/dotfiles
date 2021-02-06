@@ -33,6 +33,12 @@ set inccommand=nosplit
 " Remove default scratch/preview window from autocomplete
 set completeopt=menuone,noinsert
 
+" Differentiate LSP diagnostics styling
+autocmd ColorScheme * highlight LspDiagnosticsUnderlineError guifg=red ctermfg=red cterm=underline gui=underline
+autocmd ColorScheme * highlight LspDiagnosticsUnderlineWarning guifg=yellow ctermfg=yellow cterm=underline gui=underline
+autocmd ColorScheme * highlight LspDiagnosticsUnderlineInformation guifg=none ctermfg=none cterm=underline gui=underline
+autocmd ColorScheme * highlight LspDiagnosticsUnderlineHint guifg=none ctermfg=none cterm=underline gui=underline
+
 " Highlight references to symbol under cursor
 autocmd ColorScheme  * lua require('vim.lsp.diagnostic')._define_default_signs_and_highlights()
 autocmd ColorScheme  * highlight LspReferenceRead ctermbg=0
