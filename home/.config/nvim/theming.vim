@@ -26,5 +26,4 @@ let g:lightline = {
 \ }
 
 set noshowmode
-let g:limelight_conceal_ctermfg = 'gray'
 

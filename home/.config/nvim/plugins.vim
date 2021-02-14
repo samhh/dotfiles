@@ -46,10 +46,6 @@ lua <<EOF
   )
 EOF
 
-" Writing
-call minpac#add('junegunn/goyo.vim')
-call minpac#add('junegunn/limelight.vim')
-
 " Theming
 call minpac#add('arcticicestudio/nord-vim')
 call minpac#add('itchyny/lightline.vim')
