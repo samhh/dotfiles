@@ -1,13 +1,10 @@
 #!/bin/sh
 
 read -r -d '' apps << fin
-android-studio
 discord
 element-desktop
 firefox-developer-edition
 hades
-multimc
-nvidia-settings
 pavucontrol
 piper
 slack
