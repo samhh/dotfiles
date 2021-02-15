@@ -1,0 +1,10 @@
+[Unit]
+Description=File watching
+
+[Service]
+Type=simple
+ExecStart=/home/sam/scripts/cruftwatch.sh
+
+[Install]
+WantedBy=default.target
+
