@@ -1,4 +1,4 @@
 # xmonad-samhh
 
-Build with `cabal build`, then run `xmonad --recompile` (which is aware of this directory in `~/.xmonad/build/`).
+Build and install to Cabal's bin directory (which should be in your PATH) with `cabal install --overwrite-policy=always`.
 

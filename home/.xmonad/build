@@ -1,4 +1,0 @@
-#!/bin/sh
-
-find ~/xmonad-samhh/dist-newstyle/ -type f -executable -name xmonad-samhh -exec cp '{}' $1 ';'
-
