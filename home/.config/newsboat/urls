@@ -2,8 +2,8 @@ https://theintercept.com/feed/?lang=en "~The Intercept" politics
 https://novaramedia.com/feed/ "~Novara Media" politics
 https://www.rollingstone.com/author/matt-taibbi/feed/ "~Rolling Stone - Matt Taibbi" politics
 https://www.newstatesman.com/feeds/site_feed.rss "~New Statesman" politics
-https://api.axios.com/feed/top "~Axios" politics
 https://foreignpolicy.com/feed "~Foreign Policy" politics
+https://thecorrespondent.com/feed/v1/publications "~The Correspondent" politics
 
 https://www.samhh.com/rss.xml "~samhh" dev
 https://increment.com/feed.xml "~Increment" dev
@@ -13,13 +13,16 @@ https://lexi-lambda.github.io/feeds/all.rss.xml "~Lexi Lambda" dev
 https://codersteve.dev/post/index.xml "~Coder Steve" dev
 https://drewdevault.com/blog/index.xml "~sircmpwn" dev
 https://nasamuffin.github.io/feed.xml "~nasamuffin" dev
+https://juliu.is/rss.xml "~Ju Liu" dev
+https://www.michaelpj.com/blog/feed.xml "~Michael Peyton Jones" dev
+https://www.snoyman.com/rss.xml "~Michael Snoyman" dev
 
 https://itsfoss.com/feed/ "~It's FOSS" tech
 https://www.linuxjournal.com/node/feed "~Linux Journal" tech
+https://blog.swakes.co.uk/rss/ "~Swakes" tech
+https://archlinux.org/feeds/news/ "~Arch Linux" tech
 
-https://www.gamasutra.com/blogs/rss-expert/ "~Gamasutra - Expert Blogs" gaming
 https://boilingsteam.com/feed/ "~Boiling Steam" gaming
 
-https://xkcd.com/rss.xml "~XKCD" misc
 https://cocktailvirgin.blogspot.com/feeds/posts/default "~Cocktail Virgin" misc
 
