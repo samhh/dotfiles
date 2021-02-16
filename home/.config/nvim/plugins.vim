@@ -51,7 +51,7 @@ EOF
 call minpac#add('arcticicestudio/nord-vim')
 call minpac#add('itchyny/lightline.vim')
 
-" Language syntax
+" Language syntax (where not already supported via treesitter)
 call minpac#add('purescript-contrib/purescript-vim')
 call minpac#add('neovimhaskell/haskell-vim')
 call minpac#add('vmchale/dhall-vim')
