@@ -1,4 +1,3 @@
-setlocal omnifunc=v:lua.vim.lsp.omnifunc
 setlocal foldmethod=expr
 setlocal makeprg=yarn
 let g:test#javascript#jest#file_pattern = '\v(tests?\/.+|\.test\.)(j|t)sx?$'
