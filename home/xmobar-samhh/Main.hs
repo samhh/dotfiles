@@ -11,7 +11,7 @@ main = xmobar cfg
 cfg :: Config
 cfg =
   defaultConfig
-    { font = "xft:Bitstream Vera Sans Mono:size=10:bold:antialias=true",
+    { font = "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=true",
       bgColor = "#2e3440",
       fgColor = "#d8dee9",
       position = Top,
