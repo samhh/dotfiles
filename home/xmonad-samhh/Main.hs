@@ -261,7 +261,7 @@ resetLayout = setLayout . layoutHook
 
 main :: IO ()
 main =
-  (xmonad . docks)
+  (launch . docks)
     =<< statusBar
       desktopConfig
         { terminal = "alacritty",
@@ -289,6 +289,7 @@ main =
                 ((super .|. shiftMask, xK_h), sendMessage Shrink),
                 ((super .|. shiftMask, xK_l), sendMessage Expand),
                 ((super, xK_r), resetLayout cfg),
+                ((super .|. shiftMask, xK_r), restart "xmonad-samhh" True),
                 ((super, xK_v), sendMessage NextLayout),
                 ((super, xK_f), toggleFullscreen'),
                 ((super, xK_q), sendMessage $ IncMasterN (-1)),
