@@ -1,0 +1,10 @@
+[Unit]
+Description=Sync X clipboards
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/xclipd
+
+[Install]
+WantedBy=xorg.target
+
