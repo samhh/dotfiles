@@ -3,11 +3,15 @@ download-path = "~/pods/"
 [sources]
 30min-italian = { url = "https://30minuteitalian.libsyn.com/rss" }
 bad-voltage = { url = "https://www.badvoltage.org/feed/mp3/" }
+compositional = { url = "https://www.compositional.fm/rss" }
+conversations-in-code = { url = "https://conversationsincode.xyz/rss/podcast.xml" }
 freakonomics = { url = "http://feeds.feedburner.com/freakonomicsradio" }
 ft-politics = { url = "https://rss.acast.com/ft-politics" }
 guardian-politics = { url = "https://www.theguardian.com/politics/series/politicsweekly/podcast.xml" }
 hackable = { url = "https://feeds.hackablepodcast.com/hackable" }
+haskell-weekly = { url = "https://haskellweekly.news/podcast.rss" }
 intercepted = { url = "https://feeds.feedburner.com/InterceptedWithJeremyScahill" }
 nutrition-facts = { url = "http://nutritionfacts.org/audio/feed/podcast/" }
 talking-politics = { url = "https://rss.acast.com/talkingpolitics" }
+type-theory-for-all = { url = "https://www.typetheoryforall.com/episodes.mp3.rss" }
 
