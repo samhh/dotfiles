@@ -13,6 +13,9 @@ set -x MANPAGER nvim +Man!
 ## Inform shell environment of preexisting ssh-agent socket
 set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 
+## Use rootless Docker socket
+set -x DOCKER_HOST "unix://$XDG_RUNTIME_DIR/docker.sock"
+
 ## Don't store less pager history
 set -x LESSHISTFILE /dev/null
 
