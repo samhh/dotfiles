@@ -19,8 +19,9 @@ set -x DOCKER_HOST "unix://$XDG_RUNTIME_DIR/docker.sock"
 ## Don't store less pager history
 set -x LESSHISTFILE /dev/null
 
-# Extend PATH for ghcup and Cabal
-set -a fish_user_paths ~/.ghcup/bin/ ~/.cabal/bin/
+# Extend PATH for language-specific package managers
+fish_add_path ~/.ghcup/bin/
+fish_add_path ~/.cabal/bin/
 
 # Command drop-in replacement aliases
 abbr vi 'nvim'
