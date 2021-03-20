@@ -1,12 +1,14 @@
 #!/bin/sh
 
 read -r -d '' apps << fin
+chromium
 discord
 element-desktop
 firefox-developer-edition
 hades
 pavucontrol
 piper
+protonmail-import-export-app
 slack
 steam
 telegram-desktop
