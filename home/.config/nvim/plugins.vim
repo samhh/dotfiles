@@ -55,6 +55,7 @@ call minpac#add('itchyny/lightline.vim')
 call minpac#add('purescript-contrib/purescript-vim')
 call minpac#add('neovimhaskell/haskell-vim')
 call minpac#add('vmchale/dhall-vim')
+call minpac#add('derekelkins/agda-vim')
 
 command! PackUpdate call minpac#update()
 command! PackClean  call minpac#clean()
