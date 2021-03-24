@@ -18,11 +18,13 @@ call minpac#add('vim-test/vim-test')
 call minpac#add('dense-analysis/ale')
 call minpac#add('junegunn/fzf.vim')
 call minpac#add('nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'})
+call minpac#add('windwp/nvim-ts-autotag')
 lua <<EOF
   require'nvim-treesitter.configs'.setup {
     ensure_installed = "maintained",
     highlight = { enable = true },
     indent = { enable = true },
+    autotag = { enable = true },
   }
 EOF
 
