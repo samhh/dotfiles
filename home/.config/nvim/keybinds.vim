@@ -62,8 +62,9 @@ nmap <Leader>r <cmd>lua vim.lsp.buf.rename()<cr>
 nnoremap <silent> <Leader>s <cmd>lua vim.lsp.buf.document_symbol()<cr>
 nnoremap <silent> <Leader>S <cmd>lua vim.lsp.buf.workspace_symbol()<cr>
 
-" Trigger LSP completions
-inoremap <silent> <C-space> <C-x><C-o>
+" Trigger LSP completions and close on selection
+inoremap <silent><expr> <C-space> compe#complete()
+inoremap <silent><expr> <cr>      compe#confirm('<cr>')
 
 " Format/fix active buffer
 nnoremap <silent> <Leader>z :ALEFix<cr>

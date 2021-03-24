@@ -33,8 +33,9 @@ set signcolumn=number
 " Live substitution
 set inccommand=nosplit
 
-" Remove default scratch/preview window from autocomplete
-set completeopt=menuone,noinsert
+" LSP menu-related
+set completeopt=menuone,noselect
+set shortmess+=c
 
 " Differentiate LSP diagnostics styling
 autocmd ColorScheme * highlight LspDiagnosticsUnderlineError guifg=red ctermfg=red cterm=underline gui=underline

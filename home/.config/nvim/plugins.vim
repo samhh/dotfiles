@@ -12,7 +12,7 @@ call minpac#add('nathanaelkane/vim-indent-guides')
 call minpac#add('editorconfig/editorconfig-vim')
 call minpac#add('tpope/vim-commentary')
 call minpac#add('tpope/vim-surround')
-call minpac#add('rstacruz/vim-closer')
+" call minpac#add('rstacruz/vim-closer')
 call minpac#add('moll/vim-bbye')
 call minpac#add('vim-test/vim-test')
 call minpac#add('dense-analysis/ale')
@@ -32,13 +32,14 @@ EOF
 
 " LSP
 call minpac#add('neovim/nvim-lspconfig')
+call minpac#add('hrsh7th/nvim-compe')
 lua <<EOF
   local lspc = require'lspconfig'
 
-  lspc.tsserver.setup {}
   lspc.hls.setup {}
   lspc.purescriptls.setup {}
   lspc.rls.setup {}
+  lspc.tsserver.setup {}
 
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
@@ -49,6 +50,18 @@ lua <<EOF
       underline = true,
     }
   )
+
+  require'compe'.setup {
+    enabled = true;
+    autocomplete = false;
+    documentation = true;
+
+    source = {
+      nvim_lsp = true;
+      path = true;
+      buffer = true;
+    };
+  }
 EOF
 
 " Theming
