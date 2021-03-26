@@ -1,6 +1,4 @@
 setlocal foldmethod=expr
-setlocal makeprg=yarn
-let g:test#javascript#jest#file_pattern = '\v(tests?\/.+|\.test\.)(j|t)sx?$'
 let b:ale_linters = ['eslint']
 let b:ale_fixers = ['prettier']
 
