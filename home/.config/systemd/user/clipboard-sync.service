@@ -3,6 +3,8 @@ Description=Sync X clipboards
 
 [Service]
 Type=simple
+Restart=on-failure
+RestartSec=2
 ExecStart=/usr/bin/xclipd
 
 [Install]
