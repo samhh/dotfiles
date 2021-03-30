@@ -17,12 +17,11 @@ cfg =
       position = Top,
       sepChar = "%",
       alignSep = "}{",
-      template = " %StdinReader% | %cpu%, %cputemps% | %memory% | docker: %docker% | %wlo1% }{ %mpris2%%mpd% | %default:Master% | %default:Capture% | rss: %rss% | email: %email% | %date% ",
+      template = " %StdinReader% | %cpu%, %cputemps% | %memory% | docker: %docker% | %wlo1% }{ %mpris2%%mpd% | %default:Master% | %default:Capture% | rss: %rss% | %date% ",
       commands =
         [ Run StdinReader
         , Run $ CommandReader "~/scripts/poll-script.sh ~/scripts/cpu-temps.sh 2s" "cputemps"
         , Run $ CommandReader "~/scripts/poll-script.sh ~/scripts/rss-unread.sh 2h" "rss"
-        , Run $ CommandReader "~/scripts/poll-script.sh ~/scripts/email-unread.sh 15m" "email"
         , Run $ CommandReader "~/scripts/poll-script.sh ~/scripts/docker-status.sh 1m" "docker"
         , Run $ Network
             "wlo1"
