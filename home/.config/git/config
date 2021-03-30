@@ -12,14 +12,13 @@
     name = Sam A. Horvath-Hunt
     signingkey = 4667250BD56735A8
 
-[credential]
-    helper = store
+[credential "smtp://hello%40samhh.com@smtp.migadu.com%3a465"]
+    helper = !~/scripts/pass-git-credential.sh emails/migadu.com/mailbox/hello
 
 [sendemail]
-    smtpserver = localhost
-    smtpserverport = 1025
-    smtpencryption = plain
-    smtpuser = samhh95
+    smtpserver = smtp.migadu.com
+    smtpuser = hello@samhh.com
+    smtpencryption = ssl
 
 [init]
     defaultBranch = master
