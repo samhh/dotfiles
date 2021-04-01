@@ -6,6 +6,7 @@ discord
 element-desktop
 firefox-developer-edition
 hades
+obsidian
 pavucontrol
 piper
 protonmail-import-export-app
