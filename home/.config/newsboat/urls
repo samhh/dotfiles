@@ -8,7 +8,6 @@ https://hacks.mozilla.org/feed/ "~Mozilla Hacks" dev
 https://alistapart.com/main/feed/ "~A List Apart" dev
 https://lexi-lambda.github.io/feeds/all.rss.xml "~Alexis King" dev
 https://codersteve.dev/post/index.xml "~Coder Steve" dev
-https://drewdevault.com/blog/index.xml "~Drew DeVault" dev
 https://nasamuffin.github.io/feed.xml "~Emily Shaffer" dev
 https://juliu.is/rss.xml "~Ju Liu" dev
 https://www.michaelpj.com/blog/feed.xml "~Michael Peyton Jones" dev
@@ -28,8 +27,9 @@ https://chrisdone.com/rss.xml "~Chris Done" dev
 
 https://itsfoss.com/feed/ "~It's FOSS" tech
 https://www.linuxjournal.com/node/feed "~Linux Journal" tech
-https://blog.swakes.co.uk/rss/ "~Swakes" tech
 https://archlinux.org/feeds/news/ "~Arch Linux" tech
+https://drewdevault.com/blog/index.xml "~Drew DeVault" tech
+https://alexschroeder.ch/wiki/feed/full/ "~Alex Schroeder" tech
 
 https://boilingsteam.com/feed/ "~Boiling Steam" gaming
 
