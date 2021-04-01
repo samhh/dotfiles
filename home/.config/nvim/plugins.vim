@@ -35,6 +35,7 @@ call minpac#add('hrsh7th/nvim-compe')
 lua <<EOF
   local lspc = require'lspconfig'
 
+  lspc.bashls.setup {}
   lspc.hls.setup {}
   lspc.purescriptls.setup {}
   lspc.rls.setup {}
