@@ -8,7 +8,10 @@ pacman -Qet > ~/logs/packages.txt
 tree /mnt/nas/tv/ > ~/logs/tv.txt
 tree /mnt/nas/movies/ > ~/logs/movies.txt
 
+offlineimap
+
 duplicity --encrypt-key hello@samhh.com ~/keys/ "b2://$keyId:$appKey@keys-dup"
 duplicity --encrypt-key hello@samhh.com ~/logs/ "b2://$keyId:$appKey@logs-dup"
+duplicity --encrypt-key hello@samhh.com ~/mail/ "b2://$keyId:$appKey@mail-dup"
 duplicity --encrypt-key hello@samhh.com ~/vault/ "b2://$keyId:$appKey@vault-dup"
 
