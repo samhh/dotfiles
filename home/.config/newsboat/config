@@ -1,4 +1,4 @@
-browser xdg-open
+browser "xdg-open %u &"
 confirm-exit yes
 text-width 80
 
@@ -12,5 +12,6 @@ bind-key j down article
 bind-key k up article
 bind-key g home
 bind-key G end
+bind-key o open-in-browser-noninteractively
 bind-key ESC quit
 
