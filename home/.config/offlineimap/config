@@ -8,7 +8,7 @@ remoterepository = main-remote
 
 [Repository main-local]
 type = Maildir
-localfolders = ~/mail/
+localfolders = /mnt/nas/mail/
 
 [Repository main-remote]
 type = IMAP
