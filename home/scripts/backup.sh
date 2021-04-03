@@ -10,6 +10,7 @@ tree /mnt/nas/movies/ > /mnt/nas/logs/movies.txt
 
 offlineimap
 
+duplicity --encrypt-key hello@samhh.com /mnt/nas/archive/ "b2://$keyId:$appKey@archive-dup"
 duplicity --encrypt-key hello@samhh.com /mnt/nas/keys/ "b2://$keyId:$appKey@keys-dup"
 duplicity --encrypt-key hello@samhh.com /mnt/nas/logs/ "b2://$keyId:$appKey@logs-dup"
 duplicity --encrypt-key hello@samhh.com /mnt/nas/mail/ "b2://$keyId:$appKey@mail-dup"
