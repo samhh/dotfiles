@@ -1,6 +1,7 @@
 [general]
 accounts = main
 pythonfile = ~/scripts/pypass.py
+metadata = $XDG_DATA_HOME/offlineimap
 
 [Account main]
 localrepository = main-local

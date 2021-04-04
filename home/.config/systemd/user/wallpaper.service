@@ -5,7 +5,7 @@ After=mnt-nas.mount
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/feh --bg-fill --randomize /mnt/nas/bgs/
+ExecStart=/usr/bin/feh --no-fehbg --bg-fill --randomize /mnt/nas/bgs/
 
 [Install]
 WantedBy=xorg.target

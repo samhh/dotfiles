@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-base=~/.bookmarks/
+base=~/bookmarks/
 
 # Find everything in bookmarks dir not a directory and not matching git pattern
 readarray -d '' paths < <(find $base -type f -not -path '*/.git*' -print0)
