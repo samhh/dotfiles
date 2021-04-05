@@ -1,0 +1,10 @@
+[Unit]
+Description=Search engine
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/bangin-server-node
+
+[Install]
+WantedBy=default.target
+
