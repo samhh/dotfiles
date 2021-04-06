@@ -36,6 +36,7 @@ lua <<EOF
   local lspc = require'lspconfig'
 
   lspc.bashls.setup {}
+  lspc.gopls.setup {}
   lspc.hls.setup {}
   lspc.purescriptls.setup {}
   lspc.rls.setup {}
