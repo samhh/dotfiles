@@ -51,8 +51,9 @@ abbr mpc 'vimpc'
 
 # Arch package management-specific aliases
 abbr in 'sudo pacman -S'
-abbr ina 'sudo aura -A'
-abbr up 'sudo pacman -Syu; and sudo aura -Auk'
+abbr ina 'paru -S'
+abbr up 'sudo pacman -Syu'
+abbr upa 'paru -Sau'
 abbr un 'sudo pacman -Rs'
 
 # Misc/specific aliases
