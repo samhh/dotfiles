@@ -2,16 +2,18 @@ browser "xdg-open %u &"
 confirm-exit yes
 text-width 80
 
-bind-key j down feedlist
-bind-key k up feedlist
-bind-key j next articlelist
-bind-key k prev articlelist
-bind-key J next-feed articlelist
-bind-key K prev-feed articlelist
-bind-key j down article
-bind-key k up article
+bind-key j down
+bind-key k up
 bind-key g home
 bind-key G end
+bind-key ^U pageup
+bind-key ^D pagedown
+bind-key s sort
+bind-key r reload
+bind-key R reload-all
+bind-key A mark-feed-read
 bind-key o open-in-browser-noninteractively
+bind-key u show-urls
 bind-key ESC quit
+bind-key Q hard-quit
 
