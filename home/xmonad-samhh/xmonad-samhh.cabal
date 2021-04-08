@@ -1,14 +1,13 @@
-cabal-version:       >= 2.0
-version:             0.0.0
-name:                xmonad-samhh
-build-type:          Simple
+cabal-version:           2.2
+version:                 0.0.0
+name:                    xmonad-samhh
+build-type:              Simple
 
 executable xmonad-samhh
-  main-is:             Main.hs
-  build-depends:         base == 4.*
-                       , relude == 0.7.*
+  main-is:               Main.hs
+  build-depends:         base ^>= 4.14
+                       , relude ^>= 1.0
                        , containers
-                       , data-default
                        , xmonad
                        , xmonad-contrib
   mixins:                base hiding (Prelude)
@@ -16,4 +15,8 @@ executable xmonad-samhh
   default-language:    Haskell2010
   default-extensions:
     FlexibleContexts
+  ghc-options:
+    -Wall
+  hs-source-dirs:      src/
+  main-is:             Main.hs
 

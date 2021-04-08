@@ -3,7 +3,6 @@
 module Main where
 
 import           Data.Char                           (isSpace)
-import           Data.Default                        (def)
 import           Data.List                           (dropWhileEnd)
 import qualified Data.Map                            as M
 import           XMonad
