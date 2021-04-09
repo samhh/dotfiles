@@ -3,20 +3,44 @@ version:                 0.0.0
 name:                    xmonad-samhh
 build-type:              Simple
 
-executable xmonad-samhh
-  main-is:               Main.hs
-  build-depends:         base ^>= 4.14
-                       , relude ^>= 1.0
-                       , containers
-                       , xmonad
-                       , xmonad-contrib
-  mixins:                base hiding (Prelude)
-                       , relude (Relude as Prelude)
-  default-language:    Haskell2010
+common common
+  default-language:      Haskell2010
   default-extensions:
-    FlexibleContexts
+    LambdaCase
   ghc-options:
     -Wall
-  hs-source-dirs:      src/
-  main-is:             Main.hs
+  build-depends:
+      base               ^>= 4.14
+    , relude             ^>= 1.0
+    , containers         ^>= 0.6
+    , data-default       ^>= 0.7
+    , xmonad             ^>= 0.15
+    , xmonad-contrib     ^>= 0.16
+  mixins:                  base hiding (Prelude)
+                         , relude (Relude as Prelude)
+
+executable xmonad-samhh
+  import:                common
+  hs-source-dirs:        src/
+  main-is:                 Main.hs
+  build-depends:
+      xmonad-samhh
+
+library
+  import:                common
+  hs-source-dirs:        lib/
+  default-extensions:
+    FlexibleContexts
+  build-depends:
+      X11                ^>= 1.9
+  exposed-modules:
+    Color
+    Function
+    Key
+    Layout
+    Spawn
+    StatusBar
+    String
+    Window
+    Workspace
 

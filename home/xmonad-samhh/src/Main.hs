@@ -1,325 +1,103 @@
-{- HLINT ignore "Use camelCase" -}
+{-# OPTIONS_GHC -fno-warn-missing-signatures #-}
 
-module Main where
+module Main (main) where
 
-import           Data.Char                           (isSpace)
-import           Data.List                           (dropWhileEnd)
-import qualified Data.Map                            as M
-import           XMonad
-import           XMonad.Actions.CopyWindow           (copyToAll,
-                                                      killAllOtherCopies)
-import           XMonad.Config.Desktop               (desktopConfig)
-import           XMonad.Config.Prime                 (Query, WindowSpace)
-import           XMonad.Hooks.DynamicLog             (PP (PP, ppHidden),
-                                                      dynamicLogWithPP, pad,
-                                                      ppOrder, ppOutput, ppSep,
-                                                      ppTitle)
-import           XMonad.Hooks.InsertPosition         (Focus (..), Position (..),
-                                                      insertPosition)
-import           XMonad.Hooks.ManageDocks            (AvoidStruts,
-                                                      ToggleStruts (ToggleStruts),
-                                                      avoidStruts, docks)
-import           XMonad.Hooks.RefocusLast            (refocusLastLayoutHook,
-                                                      refocusLastWhen,
-                                                      refocusingIsActive)
-import           XMonad.Layout                       (IncMasterN (IncMasterN),
-                                                      Resize (Expand, Shrink))
-import           XMonad.Layout.IfMax                 (ifMax)
-import           XMonad.Layout.LayoutModifier        (ModifiedLayout (ModifiedLayout))
-import           XMonad.Layout.MultiToggle           (Toggle (Toggle), mkToggle,
-                                                      single)
-import           XMonad.Layout.MultiToggle.Instances (StdTransformers (FULL))
-import           XMonad.Layout.NoBorders             (smartBorders)
-import           XMonad.Layout.Reflect               (reflectHoriz)
-import           XMonad.Layout.ResizableTile         (MirrorResize (MirrorExpand, MirrorShrink),
-                                                      ResizableTall (ResizableTall))
-import           XMonad.Layout.Spacing               (Border (Border),
-                                                      spacingRaw)
-import qualified XMonad.StackSet                     as W
-import           XMonad.Util.Run                     (hPutStrLn, spawnPipe)
-
--- Blackbird operator for composition over two arguments
-($.) :: (c -> d) -> (a -> b -> c) -> a -> b -> d
-($.) = (.) . (.)
-
--- Predicate and two branches on two arguments
-if2 :: (a -> b -> Bool) -> (a -> b -> c) -> (a -> b -> c) -> a -> b -> c
-if2 p f g x y = if p x y then f x y else g x y
-
-trimStart :: String -> String
-trimStart = dropWhile isSpace
-
-trimEnd :: String -> String
-trimEnd = dropWhileEnd isSpace
-
-trim :: String -> String
-trim = trimEnd . trimStart
-
-barCmd :: String
-barCmd = "xmobar-samhh"
-
-nomod :: KeyMask
-nomod = 0
-
-xK_VolDown :: KeySym
-xK_VolDown = 0x1008FF11
-
-xK_VolUp :: KeySym
-xK_VolUp = 0x1008FF13
-
-xK_ToggleMute :: KeySym
-xK_ToggleMute = 0x1008FF12
-
-xK_MediaPrev :: KeySym
-xK_MediaPrev = 0x1008FF16
-
-xK_MediaTogglePlay :: KeySym
-xK_MediaTogglePlay = 0x1008FF14
-
-xK_MediaNext :: KeySym
-xK_MediaNext = 0x1008FF17
-
-type HexColor = String
-
-nord0 :: HexColor
-nord0 = "#2e3440"
-
-nord1 :: HexColor
-nord1 = "#3b4252"
-
-nord2 :: HexColor
-nord2 = "#434c5e"
-
-nord3 :: HexColor
-nord3 = "#4c556a"
-
-nord4 :: HexColor
-nord4 = "#d8dee9"
-
-nord5 :: HexColor
-nord5 = "#e5e9f0"
-
-nord6 :: HexColor
-nord6 = "#eceff4"
-
-nord11 :: HexColor
-nord11 = "#bf616a"
-
--- | A list of hidden workspaces containing a copy of the focused window and
---   nothing else.
-wsWithOnlyFocusedCopy :: X [WorkspaceId]
-wsWithOnlyFocusedCopy = do
-    ws <- gets windowset
-    pure $ case W.peek ws of
-      Nothing -> []
-      Just fw -> spacesContainingOnly fw (W.hidden ws)
-
-spacesContainingOnly :: Window -> [WindowSpace] -> [WorkspaceId]
-spacesContainingOnly x = fmap W.tag . filter (uncurry (&&) . (hasWindow x &&& hasSingleWindow))
-  where hasWindow :: Window -> WindowSpace -> Bool
-        hasWindow w = (w `elem`) . W.integrate' . W.stack
-
-        hasSingleWindow :: WindowSpace -> Bool
-        hasSingleWindow w = case W.stack w of
-          Nothing -> False
-          Just s  -> null $ W.up s <> W.down s
-
--- | Like `XMonad.Hooks.DynamicLog::statusBar`, but doesn't require a toggle
--- hotkey.
-createStatusBarKeyless ::
-  LayoutClass l Window =>
-  String ->
-  PP ->
-  XConfig l ->
-  IO (XConfig (ModifiedLayout AvoidStruts l))
-createStatusBarKeyless cmd pp cfg = do
-  h <- spawnPipe cmd
-  pure $
-    docks $
-      cfg
-        { layoutHook = avoidStruts (layoutHook cfg),
-          logHook = do
-            copies <- wsWithOnlyFocusedCopy
-            let check ws | ws `elem` copies = mempty
-                         | otherwise        = ws
-            logHook cfg
-            dynamicLogWithPP pp {ppOutput = hPutStrLn h, ppHidden = check}
-        }
-
-statusBar ::
-  LayoutClass a Window =>
-  XConfig a ->
-  IO (XConfig (ModifiedLayout AvoidStruts a))
-statusBar =
-  createStatusBarKeyless barCmd $
-    def
-      { ppOrder = \(w : _ : t : _) -> [w, t],
-        ppSep = " | ",
-        ppTitle = limit . trim
-      }
-  where
-    limit :: String -> String
-    limit xs
-      | length xs > 75 = take 72 xs <> "..."
-      | otherwise = xs
-
-type Workspace = (String, KeySym)
-
-ws :: [Workspace]
-ws =
-  [ ("1", xK_1),
-    ("2", xK_2),
-    ("3", xK_3),
-    ("4", xK_4),
-    ("5", xK_5),
-    ("6", xK_6),
-    ("7", xK_7),
-    ("8", xK_8),
-    ("9", xK_9),
-    ("0", xK_0)
-  ]
-
-wsName :: Workspace -> String
-wsName = fst
-
-wsView :: KeyMask -> Workspace -> ((KeyMask, KeySym), X ())
-wsView super (name, k) =
-  let x = windows $ W.greedyView name
-   in ((super, k), x)
-
-wsSwitch :: KeyMask -> Workspace -> ((KeyMask, KeySym), X ())
-wsSwitch super (name, k) =
-  let x = windows $ W.shift name
-   in ((super .|. shiftMask, k), x)
-
-centreRect :: W.RationalRect
-centreRect = W.RationalRect (1 / 3) (1 / 3) (1 / 3) (1 / 3)
-
-videoRect :: W.RationalRect
-videoRect = W.RationalRect offset offset size size
-  where
-    size = 1 / 4
-    offset = 1 - size - (size / 8)
-
-isFloating :: Window -> WindowSet -> Bool
-isFloating w s = M.member w (W.floating s)
-
-enableFloat :: W.RationalRect -> Window -> (WindowSet -> WindowSet)
-enableFloat = flip W.float
-
-enableFloat' :: W.RationalRect -> Window -> X ()
-enableFloat' = windows $. enableFloat
-
-disableFloat :: Window -> (WindowSet -> WindowSet)
-disableFloat = W.sink
-
-disableFloat' :: Window -> X ()
-disableFloat' = windows . disableFloat
-
-toggleFloat :: W.RationalRect -> Window -> X ()
-toggleFloat r = windows . if2 isFloating disableFloat (enableFloat r)
-
-toggleFullscreen' :: X ()
-toggleFullscreen' = sendMessage (Toggle FULL) <> sendMessage ToggleStruts
-
-layoutName :: Query String
-layoutName = liftX . gets $ description . W.layout . W.workspace . W.current . windowset
-
-isFullscreenQuery :: Query Bool
-isFullscreenQuery = layoutName =? show Full
-
-data OnFullscreenDestroy
-  = Retain
-  | Exit
-
--- | On destroy window event, potentially check if the window is fullscreen and
--- if so toggle it, else refocus the last focused window.
-getFullscreenEventHook :: OnFullscreenDestroy -> Event -> X All
-getFullscreenEventHook Exit DestroyWindowEvent {ev_window = w, ev_event = evt} = do
-  -- The `DestroyWindowEvent` is emitted a lot, the condition verifies it's
-  -- actually what we're looking for. See also:
-  -- https://github.com/xmonad/xmonad-contrib/blob/4a6bbb63b4e4c470e01a6c81bf168b81952b85d6/XMonad/Hooks/WindowSwallowing.hs#L122
-  when (w == evt) $ whenX (runQuery isFullscreenQuery w) toggleFullscreen'
-  pure $ All True
-getFullscreenEventHook _ evt = refocusLastWhen refocusingIsActive evt
-
-layout = withUniAcc $ ifMax 1 (withFixedAcc tiled) (withTiledAcc tiled)
-  where
-    withUniAcc = avoidStruts . smartBorders . mkToggle (single FULL)
-    withFixedAcc = getGaps (Border 6 6 250 250)
-    withTiledAcc = refocusLastLayoutHook . flippable . getGaps (Border 6 6 6 6)
-    flippable x = x ||| reflectHoriz x
-    getGaps x = spacingRaw False x True x True
-    tiled = ResizableTall numMaster resizeDelta masterRatio mempty
-    numMaster = 1
-    resizeDelta = 3 / 100
-    masterRatio = 1 / 2
-
-resetLayout :: XConfig Layout -> X ()
-resetLayout = setLayout . layoutHook
+import qualified Color
+import qualified Data.Map                    as M
+import qualified Key                         as K
+import           Layout                      (layout, resetLayout)
+import           Spawn                       (Spawn (..), toSpawnable)
+import           StatusBar                   (statusBar)
+import           Window                      (OnFullscreenDestroy (Exit),
+                                              centreRect, disableFloat',
+                                              enableFloat',
+                                              getFullscreenEventHook,
+                                              toggleFloat, toggleFullscreen',
+                                              videoRect)
+import           Workspace                   (workspaceName, workspaceSwitch,
+                                              workspaceView)
+import qualified Workspace
+import           XMonad                      (ChangeLayout (NextLayout),
+                                              IncMasterN (IncMasterN),
+                                              Resize (Expand, Shrink),
+                                              XConfig (XConfig, borderWidth, clickJustFocuses, focusFollowsMouse, focusedBorderColor, handleEventHook, keys, layoutHook, manageHook, modMask, normalBorderColor, terminal, workspaces),
+                                              kill, launch, restart,
+                                              sendMessage, spawn, windows,
+                                              withFocused, (.|.))
+import           XMonad.Actions.CopyWindow   (copyToAll, killAllOtherCopies)
+import           XMonad.Config.Desktop       (desktopConfig)
+import           XMonad.Hooks.InsertPosition (Focus (..), Position (..),
+                                              insertPosition)
+import           XMonad.Hooks.ManageDocks    (docks)
+import           XMonad.Layout.ResizableTile (MirrorResize (MirrorExpand, MirrorShrink))
+import qualified XMonad.StackSet             as W
 
 main :: IO ()
-main =
-  (launch . docks)
-    =<< statusBar
-      desktopConfig
-        { terminal = "alacritty",
-          modMask = mod4Mask,
-          focusFollowsMouse = False,
-          clickJustFocuses = False,
-          manageHook = insertPosition Below Newer,
-          handleEventHook = getFullscreenEventHook Exit,
-          workspaces = fmap wsName ws,
-          borderWidth = 3,
-          normalBorderColor = nord0,
-          focusedBorderColor = nord3,
-          layoutHook = layout,
-          keys = \cfg@XConfig {XMonad.modMask = super, XMonad.terminal = term} ->
-            M.fromList $
-              [ ((super, xK_Return), spawn term),
-                ((super .|. shiftMask, xK_q), kill),
-                ((super, xK_j), windows W.focusDown),
-                ((super, xK_k), windows W.focusUp),
-                ((super .|. shiftMask, xK_j), windows W.swapDown),
-                ((super .|. shiftMask, xK_k), windows W.swapUp),
-                ((super .|. shiftMask, xK_m), windows W.swapMaster),
-                ((super, xK_h), sendMessage MirrorShrink <> sendMessage MirrorShrink),
-                ((super, xK_l), sendMessage MirrorExpand <> sendMessage MirrorExpand),
-                ((super .|. shiftMask, xK_h), sendMessage Shrink),
-                ((super .|. shiftMask, xK_l), sendMessage Expand),
-                ((super, xK_r), resetLayout cfg),
-                ((super .|. shiftMask, xK_r), restart "xmonad-samhh" True),
-                ((super, xK_v), sendMessage NextLayout),
-                ((super, xK_f), toggleFullscreen'),
-                ((super, xK_q), sendMessage $ IncMasterN (-1)),
-                ((super, xK_e), sendMessage $ IncMasterN 1),
-                ((super, xK_s), withFocused $ toggleFloat centreRect),
-                ((super, xK_a), windows copyToAll <> withFocused (enableFloat' videoRect)),
-                ((super .|. shiftMask, xK_a), killAllOtherCopies <> withFocused disableFloat'),
-                ((super, xK_o), spawn "dunstctl close"),
-                ((super .|. shiftMask, xK_o), spawn "dunstctl close-all"),
-                ((nomod, xK_VolDown), spawn "amixer -Mq sset Master 1%-"),
-                ((nomod, xK_VolUp), spawn "amixer -Mq sset Master 1%+"),
-                ((super, xK_VolDown), spawn "playerctl -p mpv volume 0.05-"),
-                ((super, xK_VolUp), spawn "playerctl -p mpv volume 0.05+"),
-                ((nomod, xK_ToggleMute), spawn "amixer -q set Master toggle"),
-                ((super, xK_ToggleMute), spawn "amixer -q set Capture toggle"),
-                ((nomod, xK_MediaPrev), spawn "playerctl previous -p mpd"),
-                ((nomod, xK_MediaTogglePlay), spawn "playerctl play-pause -p mpd"),
-                ((super, xK_MediaTogglePlay), spawn "playerctl play-pause -p mpv"),
-                ((nomod, xK_MediaNext), spawn "playerctl next -p mpd"),
-                ((super, xK_w), spawn "systemctl --user start wallpaper"),
-                -- Need to sleep to allow for keys to be released for scrot
-                ((super, xK_p), spawn "sleep 0.1; scrot -s"),
-                ((super, xK_g), spawn "~/scripts/apps.sh"),
-                ((super .|. shiftMask, xK_g), spawn "rofi -show run"),
-                ((super, xK_t), spawn "~/scripts/web-search.sh"),
-                ((super, xK_d), spawn "~/scripts/flatmarks.sh"),
-                ((super .|. shiftMask, xK_d), spawn "~/scripts/flatmarks-work.sh"),
-                ((super, xK_x), spawn "~/scripts/passmenu.sh"),
-                ((super, xK_n), spawn "~/scripts/pass-prefixed-line.sh \"username: \" username"),
-                ((super, xK_m), spawn "~/scripts/pass-prefixed-line.sh \"email: \" email")
-              ]
-                <> fmap (wsView super) ws
-                <> fmap (wsSwitch super) ws
-        }
+main = launch . docks =<< statusBar config
+
+appName :: String
+appName = "xmonad-samhh"
+
+spawn' :: MonadIO m => Spawn -> m ()
+spawn' = spawn . toSpawnable
+
+config = desktopConfig
+  { terminal = "alacritty"
+  , modMask = K.modMask
+  , focusFollowsMouse = False
+  , clickJustFocuses = False
+  , manageHook = insertPosition Below Newer
+  , handleEventHook = getFullscreenEventHook Exit
+  , workspaces = workspaceName <$> Workspace.workspaces
+  , borderWidth = 3
+  , normalBorderColor = Color.nord0
+  , focusedBorderColor = Color.nord3
+  , layoutHook = layout
+  , keys = \cfg@XConfig {XMonad.modMask = super, XMonad.terminal = term} ->
+      M.fromList $
+        [ ((super, K.xK_Return), spawn term)
+        , ((super .|. K.shiftMask, K.xK_q), kill)
+        , ((super, K.xK_j), windows W.focusDown)
+        , ((super, K.xK_k), windows W.focusUp)
+        , ((super .|. K.shiftMask, K.xK_j), windows W.swapDown)
+        , ((super .|. K.shiftMask, K.xK_k), windows W.swapUp)
+        , ((super .|. K.shiftMask, K.xK_m), windows W.swapMaster)
+        , ((super, K.xK_h), sendMessage MirrorShrink <> sendMessage MirrorShrink)
+        , ((super, K.xK_l), sendMessage MirrorExpand <> sendMessage MirrorExpand)
+        , ((super .|. K.shiftMask, K.xK_h), sendMessage Shrink)
+        , ((super .|. K.shiftMask, K.xK_l), sendMessage Expand)
+        , ((super, K.xK_r), resetLayout cfg)
+        , ((super .|. K.shiftMask, K.xK_r), restart appName True)
+        , ((super, K.xK_v), sendMessage NextLayout)
+        , ((super, K.xK_f), toggleFullscreen')
+        , ((super, K.xK_q), sendMessage . IncMasterN $ (-1))
+        , ((super, K.xK_e), sendMessage . IncMasterN $ 1)
+        , ((super, K.xK_s), withFocused . toggleFloat $ centreRect)
+        , ((super, K.xK_a), windows copyToAll <> withFocused (enableFloat' videoRect))
+        , ((super .|. K.shiftMask, K.xK_a), killAllOtherCopies <> withFocused disableFloat')
+        , ((super, K.xK_o), spawn' CloseNotif)
+        , ((super .|. K.shiftMask, K.xK_o), spawn' CloseAllNotifs)
+        , ((K.nomod, K.xK_VolDown), spawn' DecVol)
+        , ((K.nomod, K.xK_VolUp), spawn' IncVol)
+        , ((super, K.xK_VolDown), spawn' DecVolMpv)
+        , ((super, K.xK_VolUp), spawn' IncVolMpv)
+        , ((K.nomod, K.xK_ToggleMute), spawn' ToggleMuteOutput)
+        , ((super, K.xK_ToggleMute), spawn' ToggleMuteInput)
+        , ((K.nomod, K.xK_MediaPrev), spawn' PlayPrevMpd)
+        , ((K.nomod, K.xK_MediaTogglePlay), spawn' PauseMpd)
+        , ((super, K.xK_MediaTogglePlay), spawn' PauseMpv)
+        , ((K.nomod, K.xK_MediaNext), spawn' PlayNextMpd)
+        , ((super, K.xK_w), spawn' NewWallpaper)
+        , ((super, K.xK_p), spawn' TakeScreenshot)
+        , ((super, K.xK_g), spawn' Apps)
+        , ((super .|. K.shiftMask, K.xK_g), spawn' AllApps)
+        , ((super, K.xK_t), spawn' WebSearch)
+        , ((super, K.xK_d), spawn' Bookmarks)
+        , ((super .|. K.shiftMask, K.xK_d), spawn' WorkBookmarks)
+        , ((super, K.xK_x), spawn' Passwords)
+        , ((super, K.xK_n), spawn' Usernames)
+        , ((super, K.xK_m), spawn' Emails)
+        ]
+          <> (workspaceView super <$> Workspace.workspaces)
+          <> (workspaceSwitch super <$> Workspace.workspaces)
+  }
