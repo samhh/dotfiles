@@ -83,6 +83,7 @@ gdu-bin
 git
 git-delta-bin
 gotop-bin
+gping
 hledger-bin
 inotify-tools
 khard
