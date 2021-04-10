@@ -13,7 +13,7 @@ set -x CARGO_HOME "$XDG_DATA_HOME/cargo"
 set -x DOCKER_CONFIG "$XDG_CONFIG_HOME/docker"
 set -x GHCUP_USE_XDG_DIRS true
 set -x GOPATH "$XDG_DATA_HOME/go"
-set -x GNUPGHOME "$XDG_DATA_HOME/gnupg/"
+set -x GNUPGHOME "$XDG_CONFIG_HOME/gnupg/"
 set -x GRADLE_USER_HOME "$XDG_DATA_HOME/gradle/"
 set -x HISTFILE "$XDG_DATA_HOME/bash/history"
 set -x LESSHISTFILE "$XDG_DATA_HOME/less/history"
