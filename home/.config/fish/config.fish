@@ -45,20 +45,20 @@ fish_add_path "$XDG_BIN_HOME"
 fish_add_path ~/.cabal/bin/
 
 # Command drop-in replacement aliases
-abbr vi 'nvim'
-abbr top 'gotop'
-abbr mpc 'vimpc'
+abbr -g vi 'nvim'
+abbr -g top 'gotop'
+abbr -g mpc 'vimpc'
 
 # Arch package management-specific aliases
-abbr in 'sudo pacman -S'
-abbr ina 'paru -S'
-abbr up 'sudo pacman -Syu'
-abbr upa 'paru -Sau'
-abbr un 'sudo pacman -Rs'
+abbr -g in 'sudo pacman -S'
+abbr -g ina 'paru -S'
+abbr -g up 'sudo pacman -Syu'
+abbr -g upa 'paru -Sau'
+abbr -g un 'sudo pacman -Rs'
 
 # Misc/specific aliases
-abbr sys 'systemctl'
-abbr sysu 'systemctl --user'
+abbr -g sys 'systemctl'
+abbr -g sysu 'systemctl --user'
 
 # Create directory path and cd into it
 function mkcd
