@@ -43,13 +43,9 @@ autocmd ColorScheme * highlight LspDiagnosticsUnderlineWarning guifg=yellow cter
 autocmd ColorScheme * highlight LspDiagnosticsUnderlineInformation guifg=none ctermfg=none cterm=underline gui=underline
 autocmd ColorScheme * highlight LspDiagnosticsUnderlineHint guifg=none ctermfg=none cterm=underline gui=underline
 
-" Highlight references to symbol under cursor
+" Highlight references to symbol under cursor (conditionally enabled elsewhere)
 autocmd ColorScheme  * lua require('vim.lsp.diagnostic')._define_default_signs_and_highlights()
 autocmd ColorScheme  * highlight LspReferenceRead ctermbg=0
-autocmd CursorHold   * lua vim.lsp.buf.document_highlight()
-autocmd CursorHoldI  * lua vim.lsp.buf.document_highlight()
-autocmd CursorMoved  * lua vim.lsp.buf.clear_references()
-autocmd CursorMovedI * lua vim.lsp.buf.clear_references()
 
 augroup TerminalBehavior
   " Remove number/sign columns in terminal

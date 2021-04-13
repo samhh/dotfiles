@@ -35,12 +35,27 @@ call minpac#add('hrsh7th/nvim-compe')
 lua <<EOF
   local lspc = require'lspconfig'
 
-  lspc.bashls.setup {}
-  lspc.gopls.setup {}
-  lspc.hls.setup {}
-  lspc.purescriptls.setup {}
-  lspc.rls.setup {}
-  lspc.tsserver.setup {}
+  local servers = { "bashls", "gopls", "hls", "purescriptls", "rls", "tsserver" }
+
+  -- Conditionally enable highlighting references under cursor according to
+  -- language server capabilities
+  local on_attach = function(client, bufnr)
+    if client.resolved_capabilities.document_highlight then
+      vim.api.nvim_exec([[
+        augroup lsp_document_highlight
+          autocmd! * <buffer>
+          autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+          autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
+          autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+          autocmd CursorMovedI <buffer> lua vim.lsp.buf.clear_references()
+        augroup END
+      ]], false)
+    end
+  end
+
+  for _, lsp in ipairs(servers) do
+    lspc[lsp].setup { on_attach = on_attach }
+  end
 
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
