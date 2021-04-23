@@ -165,6 +165,7 @@ yarn
 # work
 aws-cli-v2-bin
 aws-sam-cli
+aws-vault
 ctop-bin
 docker
 docker-compose
