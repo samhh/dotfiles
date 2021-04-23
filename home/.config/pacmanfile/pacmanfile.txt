@@ -61,6 +61,7 @@ ttf-monaco
 aerc
 alacritty
 android-tools
+arch-wiki-lite
 backblaze-b2
 bandwhich
 bangin
