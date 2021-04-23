@@ -129,6 +129,7 @@ element-desktop
 firefox-developer-edition
 obsidian-appimage
 piper
+simplescreenrecorder
 slack-desktop
 telegram-desktop
 vimb
