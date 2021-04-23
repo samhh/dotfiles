@@ -58,9 +58,9 @@ ttf-fira-code
 ttf-monaco
 
 # cli utils
+aerc
 alacritty
 android-tools
-aerc
 backblaze-b2
 bandwhich
 bangin
