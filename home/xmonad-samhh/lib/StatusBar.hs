@@ -2,7 +2,7 @@ module StatusBar (statusBar) where
 
 import           Data.Default                 (def)
 import           String                       (trim)
-import           Workspace                    (workspaceWithOnlyFocusedCopy)
+import           Workspace                    (spacesWithNonCopiedWindows)
 import           XMonad                       (XConfig (layoutHook, logHook))
 import           XMonad.Config.Prime          (LayoutClass, Window)
 import           XMonad.Hooks.DynamicLog      (PP (ppHidden, ppOrder, ppOutput, ppSep, ppTitle),
@@ -46,10 +46,10 @@ createStatusBarKeyless cmd pp cfg = do
       cfg
         { layoutHook = avoidStruts (layoutHook cfg),
           logHook = do
-            copies <- workspaceWithOnlyFocusedCopy
-            let check ws | ws `elem` copies = mempty
-                         | otherwise        = ws
+            spaces <- spacesWithNonCopiedWindows
+            let renderHidden ws | ws `elem` spaces = ws
+                                | otherwise        = mempty
             logHook cfg
-            dynamicLogWithPP pp {ppOutput = hPutStrLn h, ppHidden = check}
+            dynamicLogWithPP pp {ppOutput = hPutStrLn h, ppHidden = renderHidden}
         }
 

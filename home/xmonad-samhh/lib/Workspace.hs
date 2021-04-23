@@ -1,35 +1,37 @@
-module Workspace (workspaceWithOnlyFocusedCopy, workspaces, workspaceName, workspaceView, workspaceSwitch) where
+module Workspace (spacesWithNonCopiedWindows, workspaces, workspaceName, workspaceView, workspaceSwitch) where
 
-import           Function            ((<$<))
-import           XMonad.Config.Prime (KeyMask, KeySym, Window, WindowSpace,
+import           Data.Maybe.Utils    (singletonToMaybe)
+import           Foreign.C.String    (peekCString)
+import           XMonad.Config.Prime (Display, KeyMask, KeySym, Layout,
+                                      TextProperty (tp_value), Window,
                                       WorkspaceId, X, XState (windowset),
-                                      shiftMask, windows, (.|.))
+                                      getTextProperty, shiftMask, wM_NAME,
+                                      windows, (.|.))
 import qualified XMonad.Config.Prime as XK
-import           XMonad.StackSet     (down, greedyView, hidden, integrate',
-                                      peek, shift, stack, tag, up)
+import           XMonad.Core         (withDisplay)
+import           XMonad.StackSet     (Workspace, greedyView, hidden, integrate',
+                                      shift, stack, tag)
 
--- | A list of hidden workspaces containing a copy of the focused window and
---   nothing else.
-workspaceWithOnlyFocusedCopy :: X [WorkspaceId]
-workspaceWithOnlyFocusedCopy = do
-    wset <- gets windowset
-    pure $ case peek wset of
-      Nothing -> []
-      Just fw -> spacesContainingOnly fw (hidden wset)
+type WorkspaceName = String
 
-spacesContainingOnly :: Window -> [WindowSpace] -> [WorkspaceId]
-spacesContainingOnly x = tag <$< filter (uncurry (&&) . (hasWindow x &&& hasSingleWindow))
-  where hasWindow :: Window -> WindowSpace -> Bool
-        hasWindow w = (w `elem`) . integrate' . stack
+spacesWithNonCopiedWindows :: X [WorkspaceId]
+spacesWithNonCopiedWindows = fmap (fmap tag) . filterOutCopies . hidden =<< gets windowset
+  where filterOutCopies :: [Workspace WorkspaceId (Layout Window) Window] -> X [Workspace WorkspaceId (Layout Window) Window]
+        filterOutCopies xs = do
+          nonCopiedWindows <- mapMaybe singletonToMaybe . group . sort . join <$> traverse getWorkspaceWindowTitles xs
+          let isAnyNonCopied = any (`elem` nonCopiedWindows)
+          filterM (fmap isAnyNonCopied . getWorkspaceWindowTitles) xs
 
-        hasSingleWindow :: WindowSpace -> Bool
-        hasSingleWindow w = case stack w of
-          Nothing -> False
-          Just s  -> null $ up s <> down s
+getWorkspaceWindowTitles :: Workspace i l Window -> X [String]
+getWorkspaceWindowTitles w = withDisplay $ \d ->
+  liftIO $ forM (integrate' $ stack w) (`getWindowTitle` d)
 
-type Workspace = (String, KeySym)
+getWindowTitle :: Window -> Display -> IO String
+getWindowTitle w d = getTextProperty d w wM_NAME >>= (peekCString . tp_value)
 
-workspaces :: [Workspace]
+type NamedWorkspace = (WorkspaceName, KeySym)
+
+workspaces :: [NamedWorkspace]
 workspaces =
   [ ("1", XK.xK_1),
     ("2", XK.xK_2),
@@ -43,15 +45,15 @@ workspaces =
     ("0", XK.xK_0)
   ]
 
-workspaceName :: Workspace -> String
+workspaceName :: NamedWorkspace -> WorkspaceName
 workspaceName = fst
 
-workspaceView :: KeyMask -> Workspace -> ((KeyMask, KeySym), X ())
+workspaceView :: KeyMask -> NamedWorkspace -> ((KeyMask, KeySym), X ())
 workspaceView super (name, k) =
   let x = windows $ greedyView name
    in ((super, k), x)
 
-workspaceSwitch :: KeyMask -> Workspace -> ((KeyMask, KeySym), X ())
+workspaceSwitch :: KeyMask -> NamedWorkspace -> ((KeyMask, KeySym), X ())
 workspaceSwitch super (name, k) =
   let x = windows $ shift name
    in ((super .|. shiftMask, k), x)
