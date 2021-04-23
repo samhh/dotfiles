@@ -70,7 +70,6 @@ beets
 bukubrow-bin
 buku-git
 colorpicker-ym1234-git
-droidcam
 dunst
 duplicity
 exercism-bin
@@ -117,7 +116,6 @@ teensy-loader-cli
 terpod
 tiny-irc-client-bin
 urlscan
-v4l2loopback-dc-dkms
 v4l2loopback-dkms
 vdirsyncer
 vimpc-git
