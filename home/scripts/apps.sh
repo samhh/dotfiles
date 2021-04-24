@@ -9,7 +9,7 @@ hades
 obsidian
 pavucontrol
 piper
-protonmail-import-export-app
+simplescreenrecorder
 slack
 steam
 telegram-desktop
