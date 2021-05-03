@@ -149,6 +149,7 @@ elixir-ls
 elm-bin
 elm-format-bin
 elm-language-server
+eslint_d
 fnm-bin
 ghcup-hs-bin
 go
