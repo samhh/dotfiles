@@ -107,7 +107,7 @@ progress
 qmk
 qrcp-bin
 ripgrep
-rofi-git
+rofi
 scrot
 stow
 streamlink
