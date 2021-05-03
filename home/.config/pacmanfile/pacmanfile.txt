@@ -69,7 +69,6 @@ bangin-server-node
 beets
 bukubrow-bin
 buku-git
-colorpicker-ym1234-git
 dunst
 duplicity
 exercism-bin
