@@ -143,8 +143,6 @@ steam
 agda
 bash-language-server
 cargo-outdated
-elixir
-elixir-ls
 elm-bin
 elm-format-bin
 elm-language-server

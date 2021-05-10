@@ -35,7 +35,6 @@ call minpac#add('hrsh7th/nvim-compe')
 lua <<EOF
   local lspc = require'lspconfig'
 
-  -- LSP servers that don't require bespoke configuration
   local servers = { "bashls", "elmls", "gopls", "hls", "purescriptls", "rls", "tsserver" }
 
   -- Conditionally enable highlighting references under cursor according to
@@ -57,8 +56,6 @@ lua <<EOF
   for _, lsp in ipairs(servers) do
     lspc[lsp].setup { on_attach = on_attach }
   end
-
-  lspc.elixirls.setup { on_attach = on_attach, cmd = { "/usr/bin/elixir-ls" } }
 
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
@@ -92,7 +89,6 @@ call minpac#add('purescript-contrib/purescript-vim')
 call minpac#add('neovimhaskell/haskell-vim')
 call minpac#add('vmchale/dhall-vim')
 call minpac#add('derekelkins/agda-vim')
-call minpac#add('elixir-editors/vim-elixir')
 
 command! PackUpdate call minpac#update()
 command! PackClean  call minpac#clean()
