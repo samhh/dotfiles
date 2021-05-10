@@ -35,7 +35,7 @@ call minpac#add('hrsh7th/nvim-compe')
 lua <<EOF
   local lspc = require'lspconfig'
 
-  local servers = { "bashls", "elmls", "gopls", "hls", "purescriptls", "rls", "tsserver" }
+  local servers = { "bashls", "gopls", "hls", "purescriptls", "rls", "tsserver" }
 
   -- Conditionally enable highlighting references under cursor according to
   -- language server capabilities
