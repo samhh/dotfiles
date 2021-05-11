@@ -49,8 +49,9 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
 
-" Navigate location list
+" Navigate lists
 nmap <silent> <Leader>j :lopen<cr>
+nmap <silent> <Leader>J :copen<cr>
 nmap <silent> <C-k> :labove<cr>
 nmap <silent> <C-j> :lbelow<cr>
 
