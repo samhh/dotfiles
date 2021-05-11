@@ -49,11 +49,15 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
 
-" Navigate lists
+" Navigate location list
 nmap <silent> <Leader>j :lopen<cr>
-nmap <silent> <Leader>J :copen<cr>
 nmap <silent> <C-k> :labove<cr>
 nmap <silent> <C-j> :lbelow<cr>
+
+" Navigate quickfix list
+nmap <silent> <Leader>J :copen<cr>
+nmap <silent> <C-h> :cprev<cr>
+nmap <silent> <C-l> :cnext<cr>
 
 " LSP gotos
 nmap <silent> gd <cmd>lua vim.lsp.buf.definition()<cr>
