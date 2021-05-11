@@ -50,7 +50,7 @@ command! -bang -nargs=* Rg
   \   <bang>0)
 
 " Navigate location list
-nmap <silent> <Leader>j :llist<cr>
+nmap <silent> <Leader>j :lopen<cr>
 nmap <silent> <C-k> :labove<cr>
 nmap <silent> <C-j> :lbelow<cr>
 
