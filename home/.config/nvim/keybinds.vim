@@ -25,6 +25,9 @@ nnoremap <Leader>q :Bd<cr>
 nnoremap <Enter> o<Esc>k
 nnoremap <S-Enter> O<Esc>
 
+"" Don't override the default <Enter> bind in the quickfix list
+autocmd BufReadPost quickfix nnoremap <buffer> <Enter> <Enter>
+
 " Remove highlight
 nnoremap <C-l> :noh<cr>
 
