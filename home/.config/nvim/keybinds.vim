@@ -29,7 +29,7 @@ nnoremap <S-Enter> O<Esc>
 autocmd BufReadPost quickfix nnoremap <buffer> <Enter> <Enter>
 
 " Remove highlight
-nnoremap <C-l> :noh<cr>
+nnoremap <Leader>/ :noh<cr>
 
 " Fuzzy find filenames
 nnoremap <Leader>p :GFiles<cr>
