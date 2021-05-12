@@ -152,7 +152,7 @@ hlint-bin
 nodejs
 nodejs-spago
 npm
-purescript-language-server-bin
+purescript-language-server
 ruby-ronn-ng
 rustup
 shellcheck-bin
