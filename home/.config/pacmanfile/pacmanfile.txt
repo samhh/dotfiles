@@ -3,6 +3,7 @@ amd-ucode
 autoconf
 automake
 base
+bison
 bluez
 bluez-utils
 brother-hll2350dw
