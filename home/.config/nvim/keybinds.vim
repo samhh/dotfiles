@@ -37,6 +37,9 @@ nnoremap <Leader>P :Files<cr>
 "" In directory of active buffer
 nnoremap <Leader>l :execute 'FZF' expand('%:p:h')<cr>
 
+"" Move results into quickfix
+let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
+
 " Fuzzy find text
 nnoremap <Leader>f :Lines<cr>
 nnoremap <Leader>F :Rg<cr>
