@@ -13,36 +13,36 @@ nnoremap Q <NOP>
 nnoremap Y y$
 
 " Buffer selection
-nnoremap <Leader>b :Buffers<cr>
+nnoremap <Leader>b :Buffers<CR>
 
 " Toggle to last open file in buffer
 nnoremap <Leader>v <C-^>
 
 " Delete buffer (and use plugin for it to preserve layouts)
-nnoremap <Leader>q :Bd<cr>
+nnoremap <Leader>q :Bd<CR>
 
 " Add newlines from normal mode
-nnoremap <Enter> o<Esc>k
-nnoremap <S-Enter> O<Esc>
+nnoremap <CR> o<Esc>k
+nnoremap <S-CR> O<Esc>
 
-"" Don't override the default <Enter> bind in the quickfix list
-autocmd BufReadPost quickfix nnoremap <buffer> <Enter> <Enter>
+"" Don't override the default <CR> bind in the quickfix list
+autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
 " Remove highlight
-nnoremap <Leader>/ :noh<cr>
+nnoremap <Leader>/ :noh<CR>
 
 " Fuzzy find filenames
-nnoremap <Leader>p :GFiles<cr>
-nnoremap <Leader>P :Files<cr>
+nnoremap <Leader>p :GFiles<CR>
+nnoremap <Leader>P :Files<CR>
 "" In directory of active buffer
-nnoremap <Leader>l :execute 'FZF' expand('%:p:h')<cr>
+nnoremap <Leader>l :execute 'FZF' expand('%:p:h')<CR>
 
 "" Move results into quickfix
 let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
 
 " Fuzzy find text
-nnoremap <Leader>f :Lines<cr>
-nnoremap <Leader>F :Rg<cr>
+nnoremap <Leader>f :Lines<CR>
+nnoremap <Leader>F :Rg<CR>
 
 "" Customised fzf.vim Rg implementation to ignore lockfiles
 command! -bang -nargs=* Rg
@@ -53,41 +53,41 @@ command! -bang -nargs=* Rg
   \   <bang>0)
 
 " Navigate location list
-nmap <silent> <Leader>j :lopen<cr>
-nmap <silent> <C-k> :labove<cr>
-nmap <silent> <C-j> :lbelow<cr>
+nmap <silent> <Leader>j :lopen<CR>
+nmap <silent> <C-k> :labove<CR>
+nmap <silent> <C-j> :lbelow<CR>
 
 " Navigate quickfix list
-nmap <silent> <Leader>J :copen<cr>
-nmap <silent> <C-h> :cprev<cr>
-nmap <silent> <C-l> :cnext<cr>
+nmap <silent> <Leader>J :copen<CR>
+nmap <silent> <C-h> :cprev<CR>
+nmap <silent> <C-l> :cnext<CR>
 
 " LSP gotos
-nmap <silent> gd <cmd>lua vim.lsp.buf.definition()<cr>
-nmap <silent> gr <cmd>lua vim.lsp.buf.references()<cr>
+nmap <silent> gd <Cmd>lua vim.lsp.buf.definition()<CR>
+nmap <silent> gr <Cmd>lua vim.lsp.buf.references()<CR>
 
 " Rename LSP symbol
-nmap <Leader>r <cmd>lua vim.lsp.buf.rename()<cr>
+nmap <Leader>r <Cmd>lua vim.lsp.buf.rename()<CR>
 
 " Symbols search
-nnoremap <silent> <Leader>s <cmd>lua vim.lsp.buf.document_symbol()<cr>
-nnoremap <silent> <Leader>S <cmd>lua vim.lsp.buf.workspace_symbol()<cr>
+nnoremap <silent> <Leader>s <Cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> <Leader>S <Cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 
 " Trigger LSP completions and close on selection
 inoremap <silent><expr> <C-space> compe#complete()
-inoremap <silent><expr> <cr>      compe#confirm('<cr>')
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
 
 " Format/fix active buffer
-nnoremap <silent> <Leader>z :ALEFix<cr>
+nnoremap <silent> <Leader>z :ALEFix<CR>
 
 " Show documentation (type info) in preview window
-nnoremap <silent> <Leader>d <cmd>lua vim.lsp.buf.hover()<cr>
+nnoremap <silent> <Leader>d <Cmd>lua vim.lsp.buf.hover()<CR>
 
 " Show diagnostics in popup
-nnoremap <silent> <Leader>e <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>
+nnoremap <silent> <Leader>e <Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 
 " Offer code actions
-nnoremap <silent> <Leader>g <cmd>lua vim.lsp.buf.code_action()<cr>
+nnoremap <silent> <Leader>g <Cmd>lua vim.lsp.buf.code_action()<CR>
 
 " Digraphs
 dig NN 8469  " ℕ
