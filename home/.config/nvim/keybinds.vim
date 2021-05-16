@@ -18,8 +18,9 @@ nnoremap <Leader>b :Buffers<CR>
 " Toggle to last open file in buffer
 nnoremap <Leader>v <C-^>
 
-" Delete buffer (and use plugin for it to preserve layouts)
+" Delete buffer, preserving layout if not quickfix list
 nnoremap <Leader>q :Bd<CR>
+autocmd BufReadPost quickfix nnoremap <buffer> <Leader>q :bd<CR>
 
 " Add newlines from normal mode
 nnoremap <CR> o<Esc>k
