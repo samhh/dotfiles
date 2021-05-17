@@ -5,6 +5,7 @@ call minpac#init()
 call minpac#add('k-takata/minpac', {'type': 'opt'})
 
 " General
+call minpac#add('ii14/exrc.vim')
 call minpac#add('tpope/vim-dispatch')
 call minpac#add('tpope/vim-sleuth')
 call minpac#add('bronson/vim-trailing-whitespace')

@@ -5,4 +5,5 @@ yalc.lock
 .psci_modules/
 hie.yaml
 *.pyc
+.exrc
 
