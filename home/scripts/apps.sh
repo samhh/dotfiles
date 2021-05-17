@@ -3,9 +3,9 @@
 read -r -d '' apps << fin
 chromium
 discord
-element-desktop
 firefox-developer-edition
 hades
+nheko
 obsidian
 pavucontrol
 piper

@@ -144,8 +144,8 @@ zathura-pdf-mupdf
 # gui apps
 chromium
 discord
-element-desktop
 firefox-developer-edition
+nheko
 obsidian-appimage
 piper
 simplescreenrecorder
