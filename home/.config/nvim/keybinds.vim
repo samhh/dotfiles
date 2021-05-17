@@ -53,6 +53,9 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
 
+" Async make
+nnoremap <Leader>m :Make 
+
 " Navigate location list
 nmap <silent> <Leader>j :lopen<CR>
 nmap <silent> <C-k> :labove<CR>
