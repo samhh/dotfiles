@@ -1,2 +1,0 @@
-set textwidth=0
-
