@@ -48,8 +48,7 @@ xmap gs <plug>(GrepperOperator)
 nnoremap <Leader>/ :grep 
 
 " Fuzzy find text
-nnoremap <Leader>f :Lines<CR>
-nnoremap <Leader>F :Rg<CR>
+nnoremap <Leader>f :Rg<CR>
 
 "" Customised fzf.vim Rg implementation to ignore lockfiles
 command! -bang -nargs=* Rg
