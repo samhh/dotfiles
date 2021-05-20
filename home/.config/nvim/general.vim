@@ -50,9 +50,7 @@ autocmd ColorScheme * highlight LspDiagnosticsUnderlineHint guifg=none ctermfg=n
 autocmd ColorScheme  * lua require('vim.lsp.diagnostic')._define_default_signs_and_highlights()
 autocmd ColorScheme  * highlight LspReferenceRead ctermbg=0
 
-augroup QuickfixBehavior
-  autocmd!
-  autocmd QuickFixCmdPost [^l]* cwindow
-  autocmd QuickFixCmdPost l* lwindow
-augroup END
+" Auto-open quickfix window
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
 
