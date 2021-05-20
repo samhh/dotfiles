@@ -29,7 +29,7 @@ statusBar =
       | otherwise = xs
 
 barCmd :: String
-barCmd = "xmobar-samhh"
+barCmd = "xmonad-samhh-bar"
 
 -- | Like `XMonad.Hooks.DynamicLog::statusBar`, but doesn't require a toggle
 -- hotkey.

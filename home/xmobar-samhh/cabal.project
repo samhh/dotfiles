@@ -1,3 +1,0 @@
-packages: ./xmobar-samhh.cabal
-constraints: xmobar +with_xft +with_alsa +with_mpris +with_mpd
-

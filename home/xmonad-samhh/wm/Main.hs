@@ -2,7 +2,8 @@
 
 module Main (main) where
 
-import qualified Color
+import           Color                       (Colorscheme (color0, color3),
+                                              getColorscheme, hideous)
 import qualified Data.Map                    as M
 import qualified Key                         as K
 import           Layout                      (layout, resetLayout)
@@ -33,15 +34,15 @@ import           XMonad.Layout.ResizableTile (MirrorResize (MirrorExpand, Mirror
 import qualified XMonad.StackSet             as W
 
 main :: IO ()
-main = launch . docks =<< statusBar config
+main = launch . docks =<< statusBar . config =<< getColorscheme
 
 appName :: String
-appName = "xmonad-samhh"
+appName = "xmonad-samhh-wm"
 
 spawn' :: MonadIO m => Spawn -> m ()
 spawn' = spawn . toSpawnable
 
-config = desktopConfig
+config cs = desktopConfig
   { terminal = "alacritty"
   , modMask = K.modMask
   , focusFollowsMouse = False
@@ -50,8 +51,8 @@ config = desktopConfig
   , handleEventHook = getFullscreenEventHook Exit
   , workspaces = workspaceName <$> Workspace.workspaces
   , borderWidth = 3
-  , normalBorderColor = Color.nord0
-  , focusedBorderColor = Color.nord3
+  , normalBorderColor = maybe hideous color0 cs
+  , focusedBorderColor = maybe hideous color3 cs
   , layoutHook = layout
   , keys = \cfg@XConfig {XMonad.modMask = super, XMonad.terminal = term} ->
       M.fromList $

@@ -5,5 +5,5 @@ systemctl --user start xorg.target
 xrdb -merge ~/.config/X11/resources
 wal -R
 xrandr --rate 240
-exec xmonad-samhh
+exec xmonad-samhh-wm
 

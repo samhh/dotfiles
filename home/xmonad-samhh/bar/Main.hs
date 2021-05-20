@@ -1,19 +1,20 @@
 module Main where
 
+import           Color  (Colorscheme (color0, color4), getColorscheme, hideous)
 import           Xmobar (CommandReader (CommandReader), Config (..),
                          Date (Date), Monitors (..), Runnable (Run),
                          StdinReader (StdinReader), XPosition (Top),
                          defaultConfig, xmobar)
 
 main :: IO ()
-main = xmobar cfg
+main = xmobar . cfg =<< getColorscheme
 
-cfg :: Config
-cfg =
+cfg :: Maybe Colorscheme -> Config
+cfg cs =
   defaultConfig
     { font = "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=true",
-      bgColor = "#2e3440",
-      fgColor = "#d8dee9",
+      bgColor = maybe hideous color0 cs,
+      fgColor = maybe hideous color4 cs,
       position = Top,
       sepChar = "%",
       alignSep = "}{",
