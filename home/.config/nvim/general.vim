@@ -33,6 +33,9 @@ set signcolumn=number
 " Live substitution
 set inccommand=nosplit
 
+" Faster grepping
+set grepprg=rg\ -S\ --vimgrep\ $*
+
 " LSP menu-related
 set completeopt=menuone,noselect
 set shortmess+=c
