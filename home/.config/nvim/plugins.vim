@@ -19,8 +19,6 @@ call minpac#add('dense-analysis/ale')
 call minpac#add('mhinz/vim-grepper')
 call minpac#add('junegunn/fzf.vim')
 call minpac#add('nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'})
-call minpac#add('windwp/nvim-ts-autotag')
-call minpac#add('joosepalviste/nvim-ts-context-commentstring')
 lua <<EOF
   require'nvim-treesitter.configs'.setup {
     ensure_installed = "maintained",
