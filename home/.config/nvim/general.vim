@@ -57,3 +57,9 @@ augroup TerminalBehavior
   autocmd TermOpen * startinsert
 augroup END
 
+augroup QuickfixBehavior
+  autocmd!
+  autocmd QuickFixCmdPost [^l]* cwindow
+  autocmd QuickFixCmdPost l* lwindow
+augroup END
+
