@@ -1,8 +1,6 @@
 # dotfiles
 
-Here are my dotfiles targeting a machine running xmonad on Arch.
-
-I've tried to utilise the [Nord](https://www.nordtheme.com) colour scheme where possible.
+Here are my dotfiles targeting a machine running xmonad on Arch. Colour schemes are generated on the fly with [pywal](https://github.com/dylanaraps/pywal).
 
 ## Symlinking
 
