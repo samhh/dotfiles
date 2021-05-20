@@ -50,13 +50,6 @@ autocmd ColorScheme * highlight LspDiagnosticsUnderlineHint guifg=none ctermfg=n
 autocmd ColorScheme  * lua require('vim.lsp.diagnostic')._define_default_signs_and_highlights()
 autocmd ColorScheme  * highlight LspReferenceRead ctermbg=0
 
-augroup TerminalBehavior
-  " Remove number/sign columns in terminal
-  autocmd TermOpen * setlocal nonumber signcolumn=no
-  " Immediately enter insert mode in terminal
-  autocmd TermOpen * startinsert
-augroup END
-
 augroup QuickfixBehavior
   autocmd!
   autocmd QuickFixCmdPost [^l]* cwindow
