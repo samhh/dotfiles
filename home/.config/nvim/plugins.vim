@@ -1,24 +1,51 @@
 let g:ale_disable_lsp = 1
 
-packadd minpac
-call minpac#init()
-call minpac#add('k-takata/minpac', {'type': 'opt'})
+function! PackInit() abort
+  packadd minpac
+  call minpac#init()
+  call minpac#add('k-takata/minpac', {'type': 'opt'})
 
-" General
-call minpac#add('ii14/exrc.vim')
-call minpac#add('tpope/vim-dispatch')
-call minpac#add('tpope/vim-sleuth')
-call minpac#add('bronson/vim-trailing-whitespace')
-call minpac#add('airblade/vim-gitgutter')
-call minpac#add('nathanaelkane/vim-indent-guides')
-call minpac#add('editorconfig/editorconfig-vim')
-call minpac#add('tpope/vim-commentary')
-call minpac#add('tpope/vim-surround')
-call minpac#add('moll/vim-bbye')
-call minpac#add('dense-analysis/ale')
-call minpac#add('mhinz/vim-grepper')
-call minpac#add('junegunn/fzf.vim')
-call minpac#add('nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'})
+  " General
+  call minpac#add('ii14/exrc.vim')
+
+  " Layout
+  call minpac#add('moll/vim-bbye')
+  call minpac#add('airblade/vim-gitgutter')
+  call minpac#add('nathanaelkane/vim-indent-guides')
+  call minpac#add('bronson/vim-trailing-whitespace')
+
+  " Motions
+  call minpac#add('tpope/vim-commentary')
+  call minpac#add('mhinz/vim-grepper')
+  call minpac#add('tpope/vim-surround')
+
+  " Formatting
+  call minpac#add('editorconfig/editorconfig-vim')
+  call minpac#add('tpope/vim-sleuth')
+
+  " File management
+  call minpac#add('junegunn/fzf.vim')
+
+  " Compilation
+  call minpac#add('tpope/vim-dispatch')
+
+  " LSP & linting
+  call minpac#add('dense-analysis/ale')
+  call minpac#add('hrsh7th/nvim-compe')
+  call minpac#add('neovim/nvim-lspconfig')
+
+  " Syntax
+  call minpac#add('nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'})
+  call minpac#add('derekelkins/agda-vim')
+  call minpac#add('vmchale/dhall-vim')
+  call minpac#add('neovimhaskell/haskell-vim')
+  call minpac#add('purescript-contrib/purescript-vim')
+
+  " Theming
+  call minpac#add('arcticicestudio/nord-vim')
+  call minpac#add('itchyny/lightline.vim')
+endfunction
+
 lua <<EOF
   require'nvim-treesitter.configs'.setup {
     ensure_installed = "maintained",
@@ -27,12 +54,7 @@ lua <<EOF
     autotag = { enable = true },
     context_commentstring = { enable = true },
   }
-EOF
 
-" LSP
-call minpac#add('neovim/nvim-lspconfig')
-call minpac#add('hrsh7th/nvim-compe')
-lua <<EOF
   local lspc = require'lspconfig'
 
   local servers = { "bashls", "gopls", "hls", "purescriptls", "rls", "tsserver" }
@@ -80,16 +102,6 @@ lua <<EOF
   }
 EOF
 
-" Theming
-call minpac#add('arcticicestudio/nord-vim')
-call minpac#add('itchyny/lightline.vim')
-
-" Language syntax (where not already supported via treesitter)
-call minpac#add('purescript-contrib/purescript-vim')
-call minpac#add('neovimhaskell/haskell-vim')
-call minpac#add('vmchale/dhall-vim')
-call minpac#add('derekelkins/agda-vim')
-
-command! PackUpdate call minpac#update()
-command! PackClean  call minpac#clean()
+command! PackUpdate call PackInit() | call minpac#update()
+command! PackClean  call PackInit() | call minpac#clean()
 
