@@ -30,7 +30,7 @@ nnoremap <S-CR> O<Esc>
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
 " Remove highlight
-nnoremap <Leader>/ :noh<CR>
+nnoremap <Leader>h :noh<CR>
 
 " Fuzzy find filenames
 nnoremap <Leader>p :GFiles<CR>
@@ -39,8 +39,13 @@ nnoremap <Leader>P :Files<CR>
 " Shorthand edit in directory of open buffer
 nnoremap <Leader>l :e %:h/
 
-"" Move results into quickfix
+" Move fzf results into quickfix
 let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
+
+" :grep motions and shortcut
+nmap gs <plug>(GrepperOperator)
+xmap gs <plug>(GrepperOperator)
+nnoremap <Leader>/ :grep 
 
 " Fuzzy find text
 nnoremap <Leader>f :Lines<CR>
