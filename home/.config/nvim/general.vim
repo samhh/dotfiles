@@ -33,8 +33,8 @@ set signcolumn=number
 " Live substitution
 set inccommand=nosplit
 
-" Faster grepping
-set grepprg=rg\ -S\ --vimgrep\ $*
+" Use ripgrep and ignore lockfiles
+set grepprg=rg\ -S\ -g\ \"!*.lock\"\ --vimgrep\ $*
 
 " LSP menu-related
 set completeopt=menuone,noselect
