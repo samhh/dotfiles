@@ -7,6 +7,7 @@ fish_vi_key_bindings
 # Exported variables
 ## Explicitly define XDG defaults that are used below
 set -x XDG_BIN_HOME ~/.local/bin/
+set -x XDG_CACHE_HOME ~/.cache/
 set -x XDG_CONFIG_HOME ~/.config/
 set -x XDG_DATA_HOME ~/.local/share/
 
@@ -41,6 +42,9 @@ set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 ## Use rootless Docker socket
 set -x DOCKER_HOST "unix://$XDG_RUNTIME_DIR/docker.sock"
+
+# Sync colorscheme
+source "$XDG_CACHE_HOME/wal/colors.fish"
 
 # Extend PATH for XDG & Cabal (which doesn't yet respect XDG)
 fish_add_path "$XDG_BIN_HOME"

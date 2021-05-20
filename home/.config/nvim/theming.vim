@@ -1,4 +1,4 @@
-colorscheme nord
+colorscheme wal
 
 function! DiagnosticsStatus() abort
     let l:lint = ale#statusline#Count(bufnr(''))
@@ -12,7 +12,6 @@ function! DiagnosticsStatus() abort
 endfunction
 
 let g:lightline = {
-\    'colorscheme': 'nord',
 \    'active': {
 \        'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ],
 \        'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'buffers' ], [ 'filetype' ], [ 'diagnostics' ] ],

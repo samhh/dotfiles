@@ -42,7 +42,7 @@ function! PackInit() abort
   call minpac#add('purescript-contrib/purescript-vim')
 
   " Theming
-  call minpac#add('arcticicestudio/nord-vim')
+  call minpac#add('dylanaraps/wal.vim')
   call minpac#add('itchyny/lightline.vim')
 endfunction
 

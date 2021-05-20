@@ -124,6 +124,7 @@ pass
 pavucontrol
 playerctl
 progress
+python-pywal
 qmk
 qrcp-bin
 ripgrep
