@@ -35,8 +35,9 @@ nnoremap <Leader>/ :noh<CR>
 " Fuzzy find filenames
 nnoremap <Leader>p :GFiles<CR>
 nnoremap <Leader>P :Files<CR>
-"" In directory of active buffer
-nnoremap <Leader>l :execute 'FZF' expand('%:p:h')<CR>
+
+" Shorthand edit in directory of open buffer
+nnoremap <Leader>l :e %:h/
 
 "" Move results into quickfix
 let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
