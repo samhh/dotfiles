@@ -191,7 +191,6 @@ ctop-bin
 docker
 docker-compose
 docker-rootless-extras-bin
-gradle
 jdk11-openjdk
 maven
 mkcert
