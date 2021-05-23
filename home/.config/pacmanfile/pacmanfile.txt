@@ -161,7 +161,6 @@ proton-ge-custom-bin
 steam
 
 # dev
-agda
 bash-language-server
 cargo-outdated
 eslint_d
