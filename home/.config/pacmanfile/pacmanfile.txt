@@ -10,7 +10,6 @@ dhcpcd
 dialog
 earlyoom
 netctl
-fuse-overlayfs
 gst-libav
 gst-plugins-base
 gst-plugins-ugly
