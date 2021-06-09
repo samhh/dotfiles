@@ -13,7 +13,6 @@ set -x XDG_DATA_HOME ~/.local/share/
 
 ## Respect XDG
 set -x CARGO_HOME "$XDG_DATA_HOME/cargo"
-set -x DOCKER_CONFIG "$XDG_CONFIG_HOME/docker"
 set -x GHCUP_USE_XDG_DIRS true
 set -x GOPATH "$XDG_DATA_HOME/go"
 set -x GNUPGHOME "$XDG_CONFIG_HOME/gnupg/"
@@ -39,9 +38,6 @@ set -x MANPAGER nvim +Man!
 
 ## Inform shell environment of preexisting ssh-agent socket
 set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
-
-## Use rootless Docker socket
-set -x DOCKER_HOST "unix://$XDG_RUNTIME_DIR/docker.sock"
 
 # Sync colorscheme
 source "$XDG_CACHE_HOME/wal/colors.fish"
