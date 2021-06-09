@@ -14,7 +14,6 @@ slack
 steam
 telegram-desktop
 vimb
-vimb-work
 zoom
 fin
 
