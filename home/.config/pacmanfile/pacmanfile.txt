@@ -135,7 +135,6 @@ teensy-loader-cli
 terpod
 tiny-irc-client-bin
 urlscan
-v4l2loopback-dkms
 vdirsyncer
 vimpc-git
 xclipd
@@ -181,16 +180,3 @@ stylish-haskell-bin
 typescript-language-server-bin
 yarn
 
-# work
-aws-cli-v2-bin
-aws-sam-cli
-aws-vault
-ctop-bin
-docker
-docker-compose
-docker-rootless-extras-bin
-jdk11-openjdk
-maven
-mkcert
-python-cfn-lint
-zoom
