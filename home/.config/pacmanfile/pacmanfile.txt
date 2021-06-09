@@ -80,7 +80,6 @@ ttf-monaco
 # cli utils
 aerc
 alacritty
-android-tools
 arch-wiki-lite
 backblaze-b2
 bandwhich
