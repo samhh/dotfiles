@@ -6,6 +6,7 @@ fish_vi_key_bindings
 
 # Exported variables
 ## Non-XDG locations
+set -x LEDGER_FILE ~/journal/main.journal
 set -x PASSWORD_STORE_DIR ~/passwords
 
 ## Explicitly define XDG defaults that are used below
