@@ -5,6 +5,9 @@ set fish_greeting
 fish_vi_key_bindings
 
 # Exported variables
+## Non-XDG locations
+set -x PASSWORD_STORE_DIR ~/passwords
+
 ## Explicitly define XDG defaults that are used below
 set -x XDG_BIN_HOME ~/.local/bin/
 set -x XDG_CACHE_HOME ~/.cache/
@@ -20,7 +23,6 @@ set -x GRADLE_USER_HOME "$XDG_DATA_HOME/gradle/"
 set -x HISTFILE "$XDG_DATA_HOME/bash/history"
 set -x LESSHISTFILE "$XDG_DATA_HOME/less/history"
 set -x NODE_REPL_HISTORY "$XDG_DATA_HOME/node/history"
-set -x PASSWORD_STORE_DIR "/home/sam/.local/share/pass"
 set -x RUSTUP_HOME "$XDG_DATA_HOME/rustup/"
 set -x STACK_ROOT "$XDG_DATA_HOME/stack/"
 set -x SQLITE_HISTORY "$XDG_DATA_HOME/sqlite/history"
