@@ -17,4 +17,5 @@ remotehost = imap.migadu.com
 remoteuser = hello@samhh.com
 remotepasseval = get_pass("emails/migadu.com/mailbox/hello")
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+folderfilter = lambda folder: folder in ['Archive', 'INBOX', 'Sent']
 
