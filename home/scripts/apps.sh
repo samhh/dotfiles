@@ -14,7 +14,6 @@ slack
 steam
 telegram-desktop
 vimb
-zoom
 fin
 
 app=$(echo "$apps" | rofi -window-title gui -dmenu)
