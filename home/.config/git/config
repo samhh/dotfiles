@@ -24,7 +24,10 @@
     defaultBranch = master
 
 [commit]
-    gpgsign = true
+    gpgSign = true
+
+[tag]
+    gpgSign = true
 
 [merge]
     tool = vimdiff
