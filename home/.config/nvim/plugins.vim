@@ -39,7 +39,6 @@ function! PackInit() abort
   call minpac#add('nvim-treesitter/nvim-treesitter-refactor')
   call minpac#add('derekelkins/agda-vim')
   call minpac#add('vmchale/dhall-vim')
-  call minpac#add('neovimhaskell/haskell-vim')
   call minpac#add('purescript-contrib/purescript-vim')
 
   " Theming
@@ -49,7 +48,7 @@ endfunction
 
 lua <<EOF
   require'nvim-treesitter.configs'.setup {
-    ensure_installed = "maintained",
+    ensure_installed = "all",
     highlight = { enable = true },
     indent = { enable = true },
     autotag = { enable = true },
