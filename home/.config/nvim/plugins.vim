@@ -37,7 +37,6 @@ function! PackInit() abort
   " Syntax
   call minpac#add('nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'})
   call minpac#add('nvim-treesitter/nvim-treesitter-refactor')
-  call minpac#add('derekelkins/agda-vim')
   call minpac#add('vmchale/dhall-vim')
   call minpac#add('purescript-contrib/purescript-vim')
 
