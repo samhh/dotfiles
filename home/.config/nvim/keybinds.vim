@@ -42,6 +42,9 @@ nnoremap <Leader>l :e %:h/
 " Move fzf results into quickfix
 let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
 
+" Hop to word
+nnoremap gh :HopWord<CR>
+
 " :grep motions and shortcut
 nmap gs <plug>(GrepperOperator)
 xmap gs <plug>(GrepperOperator)
