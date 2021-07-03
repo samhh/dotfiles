@@ -111,7 +111,7 @@ mpd-mpris
 mpv
 mpv-mpris
 namcap
-neovim-nightly-bin
+neovim
 newsboat
 offlineimap
 openssh
