@@ -36,6 +36,7 @@ function! PackInit() abort
 
   " Syntax
   call minpac#add('nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'})
+  call minpac#add('nvim-treesitter/nvim-treesitter-refactor')
   call minpac#add('derekelkins/agda-vim')
   call minpac#add('vmchale/dhall-vim')
   call minpac#add('neovimhaskell/haskell-vim')
@@ -53,28 +54,14 @@ lua <<EOF
     indent = { enable = true },
     autotag = { enable = true },
     context_commentstring = { enable = true },
+    refactor = {
+      highlight_definitions = { enable = true },
+    },
   }
 
   local lspc = require'lspconfig'
 
   local servers = { "bashls", "gopls", "hls", "purescriptls", "rls", "tsserver" }
-
-  -- Conditionally enable highlighting references under cursor according to
-  -- language server capabilities
-  local on_attach = function(client, bufnr)
-    if client.resolved_capabilities.document_highlight then
-      vim.api.nvim_exec([[
-        augroup lsp_document_highlight
-          autocmd! * <buffer>
-          autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-          autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
-          autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-          autocmd CursorMovedI <buffer> lua vim.lsp.buf.clear_references()
-        augroup END
-      ]], false)
-    end
-  end
-
   for _, lsp in ipairs(servers) do
     lspc[lsp].setup { on_attach = on_attach }
   end
