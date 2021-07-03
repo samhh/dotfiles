@@ -56,6 +56,12 @@ lua <<EOF
     context_commentstring = { enable = true },
     refactor = {
       highlight_definitions = { enable = true },
+      navigation = {
+        enable = true,
+        keymaps = {
+          goto_definition = "gld"
+        },
+      },
     },
   }
 
