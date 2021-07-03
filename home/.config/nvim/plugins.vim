@@ -62,6 +62,12 @@ lua <<EOF
           goto_definition = "gld"
         },
       },
+      smart_rename = {
+        enable = true,
+        keymaps = {
+          smart_rename = "glr"
+        },
+      },
     },
   }
 
