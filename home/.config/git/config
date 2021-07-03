@@ -20,6 +20,15 @@
     smtpuser = hello@samhh.com
     smtpencryption = ssl
 
+[url "git@git.sr.ht:~"]
+    insteadOf = "sh:"
+
+[url "git@github.com:"]
+    insteadOf = "gh:"
+
+[url "ssh://aur@aur.archlinux.org/"]
+    insteadOf = "aur:"
+
 [init]
     defaultBranch = master
 
