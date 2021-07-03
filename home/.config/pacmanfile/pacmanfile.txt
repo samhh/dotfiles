@@ -169,8 +169,8 @@ hlint-bin
 nodejs
 nodejs-spago
 npm
+pandoc-bin
 purescript-language-server
-ruby-ronn-ng
 rustup
 shellcheck-bin
 shunit2
