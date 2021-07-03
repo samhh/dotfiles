@@ -94,6 +94,7 @@ lua <<EOF
 
     source = {
       nvim_lsp = true;
+      treesitter = true;
       path = true;
       buffer = true;
     };
