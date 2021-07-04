@@ -131,7 +131,7 @@ scrot
 stow
 streamlink
 teensy-loader-cli
-terpod
+terpod-bin
 tiny-irc-client-bin
 urlscan
 vdirsyncer
