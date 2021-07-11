@@ -18,9 +18,9 @@ nnoremap <Leader>b :ls<CR>:b<Space>
 " Toggle to last open file in buffer
 nnoremap <Leader>v <C-^>
 
-" Delete buffer, preserving layout if not quickfix list
+" Delete buffer, preserving layout if not quickfix list or :help
 nnoremap <Leader>q :Bd<CR>
-autocmd BufReadPost quickfix nnoremap <buffer> <Leader>q :bd<CR>
+autocmd FileType qf,help nnoremap <buffer> <Leader>q :bd<CR>
 
 " Add newlines from normal mode
 nnoremap <CR> o<Esc>k
