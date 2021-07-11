@@ -41,6 +41,7 @@ function! PackInit() abort
   call minpac#add('vmchale/dhall-vim')
   call minpac#add('neovimhaskell/haskell-vim')
   call minpac#add('purescript-contrib/purescript-vim')
+  call minpac#add('dag/vim-fish')
 
   " Theming
   call minpac#add('dylanaraps/wal.vim')
