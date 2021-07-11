@@ -1,8 +1,5 @@
 let mapleader = ' '
 
-" Disable vim-gitgutter's mappings
-let g:gitgutter_map_keys = 0
-
 " Disable arrow keys because old habits die hard
 nnoremap <Up> <NOP>
 nnoremap <Down> <NOP>
@@ -66,6 +63,11 @@ command! -bang -nargs=* Rg
 
 " Async make
 nnoremap <Leader>m :Make 
+
+" Push git changes to quickfix
+"" Disable vim-gitgutter's default mappings
+let g:gitgutter_map_keys = 0
+nnoremap <Leader>y :GitGutterQuickFix<CR>
 
 " Navigate location list
 nmap <silent> <Leader>j :lopen<CR>
