@@ -13,7 +13,7 @@ nnoremap Q <NOP>
 nnoremap Y y$
 
 " Buffer selection
-nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>b :ls<CR>:b<Space>
 
 " Toggle to last open file in buffer
 nnoremap <Leader>v <C-^>
