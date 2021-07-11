@@ -136,7 +136,6 @@ tiny-irc-client-bin
 urlscan
 vdirsyncer
 vimpc-git
-xclipd
 zathura-pdf-mupdf
 
 # gui apps
