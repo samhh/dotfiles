@@ -42,6 +42,11 @@ set -x MANPAGER nvim +Man!
 ## Inform shell environment of preexisting ssh-agent socket
 set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 
+## Prepare environment for nix on demand as it's slow
+function loadnix
+    bass source /etc/profile.d/nix{,-daemon}.sh
+end
+
 # Sync colorscheme
 source "$XDG_CACHE_HOME/wal/colors.fish"
 
