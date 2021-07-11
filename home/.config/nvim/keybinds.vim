@@ -1,5 +1,8 @@
 let mapleader = ' '
 
+" Disable vim-gitgutter's mappings
+let g:gitgutter_map_keys = 0
+
 " Disable arrow keys because old habits die hard
 nnoremap <Up> <NOP>
 nnoremap <Down> <NOP>
