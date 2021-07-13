@@ -37,7 +37,8 @@ nnoremap <Leader>p :GFiles<CR>
 nnoremap <Leader>P :Files<CR>
 
 " Shorthand edit in directory of open buffer
-nnoremap <Leader>l :e %:p:h/
+set wildcharm=<Tab>
+nnoremap <Leader>l :e %:p:h/<Tab>
 
 " Move fzf results into quickfix
 let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
