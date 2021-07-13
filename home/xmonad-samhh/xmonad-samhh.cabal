@@ -41,7 +41,7 @@ executable xmonad-samhh-bar
   main-is:               Main.hs
   build-depends:
       xmonad-samhh
-    , xmobar
+    , xmobar             ^>= 0.38
 
 library
   import:                common
