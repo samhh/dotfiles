@@ -98,7 +98,7 @@ fisher
 fzf
 gdu-bin
 git
-git-delta-bin
+git-delta
 gotop-bin
 gping
 hledger-bin
