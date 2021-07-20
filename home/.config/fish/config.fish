@@ -76,3 +76,8 @@ function mkcd
     cd $argv;
 end
 
+# Create file, recursively creating directories as needed
+function mktouch
+    mkdir -p (dirname $argv);
+    touch $argv;
+end
