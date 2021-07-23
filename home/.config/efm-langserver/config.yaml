@@ -1,0 +1,21 @@
+version: 2
+lint-debounce: 1s
+
+tools:
+  eslint: &eslint
+    root-markers:
+      - node_modules/
+    lint-command: 'eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}'
+    lint-ignore-exit-code: true
+    lint-stdin: true
+    lint-formats:
+      - "%f(%l,%c): %tarning %m"
+      - "%f(%l,%c): %rror %m"
+
+languages:
+  javascript:
+    - <<: *eslint
+  typescript:
+    - <<: *eslint
+  typescriptreact:
+    - <<: *eslint

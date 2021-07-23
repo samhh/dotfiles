@@ -74,7 +74,7 @@ lua <<EOF
 
   local lspc = require'lspconfig'
 
-  local servers = { "bashls", "gopls", "hls", "purescriptls", "rls", "tsserver" }
+  local servers = { "bashls", "efm", "gopls", "hls", "purescriptls", "rls", "tsserver" }
   for _, lsp in ipairs(servers) do
     lspc[lsp].setup {}
   end

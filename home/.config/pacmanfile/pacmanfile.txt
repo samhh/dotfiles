@@ -160,6 +160,7 @@ steam
 # dev
 bash-language-server
 cargo-outdated
+efm-langserver
 eslint_d
 fnm-bin
 ghcup-hs-bin

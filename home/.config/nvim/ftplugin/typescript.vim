@@ -1,7 +1,5 @@
 setlocal foldmethod=expr
-let g:ale_javascript_eslint_use_global = 1
-let g:ale_javascript_eslint_executable = 'eslint_d'
-let b:ale_linters = ['eslint']
+let b:ale_linters = []
 let b:ale_fixers = ['prettier']
 
 func Eatchar(pat)
