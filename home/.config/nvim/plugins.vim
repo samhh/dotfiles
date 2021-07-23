@@ -76,7 +76,7 @@ lua <<EOF
 
   local servers = { "bashls", "gopls", "hls", "purescriptls", "rls", "tsserver" }
   for _, lsp in ipairs(servers) do
-    lspc[lsp].setup { on_attach = on_attach }
+    lspc[lsp].setup {}
   end
 
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
