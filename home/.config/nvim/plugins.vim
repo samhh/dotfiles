@@ -71,7 +71,7 @@ lua <<EOF
 
   local lspc = require'lspconfig'
 
-  local servers = { "bashls", "efm", "gopls", "purescriptls", "rls" }
+  local servers = { "bashls", "gopls", "purescriptls", "rls" }
   local servers_nofmt = { "hls", "tsserver" }
   for _, lsp in ipairs(servers) do
     lspc[lsp].setup {}
@@ -83,6 +83,9 @@ lua <<EOF
       end
     }
   end
+  lspc.efm.setup {
+    filetypes = { "haskell", "javascript", "typescript", "typescriptreact" }
+  }
 
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
