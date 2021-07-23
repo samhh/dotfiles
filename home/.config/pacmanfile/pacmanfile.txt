@@ -177,6 +177,7 @@ shellcheck-bin
 shunit2
 stack-static
 stylish-haskell-bin
+tshm-bin
 typescript-language-server-bin
 yarn
 
