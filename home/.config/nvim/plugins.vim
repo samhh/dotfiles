@@ -71,9 +71,17 @@ lua <<EOF
 
   local lspc = require'lspconfig'
 
-  local servers = { "bashls", "efm", "gopls", "hls", "purescriptls", "rls", "tsserver" }
+  local servers = { "bashls", "efm", "gopls", "purescriptls", "rls" }
+  local servers_nofmt = { "hls", "tsserver" }
   for _, lsp in ipairs(servers) do
     lspc[lsp].setup {}
+  end
+  for _, lsp in ipairs(servers_nofmt) do
+    lspc[lsp].setup {
+      on_attach = function(client)
+        client.resolved_capabilities.document_formatting = false
+      end
+    }
   end
 
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
