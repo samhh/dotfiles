@@ -4,7 +4,7 @@ lint-debounce: 1s
 tools:
   eslint: &eslint
     root-markers:
-      - node_modules/
+      - node_modules/eslint/
     lint-command: 'eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}'
     lint-ignore-exit-code: true
     lint-stdin: true
@@ -12,10 +12,27 @@ tools:
       - "%f(%l,%c): %tarning %m"
       - "%f(%l,%c): %rror %m"
 
+  prettier: &prettier
+    root-markers:
+      - node_modules/prettier/
+    format-command: './node_modules/.bin/prettier --stdin-filepath ${INPUT}'
+    format-stdin: true
+
+  stylish-haskell: &stylish-haskell
+    root-markers:
+      - cabal.project
+    format-command: 'stylish-haskell ${INPUT}'
+    format-stdin: true
+
 languages:
+  haskell:
+    - <<: *stylish-haskell
   javascript:
     - <<: *eslint
+    - <<: *prettier
   typescript:
     - <<: *eslint
+    - <<: *prettier
   typescriptreact:
     - <<: *eslint
+    - <<: *prettier

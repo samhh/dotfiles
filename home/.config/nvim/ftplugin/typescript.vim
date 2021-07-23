@@ -1,6 +1,4 @@
 setlocal foldmethod=expr
-let b:ale_linters = []
-let b:ale_fixers = ['prettier']
 
 func Eatchar(pat)
     let c = nr2char(getchar(0))

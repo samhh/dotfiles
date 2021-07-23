@@ -96,7 +96,7 @@ inoremap <silent><expr> <C-space> compe#complete()
 inoremap <silent><expr> <CR>      compe#confirm('<CR>')
 
 " Format/fix active buffer
-nnoremap <silent> <Leader>z :ALEFix<CR>
+nnoremap <silent> <Leader>z <Cmd>lua vim.lsp.buf.formatting()<CR>
 
 " Show documentation (type info) in preview window
 nnoremap <silent> <Leader>d <Cmd>lua vim.lsp.buf.hover()<CR>

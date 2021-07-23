@@ -1,5 +1,3 @@
-let g:ale_disable_lsp = 1
-
 function! PackInit() abort
   packadd minpac
   call minpac#init()
@@ -31,7 +29,6 @@ function! PackInit() abort
   call minpac#add('tpope/vim-dispatch')
 
   " LSP & linting
-  call minpac#add('dense-analysis/ale')
   call minpac#add('hrsh7th/nvim-compe')
   call minpac#add('neovim/nvim-lspconfig')
 
