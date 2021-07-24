@@ -87,9 +87,6 @@ nmap <silent> gr <Cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> <Leader>s <Cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> <Leader>S <Cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 
-" Use buffer completions - will be conditionally overridden by LSP
-inoremap <silent> <C-Space> <C-n>
-
 " Format/fix active buffer
 nnoremap <silent> <Leader>z <Cmd>lua vim.lsp.buf.formatting()<CR>
 
