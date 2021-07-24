@@ -71,18 +71,39 @@ lua <<EOF
 
   local lspc = require'lspconfig'
 
-  local servers = { "bashls", "gopls", "purescriptls", "rls" }
-  local servers_nofmt = { "hls", "tsserver" }
-  for _, lsp in ipairs(servers) do
-    lspc[lsp].setup {}
+  local function concat_tables(xs, ys)
+    local zs = {}
+
+    for _,x in ipairs(xs) do table.insert(zs, x) end
+    for _,y in ipairs(ys) do table.insert(zs, y) end
+
+    return zs
   end
-  for _, lsp in ipairs(servers_nofmt) do
-    lspc[lsp].setup {
+
+  local function table_has_value(xs, y)
+    for i,x in ipairs(xs) do
+      if x == y then return true end
+    end
+
+    return false
+  end
+
+  local function disable_server_fmt(client)
+    client.resolved_capabilities.document_formatting = false
+  end
+
+  local servers_fmt = { "bashls", "gopls", "purescriptls", "rls" }
+  local servers_nofmt = { "hls", "tsserver" }
+  local servers = concat_tables(servers_fmt, servers_nofmt)
+
+  for _, server in ipairs(servers) do
+    lspc[server].setup {
       on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
+        if table_has_value(servers_nofmt, server) then disable_server_fmt(client) end
       end
     }
   end
+
   lspc.efm.setup {
     filetypes = { "haskell", "javascript", "typescript", "typescriptreact" }
   }
