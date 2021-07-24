@@ -10,7 +10,7 @@ endfunction
 let g:lightline = {
 \    'active': {
 \        'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ],
-\        'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'buffers' ], [ 'filetype' ], [ 'diagnostics' ] ],
+\        'right': [ [ 'percent', 'lineinfo' ], [ 'filetype', 'buffers' ], [ 'diagnostics' ] ],
 \    },
 \    'component': {
 \        'buffers': "%{len(filter(range(1,bufnr('$')),'buflisted(v:val)'))}b",
