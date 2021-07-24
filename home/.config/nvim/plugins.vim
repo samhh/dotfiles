@@ -56,7 +56,7 @@ lua <<EOF
       navigation = {
         enable = true,
         keymaps = {
-          goto_definition = "gld"
+          goto_definition_lsp_fallback = "gd"
         },
       },
       smart_rename = {
@@ -92,7 +92,6 @@ lua <<EOF
     vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     vim.api.nvim_buf_set_keymap(0, 'i', '<C-n>', '<C-x><C-o>', { noremap = true })
     vim.api.nvim_buf_set_keymap(0, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { noremap = true })
-    vim.api.nvim_buf_set_keymap(0, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { noremap = false })
     vim.api.nvim_buf_set_keymap(0, 'n', '<Leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', { noremap = false })
   end
 
