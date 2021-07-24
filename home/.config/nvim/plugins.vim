@@ -93,6 +93,7 @@ lua <<EOF
     vim.api.nvim_buf_set_keymap(0, 'i', '<C-Space>', '<C-x><C-o>', { noremap = true })
 
     vim.api.nvim_buf_set_keymap(0, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { noremap = true })
+    vim.api.nvim_buf_set_keymap(0, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { noremap = false })
   end
 
   local function disable_server_fmt(client)

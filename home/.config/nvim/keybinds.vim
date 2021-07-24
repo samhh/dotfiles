@@ -81,7 +81,6 @@ nmap <silent> <C-h> :cprev<CR>
 nmap <silent> <C-l> :cnext<CR>
 
 " LSP gotos
-nmap <silent> gd <Cmd>lua vim.lsp.buf.definition()<CR>
 nmap <silent> gr <Cmd>lua vim.lsp.buf.references()<CR>
 
 " Rename LSP symbol
