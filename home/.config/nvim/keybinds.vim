@@ -97,9 +97,6 @@ inoremap <silent> <C-Space> <C-n>
 " Format/fix active buffer
 nnoremap <silent> <Leader>z <Cmd>lua vim.lsp.buf.formatting()<CR>
 
-" Show documentation (type info) in preview window
-nnoremap <silent> <Leader>d <Cmd>lua vim.lsp.buf.hover()<CR>
-
 " Show diagnostics in popup
 nnoremap <silent> <Leader>e <Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 

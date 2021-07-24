@@ -87,10 +87,12 @@ lua <<EOF
     return false
   end
 
-  -- Use LSP omnifunc when available
-  local function setup_omni()
+  -- Use LSP-enhanced keybinds when available
+  local function setup_keybinds()
     vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     vim.api.nvim_buf_set_keymap(0, 'i', '<C-Space>', '<C-x><C-o>', { noremap = true })
+
+    vim.api.nvim_buf_set_keymap(0, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { noremap = true })
   end
 
   local function disable_server_fmt(client)
@@ -104,7 +106,7 @@ lua <<EOF
   for _, server in ipairs(servers) do
     lspc[server].setup {
       on_attach = function(client)
-        setup_omni()
+        setup_keybinds()
         if table_has_value(servers_nofmt, server) then disable_server_fmt(client) end
       end
     }
