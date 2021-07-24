@@ -33,8 +33,10 @@ set inccommand=nosplit
 " Use ripgrep and ignore lockfiles
 set grepprg=rg\ -S\ -g\ \"!*.lock\"\ --vimgrep\ $*
 
-" LSP menu-related
+" Always prompt for an explicit completion choice
 set completeopt=menuone,noselect
+
+" Suppress completion messages
 set shortmess+=c
 
 " Differentiate LSP diagnostics styling
