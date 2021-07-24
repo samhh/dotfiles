@@ -16,6 +16,7 @@ function! PackInit() abort
   call minpac#add('tpope/vim-commentary')
   call minpac#add('mhinz/vim-grepper')
   call minpac#add('tpope/vim-surround')
+  call minpac#add('rstacruz/vim-closer')
   call minpac#add('phaazon/hop.nvim')
 
   " Formatting
