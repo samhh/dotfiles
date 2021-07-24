@@ -21,9 +21,6 @@ set nofoldenable
 set foldmethod=manual
 set foldexpr=nvim_treesitter#foldexpr()
 
-" Use LSP insert mode completion
-set omnifunc=v:lua.vim.lsp.omnifunc
-
 " Write swap file faster so that plugins like gitgutter are more responsive
 set updatetime=50
 

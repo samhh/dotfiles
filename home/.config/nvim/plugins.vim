@@ -28,8 +28,7 @@ function! PackInit() abort
   " Compilation
   call minpac#add('tpope/vim-dispatch')
 
-  " LSP & linting
-  call minpac#add('hrsh7th/nvim-compe')
+  " LSP
   call minpac#add('neovim/nvim-lspconfig')
 
   " Syntax
@@ -88,6 +87,12 @@ lua <<EOF
     return false
   end
 
+  -- Use LSP omnifunc when available
+  local function setup_omni()
+    vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    vim.api.nvim_buf_set_keymap(0, 'i', '<C-Space>', '<C-x><C-o>', { noremap = true })
+  end
+
   local function disable_server_fmt(client)
     client.resolved_capabilities.document_formatting = false
   end
@@ -99,6 +104,7 @@ lua <<EOF
   for _, server in ipairs(servers) do
     lspc[server].setup {
       on_attach = function(client)
+        setup_omni()
         if table_has_value(servers_nofmt, server) then disable_server_fmt(client) end
       end
     }
@@ -117,19 +123,6 @@ lua <<EOF
       underline = true,
     }
   )
-
-  require'compe'.setup {
-    enabled = true;
-    autocomplete = false;
-    documentation = true;
-
-    source = {
-      nvim_lsp = true;
-      treesitter = true;
-      path = true;
-      buffer = true;
-    };
-  }
 EOF
 
 command! PackUpdate call PackInit() | call minpac#update()
