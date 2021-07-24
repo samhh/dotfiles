@@ -126,6 +126,24 @@ lua <<EOF
       underline = true,
     }
   )
+
+  local pubdiag = "textDocument/publishDiagnostics"
+  local def_pubdiag_handler = vim.lsp.handlers[pubdiag]
+  vim.lsp.handlers[pubdiag] = function(err, method, res, cid, bufnr, cfg)
+    def_pubdiag_handler(err, method, res, cid, bufnr, cfg)
+
+    local qfdiags = {}
+    for bufnr_, diags in pairs(vim.lsp.diagnostic.get_all()) do
+      for _, diag in ipairs(diags) do
+        diag.bufnr = bufnr_
+        diag.lnum = diag.range.start.line + 1
+        diag.col = diag.range.start.character + 1
+        diag.text = diag.message
+        table.insert(qfdiags, diag)
+      end
+    end
+    vim.lsp.util.set_qflist(qfdiags)
+  end
 EOF
 
 command! PackUpdate call PackInit() | call minpac#update()
