@@ -62,7 +62,7 @@ lua <<EOF
       smart_rename = {
         enable = true,
         keymaps = {
-          smart_rename = "glr"
+          smart_rename = "<Leader>r"
         },
       },
     },
@@ -94,6 +94,7 @@ lua <<EOF
 
     vim.api.nvim_buf_set_keymap(0, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { noremap = true })
     vim.api.nvim_buf_set_keymap(0, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { noremap = false })
+    vim.api.nvim_buf_set_keymap(0, 'n', '<Leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', { noremap = false })
   end
 
   local function disable_server_fmt(client)

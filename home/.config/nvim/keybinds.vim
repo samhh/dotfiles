@@ -83,9 +83,6 @@ nmap <silent> <C-l> :cnext<CR>
 " LSP gotos
 nmap <silent> gr <Cmd>lua vim.lsp.buf.references()<CR>
 
-" Rename LSP symbol
-nmap <Leader>r <Cmd>lua vim.lsp.buf.rename()<CR>
-
 " Symbols search
 nnoremap <silent> <Leader>s <Cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> <Leader>S <Cmd>lua vim.lsp.buf.workspace_symbol()<CR>
