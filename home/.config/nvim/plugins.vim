@@ -33,7 +33,7 @@ function! PackInit() abort
   call minpac#add('neovim/nvim-lspconfig')
 
   " Syntax
-  call minpac#add('nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'})
+  call minpac#add('nvim-treesitter/nvim-treesitter', { 'branch': '0.5-compat', 'do': ':TSUpdate' })
   call minpac#add('nvim-treesitter/nvim-treesitter-refactor')
   call minpac#add('vmchale/dhall-vim')
   call minpac#add('neovimhaskell/haskell-vim')
