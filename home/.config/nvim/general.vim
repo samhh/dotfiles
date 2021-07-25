@@ -53,3 +53,6 @@ autocmd ColorScheme  * highlight LspReferenceRead ctermbg=0
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
+" Briefly highlight on yank
+autocmd TextYankPost * lua vim.highlight.on_yank { higroup = "IncSearch", timeout = 150, on_visual = true }
+
