@@ -99,25 +99,47 @@ lua <<EOF
       vim.api.nvim_buf_set_keymap(0, 'n', '<Leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', { noremap = false })
     end
 
-    local function disable_server_fmt(client)
-      client.resolved_capabilities.document_formatting = false
+    local function attacher_fmt(client)
+        setup_keybinds()
     end
 
-    local servers_fmt = { "bashls", "gopls", "purescriptls", "rls" }
-    local servers_nofmt = { "hls", "tsserver" }
-    local servers = concat_tables(servers_fmt, servers_nofmt)
-
-    for _, server in ipairs(servers) do
-      lspc[server].setup {
-        on_attach = function(client)
-          setup_keybinds()
-          if table_has_value(servers_nofmt, server) then disable_server_fmt(client) end
-        end
-      }
+    local function attacher_nofmt(client)
+        setup_keybinds()
+        client.resolved_capabilities.document_formatting = false
     end
+
+    lspc.bashls.setup {
+      on_attach = attacher_fmt
+    }
 
     lspc.efm.setup {
       filetypes = { "haskell", "javascript", "typescript", "typescriptreact" }
+    }
+
+    lspc.gopls.setup {
+      on_attach = attacher_fmt
+    }
+
+    lspc.hls.setup {
+      on_attach = attacher_nofmt
+    }
+
+    lspc.purescriptls.setup {
+      on_attach = attacher_fmt
+    }
+
+    lspc.rls.setup {
+      on_attach = attacher_fmt
+    }
+
+    lspc.tsserver.setup {
+      init_options = {
+        plugins = { {
+          name = "typescript-tshm-plugin",
+          location = "/usr/lib/node_modules/typescript-tshm-plugin/"
+        } }
+      },
+      on_attach = attacher_nofmt
     }
   end
 
