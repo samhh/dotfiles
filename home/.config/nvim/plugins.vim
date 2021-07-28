@@ -46,31 +46,6 @@ function! PackInit() abort
 endfunction
 
 lua <<EOF
-  require'nvim-treesitter.configs'.setup {
-    ensure_installed = "maintained",
-    highlight = { enable = true },
-    indent = { enable = true },
-    autotag = { enable = true },
-    context_commentstring = { enable = true },
-    refactor = {
-      highlight_definitions = { enable = true },
-      navigation = {
-        enable = true,
-        keymaps = {
-          goto_definition_lsp_fallback = "gd"
-        },
-      },
-      smart_rename = {
-        enable = true,
-        keymaps = {
-          smart_rename = "<Leader>r"
-        },
-      },
-    },
-  }
-
-  local lspc = require'lspconfig'
-
   local function concat_tables(xs, ys)
     local zs = {}
 
@@ -88,62 +63,100 @@ lua <<EOF
     return false
   end
 
-  -- Use LSP-enhanced keybinds when available
-  local function setup_keybinds()
-    vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-    vim.api.nvim_buf_set_keymap(0, 'i', '<C-n>', '<C-x><C-o>', { noremap = true })
-    vim.api.nvim_buf_set_keymap(0, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { noremap = true })
-    vim.api.nvim_buf_set_keymap(0, 'n', '<Leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', { noremap = false })
-  end
-
-  local function disable_server_fmt(client)
-    client.resolved_capabilities.document_formatting = false
-  end
-
-  local servers_fmt = { "bashls", "gopls", "purescriptls", "rls" }
-  local servers_nofmt = { "hls", "tsserver" }
-  local servers = concat_tables(servers_fmt, servers_nofmt)
-
-  for _, server in ipairs(servers) do
-    lspc[server].setup {
-      on_attach = function(client)
-        setup_keybinds()
-        if table_has_value(servers_nofmt, server) then disable_server_fmt(client) end
-      end
+  local function setup_treesitter()
+    require'nvim-treesitter.configs'.setup {
+      ensure_installed = "maintained",
+      highlight = { enable = true },
+      indent = { enable = true },
+      autotag = { enable = true },
+      context_commentstring = { enable = true },
+      refactor = {
+        highlight_definitions = { enable = true },
+        navigation = {
+          enable = true,
+          keymaps = {
+            goto_definition_lsp_fallback = "gd"
+          },
+        },
+        smart_rename = {
+          enable = true,
+          keymaps = {
+            smart_rename = "<Leader>r"
+          },
+        },
+      },
     }
   end
 
-  lspc.efm.setup {
-    filetypes = { "haskell", "javascript", "typescript", "typescriptreact" }
-  }
+  local function setup_lsp_servers()
+    local lspc = require'lspconfig'
 
-  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics,
-    {
-      virtual_text = false,
-      signs = true,
-      update_in_insert = false,
-      underline = true,
-    }
-  )
-
-  local pubdiag = "textDocument/publishDiagnostics"
-  local def_pubdiag_handler = vim.lsp.handlers[pubdiag]
-  vim.lsp.handlers[pubdiag] = function(err, method, res, cid, bufnr, cfg)
-    def_pubdiag_handler(err, method, res, cid, bufnr, cfg)
-
-    local qfdiags = {}
-    for bufnr_, diags in pairs(vim.lsp.diagnostic.get_all()) do
-      for _, diag in ipairs(diags) do
-        diag.bufnr = bufnr_
-        diag.lnum = diag.range.start.line + 1
-        diag.col = diag.range.start.character + 1
-        diag.text = diag.message
-        table.insert(qfdiags, diag)
-      end
+    -- Use LSP-enhanced keybinds when available
+    local function setup_keybinds()
+      vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+      vim.api.nvim_buf_set_keymap(0, 'i', '<C-n>', '<C-x><C-o>', { noremap = true })
+      vim.api.nvim_buf_set_keymap(0, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { noremap = true })
+      vim.api.nvim_buf_set_keymap(0, 'n', '<Leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', { noremap = false })
     end
-    vim.lsp.util.set_qflist(qfdiags)
+
+    local function disable_server_fmt(client)
+      client.resolved_capabilities.document_formatting = false
+    end
+
+    local servers_fmt = { "bashls", "gopls", "purescriptls", "rls" }
+    local servers_nofmt = { "hls", "tsserver" }
+    local servers = concat_tables(servers_fmt, servers_nofmt)
+
+    for _, server in ipairs(servers) do
+      lspc[server].setup {
+        on_attach = function(client)
+          setup_keybinds()
+          if table_has_value(servers_nofmt, server) then disable_server_fmt(client) end
+        end
+      }
+    end
+
+    lspc.efm.setup {
+      filetypes = { "haskell", "javascript", "typescript", "typescriptreact" }
+    }
   end
+
+  local function setup_lsp_diags()
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics,
+      {
+        virtual_text = false,
+        signs = true,
+        update_in_insert = false,
+        underline = true,
+      }
+    )
+  end
+
+  local function setup_lsp_qf()
+    local pubdiag = "textDocument/publishDiagnostics"
+    local def_pubdiag_handler = vim.lsp.handlers[pubdiag]
+    vim.lsp.handlers[pubdiag] = function(err, method, res, cid, bufnr, cfg)
+      def_pubdiag_handler(err, method, res, cid, bufnr, cfg)
+
+      local qfdiags = {}
+      for bufnr_, diags in pairs(vim.lsp.diagnostic.get_all()) do
+        for _, diag in ipairs(diags) do
+          diag.bufnr = bufnr_
+          diag.lnum = diag.range.start.line + 1
+          diag.col = diag.range.start.character + 1
+          diag.text = diag.message
+          table.insert(qfdiags, diag)
+        end
+      end
+      vim.lsp.util.set_qflist(qfdiags)
+    end
+  end
+
+  setup_treesitter()
+  setup_lsp_servers()
+  setup_lsp_diags()
+  setup_lsp_qf()
 EOF
 
 command! PackUpdate call PackInit() | call minpac#update()
