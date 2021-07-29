@@ -73,6 +73,7 @@
     rss = restore --staged
     rx = reset
     rxh = reset --hard
+    sh = stash
     st = status --short
     sw = switch
 
