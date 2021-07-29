@@ -1,0 +1,2 @@
+install-ghc: false
+system-ghc: true
