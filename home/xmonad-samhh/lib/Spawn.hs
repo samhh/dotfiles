@@ -38,8 +38,9 @@ toSpawnable PauseMpd = "playerctl play-pause -p mpd"
 toSpawnable PauseMpv = "playerctl play-pause -p mpv"
 toSpawnable PlayNextMpd = "playerctl next -p mpd"
 toSpawnable NewWallpaper = "systemctl --user start wallpaper"
--- Need to sleep to allow for keys to be released for scrot
-toSpawnable TakeScreenshot = "sleep 0.1; scrot -s"
+-- Need to sleep (-s) to allow for keys to be released for scrot.
+-- Need to freeze (-f) to prevent scrot capturing the selection rectangle.
+toSpawnable TakeScreenshot = "sleep 0.1; scrot -sf"
 toSpawnable Apps = "~/scripts/apps.sh"
 toSpawnable AllApps = "rofi -show run"
 toSpawnable WebSearch = "~/scripts/web-search.sh"
