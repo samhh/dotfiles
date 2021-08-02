@@ -97,6 +97,7 @@ config cs = desktopConfig
         , ((super, K.xK_x), spawn' Passwords)
         , ((super, K.xK_n), spawn' Usernames)
         , ((super, K.xK_m), spawn' Emails)
+        , ((super, K.xK_i), spawn' LatencyCheck)
         ]
           <> (workspaceView super <$> Workspace.workspaces)
           <> (workspaceSwitch super <$> Workspace.workspaces)
