@@ -9,11 +9,11 @@ nheko
 obsidian
 pavucontrol
 piper
+qutebrowser
 simplescreenrecorder
 slack
 steam
 telegram-desktop
-vimb
 fin
 
 app=$(echo "$apps" | rofi -window-title gui -dmenu)

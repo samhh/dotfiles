@@ -1,8 +1,0 @@
-*[vimbhint^='label'] {
-    font-size: 1.5rem !important;
-}
-
-body::-webkit-scrollbar {
-    display: none;
-}
-

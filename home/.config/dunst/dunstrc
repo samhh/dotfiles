@@ -13,7 +13,7 @@
     format = "<b>%a</b>\n<b>%s</b> %p\n%b"
     markup = full
     dmenu = /usr/bin/rofi -show notif -dmenu
-    browser = /usr/bin/vimb
+    browser = /usr/bin/qutebrowser
 
 [urgency_low]
     background = "#3b4252"

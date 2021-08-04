@@ -146,10 +146,13 @@ firefox-developer-edition
 nheko
 obsidian-appimage
 piper
+# for qute-pass
+python-tldextract
+qbpm-git
+qutebrowser
 simplescreenrecorder
 slack-desktop
 telegram-desktop
-vimb
 
 # gaming
 lib32-mangohud
