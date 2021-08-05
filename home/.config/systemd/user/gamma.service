@@ -3,7 +3,7 @@ Description=Gamma management
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/redshift
+ExecStart=/usr/bin/redshift -l 51.5941:0.1298
 
 [Install]
 WantedBy=xorg.target
