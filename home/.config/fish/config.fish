@@ -39,6 +39,9 @@ set -x EDITOR $VISUAL
 ## Use nvim for man pages
 set -x MANPAGER nvim +Man!
 
+## Use nvim for pacdiff
+set -x DIFFPROG nvim -d
+
 ## Inform shell environment of preexisting ssh-agent socket
 set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 
