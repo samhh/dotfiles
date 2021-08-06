@@ -27,6 +27,9 @@ set updatetime=50
 " Display signs in number column
 set signcolumn=number
 
+" Keep n lines of context visible at all times
+set scrolloff=5
+
 " Live substitution
 set inccommand=nosplit
 
