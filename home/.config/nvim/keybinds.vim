@@ -47,9 +47,10 @@ let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
 nnoremap gh :HopWord<CR>
 
 " :grep motions and shortcut
+let g:grepper = {}
+let g:grepper.quickfix = 0
 nmap gs <plug>(GrepperOperator)
-xmap gs <plug>(GrepperOperator)
-nnoremap <Leader>/ :silent grep 
+nnoremap <Leader>/ :silent lgrep ''<Left>
 
 " Fuzzy find text
 nnoremap <Leader>f :Rg<CR>
