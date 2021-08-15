@@ -49,8 +49,8 @@ autocmd ColorScheme * highlight LspDiagnosticsUnderlineInformation guifg=none ct
 autocmd ColorScheme * highlight LspDiagnosticsUnderlineHint guifg=none ctermfg=none cterm=underline gui=underline
 
 " Highlight references to symbol under cursor (conditionally enabled elsewhere)
-autocmd ColorScheme  * lua require('vim.lsp.diagnostic')._define_default_signs_and_highlights()
-autocmd ColorScheme  * highlight LspReferenceRead ctermbg=0
+autocmd ColorScheme * lua require('vim.lsp.diagnostic')._define_default_signs_and_highlights()
+autocmd ColorScheme * highlight LspReferenceRead ctermbg=0
 
 " Auto-open quickfix window
 autocmd QuickFixCmdPost [^l]* nested cwindow
@@ -58,4 +58,7 @@ autocmd QuickFixCmdPost    l* nested lwindow
 
 " Briefly highlight on yank
 autocmd TextYankPost * lua vim.highlight.on_yank { higroup = "IncSearch", timeout = 150, on_visual = true }
+
+" Auto-trust exrc on creation
+autocmd BufNewFile .exrc nested autocmd BufWritePost <buffer> nested ExrcTrust
 
