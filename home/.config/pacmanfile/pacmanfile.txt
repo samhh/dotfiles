@@ -182,6 +182,9 @@ tshm-bin
 typescript-language-server-bin
 yarn
 
+# dev - spago tests
+bower
+
 # work
 nodejs-nodemon
 slack-desktop
