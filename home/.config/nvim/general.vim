@@ -33,6 +33,9 @@ set scrolloff=5
 " Live substitution
 set inccommand=nosplit
 
+" Only shallow search in editor's PWD
+set path=,,
+
 " Use ripgrep and ignore lockfiles
 set grepprg=rg\ -S\ -g\ \"!*.lock\"\ --vimgrep\ $*
 

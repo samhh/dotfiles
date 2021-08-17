@@ -32,16 +32,12 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 " Remove highlight
 nnoremap <Leader>h :noh<CR>
 
-" Fuzzy find filenames
-nnoremap <Leader>p :GFiles<CR>
-nnoremap <Leader>P :Files<CR>
+" Fuzzy find and edit by filename
+nnoremap <Leader>p :fin 
 
 " Shorthand edit in directory of open buffer
 set wildcharm=<Tab>
 nnoremap <Leader>l :e %:p:h/<Tab>
-
-" Move fzf results into quickfix
-let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
 
 " Hop to word
 nnoremap gh :HopWord<CR>
@@ -51,17 +47,6 @@ let g:grepper = {}
 let g:grepper.quickfix = 0
 nmap gs <plug>(GrepperOperator)
 nnoremap <Leader>/ :silent lgrep ''<Left>
-
-" Fuzzy find text
-nnoremap <Leader>f :Rg<CR>
-
-"" Customised fzf.vim Rg implementation to ignore lockfiles
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg -g "!*.lock" --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
-  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
-  \   <bang>0)
 
 " Async make
 nnoremap <Leader>m :Make 

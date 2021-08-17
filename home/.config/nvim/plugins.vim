@@ -23,9 +23,6 @@ function! PackInit() abort
   call minpac#add('editorconfig/editorconfig-vim')
   call minpac#add('tpope/vim-sleuth')
 
-  " File management
-  call minpac#add('junegunn/fzf.vim')
-
   " Compilation
   call minpac#add('tpope/vim-dispatch')
 
