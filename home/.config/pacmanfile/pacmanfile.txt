@@ -187,5 +187,6 @@ bower
 
 # work
 nodejs-nodemon
+nodejs-nps
 slack-desktop
 zoom
