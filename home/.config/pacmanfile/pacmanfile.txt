@@ -155,9 +155,23 @@ telegram-desktop
 
 # gaming
 lib32-mangohud
+lutris
 mangohud
 proton-ge-custom-bin
 steam
+
+# gaming - origin via lutris
+# see: https://github.com/lutris/docs/blob/master/Origin.md
+lib32-gnutls
+lib32-libldap
+lib32-libgpg-error
+lib32-libxml2
+lib32-alsa-plugins
+lib32-sdl2
+lib32-freetype2
+lib32-dbus
+lib32-libgcrypt
+libgcrypt
 
 # dev
 bash-language-server
