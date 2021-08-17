@@ -16,5 +16,5 @@ file="$base$selected"
 
 url=$(head -1 $file)
 
-vimb -p work $url
+qbpm launch unsplash $url
 
