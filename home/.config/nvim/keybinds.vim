@@ -58,8 +58,8 @@ nnoremap <Leader>y :GitGutterQuickFix<CR>
 
 " Navigate location list
 nmap <silent> <Leader>j :lopen<CR>
-nmap <silent> <C-k> :labove<CR>
-nmap <silent> <C-j> :lbelow<CR>
+nmap <silent> <C-k> :lprev<CR>
+nmap <silent> <C-j> :lnext<CR>
 
 " Navigate quickfix list
 nmap <silent> <Leader>J :copen<CR>
