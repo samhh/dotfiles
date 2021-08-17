@@ -5,16 +5,13 @@ set number
 set colorcolumn=80
 
 " Don't word wrap in the middle of words
-set wrap linebreak nolist
+set linebreak
 
 " Keep indentation aligned when line wrapping
 set breakindent
 
 " Allow background closing/hiding of buffers with unsaved changes
 set hidden
-
-" Automatically read newly updated file in buffer
-set autoread
 
 " Disable folding on load by default to improve performance in massive files
 set nofoldenable
