@@ -151,7 +151,6 @@ python-tldextract
 qbpm-git
 qutebrowser
 simplescreenrecorder
-slack-desktop
 telegram-desktop
 
 # gaming
@@ -183,3 +182,7 @@ tshm-bin
 typescript-language-server-bin
 yarn
 
+# work
+nodejs-nodemon
+slack-desktop
+zoom
