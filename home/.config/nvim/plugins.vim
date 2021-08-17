@@ -9,7 +9,6 @@ function! PackInit() abort
   " Layout
   call minpac#add('moll/vim-bbye')
   call minpac#add('airblade/vim-gitgutter')
-  call minpac#add('nathanaelkane/vim-indent-guides')
   call minpac#add('bronson/vim-trailing-whitespace')
 
   " Motions
