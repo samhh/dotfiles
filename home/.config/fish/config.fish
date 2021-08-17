@@ -72,6 +72,8 @@ abbr -g un 'sudo pacman -Rs'
 # Misc/specific aliases
 abbr -g sys 'systemctl'
 abbr -g sysu 'systemctl --user'
+abbr -g getclip 'xclip -o -selection clipboard'
+abbr -g setclip 'xclip -i -selection clipboard'
 
 # Create directory path and cd into it
 function mkcd
