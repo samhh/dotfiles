@@ -19,6 +19,7 @@ data Spawn
     | AllApps
     | WebSearch
     | Bookmarks
+    | WorkBookmarks
     | Passwords
     | Usernames
     | Emails
@@ -45,6 +46,7 @@ toSpawnable Apps = "~/scripts/apps.sh"
 toSpawnable AllApps = "rofi -show run"
 toSpawnable WebSearch = "~/scripts/web-search.sh"
 toSpawnable Bookmarks = "~/scripts/flatmarks.sh"
+toSpawnable WorkBookmarks = "~/scripts/flatmarks-work.sh"
 toSpawnable Passwords = "~/scripts/passmenu.sh"
 toSpawnable Usernames = "~/scripts/pass-prefixed-line.sh \"username: \" username"
 toSpawnable Emails = "~/scripts/pass-prefixed-line.sh \"email: \" email"

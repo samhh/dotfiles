@@ -94,6 +94,7 @@ config cs = desktopConfig
         , ((super .|. K.shiftMask, K.xK_g), spawn' AllApps)
         , ((super, K.xK_t), spawn' WebSearch)
         , ((super, K.xK_d), spawn' Bookmarks)
+        , ((super .|. K.shiftMask, K.xK_d), spawn' WorkBookmarks)
         , ((super, K.xK_x), spawn' Passwords)
         , ((super, K.xK_n), spawn' Usernames)
         , ((super, K.xK_m), spawn' Emails)
