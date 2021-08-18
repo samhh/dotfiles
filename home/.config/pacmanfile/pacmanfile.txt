@@ -200,6 +200,8 @@ yarn
 bower
 
 # work
+1password
+heroku-cli-bin
 nodejs-nodemon
 nodejs-nps
 slack-desktop
