@@ -10,10 +10,12 @@ obsidian
 pavucontrol
 piper
 qutebrowser
+qutebrowser-unsplash
 simplescreenrecorder
 slack
 steam
 telegram-desktop
+zoom
 fin
 
 app=$(echo "$apps" | rofi -window-title gui -dmenu)
