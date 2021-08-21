@@ -23,6 +23,7 @@ c.content.blocking.enabled = False
 c.content.cookies.accept = "no-3rdparty"
 c.content.javascript.enabled = True
 c.content.notifications.enabled = False
+c.content.unknown_url_scheme_policy = "allow-all"
 c.editor.command = "alacritty -e nvim {}".split()
 c.scrolling.bar = "never"
 c.scrolling.smooth = True
