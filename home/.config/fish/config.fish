@@ -45,6 +45,9 @@ set -x DIFFPROG nvim -d
 ## Inform shell environment of preexisting ssh-agent socket
 set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 
+## Use fnm-supplied Node and check for local version config upon cd
+fnm env --use-on-cd | source
+
 ## Prepare environment for nix on demand as it's slow
 function loadnix
     bass source /etc/profile.d/nix{,-daemon}.sh
