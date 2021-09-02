@@ -1,17 +1,24 @@
 configuration {
-	width: 15;
-	lines: 3;
 	font: "Hasklig 11";
-	bw: 0;
-	location: 2;
-	padding: 10;
-	yoffset: 450;
+	location: 0;
+	yoffset: -150;
 	matching: "fuzzy";
-	sort: true;
-	line-padding: 6;
-	separator-style: "none";
-	hide-scrollbar: true;
-	color-normal: "#3b4252, #eceff4, #3b4252, #2e3440, #eceff4";
-	color-window: "#3b4252, #000000, #000000";
+}
+
+window {
+	width: 400px;
+	padding: 10px;
+	border-radius: 2px;
+	border: false;
+}
+
+listview {
+	scrollbar: false;
+	lines: 3;
+	border: false;
+}
+
+element {
+	padding: 6px;
 }
 
