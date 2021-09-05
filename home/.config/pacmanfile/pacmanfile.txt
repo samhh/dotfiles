@@ -103,6 +103,7 @@ gotop-bin
 gping
 hledger-bin
 inotify-tools
+jq
 khard
 lftp
 libqalculate
