@@ -3,6 +3,7 @@ configuration {
 	location: 0;
 	yoffset: -150;
 	matching: "fuzzy";
+	sort: true;
 }
 
 window {
