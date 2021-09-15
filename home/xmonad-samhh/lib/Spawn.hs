@@ -24,6 +24,7 @@ data Spawn
     | Usernames
     | Emails
     | LatencyCheck
+    | DefinitionLookup
 
 toSpawnable :: Spawn -> String
 toSpawnable CloseNotif = "dunstctl close"
@@ -51,4 +52,5 @@ toSpawnable Passwords = "~/scripts/passmenu.sh"
 toSpawnable Usernames = "~/scripts/pass-prefixed-line.sh \"username: \" username"
 toSpawnable Emails = "~/scripts/pass-prefixed-line.sh \"email: \" email"
 toSpawnable LatencyCheck = "alacritty -e ping 1.1.1.1"
+toSpawnable DefinitionLookup = "qutebrowser $(xclip -o -selection primary; echo -n '!d')"
 
