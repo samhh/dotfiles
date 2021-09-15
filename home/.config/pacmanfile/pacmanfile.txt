@@ -188,6 +188,7 @@ bower
 
 # work
 1password
+browserstack-local-x64
 heroku-cli-bin
 nodejs-nodemon
 nodejs-nps
