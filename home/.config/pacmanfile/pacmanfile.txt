@@ -157,6 +157,7 @@ telegram-desktop
 # gaming
 lib32-mangohud
 mangohud
+proton-caller
 proton-ge-custom-bin
 steam
 
