@@ -1,18 +1,17 @@
-module Workspace (spacesWithNonCopiedWindows, workspaces, workspaceName, workspaceView, workspaceSwitch) where
+module Workspace where
 
 import           Data.Maybe.Utils    (singletonToMaybe)
 import           Foreign.C.String    (peekCString)
-import           XMonad.Config.Prime (Display, KeyMask, KeySym, Layout,
-                                      TextProperty (tp_value), Window,
-                                      WorkspaceId, X, XState (windowset),
-                                      getTextProperty, shiftMask, wM_NAME,
-                                      windows, (.|.))
+import           XMonad
 import qualified XMonad.Config.Prime as XK
-import           XMonad.Core         (withDisplay)
-import           XMonad.StackSet     (Workspace, greedyView, hidden, integrate',
-                                      shift, stack, tag)
+import           XMonad.StackSet     (Workspace, current, greedyView, hidden,
+                                      integrate', shift, stack, tag, workspace)
 
 type WorkspaceName = String
+
+spaceContainsWindow :: Query Bool -> X Bool
+spaceContainsWindow p = anyM (runQuery p) . getWorkspaceWindows =<< ws
+  where ws = gets $ workspace . current . windowset
 
 spacesWithNonCopiedWindows :: X [WorkspaceId]
 spacesWithNonCopiedWindows = fmap (fmap tag) . filterOutCopies . hidden =<< gets windowset
@@ -22,9 +21,12 @@ spacesWithNonCopiedWindows = fmap (fmap tag) . filterOutCopies . hidden =<< gets
           let isAnyNonCopied = any (`elem` nonCopiedWindows)
           filterM (fmap isAnyNonCopied . getWorkspaceWindowTitles) xs
 
+getWorkspaceWindows :: Workspace i l Window -> [Window]
+getWorkspaceWindows = integrate' . stack
+
 getWorkspaceWindowTitles :: Workspace i l Window -> X [String]
 getWorkspaceWindowTitles w = withDisplay $ \d ->
-  liftIO $ forM (integrate' $ stack w) (`getWindowTitle` d)
+  liftIO $ forM (getWorkspaceWindows w) (`getWindowTitle` d)
 
 getWindowTitle :: Window -> Display -> IO String
 getWindowTitle w d = getTextProperty d w wM_NAME >>= (peekCString . tp_value)
@@ -58,4 +60,10 @@ workspaceSwitch super (name, k) =
   let x = windows $ shift name
    in ((super .|. shiftMask, k), x)
 
+inSpaceElse :: Query Bool -> X () -> X ()
+p `inSpaceElse` f = spaceContainsWindow p >>= \case
+  True  -> pure ()
+  False -> f
 
+ensureSpaceWindow :: String -> X ()
+ensureSpaceWindow x = (className =? x) `inSpaceElse` spawn x
