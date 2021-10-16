@@ -76,4 +76,5 @@
     sh = stash
     st = status --short
     sw = switch
+    sw-gh-pr = !sh -c 'git ft origin pull/$0/head:pr/$0 && git sw pr/$0'
 
