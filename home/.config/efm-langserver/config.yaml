@@ -12,6 +12,11 @@ tools:
       - "%f(%l,%c): %tarning %m"
       - "%f(%l,%c): %rror %m"
 
+  import-sort: &import-sort
+    root-markers:
+      - node_modules/import-sort/
+    format-command: '~/scripts/import-sort-always-stdout.sh ${INPUT}'
+
   prettier: &prettier
     root-markers:
       - node_modules/prettier/
@@ -29,10 +34,13 @@ languages:
     - <<: *stylish-haskell
   javascript:
     - <<: *eslint
+    - <<: *import-sort
     - <<: *prettier
   typescript:
     - <<: *eslint
+    - <<: *import-sort
     - <<: *prettier
   typescriptreact:
     - <<: *eslint
+    - <<: *import-sort
     - <<: *prettier
