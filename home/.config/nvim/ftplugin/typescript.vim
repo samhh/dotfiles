@@ -11,3 +11,8 @@ iabbrev <silent> it$ it('', () => {<CR><Esc>k_f'a<C-R>=Eatchar('\s')<Esc>
 iabbrev <silent> pbt$ fc.assert(fc.property(<CR><C-R>=Eatchar('\s')<Esc>
 iabbrev <silent> pbta$ fc.assert(fc.asyncProperty(<CR><C-R>=Eatchar('\s')<Esc>
 
+iabbrev <silent> esld$ /* eslint-disable */<Left><Left><Left>
+iabbrev <silent> esle$ /* eslint-enable */<Left><Left><Left>
+iabbrev <silent> esll$ // eslint-disable-line
+iabbrev <silent> esln$ // eslint-disable-next-line
+
