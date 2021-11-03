@@ -18,13 +18,12 @@ cfg cs =
       position = Top,
       sepChar = "%",
       alignSep = "}{",
-      template = " %StdinReader% | %cpu%, %cputemps% | %memory% | %wlo1% }{ %mpris2%%mpd% | %default:Master% | %default:Capture% | rss: %rss% | %date% ",
+      template = " %StdinReader% | %cpu%, %cputemps% | %memory% | %dynnetwork% }{ %mpris2%%mpd% | %default:Master% | %default:Capture% | rss: %rss% | %date% ",
       commands =
         [ Run StdinReader
         , Run $ CommandReader "~/scripts/poll-script.sh ~/scripts/cpu-temps.sh 2s" "cputemps"
         , Run $ CommandReader "~/scripts/poll-script.sh ~/scripts/rss-unread.sh 2h" "rss"
-        , Run $ Network
-            "wlo1"
+        , Run $ DynNetwork
             [ "--template"
             , "net: <tx> kB/s up, <rx> kB/s down"
             , "--Low"
