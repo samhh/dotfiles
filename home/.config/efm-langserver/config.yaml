@@ -2,16 +2,6 @@ version: 2
 lint-debounce: 1s
 
 tools:
-  eslint: &eslint
-    root-markers:
-      - node_modules/eslint/
-    lint-command: 'eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}'
-    lint-ignore-exit-code: true
-    lint-stdin: true
-    lint-formats:
-      - "%f(%l,%c): %tarning %m"
-      - "%f(%l,%c): %rror %m"
-
   import-sort: &import-sort
     root-markers:
       - node_modules/import-sort/
@@ -33,14 +23,11 @@ languages:
   haskell:
     - <<: *stylish-haskell
   javascript:
-    - <<: *eslint
     - <<: *import-sort
     - <<: *prettier
   typescript:
-    - <<: *eslint
     - <<: *import-sort
     - <<: *prettier
   typescriptreact:
-    - <<: *eslint
     - <<: *import-sort
     - <<: *prettier

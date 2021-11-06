@@ -77,6 +77,10 @@ lua <<EOF
       filetypes = { "haskell", "javascript", "typescript", "typescriptreact" }
     }
 
+    lspc.eslint.setup {
+      on_attach = attacher_fmt
+    }
+
     lspc.gopls.setup {
       on_attach = attacher_fmt
     }
