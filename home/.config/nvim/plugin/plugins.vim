@@ -164,6 +164,3 @@ lua <<EOF
   setup_lsp_qf()
 EOF
 
-command! PackUpdate call PackInit() | call minpac#update()
-command! PackClean  call PackInit() | call minpac#clean()
-
