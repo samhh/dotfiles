@@ -164,5 +164,8 @@ lua <<EOF
   setup_lsp_qf()
 
   require'hop'.setup()
+
+  require'telescope'.setup()
+  require'telescope'.load_extension('fzy_native')
 EOF
 

@@ -83,3 +83,6 @@
 [submodule "home/.config/nvim/pack/plugins/start/lightline.vim"]
   path = home/.config/nvim/pack/plugins/start/lightline.vim
   url = gh:itchyny/lightline.vim
+[submodule "home/.config/nvim/pack/plugins/start/telescope-fzy-native.nvim"]
+	path = home/.config/nvim/pack/plugins/start/telescope-fzy-native.nvim
+	url = gh:nvim-telescope/telescope-fzy-native.nvim
