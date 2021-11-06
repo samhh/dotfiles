@@ -98,7 +98,7 @@ lua <<EOF
     -- Use LSP-enhanced keybinds when available
     local function setup_keybinds()
       this_buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-      this_buf_set_keymap('i', '<C-n>', '<C-x><C-o>')
+      this_buf_set_keymap('i', '<Tab>', '<C-x><C-o>')
       this_buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
       this_buf_set_keymap('n', '<Leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>')
     end
