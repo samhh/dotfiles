@@ -162,5 +162,7 @@ lua <<EOF
   setup_lsp_servers()
   setup_lsp_diags()
   setup_lsp_qf()
+
+  require'hop'.setup()
 EOF
 
