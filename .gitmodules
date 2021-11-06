@@ -1,0 +1,79 @@
+# General
+[submodule "home/.config/nvim/pack/plugins/start/exrc.vim"]
+  path = home/.config/nvim/pack/plugins/start/exrc.vim
+  url = gh:ii14/exrc.vim
+
+# Layout
+[submodule "home/.config/nvim/pack/plugins/start/vim-bbye"]
+  path = home/.config/nvim/pack/plugins/start/vim-bbye
+  url = gh:moll/vim-bbye
+[submodule "home/.config/nvim/pack/plugins/start/vim-gitgutter"]
+  path = home/.config/nvim/pack/plugins/start/vim-gitgutter
+  url = gh:airblade/vim-gitgutter
+[submodule "home/.config/nvim/pack/plugins/start/vim-trailing-whitespace"]
+  path = home/.config/nvim/pack/plugins/start/vim-trailing-whitespace
+  url = gh:bronson/vim-trailing-whitespace
+
+# Motions
+[submodule "home/.config/nvim/pack/plugins/start/vim-commentary"]
+  path = home/.config/nvim/pack/plugins/start/vim-commentary
+  url = gh:tpope/vim-commentary
+[submodule "home/.config/nvim/pack/plugins/start/vim-surround"]
+  path = home/.config/nvim/pack/plugins/start/vim-surround
+  url = gh:tpope/vim-surround
+[submodule "home/.config/nvim/pack/plugins/start/vim-grepper"]
+  path = home/.config/nvim/pack/plugins/start/vim-grepper
+  url = gh:mhinz/vim-grepper
+[submodule "home/.config/nvim/pack/plugins/start/vim-closer"]
+  path = home/.config/nvim/pack/plugins/start/vim-closer
+  url = gh:rstacruz/vim-closer
+[submodule "home/.config/nvim/pack/plugins/start/hop.nvim"]
+  path = home/.config/nvim/pack/plugins/start/hop.nvim
+  url = gh:phaazon/hop.nvim
+
+# Formatting
+[submodule "home/.config/nvim/pack/plugins/start/editorconfig-vim"]
+  path = home/.config/nvim/pack/plugins/start/editorconfig-vim
+  url = gh:editorconfig/editorconfig-vim
+[submodule "home/.config/nvim/pack/plugins/start/vim-sleuth"]
+  path = home/.config/nvim/pack/plugins/start/vim-sleuth
+  url = gh:tpope/vim-sleuth
+
+# Compilation
+[submodule "home/.config/nvim/pack/plugins/start/vim-dispatch"]
+  path = home/.config/nvim/pack/plugins/start/vim-dispatch
+  url = gh:tpope/vim-dispatch
+
+# LSP
+[submodule "home/.config/nvim/pack/plugins/start/nvim-lspconfig"]
+  path = home/.config/nvim/pack/plugins/start/nvim-lspconfig
+  url = gh:neovim/nvim-lspconfig
+
+# Syntax
+[submodule "home/.config/nvim/pack/plugins/start/nvim-treesitter"]
+  path = home/.config/nvim/pack/plugins/start/nvim-treesitter
+  url = gh:nvim-treesitter/nvim-treesitter
+  branch = 0.5-compat
+[submodule "home/.config/nvim/pack/plugins/start/nvim-treesitter-refactor"]
+  path = home/.config/nvim/pack/plugins/start/nvim-treesitter-refactor
+  url = gh:nvim-treesitter/nvim-treesitter-refactor
+[submodule "home/.config/nvim/pack/plugins/start/dhall-vim"]
+  path = home/.config/nvim/pack/plugins/start/dhall-vim
+  url = gh:vmchale/dhall-vim
+[submodule "home/.config/nvim/pack/plugins/start/haskell-vim"]
+  path = home/.config/nvim/pack/plugins/start/haskell-vim
+  url = gh:neovimhaskell/haskell-vim
+[submodule "home/.config/nvim/pack/plugins/start/purescript-vim"]
+  path = home/.config/nvim/pack/plugins/start/purescript-vim
+  url = gh:purescript-contrib/purescript-vim
+[submodule "home/.config/nvim/pack/plugins/start/vim-fish"]
+  path = home/.config/nvim/pack/plugins/start/vim-fish
+  url = gh:dag/vim-fish
+
+# Theming
+[submodule "home/.config/nvim/pack/plugins/start/wal.vim"]
+  path = home/.config/nvim/pack/plugins/start/wal.vim
+  url = gh:dylanaraps/wal.vim
+[submodule "home/.config/nvim/pack/plugins/start/lightline.vim"]
+  path = home/.config/nvim/pack/plugins/start/lightline.vim
+  url = gh:itchyny/lightline.vim
