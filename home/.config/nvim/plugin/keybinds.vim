@@ -26,12 +26,38 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 " Remove highlight
 nnoremap <Leader>h :noh<CR>
 
-" Fuzzy find and edit by filename
-nnoremap <Leader>p :fin 
+" Find by path option
+lua <<EOF
+  function _G.get_telescope_paths()
+    local vim_paths = vim.opt.path:get()
+    local telescope_paths = {}
 
-" Shorthand edit in directory of open buffer
-set wildcharm=<Tab>
-nnoremap <Leader>l :e %:p:h/<Tab>
+    for _,p in ipairs(vim_paths) do
+      -- Paths will look something like this:
+      --   { "", ",", "client/**", "server/**" }
+      -- The first two are defaults which shouldn't cause any harm. The latter
+      -- two are the only pattern I use anywhere, that is "path/to/dir/**". For
+      -- compatibility with Telescope we simply need to remove the "**" suffix.
+      local x, _ = string.gsub(p, "%**", "")
+      table.insert(telescope_paths, x)
+    end
+
+    return telescope_paths
+  end
+
+  vim.api.nvim_set_keymap(
+    'n',
+    '<Leader>p',
+    '<Cmd>lua require \'telescope.builtin\'.find_files { search_dirs = get_telescope_paths() }<CR>',
+    { noremap = true }
+  )
+EOF
+
+" Find in repo
+nnoremap <Leader>P <Cmd>lua require 'telescope.builtin'.git_files {}<CR>
+
+" Find in directory of open buffer
+nnoremap <Leader>l <Cmd>lua require 'telescope.builtin'.find_files { search_dirs = { vim.fn.expand('%:h') } }<CR>
 
 " Hop to word
 nnoremap gh :HopWord<CR>

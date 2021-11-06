@@ -2,6 +2,12 @@
 [submodule "home/.config/nvim/pack/plugins/start/exrc.vim"]
   path = home/.config/nvim/pack/plugins/start/exrc.vim
   url = gh:ii14/exrc.vim
+[submodule "home/.config/nvim/pack/plugins/start/plenary.nvim"]
+	path = home/.config/nvim/pack/plugins/start/plenary.nvim
+	url = gh:nvim-lua/plenary.nvim
+[submodule "home/.config/nvim/pack/plugins/start/telescope.nvim"]
+	path = home/.config/nvim/pack/plugins/start/telescope.nvim
+	url = gh:nvim-telescope/telescope.nvim
 
 # Layout
 [submodule "home/.config/nvim/pack/plugins/start/vim-bbye"]
