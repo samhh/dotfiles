@@ -51,6 +51,7 @@ lua <<EOF
 
   local function setup_lsp_servers()
     local lspc = require'lspconfig'
+    local lspc_cfgs = require'lspconfig/configs'
 
     -- Use LSP-enhanced keybinds when available
     local function setup_keybinds()
@@ -71,6 +72,23 @@ lua <<EOF
 
     lspc.bashls.setup {
       on_attach = attacher_fmt
+    }
+
+    if not lspc_cfgs.cssmodules then
+        lspc_cfgs.cssmodules = {
+            default_config = {
+                cmd = {'cssmodules-language-server'},
+                filetypes = {'javascript', 'javascriptreact', 'typescript', 'typescriptreact'},
+                init_options = {
+                    camelCase = true,
+                },
+                root_dir = require('lspconfig.util').root_pattern('package.json')
+            }
+        }
+    end
+
+    lspc_cfgs.cssmodules.setup {
+      on_attach = attacher_nofmt
     }
 
     lspc.efm.setup {
