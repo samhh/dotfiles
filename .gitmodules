@@ -27,9 +27,9 @@
   url = gh:bronson/vim-trailing-whitespace
 
 # Motions
-[submodule "home/.config/nvim/pack/plugins/start/vim-commentary"]
-  path = home/.config/nvim/pack/plugins/start/vim-commentary
-  url = gh:tpope/vim-commentary
+[submodule "home/.config/nvim/pack/plugins/start/comment.nvim"]
+  path = home/.config/nvim/pack/plugins/start/comment.nvim
+  url = gh:numtostr/comment.nvim
 [submodule "home/.config/nvim/pack/plugins/start/vim-surround"]
   path = home/.config/nvim/pack/plugins/start/vim-surround
   url = gh:tpope/vim-surround

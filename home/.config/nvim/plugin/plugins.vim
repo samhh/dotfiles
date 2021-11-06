@@ -163,6 +163,7 @@ lua <<EOF
   setup_lsp_diags()
   setup_lsp_qf()
 
+  require'Comment'.setup()
   require'hop'.setup()
 
   require'telescope'.setup()
