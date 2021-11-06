@@ -48,16 +48,16 @@ lua <<EOF
   vim.api.nvim_set_keymap(
     'n',
     '<Leader>p',
-    '<Cmd>lua require \'telescope.builtin\'.find_files { search_dirs = get_telescope_paths() }<CR>',
+    '<Cmd>lua require \'telescope.builtin\'.find_files { previewer = false, search_dirs = get_telescope_paths() }<CR>',
     { noremap = true }
   )
 EOF
 
 " Find in repo
-nnoremap <Leader>P <Cmd>lua require 'telescope.builtin'.git_files {}<CR>
+nnoremap <Leader>P <Cmd>lua require 'telescope.builtin'.git_files { previewer = false }<CR>
 
 " Find in directory of open buffer
-nnoremap <Leader>l <Cmd>lua require 'telescope.builtin'.find_files { search_dirs = { vim.fn.expand('%:h') } }<CR>
+nnoremap <Leader>l <Cmd>lua require 'telescope.builtin'.find_files { previewer = false, search_dirs = { vim.fn.expand('%:h') } }<CR>
 
 " Hop to word
 nnoremap gh :HopWord<CR>
