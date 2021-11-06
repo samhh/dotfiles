@@ -9,7 +9,7 @@ nnoremap Y y$
 " Buffer selection
 nnoremap <Leader>b :ls<CR>:b<Space>
 
-" Toggle to last open file in buffer
+" Toggle to last open buffer
 nnoremap <Leader>v <C-^>
 
 " Delete buffer, preserving layout if not quickfix list or :help
