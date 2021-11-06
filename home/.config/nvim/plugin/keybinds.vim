@@ -7,7 +7,7 @@ nnoremap Q <NOP>
 nnoremap Y y$
 
 " Buffer selection
-nnoremap <Leader>b :ls<CR>:b<Space>
+nnoremap <Leader>b <Cmd>lua require 'telescope.builtin'.buffers {}<CR>
 
 " Toggle to last open buffer
 nnoremap <Leader>v <C-^>
