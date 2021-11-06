@@ -76,10 +76,3 @@ nnoremap <silent> <Leader>e <Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<
 " Offer code actions
 nnoremap <silent> <Leader>g <Cmd>lua vim.lsp.buf.code_action()<CR>
 
-" Digraphs
-dig NN 8469  " ℕ
-dig fi 8718  " ∎
-dig .- 8760  " ∸
-dig (< 10216 " ⟨
-dig >) 10217 " ⟩
-
