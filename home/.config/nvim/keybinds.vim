@@ -1,11 +1,5 @@
 let mapleader = ' '
 
-" Disable arrow keys because old habits die hard
-nnoremap <Up> <NOP>
-nnoremap <Down> <NOP>
-nnoremap <Left> <NOP>
-nnoremap <Right> <NOP>
-
 " Disable unneeded Ex mode bind that's easy to mistakenly hit
 nnoremap Q <NOP>
 
