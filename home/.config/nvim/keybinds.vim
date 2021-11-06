@@ -51,14 +51,14 @@ let g:gitgutter_map_keys = 0
 nnoremap <Leader>y :GitGutterQuickFix<CR>
 
 " Navigate location list
-nmap <silent> <Leader>j :lopen<CR>
-nmap <silent> <C-k> :lprev<CR>
-nmap <silent> <C-j> :lnext<CR>
+nmap <silent> glo :lopen<CR>
+nmap <silent> glp :lprev<CR>
+nmap <silent> gln :lnext<CR>
 
 " Navigate quickfix list
-nmap <silent> <Leader>J :copen<CR>
-nmap <silent> <C-h> :cprev<CR>
-nmap <silent> <C-l> :cnext<CR>
+nmap <silent> gfo :copen<CR>
+nmap <silent> gfp :cprev<CR>
+nmap <silent> gfn :cnext<CR>
 
 " LSP gotos
 nmap <silent> gr <Cmd>lua vim.lsp.buf.references()<CR>
