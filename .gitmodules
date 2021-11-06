@@ -3,11 +3,17 @@
   path = home/.config/nvim/pack/plugins/start/exrc.vim
   url = gh:ii14/exrc.vim
 [submodule "home/.config/nvim/pack/plugins/start/plenary.nvim"]
-	path = home/.config/nvim/pack/plugins/start/plenary.nvim
-	url = gh:nvim-lua/plenary.nvim
+  path = home/.config/nvim/pack/plugins/start/plenary.nvim
+  url = gh:nvim-lua/plenary.nvim
 [submodule "home/.config/nvim/pack/plugins/start/telescope.nvim"]
-	path = home/.config/nvim/pack/plugins/start/telescope.nvim
-	url = gh:nvim-telescope/telescope.nvim
+  path = home/.config/nvim/pack/plugins/start/telescope.nvim
+  url = gh:nvim-telescope/telescope.nvim
+## NB need to manually "make" after updating. The git "update" option's custom
+## command doesn't actually work supposedly owing to (questionable) security
+## concerns.
+[submodule "home/.config/nvim/pack/plugins/start/telescope-fzf-native.nvim"]
+  path = home/.config/nvim/pack/plugins/start/telescope-fzf-native.nvim
+  url = gh:nvim-telescope/telescope-fzf-native.nvim
 
 # Layout
 [submodule "home/.config/nvim/pack/plugins/start/vim-bbye"]
@@ -83,6 +89,3 @@
 [submodule "home/.config/nvim/pack/plugins/start/lightline.vim"]
   path = home/.config/nvim/pack/plugins/start/lightline.vim
   url = gh:itchyny/lightline.vim
-[submodule "home/.config/nvim/pack/plugins/start/telescope-fzy-native.nvim"]
-	path = home/.config/nvim/pack/plugins/start/telescope-fzy-native.nvim
-	url = gh:nvim-telescope/telescope-fzy-native.nvim
