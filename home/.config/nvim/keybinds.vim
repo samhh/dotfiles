@@ -58,6 +58,10 @@ nmap <silent> gl :lnext<CR>
 nmap <silent> gF :cprev<CR>
 nmap <silent> gf :cnext<CR>
 
+" Navigate jumplist
+nmap <silent> gJ <C-o>
+nmap <silent> gj <C-i>
+
 " LSP gotos
 nmap <silent> gr <Cmd>lua vim.lsp.buf.references()<CR>
 
