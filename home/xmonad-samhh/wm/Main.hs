@@ -2,6 +2,7 @@
 
 module Main (main) where
 
+import           App                         (apps)
 import           Color                       (Colorscheme (color0, color3),
                                               getColorscheme, hideous)
 import qualified Data.Map                    as M
@@ -15,8 +16,10 @@ import           Window                      (OnFullscreenDestroy (Exit),
                                               getFullscreenEventHook,
                                               toggleFloat, toggleFullscreen',
                                               videoRect)
-import           Workspace                   (ensureSpaceWindow, workspaceSwap,
-                                              workspaceSwitch, workspaceView)
+import           Workspace                   (ensureSpaceWindow,
+                                              workspaceAutoAssign,
+                                              workspaceSwap, workspaceSwitch,
+                                              workspaceView)
 import qualified Workspaces
 import           XMonad                      (ChangeLayout (NextLayout),
                                               IncMasterN (IncMasterN),
@@ -50,7 +53,7 @@ config cs = desktopConfig
   , modMask = K.modMask
   , focusFollowsMouse = False
   , clickJustFocuses = False
-  , manageHook = insertPosition Below Newer
+  , manageHook = insertPosition Below Newer <> foldMap workspaceAutoAssign apps
   , handleEventHook = getFullscreenEventHook Exit
   , workspaces = Workspaces.name <$> Workspaces.workspaces
   , borderWidth = 3

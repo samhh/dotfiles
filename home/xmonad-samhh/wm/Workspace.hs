@@ -1,5 +1,6 @@
 module Workspace where
 
+import           App                           (App, className, workspaceOf)
 import           Data.Maybe.Utils              (singletonToMaybe)
 import           Foreign.C.String              (peekCString)
 import qualified Workspaces                    as WS
@@ -52,4 +53,7 @@ p `inSpaceElse` f = spaceContainsWindow p >>= \case
   False -> f
 
 ensureSpaceWindow :: String -> X ()
-ensureSpaceWindow x = (className =? x) `inSpaceElse` spawn x
+ensureSpaceWindow x = (XMonad.className =? x) `inSpaceElse` spawn x
+
+workspaceAutoAssign :: App -> ManageHook
+workspaceAutoAssign x = (XMonad.className =? App.className x) --> doShift (WS.name . workspaceOf $ x)

@@ -54,6 +54,7 @@ library
     , X11                ^>= 1.9
     , xdg-basedir        ^>= 0.2
   exposed-modules:
+    App
     Color
     Data.Maybe.Utils
     Function
