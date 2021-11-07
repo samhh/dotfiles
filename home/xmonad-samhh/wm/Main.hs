@@ -15,10 +15,9 @@ import           Window                      (OnFullscreenDestroy (Exit),
                                               getFullscreenEventHook,
                                               toggleFloat, toggleFullscreen',
                                               videoRect)
-import           Workspace                   (ensureSpaceWindow, workspaceName,
-                                              workspaceSwap, workspaceSwitch,
-                                              workspaceView)
-import qualified Workspace
+import           Workspace                   (ensureSpaceWindow, workspaceSwap,
+                                              workspaceSwitch, workspaceView)
+import qualified Workspaces
 import           XMonad                      (ChangeLayout (NextLayout),
                                               IncMasterN (IncMasterN),
                                               Resize (Expand, Shrink), X,
@@ -53,7 +52,7 @@ config cs = desktopConfig
   , clickJustFocuses = False
   , manageHook = insertPosition Below Newer
   , handleEventHook = getFullscreenEventHook Exit
-  , workspaces = workspaceName <$> Workspace.workspaces
+  , workspaces = Workspaces.name <$> Workspaces.workspaces
   , borderWidth = 3
   , normalBorderColor = maybe hideous color0 cs
   , focusedBorderColor = maybe hideous color3 cs
@@ -105,7 +104,7 @@ config cs = desktopConfig
         , ((super, K.xK_i), spawn' LatencyCheck)
         , ((super, K.xK_z), spawn' DefinitionLookup)
         ]
-          <> (workspaceView super <$> Workspace.workspaces)
-          <> (workspaceSwitch super <$> Workspace.workspaces)
-          <> (workspaceSwap super <$> Workspace.workspaces)
+          <> (workspaceView super <$> Workspaces.workspaces)
+          <> (workspaceSwitch super <$> Workspaces.workspaces)
+          <> (workspaceSwap super <$> Workspaces.workspaces)
   }

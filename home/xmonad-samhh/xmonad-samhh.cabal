@@ -51,6 +51,7 @@ library
     DeriveGeneric
   build-depends:
       aeson              ^>= 1.5
+    , X11                ^>= 1.9
     , xdg-basedir        ^>= 0.2
   exposed-modules:
     Color
@@ -58,4 +59,5 @@ library
     Function
     Spawn
     String
+    Workspaces
 
