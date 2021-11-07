@@ -88,7 +88,7 @@ lua <<EOF
     end
 
     lspc_cfgs.cssmodules.setup {
-      on_attach = attacher_nofmt
+      on_attach = attacher_fmt
     }
 
     lspc.efm.setup {
