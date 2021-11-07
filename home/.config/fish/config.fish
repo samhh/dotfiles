@@ -55,6 +55,7 @@ end
 
 # Sync colorscheme
 source "$XDG_CACHE_HOME/wal/colors.fish"
+cat "$XDG_CACHE_HOME/wal/sequences"
 
 # Extend PATH for XDG & Cabal (which doesn't yet respect XDG)
 fish_add_path "$XDG_BIN_HOME"
