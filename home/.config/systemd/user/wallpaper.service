@@ -1,11 +1,9 @@
 [Unit]
-Description=Set the wallpaper randomly
-Requires=mnt-nas.mount
-After=mnt-nas.mount
+Description=Re-set persisted wallpaper
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/wal -s -i /mnt/nas/bgs
+ExecStart=/usr/bin/wal -R
 
 [Install]
 WantedBy=xorg.target
