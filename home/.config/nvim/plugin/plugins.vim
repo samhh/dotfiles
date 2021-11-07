@@ -207,7 +207,8 @@ lua <<EOF
     defaults = {
       mappings = {
         i = {
-          ["<Esc>"] = actions.close
+          ["<Esc>"] = actions.close,
+          ["<C-c>"] = function() vim.cmd [[stopinsert]] end
         }
       }
     }
