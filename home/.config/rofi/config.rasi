@@ -6,6 +6,8 @@ configuration {
 	sort: true;
 }
 
+@import "~/.cache/wal/colors-rofi-light"
+
 window {
 	width: 400px;
 	padding: 10px;
