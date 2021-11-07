@@ -16,7 +16,8 @@ import           Window                      (OnFullscreenDestroy (Exit),
                                               toggleFloat, toggleFullscreen',
                                               videoRect)
 import           Workspace                   (ensureSpaceWindow, workspaceName,
-                                              workspaceSwitch, workspaceView)
+                                              workspaceSwap, workspaceSwitch,
+                                              workspaceView)
 import qualified Workspace
 import           XMonad                      (ChangeLayout (NextLayout),
                                               IncMasterN (IncMasterN),
@@ -106,4 +107,5 @@ config cs = desktopConfig
         ]
           <> (workspaceView super <$> Workspace.workspaces)
           <> (workspaceSwitch super <$> Workspace.workspaces)
+          <> (workspaceSwap super <$> Workspace.workspaces)
   }

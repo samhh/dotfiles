@@ -1,11 +1,13 @@
 module Workspace where
 
-import           Data.Maybe.Utils    (singletonToMaybe)
-import           Foreign.C.String    (peekCString)
+import           Data.Maybe.Utils              (singletonToMaybe)
+import           Foreign.C.String              (peekCString)
 import           XMonad
-import qualified XMonad.Config.Prime as XK
-import           XMonad.StackSet     (Workspace, current, greedyView, hidden,
-                                      integrate', shift, stack, tag, workspace)
+import           XMonad.Actions.SwapWorkspaces (swapWithCurrent)
+import qualified XMonad.Config.Prime           as XK
+import           XMonad.StackSet               (Workspace, current, greedyView,
+                                                hidden, integrate', shift,
+                                                stack, tag, workspace)
 
 type WorkspaceName = String
 
@@ -59,6 +61,11 @@ workspaceSwitch :: KeyMask -> NamedWorkspace -> ((KeyMask, KeySym), X ())
 workspaceSwitch super (name, k) =
   let x = windows $ shift name
    in ((super .|. shiftMask, k), x)
+
+workspaceSwap :: KeyMask -> NamedWorkspace -> ((KeyMask, KeySym), X ())
+workspaceSwap super (name, k) =
+  let x = windows $ swapWithCurrent name
+   in ((super .|. shiftMask .|. controlMask, k), x)
 
 inSpaceElse :: Query Bool -> X () -> X ()
 p `inSpaceElse` f = spaceContainsWindow p >>= \case
