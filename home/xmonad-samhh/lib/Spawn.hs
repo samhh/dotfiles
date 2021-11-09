@@ -39,7 +39,7 @@ toSpawnable PlayPrevMpd = "playerctl previous -p mpd"
 toSpawnable PauseMpd = "playerctl play-pause -p mpd"
 toSpawnable PauseMpv = "playerctl play-pause -p mpv"
 toSpawnable PlayNextMpd = "playerctl next -p mpd"
-toSpawnable NewWallpaper = "~/scripts/private/unsplash.sh"
+toSpawnable NewWallpaper = "~/scripts/wallpaper.sh"
 -- Need to sleep (-s) to allow for keys to be released for scrot.
 -- Need to freeze (-f) to prevent scrot capturing the selection rectangle.
 toSpawnable TakeScreenshot = "sleep 0.1; scrot -sf"
