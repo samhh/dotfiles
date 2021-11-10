@@ -3,9 +3,8 @@
 module Main (main) where
 
 import           App                         (apps)
-import           Color                       (HexColor,
-                                              Palette (color0, color3),
-                                              getColorOrHideous, getPalette)
+import           Color                       (Palette (color0, color3),
+                                              getColorOrHideous, getTheme)
 import qualified Data.Map                    as M
 import qualified Key                         as K
 import           Layout                      (layout, resetLayout)
@@ -38,7 +37,7 @@ import           XMonad.Layout.ResizableTile (MirrorResize (MirrorExpand, Mirror
 import qualified XMonad.StackSet             as W
 
 main :: IO ()
-main = launch . docks =<< statusBar . config =<< getPalette
+main = launch . docks =<< statusBar . config =<< getTheme
 
 appName :: String
 appName = "xmonad-samhh-wm"
@@ -49,7 +48,7 @@ spawn' = spawn . toSpawnable
 ensureSpaceBrowser :: X ()
 ensureSpaceBrowser = ensureSpaceWindow "qutebrowser"
 
-config cs = desktopConfig
+config t = desktopConfig
   { terminal = "alacritty"
   , modMask = K.modMask
   , focusFollowsMouse = False
@@ -112,5 +111,4 @@ config cs = desktopConfig
           <> (workspaceSwitch super <$> Workspaces.workspaces)
           <> (workspaceSwap super <$> Workspaces.workspaces)
   }
-  where c :: (Palette -> HexColor) -> HexColor
-        c = getColorOrHideous cs
+  where c = getColorOrHideous t

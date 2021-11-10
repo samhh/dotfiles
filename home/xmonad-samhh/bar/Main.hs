@@ -1,21 +1,21 @@
 module Main where
 
-import           Color  (HexColor, Palette (color0, color4), getColorOrHideous,
-                         getPalette)
+import           Color  (Palette (..), Specials (..), Theme, getColorOrHideous,
+                         getSpecialOrHideous, getTheme)
 import           Xmobar (CommandReader (CommandReader), Config (..),
                          Date (Date), Monitors (..), Runnable (Run),
                          StdinReader (StdinReader), XPosition (Top),
                          defaultConfig, xmobar)
 
 main :: IO ()
-main = xmobar . cfg =<< getPalette
+main = xmobar . cfg =<< getTheme
 
-cfg :: Maybe Palette -> Config
-cfg cs =
+cfg :: Maybe Theme -> Config
+cfg t =
   defaultConfig
     { font = "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=true",
-      bgColor = c color0,
-      fgColor = c color4,
+      bgColor = s background,
+      fgColor = s foreground,
       position = Top,
       sepChar = "%",
       alignSep = "}{",
@@ -109,5 +109,5 @@ cfg cs =
         , Run $ Date "<fc=#e5e9f0>%H:%M, %d/%m</fc>" "date" 10
         ]
     }
-  where c :: (Palette -> HexColor) -> HexColor
-        c = getColorOrHideous cs
+  where c = getColorOrHideous t
+        s = getSpecialOrHideous t
