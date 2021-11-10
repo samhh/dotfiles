@@ -112,7 +112,7 @@ cfg t =
 
         , Run $ MPD
             [ "--template"
-            , "<fc=" <> c color1 <> "><state></fc>: <artist> - <title> (<volume>%)"
+            , "<fc=" <> s foreground <> "><state></fc>: <artist> - <title> (<volume>%)"
             ]
             10
 
