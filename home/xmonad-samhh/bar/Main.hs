@@ -22,8 +22,11 @@ cfg t =
       template = " %StdinReader% | %cpu%, %cputemps% | %memory% | %dynnetwork% }{ %mpris2%%mpd% | %default:Master% | %default:Capture% | rss: %rss% | %date% ",
       commands =
         [ Run StdinReader
+
         , Run $ CommandReader "~/scripts/poll-script.sh ~/scripts/cpu-temps.sh 2s" "cputemps"
+
         , Run $ CommandReader "~/scripts/poll-script.sh ~/scripts/rss-unread.sh 2h" "rss"
+
         , Run $ DynNetwork
             [ "--template"
             , "net: <tx> kB/s up, <rx> kB/s down"
@@ -32,13 +35,14 @@ cfg t =
             , "--High"
             , "1000000"
             , "--low"
-            , "#d8dee9"
+            , s foreground
             , "--normal"
-            , "#d8dee9"
+            , s foreground
             , "--high"
-            , "#ebcb8b"
+            , c color1
             ]
             10
+
         , Run $ Cpu
             [ "--template"
             , "cpu: <total>%"
@@ -47,13 +51,14 @@ cfg t =
             , "--High"
             , "85"
             , "--low"
-            , "#d8dee9"
+            , s foreground
             , "--normal"
-            , "#d8dee9"
+            , s foreground
             , "--high"
-            , "#ebcb8b"
+            , c color1
             ]
             10
+
         , Run $ Memory
             [ "--template"
             , "mem: <usedratio>%"
@@ -62,13 +67,14 @@ cfg t =
             , "--High"
             , "75"
             , "--low"
-            , "#d8dee9"
+            , s foreground
             , "--normal"
-            , "#d8dee9"
+            , s foreground
             , "--high"
-            , "#ebcb8b"
+            , c color1
             ]
             10
+
         , Run $ Volume
             "default"
             "Capture"
@@ -76,11 +82,12 @@ cfg t =
             , "in: <volume>% <status>"
             , "--"
             , "-C"
-            , "#ebcb8b"
+            , c color1
             , "-c"
-            , "#d8dee9"
+            , s foreground
             ]
             10
+
         , Run $ Volume
             "default"
             "Master"
@@ -88,11 +95,12 @@ cfg t =
             , "out: <volume>% <status>"
             , "--"
             , "-C"
-            , "#d8dee9"
+            , s foreground
             , "-c"
-            , "#ebcb8b"
+            , c color1
             ]
             10
+
         , Run $ Mpris2
             "mpv"
             [ "--template"
@@ -101,12 +109,14 @@ cfg t =
             , ""
             ]
             10
+
         , Run $ MPD
             [ "--template"
-            , "<fc=#81a1c1><state></fc>: <artist> - <title> (<volume>%)"
+            , "<fc=" <> c color1 <> "><state></fc>: <artist> - <title> (<volume>%)"
             ]
             10
-        , Run $ Date "<fc=#e5e9f0>%H:%M, %d/%m</fc>" "date" 10
+
+        , Run $ Date ("<fc=" <> s foreground <> ">%H:%M, %d/%m</fc>") "date" 10
         ]
     }
   where c = getColorOrHideous t
