@@ -13,7 +13,7 @@ main = xmobar . cfg =<< getTheme
 cfg :: Maybe Theme -> Config
 cfg t =
   defaultConfig
-    { font = "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=true",
+    { font = "xft:Bitstream Vera Sans Mono:size=9:antialias=true",
       bgColor = s background,
       fgColor = s foreground,
       position = Top,
