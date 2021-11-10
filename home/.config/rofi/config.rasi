@@ -6,7 +6,7 @@ configuration {
 	sort: true;
 }
 
-@import "~/.cache/wal/colors-rofi-light"
+@import "~/.cache/wal/colors-rofi"
 
 window {
 	width: 400px;
