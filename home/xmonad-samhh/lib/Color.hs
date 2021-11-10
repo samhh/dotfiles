@@ -3,7 +3,7 @@ This module exposes a way to load the colorscheme at runtime as opposed to
 compile-time for the purposes of (meaningful) compatibility with (py)wal.
 -}
 
-module Color (Colorscheme (..), HexColor, getColorscheme, hideous) where
+module Color (Colorscheme (..), HexColor, getColorscheme, getColorOrHideous, hideous) where
 
 import           Control.Exception              (catch)
 import           Data.Aeson                     (FromJSON, decode)
@@ -52,6 +52,9 @@ getColorscheme :: IO (Maybe Colorscheme)
 getColorscheme = runMaybeT $ do
   x <- safeReadFileLBS =<< getColorschemePath
   MaybeT . pure . fmap colors . decode $ x
+
+getColorOrHideous :: Maybe Colorscheme -> (Colorscheme -> HexColor) -> HexColor
+getColorOrHideous = flip $ maybe hideous
 
 -- | A hideous color that can be used as a fallback to make failure obvious
 -- without bringing the system down.

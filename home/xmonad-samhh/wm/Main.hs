@@ -4,7 +4,8 @@ module Main (main) where
 
 import           App                         (apps)
 import           Color                       (Colorscheme (color0, color3),
-                                              getColorscheme, hideous)
+                                              HexColor, getColorOrHideous,
+                                              getColorscheme)
 import qualified Data.Map                    as M
 import qualified Key                         as K
 import           Layout                      (layout, resetLayout)
@@ -57,8 +58,8 @@ config cs = desktopConfig
   , handleEventHook = getFullscreenEventHook Exit
   , workspaces = Workspaces.name <$> Workspaces.workspaces
   , borderWidth = 3
-  , normalBorderColor = maybe hideous color0 cs
-  , focusedBorderColor = maybe hideous color3 cs
+  , normalBorderColor = c color0
+  , focusedBorderColor = c color3
   , layoutHook = layout
   , keys = \cfg@XConfig {XMonad.modMask = super, XMonad.terminal = term} ->
       M.fromList $
@@ -111,3 +112,5 @@ config cs = desktopConfig
           <> (workspaceSwitch super <$> Workspaces.workspaces)
           <> (workspaceSwap super <$> Workspaces.workspaces)
   }
+  where c :: (Colorscheme -> HexColor) -> HexColor
+        c = getColorOrHideous cs

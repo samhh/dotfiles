@@ -1,6 +1,7 @@
 module Main where
 
-import           Color  (Colorscheme (color0, color4), getColorscheme, hideous)
+import           Color  (Colorscheme (color0, color4), HexColor,
+                         getColorOrHideous, getColorscheme)
 import           Xmobar (CommandReader (CommandReader), Config (..),
                          Date (Date), Monitors (..), Runnable (Run),
                          StdinReader (StdinReader), XPosition (Top),
@@ -13,8 +14,8 @@ cfg :: Maybe Colorscheme -> Config
 cfg cs =
   defaultConfig
     { font = "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=true",
-      bgColor = maybe hideous color0 cs,
-      fgColor = maybe hideous color4 cs,
+      bgColor = c color0,
+      fgColor = c color4,
       position = Top,
       sepChar = "%",
       alignSep = "}{",
@@ -108,3 +109,5 @@ cfg cs =
         , Run $ Date "<fc=#e5e9f0>%H:%M, %d/%m</fc>" "date" 10
         ]
     }
+  where c :: (Colorscheme -> HexColor) -> HexColor
+        c = getColorOrHideous cs
