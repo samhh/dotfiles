@@ -165,6 +165,7 @@ steam
 # dev
 bash-language-server
 cargo-outdated
+cssmodules-language-server
 efm-langserver
 eslint_d
 fnm-bin
@@ -183,6 +184,7 @@ shunit2
 stylish-haskell-bin
 tshm-bin
 typescript-language-server-bin
+vscode-langservers-extracted
 yarn
 
 # dev - spago tests
