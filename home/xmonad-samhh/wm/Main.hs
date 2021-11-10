@@ -3,9 +3,9 @@
 module Main (main) where
 
 import           App                         (apps)
-import           Color                       (Colorscheme (color0, color3),
-                                              HexColor, getColorOrHideous,
-                                              getColorscheme)
+import           Color                       (HexColor,
+                                              Palette (color0, color3),
+                                              getColorOrHideous, getPalette)
 import qualified Data.Map                    as M
 import qualified Key                         as K
 import           Layout                      (layout, resetLayout)
@@ -38,7 +38,7 @@ import           XMonad.Layout.ResizableTile (MirrorResize (MirrorExpand, Mirror
 import qualified XMonad.StackSet             as W
 
 main :: IO ()
-main = launch . docks =<< statusBar . config =<< getColorscheme
+main = launch . docks =<< statusBar . config =<< getPalette
 
 appName :: String
 appName = "xmonad-samhh-wm"
@@ -112,5 +112,5 @@ config cs = desktopConfig
           <> (workspaceSwitch super <$> Workspaces.workspaces)
           <> (workspaceSwap super <$> Workspaces.workspaces)
   }
-  where c :: (Colorscheme -> HexColor) -> HexColor
+  where c :: (Palette -> HexColor) -> HexColor
         c = getColorOrHideous cs
