@@ -1,19 +1,39 @@
+import json
+
 config.load_autoconfig()
 
-# At time of writing this matches the Alacritty config, both in terms of
-# (default) background colour and alpha (92%)
-color_norm = "#EB1D1F21"
-color_bold = "#EB0F0F0F"
+handle = open("/home/sam/.cache/wal/colors.json")
+colors = json.load(handle)
+handle.close()
+
+def with_alpha(a):
+  def on_color(c):
+    return "#" + a + c[1:]
+  return on_color
+
+translucent = with_alpha("DD")
+
+color_bghl = colors["special"]["background"]
+color_bg = translucent(color_bghl)
+color_fghl = colors["colors"]["color4"]
+color_fg = colors["special"]["foreground"]
 color_noop = "#00000000"
 
-c.colors.statusbar.normal.bg = color_norm
-c.colors.statusbar.url.success.http.fg = "yellow"
-c.colors.statusbar.url.success.https.fg = "white"
+c.colors.statusbar.normal.bg = color_bg
+c.colors.statusbar.normal.fg = color_fg
+c.colors.statusbar.progress.bg = color_fg
+c.colors.statusbar.url.fg = color_fg
+c.colors.statusbar.url.success.http.fg = color_fg
+c.colors.statusbar.url.success.https.fg = color_fg
 c.colors.tabs.bar.bg = color_noop
-c.colors.tabs.even.bg = color_norm
-c.colors.tabs.odd.bg = color_norm
-c.colors.tabs.selected.even.bg = color_bold
-c.colors.tabs.selected.odd.bg = color_bold
+c.colors.tabs.even.bg = color_bg
+c.colors.tabs.even.fg = color_fg
+c.colors.tabs.odd.bg = color_bg
+c.colors.tabs.odd.fg = color_fg
+c.colors.tabs.selected.even.bg = color_bghl
+c.colors.tabs.selected.even.fg = color_fghl
+c.colors.tabs.selected.odd.bg = color_bghl
+c.colors.tabs.selected.odd.fg = color_fghl
 c.colors.webpage.darkmode.enabled = True
 c.completion.cmd_history_max_items = 0
 c.completion.open_categories = []

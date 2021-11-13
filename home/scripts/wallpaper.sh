@@ -14,3 +14,6 @@ else
   ln -sf ~/.cache/wal/colors-rofi-light.rasi ~/.cache/wal/colors-rofi.rasi
 fi
 
+# Reload dynamic configs
+qutebrowser ':config-source'
+
