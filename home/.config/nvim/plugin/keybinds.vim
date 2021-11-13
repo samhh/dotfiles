@@ -52,21 +52,5 @@ nmap <silent> gf :cnext<CR>
 nmap <silent> gJ <C-o>
 nmap <silent> gj <C-i>
 
-" LSP gotos
-nmap <silent> gr <Cmd>lua vim.lsp.buf.references()<CR>
-
-" Symbols search
-nnoremap <silent> <Leader>s <Cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent> <Leader>S <Cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-
-" Format/fix active buffer
-nnoremap <silent> <Leader>z <Cmd>lua vim.lsp.buf.formatting()<CR>
-
-" Show diagnostics in popup
-nnoremap <silent> <Leader>e <Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
-
-" Offer code actions
-nnoremap <silent> <Leader>g <Cmd>lua vim.lsp.buf.code_action()<CR>
-
 " Non-omni completion
 imap <silent> <C-d> <C-n>

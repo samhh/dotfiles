@@ -152,3 +152,19 @@ end
 setup_servers()
 setup_diags()
 setup_qf()
+
+-- LSP gotos
+k.mapn('gr', '<Cmd>lua vim.lsp.buf.references()<CR>')
+
+-- Symbols search
+k.mapn('<Leader>s', '<Cmd>lua vim.lsp.buf.document_symbol()<CR>')
+k.mapn('<Leader>S', '<Cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
+
+-- Format/fix active buffer
+k.mapn('<Leader>z', '<Cmd>lua vim.lsp.buf.formatting()<CR>')
+
+-- Show diagnostics in popup
+k.mapn('<Leader>e', '<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
+
+-- Offer code actions
+k.mapn('<Leader>g', '<Cmd>lua vim.lsp.buf.code_action()<CR>')
