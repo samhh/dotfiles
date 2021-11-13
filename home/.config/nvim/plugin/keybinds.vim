@@ -68,3 +68,5 @@ nnoremap <silent> <Leader>e <Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<
 " Offer code actions
 nnoremap <silent> <Leader>g <Cmd>lua vim.lsp.buf.code_action()<CR>
 
+" Non-omni completion
+imap <silent> <C-d> <C-n>
