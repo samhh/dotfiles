@@ -1,20 +1,3 @@
-local function concat_tables(xs, ys)
-  local zs = {}
-
-  for _,x in ipairs(xs) do table.insert(zs, x) end
-  for _,y in ipairs(ys) do table.insert(zs, y) end
-
-  return zs
-end
-
-local function table_has_value(xs, y)
-  for i,x in ipairs(xs) do
-    if x == y then return true end
-  end
-
-  return false
-end
-
 local function this_buf_set_option(opt, value)
   vim.api.nvim_buf_set_option(0, opt, value)
 end
