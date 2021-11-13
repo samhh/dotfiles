@@ -1,4 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/bash
+
+target=${1:-'tab'}
 
 base=~/bookmarks-work/
 
@@ -16,5 +18,4 @@ file="$base$selected"
 
 url=$(head -1 $file)
 
-qbpm launch unsplash $url
-
+qbpm launch unsplash --target "$target" --untrusted-args "$url"

@@ -1,4 +1,4 @@
-module Spawn (Spawn (..), toSpawnable) where
+module Spawn (Spawn (..), toSpawnable, BrowserProfile (..), profileInstanceName) where
 
 data Spawn
     = CloseNotif
@@ -54,3 +54,10 @@ toSpawnable Emails = "~/scripts/pass-prefixed-line.sh \"email: \" email"
 toSpawnable LatencyCheck = "alacritty -e ping 1.1.1.1"
 toSpawnable DefinitionLookup = "qutebrowser $(xclip -o -selection primary; echo -n '!d')"
 
+data BrowserProfile
+  = Personal
+  | Work
+
+profileInstanceName :: BrowserProfile -> String
+profileInstanceName Personal = "qutebrowser"
+profileInstanceName Work     = "unsplash"

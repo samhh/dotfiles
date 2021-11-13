@@ -8,7 +8,9 @@ import           Color                       (Palette (color0, color3),
 import qualified Data.Map                    as M
 import qualified Key                         as K
 import           Layout                      (layout, resetLayout)
-import           Spawn                       (Spawn (..), toSpawnable)
+import           Spawn                       (BrowserProfile (Personal, Work),
+                                              Spawn (..), profileInstanceName,
+                                              toSpawnable)
 import           StatusBar                   (statusBar)
 import           Window                      (OnFullscreenDestroy (Exit),
                                               centreRect, disableFloat',
@@ -22,12 +24,13 @@ import           Workspace                   (spaceContainsWindow,
                                               workspaceView)
 import qualified Workspaces
 import           XMonad                      (ChangeLayout (NextLayout),
-                                              IncMasterN (IncMasterN),
+                                              IncMasterN (IncMasterN), Query,
                                               Resize (Expand, Shrink), X,
                                               XConfig (XConfig, borderWidth, clickJustFocuses, focusFollowsMouse, focusedBorderColor, handleEventHook, keys, layoutHook, manageHook, modMask, normalBorderColor, terminal, workspaces),
-                                              className, kill, launch, restart,
+                                              kill, launch, restart,
                                               sendMessage, spawn, windows,
                                               withFocused, (.|.), (=?))
+import qualified XMonad
 import           XMonad.Actions.CopyWindow   (copyToAll, killAllOtherCopies)
 import           XMonad.Config.Desktop       (desktopConfig)
 import           XMonad.Hooks.InsertPosition (Focus (..), Position (..),
@@ -39,22 +42,25 @@ import qualified XMonad.StackSet             as W
 main :: IO ()
 main = launch . docks =<< statusBar . config =<< getTheme
 
+instanceName :: Query String
+instanceName = XMonad.appName
+
 appName :: String
 appName = "xmonad-samhh-wm"
 
 spawn' :: MonadIO m => Spawn -> m ()
 spawn' = spawn . toSpawnable
 
-spaceHasBrowser :: X Bool
-spaceHasBrowser = spaceContainsWindow (className =? "qutebrowser")
+spaceHasBrowser :: BrowserProfile -> X Bool
+spaceHasBrowser = spaceContainsWindow . (instanceName =?) . profileInstanceName
 
-browserTarget :: X String
-browserTarget = spaceHasBrowser <&> \case
+browserTarget :: BrowserProfile -> X String
+browserTarget x = spaceHasBrowser x <&> \case
   True  -> "tab"
   False -> "window"
 
-spawnWithBrowserTarget :: Spawn -> X ()
-spawnWithBrowserTarget x = spawn . (toSpawnable x <>) . (" " <>) =<< browserTarget
+spawnWithBrowserTarget :: BrowserProfile -> Spawn -> X ()
+spawnWithBrowserTarget x y = spawn . (toSpawnable y <>) . (" " <>) =<< browserTarget x
 
 config t = desktopConfig
   { terminal = "alacritty"
@@ -106,9 +112,9 @@ config t = desktopConfig
         , ((super, K.xK_p), spawn' TakeScreenshot)
         , ((super, K.xK_g), spawn' Apps)
         , ((super .|. K.shiftMask, K.xK_g), spawn' AllApps)
-        , ((super, K.xK_t), spawnWithBrowserTarget WebSearch)
-        , ((super, K.xK_d), spawnWithBrowserTarget Bookmarks)
-        , ((super .|. K.shiftMask, K.xK_d), spawn' WorkBookmarks)
+        , ((super, K.xK_t), spawnWithBrowserTarget Personal WebSearch)
+        , ((super, K.xK_d), spawnWithBrowserTarget Personal Bookmarks)
+        , ((super .|. K.shiftMask, K.xK_d), spawnWithBrowserTarget Work WorkBookmarks)
         , ((super, K.xK_x), spawn' Passwords)
         , ((super, K.xK_n), spawn' Usernames)
         , ((super, K.xK_m), spawn' Emails)
