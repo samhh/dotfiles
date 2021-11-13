@@ -6,7 +6,7 @@ local function this_buf_set_keymap(mode, bind, effect)
   vim.api.nvim_buf_set_keymap(0, mode, bind, effect, { noremap = true })
 end
 
-local function setup_lsp_servers()
+local function setup_servers()
   local lspc = require'lspconfig'
   local lspc_cfgs = require'lspconfig/configs'
 
@@ -119,7 +119,7 @@ local function setup_lsp_servers()
   }
 end
 
-local function setup_lsp_diags()
+local function setup_diags()
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
     {
@@ -131,7 +131,7 @@ local function setup_lsp_diags()
   )
 end
 
-local function setup_lsp_qf()
+local function setup_qf()
   local pubdiag = "textDocument/publishDiagnostics"
   local def_pubdiag_handler = vim.lsp.handlers[pubdiag]
   vim.lsp.handlers[pubdiag] = function(err, method, res, cid, bufnr, cfg)
@@ -151,6 +151,6 @@ local function setup_lsp_qf()
   end
 end
 
-setup_lsp_servers()
-setup_lsp_diags()
-setup_lsp_qf()
+setup_servers()
+setup_diags()
+setup_qf()
