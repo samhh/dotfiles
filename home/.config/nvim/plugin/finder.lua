@@ -1,6 +1,7 @@
 local k = require('keymap')
 
 local actions = require('telescope.actions')
+local pickers = require('telescope.builtin')
 
 require'telescope'.setup {
   defaults = {
@@ -17,25 +18,19 @@ require'telescope'.setup {
 require'telescope'.load_extension('fzf')
 
 -- Buffer selection
-k.mapn(
-  '<Leader>b',
-  '<Cmd>lua require \'telescope.builtin\'.buffers {}<CR>'
-)
+_G.buf = pickers.buffers
+k.mapn('<Leader>b', '<Cmd>lua buf()<CR>')
 
 -- Find in repo
-k.mapn(
-  '<Leader>P',
-  '<Cmd>lua require \'telescope.builtin\'.git_files { previewer = false }<CR>'
-)
+_G.repo = function() pickers.git_files { previewer = false } end
+k.mapn('<Leader>P', '<Cmd>lua repo()<CR>')
 
 -- Find in directory of open buffer
-k.mapn(
-  '<Leader>l',
-  '<Cmd>lua require \'telescope.builtin\'.find_files { previewer = false, search_dirs = { vim.fn.expand(\'%:h\') } }<CR>'
-)
+_G.sibling = function() pickers.find_files { previewer = false, search_dirs = { vim.fn.expand('%:h') } } end
+k.mapn('<Leader>l', '<Cmd>lua sibling()<CR>')
 
 -- Find by path option
-function _G.get_telescope_paths()
+local function get_telescope_paths()
   local vim_paths = vim.opt.path:get()
   local telescope_paths = {}
 
@@ -52,7 +47,5 @@ function _G.get_telescope_paths()
   return telescope_paths
 end
 
-k.mapn(
-  '<Leader>p',
-  '<Cmd>lua require \'telescope.builtin\'.find_files { previewer = false, search_dirs = get_telescope_paths() }<CR>'
-)
+_G.path = function() pickers.find_files { previewer = false, search_dirs = get_telescope_paths() } end
+k.mapn('<Leader>p', '<Cmd>lua path()<CR>')
