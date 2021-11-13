@@ -138,11 +138,14 @@ local function setup_qf()
     local qfdiags = {}
     for bufnr_, diags in pairs(vim.lsp.diagnostic.get_all()) do
       for _, diag in ipairs(diags) do
-        diag.bufnr = bufnr_
-        diag.lnum = diag.range.start.line + 1
-        diag.col = diag.range.start.character + 1
-        diag.text = diag.message
-        table.insert(qfdiags, diag)
+        -- Filter out deprecation diagnostics.
+        if not string.match(diag.message, "deprecated") then
+          diag.bufnr = bufnr_
+          diag.lnum = diag.range.start.line + 1
+          diag.col = diag.range.start.character + 1
+          diag.text = diag.message
+          table.insert(qfdiags, diag)
+        end
       end
     end
     vim.lsp.util.set_qflist(qfdiags)
