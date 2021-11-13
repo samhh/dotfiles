@@ -62,3 +62,9 @@ autocmd TextYankPost * lua vim.highlight.on_yank { higroup = "IncSearch", timeou
 " Auto-trust exrc on creation
 autocmd BufNewFile .exrc nested autocmd BufWritePost <buffer> nested ExrcTrust
 
+" Initialise plugins
+lua <<EOF
+  require'Comment'.setup()
+  require'hop'.setup()
+EOF
+
