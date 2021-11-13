@@ -69,6 +69,9 @@
 [submodule "home/.config/nvim/pack/plugins/start/nvim-treesitter-refactor"]
   path = home/.config/nvim/pack/plugins/start/nvim-treesitter-refactor
   url = gh:nvim-treesitter/nvim-treesitter-refactor
+[submodule "home/.config/nvim/pack/plugins/start/vim-matchup"]
+  path = home/.config/nvim/pack/plugins/start/vim-matchup
+  url = gh:andymass/vim-matchup
 [submodule "home/.config/nvim/pack/plugins/start/dhall-vim"]
   path = home/.config/nvim/pack/plugins/start/dhall-vim
   url = gh:vmchale/dhall-vim
