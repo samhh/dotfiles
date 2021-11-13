@@ -48,10 +48,6 @@ autocmd ColorScheme * highlight LspDiagnosticsUnderlineWarning guifg=yellow cter
 autocmd ColorScheme * highlight LspDiagnosticsUnderlineInformation guifg=none ctermfg=none cterm=underline gui=underline
 autocmd ColorScheme * highlight LspDiagnosticsUnderlineHint guifg=none ctermfg=none cterm=underline gui=underline
 
-" Highlight references to symbol under cursor (conditionally enabled elsewhere)
-autocmd ColorScheme * lua require('vim.lsp.diagnostic')._define_default_signs_and_highlights()
-autocmd ColorScheme * highlight LspReferenceRead ctermbg=0
-
 " Auto-open quickfix window
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
