@@ -16,14 +16,13 @@ import           Window                      (OnFullscreenDestroy (Exit),
                                               getFullscreenEventHook,
                                               toggleFloat, toggleFullscreen',
                                               videoRect)
-import           Workspace                   (ensureSpaceWindow,
-                                              workspaceAutoAssign,
+import           Workspace                   (workspaceAutoAssign,
                                               workspaceSwap, workspaceSwitch,
                                               workspaceView)
 import qualified Workspaces
 import           XMonad                      (ChangeLayout (NextLayout),
                                               IncMasterN (IncMasterN),
-                                              Resize (Expand, Shrink), X,
+                                              Resize (Expand, Shrink),
                                               XConfig (XConfig, borderWidth, clickJustFocuses, focusFollowsMouse, focusedBorderColor, handleEventHook, keys, layoutHook, manageHook, modMask, normalBorderColor, terminal, workspaces),
                                               kill, launch, restart,
                                               sendMessage, spawn, windows,
@@ -44,9 +43,6 @@ appName = "xmonad-samhh-wm"
 
 spawn' :: MonadIO m => Spawn -> m ()
 spawn' = spawn . toSpawnable
-
-ensureSpaceBrowser :: X ()
-ensureSpaceBrowser = ensureSpaceWindow "qutebrowser"
 
 config t = desktopConfig
   { terminal = "alacritty"
@@ -98,8 +94,8 @@ config t = desktopConfig
         , ((super, K.xK_p), spawn' TakeScreenshot)
         , ((super, K.xK_g), spawn' Apps)
         , ((super .|. K.shiftMask, K.xK_g), spawn' AllApps)
-        , ((super, K.xK_t), ensureSpaceBrowser *> spawn' WebSearch)
-        , ((super, K.xK_d), ensureSpaceBrowser *> spawn' Bookmarks)
+        , ((super, K.xK_t), spawn' WebSearch)
+        , ((super, K.xK_d), spawn' Bookmarks)
         , ((super .|. K.shiftMask, K.xK_d), spawn' WorkBookmarks)
         , ((super, K.xK_x), spawn' Passwords)
         , ((super, K.xK_n), spawn' Usernames)
