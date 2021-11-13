@@ -1,9 +1,7 @@
+local k = require('keymap')
+
 local function this_buf_set_option(opt, value)
   vim.api.nvim_buf_set_option(0, opt, value)
-end
-
-local function this_buf_set_keymap(mode, bind, effect)
-  vim.api.nvim_buf_set_keymap(0, mode, bind, effect, { noremap = true })
 end
 
 local function setup_servers()
@@ -13,9 +11,9 @@ local function setup_servers()
   -- Use LSP-enhanced keybinds when available
   local function setup_keybinds()
     this_buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-    this_buf_set_keymap('i', '<C-u>', '<C-x><C-o>')
-    this_buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
-    this_buf_set_keymap('n', '<Leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>')
+    k.buf.mapi('<C-u>', '<C-x><C-o>')
+    k.buf.mapn('K', '<cmd>lua vim.lsp.buf.hover()<CR>')
+    k.buf.mapn('<Leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>')
   end
 
   local function attacher_fmt(client)

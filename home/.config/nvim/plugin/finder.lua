@@ -1,3 +1,5 @@
+local k = require('keymap')
+
 local actions = require('telescope.actions')
 
 require'telescope'.setup {
@@ -15,27 +17,21 @@ require'telescope'.setup {
 require'telescope'.load_extension('fzf')
 
 -- Buffer selection
-vim.api.nvim_set_keymap(
-  'n',
+k.mapn(
   '<Leader>b',
-  '<Cmd>lua require \'telescope.builtin\'.buffers {}<CR>',
-  { noremap = true }
+  '<Cmd>lua require \'telescope.builtin\'.buffers {}<CR>'
 )
 
 -- Find in repo
-vim.api.nvim_set_keymap(
-  'n',
+k.mapn(
   '<Leader>P',
-  '<Cmd>lua require \'telescope.builtin\'.git_files { previewer = false }<CR>',
-  { noremap = true }
+  '<Cmd>lua require \'telescope.builtin\'.git_files { previewer = false }<CR>'
 )
 
 -- Find in directory of open buffer
-vim.api.nvim_set_keymap(
-  'n',
+k.mapn(
   '<Leader>l',
-  '<Cmd>lua require \'telescope.builtin\'.find_files { previewer = false, search_dirs = { vim.fn.expand(\'%:h\') } }<CR>',
-  { noremap = true }
+  '<Cmd>lua require \'telescope.builtin\'.find_files { previewer = false, search_dirs = { vim.fn.expand(\'%:h\') } }<CR>'
 )
 
 -- Find by path option
@@ -56,9 +52,7 @@ function _G.get_telescope_paths()
   return telescope_paths
 end
 
-vim.api.nvim_set_keymap(
-  'n',
+k.mapn(
   '<Leader>p',
-  '<Cmd>lua require \'telescope.builtin\'.find_files { previewer = false, search_dirs = get_telescope_paths() }<CR>',
-  { noremap = true }
+  '<Cmd>lua require \'telescope.builtin\'.find_files { previewer = false, search_dirs = get_telescope_paths() }<CR>'
 )
