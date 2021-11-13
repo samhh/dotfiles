@@ -1,4 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/bash
+
+target=${1:-'tab'}
 
 base=~/bookmarks/
 
@@ -16,5 +18,5 @@ file="$base$selected"
 
 url=$(head -1 $file)
 
-xdg-open $url
+qutebrowser --target "$target" --untrusted-args "$url"
 

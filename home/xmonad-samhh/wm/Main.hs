@@ -16,17 +16,18 @@ import           Window                      (OnFullscreenDestroy (Exit),
                                               getFullscreenEventHook,
                                               toggleFloat, toggleFullscreen',
                                               videoRect)
-import           Workspace                   (workspaceAutoAssign,
+import           Workspace                   (spaceContainsWindow,
+                                              workspaceAutoAssign,
                                               workspaceSwap, workspaceSwitch,
                                               workspaceView)
 import qualified Workspaces
 import           XMonad                      (ChangeLayout (NextLayout),
                                               IncMasterN (IncMasterN),
-                                              Resize (Expand, Shrink),
+                                              Resize (Expand, Shrink), X,
                                               XConfig (XConfig, borderWidth, clickJustFocuses, focusFollowsMouse, focusedBorderColor, handleEventHook, keys, layoutHook, manageHook, modMask, normalBorderColor, terminal, workspaces),
-                                              kill, launch, restart,
+                                              className, kill, launch, restart,
                                               sendMessage, spawn, windows,
-                                              withFocused, (.|.))
+                                              withFocused, (.|.), (=?))
 import           XMonad.Actions.CopyWindow   (copyToAll, killAllOtherCopies)
 import           XMonad.Config.Desktop       (desktopConfig)
 import           XMonad.Hooks.InsertPosition (Focus (..), Position (..),
@@ -43,6 +44,17 @@ appName = "xmonad-samhh-wm"
 
 spawn' :: MonadIO m => Spawn -> m ()
 spawn' = spawn . toSpawnable
+
+spaceHasBrowser :: X Bool
+spaceHasBrowser = spaceContainsWindow (className =? "qutebrowser")
+
+browserTarget :: X String
+browserTarget = spaceHasBrowser <&> \case
+  True  -> "tab"
+  False -> "window"
+
+spawnWithBrowserTarget :: Spawn -> X ()
+spawnWithBrowserTarget x = spawn . (toSpawnable x <>) . (" " <>) =<< browserTarget
 
 config t = desktopConfig
   { terminal = "alacritty"
@@ -94,8 +106,8 @@ config t = desktopConfig
         , ((super, K.xK_p), spawn' TakeScreenshot)
         , ((super, K.xK_g), spawn' Apps)
         , ((super .|. K.shiftMask, K.xK_g), spawn' AllApps)
-        , ((super, K.xK_t), spawn' WebSearch)
-        , ((super, K.xK_d), spawn' Bookmarks)
+        , ((super, K.xK_t), spawnWithBrowserTarget WebSearch)
+        , ((super, K.xK_d), spawnWithBrowserTarget Bookmarks)
         , ((super .|. K.shiftMask, K.xK_d), spawn' WorkBookmarks)
         , ((super, K.xK_x), spawn' Passwords)
         , ((super, K.xK_n), spawn' Usernames)
