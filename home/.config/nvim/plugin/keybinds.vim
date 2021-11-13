@@ -6,9 +6,6 @@ nnoremap Q <NOP>
 " Remap a questionable default for more consistency with C and D
 nnoremap Y y$
 
-" Buffer selection
-nnoremap <Leader>b <Cmd>lua require 'telescope.builtin'.buffers {}<CR>
-
 " Toggle to last open buffer
 nnoremap <Leader>v <C-^>
 
@@ -25,39 +22,6 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
 " Remove highlight
 nnoremap <Leader>h :noh<CR>
-
-" Find by path option
-lua <<EOF
-  function _G.get_telescope_paths()
-    local vim_paths = vim.opt.path:get()
-    local telescope_paths = {}
-
-    for _,p in ipairs(vim_paths) do
-      -- Paths will look something like this:
-      --   { "", ",", "client/**", "server/**" }
-      -- The first two are defaults which shouldn't cause any harm. The latter
-      -- two are the only pattern I use anywhere, that is "path/to/dir/**". For
-      -- compatibility with Telescope we simply need to remove the "**" suffix.
-      local x, _ = string.gsub(p, "%**", "")
-      table.insert(telescope_paths, x)
-    end
-
-    return telescope_paths
-  end
-
-  vim.api.nvim_set_keymap(
-    'n',
-    '<Leader>p',
-    '<Cmd>lua require \'telescope.builtin\'.find_files { previewer = false, search_dirs = get_telescope_paths() }<CR>',
-    { noremap = true }
-  )
-EOF
-
-" Find in repo
-nnoremap <Leader>P <Cmd>lua require 'telescope.builtin'.git_files { previewer = false }<CR>
-
-" Find in directory of open buffer
-nnoremap <Leader>l <Cmd>lua require 'telescope.builtin'.find_files { previewer = false, search_dirs = { vim.fn.expand('%:h') } }<CR>
 
 " Hop to word
 nnoremap gh :HopWord<CR>
