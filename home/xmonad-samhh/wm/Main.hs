@@ -5,6 +5,7 @@ module Main (main) where
 import           App                         (apps)
 import           Color                       (Palette (color0, color3),
                                               getColorOrHideous, getTheme)
+import           Data.Default                (def)
 import qualified Data.Map                    as M
 import           Function                    (bindM2)
 import qualified Key                         as K
@@ -33,6 +34,7 @@ import           XMonad                      (ChangeLayout (NextLayout),
                                               windows, withFocused, (.|.), (=?))
 import qualified XMonad
 import           XMonad.Actions.CopyWindow   (copyToAll, killAllOtherCopies)
+import           XMonad.Actions.EasyMotion   (selectWindow)
 import           XMonad.Config.Desktop       (desktopConfig)
 import           XMonad.Hooks.InsertPosition (Focus (..), Position (..),
                                               insertPosition)
@@ -98,6 +100,7 @@ config t = desktopConfig
         , ((super, K.xK_s), withFocused . toggleFloat $ centreRect)
         , ((super, K.xK_a), windows copyToAll <> withFocused (enableFloat' videoRect))
         , ((super .|. K.shiftMask, K.xK_a), killAllOtherCopies <> withFocused disableFloat')
+        , ((super, K.xK_h), (`whenJust` windows . W.focusWindow) =<< selectWindow def)
         , ((super, K.xK_o), spawn' CloseNotif)
         , ((super .|. K.shiftMask, K.xK_o), spawn' CloseAllNotifs)
         , ((K.nomod, K.xK_VolDown), spawn' DecVol)
