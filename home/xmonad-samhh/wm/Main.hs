@@ -35,8 +35,8 @@ import           XMonad                      (ChangeLayout (NextLayout),
                                               windows, withFocused, (.|.), (=?))
 import qualified XMonad
 import           XMonad.Actions.CopyWindow   (copyToAll, killAllOtherCopies)
-import           XMonad.Actions.EasyMotion   (ChordKeys (AnyKeys), sKeys,
-                                              selectWindow)
+import           XMonad.Actions.EasyMotion   (ChordKeys (AnyKeys), cancelKey,
+                                              sKeys, selectWindow)
 import           XMonad.Config.Desktop       (desktopConfig)
 import           XMonad.Hooks.InsertPosition (Focus (..), Position (..),
                                               insertPosition)
@@ -70,7 +70,7 @@ spawnWithBrowserTarget :: BrowserProfile -> Spawn -> X ()
 spawnWithBrowserTarget x y = spawn . (toSpawnable y <>) . (" " <>) =<< browserTarget x
 
 selectWindow' :: X (Maybe Window)
-selectWindow' = selectWindow $ def { sKeys = AnyKeys colemakHomeKeys }
+selectWindow' = selectWindow $ def { sKeys = AnyKeys colemakHomeKeys, cancelKey = K.xK_Escape }
   where colemakHomeKeys = [K.xK_t, K.xK_n, K.xK_s, K.xK_e, K.xK_r, K.xK_i]
 
 onSelectWindow :: (Window -> X ()) -> X ()
