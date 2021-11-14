@@ -2,53 +2,55 @@
 
 module Main (main) where
 
-import           App                         (apps)
-import           Color                       (HexColor,
-                                              Palette (color0, color1, color3),
-                                              Specials (background, foreground),
-                                              getColorOrHideous,
-                                              getSpecialOrHideous, getTheme)
-import           Control.Monad.Trans.Reader  (mapReaderT)
-import           Data.Default                (def)
-import qualified Data.Map                    as M
-import           Function                    (bindM2)
-import qualified Key                         as K
-import           Layout                      (layout, resetLayout)
-import           Spawn                       (BrowserProfile (Personal, Work),
-                                              Spawn (..), profileInstanceName,
-                                              toSpawnable)
-import           StatusBar                   (statusBar)
-import           Window                      (OnFullscreenDestroy (Exit),
-                                              centreRect, disableFloat',
-                                              enableFloat',
-                                              getFullscreenEventHook,
-                                              toggleFloat, toggleFullscreen',
-                                              videoRect)
-import           Workspace                   (spaceContainsWindow,
-                                              workspaceAutoAssign,
-                                              workspaceSwap, workspaceSwitch,
-                                              workspaceView)
+import           App                           (apps)
+import           Color                         (HexColor,
+                                                Palette (color0, color1, color3),
+                                                Specials (background, foreground),
+                                                getColorOrHideous,
+                                                getSpecialOrHideous, getTheme)
+import           Control.Monad.Trans.Reader    (mapReaderT)
+import           Data.Default                  (def)
+import qualified Data.Map                      as M
+import           Function                      (bindM2)
+import qualified Key                           as K
+import           Layout                        (layout, resetLayout)
+import           Spawn                         (BrowserProfile (Personal, Work),
+                                                Spawn (..), profileInstanceName,
+                                                toSpawnable)
+import           StatusBar                     (statusBar)
+import           Window                        (OnFullscreenDestroy (Exit),
+                                                centreRect, disableFloat',
+                                                enableFloat',
+                                                getFullscreenEventHook,
+                                                toggleFloat, toggleFullscreen',
+                                                videoRect)
+import           Workspace                     (spaceContainsWindow,
+                                                workspaceAutoAssign,
+                                                workspaceSwap, workspaceSwitch,
+                                                workspaceView)
 import qualified Workspaces
-import           XMonad                      (ChangeLayout (NextLayout),
-                                              IncMasterN (IncMasterN), Query,
-                                              Resize (Expand, Shrink), Window,
-                                              X,
-                                              XConfig (XConfig, borderWidth, clickJustFocuses, focusFollowsMouse, focusedBorderColor, handleEventHook, keys, layoutHook, manageHook, modMask, normalBorderColor, terminal, workspaces),
-                                              getDirectories, kill, launch,
-                                              restart, sendMessage, spawn,
-                                              windows, withFocused, (.|.), (=?))
+import           XMonad                        (ChangeLayout (NextLayout),
+                                                IncMasterN (IncMasterN), Query,
+                                                Resize (Expand, Shrink), Window,
+                                                X,
+                                                XConfig (XConfig, borderWidth, clickJustFocuses, focusFollowsMouse, focusedBorderColor, handleEventHook, keys, layoutHook, manageHook, modMask, normalBorderColor, terminal, workspaces),
+                                                className, getDirectories, kill,
+                                                launch, restart, sendMessage,
+                                                spawn, windows, withFocused,
+                                                (.|.), (=?))
 import qualified XMonad
-import           XMonad.Actions.CopyWindow   (copyToAll, killAllOtherCopies)
-import           XMonad.Actions.EasyMotion   (ChordKeys (AnyKeys),
-                                              EasyMotionConfig (bgCol, borderCol, borderPx, txtCol),
-                                              cancelKey, sKeys, selectWindow)
-import           XMonad.Config.Desktop       (desktopConfig)
-import           XMonad.Hooks.InsertPosition (Focus (..), Position (..),
-                                              insertPosition)
-import           XMonad.Hooks.ManageDocks    (docks)
-import           XMonad.Layout.ResizableTile (MirrorResize (MirrorExpand, MirrorShrink))
-import           XMonad.Operations           (killWindow)
-import qualified XMonad.StackSet             as W
+import           XMonad.Actions.CopyWindow     (copyToAll, killAllOtherCopies)
+import           XMonad.Actions.EasyMotion     (ChordKeys (AnyKeys),
+                                                EasyMotionConfig (bgCol, borderCol, borderPx, txtCol),
+                                                cancelKey, sKeys, selectWindow)
+import           XMonad.Config.Desktop         (desktopConfig)
+import           XMonad.Hooks.InsertPosition   (Focus (..), Position (..),
+                                                insertPosition)
+import           XMonad.Hooks.ManageDocks      (docks)
+import           XMonad.Hooks.WindowSwallowing (swallowEventHook)
+import           XMonad.Layout.ResizableTile   (MirrorResize (MirrorExpand, MirrorShrink))
+import           XMonad.Operations             (killWindow)
+import qualified XMonad.StackSet               as W
 
 main :: IO ()
 main = bindM2 launch getCfg getDirectories
@@ -104,7 +106,7 @@ config t = desktopConfig
   , focusFollowsMouse = False
   , clickJustFocuses = False
   , manageHook = insertPosition Below Newer <> foldMap workspaceAutoAssign apps
-  , handleEventHook = getFullscreenEventHook Exit
+  , handleEventHook = getFullscreenEventHook Exit <> swallowEventHook (className =? "Alacritty") (pure True)
   , workspaces = Workspaces.name <$> Workspaces.workspaces
   , borderWidth = 3
   , normalBorderColor = c color0
