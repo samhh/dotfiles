@@ -115,6 +115,7 @@ namcap
 neovim
 newsboat
 nix
+notify-send.sh
 offlineimap
 openssh
 pacman-contrib

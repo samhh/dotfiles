@@ -1,5 +1,7 @@
 #!/bin/sh
 
+nid=$(notify-send.sh -p -a 'WM' 'Wallpaper' 'Discovering new wallpaper and generating palette...')
+
 cache_path=~/.cache/wal/
 img_path=$(~/scripts/private/unsplash.sh)
 h=$(date '+%H')
@@ -26,3 +28,4 @@ if pgrep qutebrowser &> /dev/null; then
   qutebrowser ':config-source'
 fi
 
+notify-send.sh --close="$nid"
