@@ -6,10 +6,15 @@ h=$(date '+%H')
 # pywal generates a "light" and "dark" Rofi theme, which is rather in contrast
 # to the dynamism supported by the "-l" flag. We'll create our own symbolic
 # link to keep it in sync after running pywal itself.
+# We'll also store whether the theme is light or dark in our own file since
+# pywal's templates don't indicate this, and it's cheaper than testing the
+# colours ourselves.
 if [[ "$h" -gt 04 && "$h" -lt 17 ]]; then
+  echo light > ~/.cache/wal/_theme
   wal -l -i "$path"
   ln -sf ~/.cache/wal/colors-rofi-dark.rasi ~/.cache/wal/colors-rofi.rasi
 else
+  echo dark > ~/.cache/wal/_theme
   wal -i "$path"
   ln -sf ~/.cache/wal/colors-rofi-light.rasi ~/.cache/wal/colors-rofi.rasi
 fi

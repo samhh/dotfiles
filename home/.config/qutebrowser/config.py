@@ -2,9 +2,13 @@ import json
 
 config.load_autoconfig()
 
-handle = open("/home/sam/.cache/wal/colors.json")
-colors = json.load(handle)
-handle.close()
+colors_handle = open("/home/sam/.cache/wal/colors.json")
+colors = json.load(colors_handle)
+colors_handle.close()
+
+theme_handle = open("/home/sam/.cache/wal/_theme")
+theme = theme_handle.read()[:-1]
+theme_handle.close()
 
 def with_alpha(a):
   def on_color(c):
@@ -34,7 +38,7 @@ c.colors.tabs.selected.even.bg = color_bghl
 c.colors.tabs.selected.even.fg = color_fghl
 c.colors.tabs.selected.odd.bg = color_bghl
 c.colors.tabs.selected.odd.fg = color_fghl
-c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.darkmode.enabled = theme == "dark"
 c.completion.cmd_history_max_items = 0
 c.completion.open_categories = []
 c.completion.web_history.max_items = 0
