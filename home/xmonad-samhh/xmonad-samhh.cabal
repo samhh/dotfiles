@@ -25,9 +25,9 @@ executable xmonad-samhh-wm
   build-depends:
       xmonad-samhh
     , data-default       ^>= 0.7
-    , X11                ^>= 1.9
-    , xmonad             ^>= 0.15
-    , xmonad-contrib     ^>= 0.16
+    , X11                ^>= 1.10
+    , xmonad             ^>= 0.17
+    , xmonad-contrib     ^>= 0.17
   other-modules:
     Key
     Layout
@@ -41,7 +41,7 @@ executable xmonad-samhh-bar
   main-is:               Main.hs
   build-depends:
       xmonad-samhh
-    , xmobar             ^>= 0.38
+    , xmobar             ^>= 0.40
 
 library
   import:                common
@@ -50,8 +50,8 @@ library
     DeriveAnyClass
     DeriveGeneric
   build-depends:
-      aeson              ^>= 1.5
-    , X11                ^>= 1.9
+      aeson              ^>= 2.0
+    , X11                ^>= 1.10
     , xdg-basedir        ^>= 0.2
   exposed-modules:
     App

@@ -6,6 +6,7 @@ import           App                         (apps)
 import           Color                       (Palette (color0, color3),
                                               getColorOrHideous, getTheme)
 import qualified Data.Map                    as M
+import           Function                    (bindM2)
 import qualified Key                         as K
 import           Layout                      (layout, resetLayout)
 import           Spawn                       (BrowserProfile (Personal, Work),
@@ -27,9 +28,9 @@ import           XMonad                      (ChangeLayout (NextLayout),
                                               IncMasterN (IncMasterN), Query,
                                               Resize (Expand, Shrink), X,
                                               XConfig (XConfig, borderWidth, clickJustFocuses, focusFollowsMouse, focusedBorderColor, handleEventHook, keys, layoutHook, manageHook, modMask, normalBorderColor, terminal, workspaces),
-                                              kill, launch, restart,
-                                              sendMessage, spawn, windows,
-                                              withFocused, (.|.), (=?))
+                                              getDirectories, kill, launch,
+                                              restart, sendMessage, spawn,
+                                              windows, withFocused, (.|.), (=?))
 import qualified XMonad
 import           XMonad.Actions.CopyWindow   (copyToAll, killAllOtherCopies)
 import           XMonad.Config.Desktop       (desktopConfig)
@@ -40,7 +41,8 @@ import           XMonad.Layout.ResizableTile (MirrorResize (MirrorExpand, Mirror
 import qualified XMonad.StackSet             as W
 
 main :: IO ()
-main = launch . docks =<< statusBar . config =<< getTheme
+main = bindM2 launch getCfg getDirectories
+  where getCfg = fmap docks . statusBar . config =<< getTheme
 
 instanceName :: Query String
 instanceName = XMonad.appName
