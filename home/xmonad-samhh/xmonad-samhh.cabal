@@ -13,6 +13,7 @@ common common
       base               ^>= 4.14
     , relude             ^>= 1.0
     , containers         ^>= 0.6
+    , transformers       ^>= 0.5
   mixins:                  base hiding (Prelude)
                          , relude (Relude as Prelude)
 

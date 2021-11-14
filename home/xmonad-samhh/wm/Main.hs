@@ -4,10 +4,11 @@ module Main (main) where
 
 import           App                         (apps)
 import           Color                       (HexColor,
-                                              Palette (color0, color3, color1),
+                                              Palette (color0, color1, color3),
                                               Specials (background, foreground),
                                               getColorOrHideous,
                                               getSpecialOrHideous, getTheme)
+import           Control.Monad.Trans.Reader  (mapReaderT)
 import           Data.Default                (def)
 import qualified Data.Map                    as M
 import           Function                    (bindM2)
@@ -39,7 +40,7 @@ import           XMonad                      (ChangeLayout (NextLayout),
 import qualified XMonad
 import           XMonad.Actions.CopyWindow   (copyToAll, killAllOtherCopies)
 import           XMonad.Actions.EasyMotion   (ChordKeys (AnyKeys),
-                                              EasyMotionConfig (bgCol, txtCol, borderCol, borderPx),
+                                              EasyMotionConfig (bgCol, borderCol, borderPx, txtCol),
                                               cancelKey, sKeys, selectWindow)
 import           XMonad.Config.Desktop       (desktopConfig)
 import           XMonad.Hooks.InsertPosition (Focus (..), Position (..),
@@ -73,19 +74,29 @@ browserTarget x = spaceHasBrowser x <&> \case
 spawnWithBrowserTarget :: BrowserProfile -> Spawn -> X ()
 spawnWithBrowserTarget x y = spawn . (toSpawnable y <>) . (" " <>) =<< browserTarget x
 
-selectWindow' :: ((Specials -> HexColor) -> HexColor) -> ((Palette -> HexColor) -> HexColor) -> X (Maybe Window)
-selectWindow' s c = selectWindow $ def
-  { sKeys = AnyKeys colemakHomeKeys
-  , cancelKey = K.xK_Escape
-  , bgCol = s background
-  , txtCol = s foreground
-  , borderCol = c color1
-  , borderPx = 3
+data ColorGetters = ColorGetters
+  { getPalette :: (Palette -> HexColor) -> HexColor
+  , getSpecial :: (Specials -> HexColor) -> HexColor
   }
+
+type WithColorsM = ReaderT ColorGetters X
+
+selectWindow' :: WithColorsM (Maybe Window)
+selectWindow' = do
+  p <- getPalette <$> ask
+  s <- getSpecial <$> ask
+  lift . selectWindow $ def
+    { sKeys = AnyKeys colemakHomeKeys
+    , cancelKey = K.xK_Escape
+    , bgCol = s background
+    , txtCol = s foreground
+    , borderCol = p color1
+    , borderPx = 3
+    }
   where colemakHomeKeys = [K.xK_t, K.xK_n, K.xK_s, K.xK_e, K.xK_r, K.xK_i]
 
-onSelectWindow :: ((Specials -> HexColor) -> HexColor) -> ((Palette -> HexColor) -> HexColor) -> (Window -> X ()) -> X ()
-onSelectWindow s c f = (`whenJust` f) =<< selectWindow' s c
+onSelectWindow :: (Window -> X ()) -> WithColorsM ()
+onSelectWindow f = mapReaderT (`whenJustM` f) selectWindow'
 
 config t = desktopConfig
   { terminal = "alacritty"
@@ -154,4 +165,4 @@ config t = desktopConfig
   }
   where c = getColorOrHideous t
         s = getSpecialOrHideous t
-        onSelectWindow' = onSelectWindow s c
+        onSelectWindow' = flip runReaderT (ColorGetters c s) . onSelectWindow
