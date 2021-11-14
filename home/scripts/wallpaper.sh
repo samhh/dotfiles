@@ -1,6 +1,7 @@
 #!/bin/sh
 
-path=$(~/scripts/private/unsplash.sh)
+cache_path=~/.cache/wal/
+img_path=$(~/scripts/private/unsplash.sh)
 h=$(date '+%H')
 
 # pywal generates a "light" and "dark" Rofi theme, which is rather in contrast
@@ -10,13 +11,13 @@ h=$(date '+%H')
 # pywal's templates don't indicate this, and it's cheaper than testing the
 # colours ourselves.
 if [[ "$h" -gt 04 && "$h" -lt 17 ]]; then
-  echo light > ~/.cache/wal/_theme
-  wal -l -i "$path"
-  ln -sf ~/.cache/wal/colors-rofi-dark.rasi ~/.cache/wal/colors-rofi.rasi
+  echo light > "$cache_path/_theme"
+  wal -l -i "$img_path"
+  ln -sf "$cache_path/colors-rofi-dark.rasi" "$cache_path/colors-rofi.rasi"
 else
-  echo dark > ~/.cache/wal/_theme
-  wal -i "$path"
-  ln -sf ~/.cache/wal/colors-rofi-light.rasi ~/.cache/wal/colors-rofi.rasi
+  echo dark > "$cache_path/_theme"
+  wal -i "$img_path"
+  ln -sf "$cache_path/colors-rofi-light.rasi" "$cache_path/colors-rofi.rasi"
 fi
 
 # Source qutebrowser's config only if there's an active instance, else it will
