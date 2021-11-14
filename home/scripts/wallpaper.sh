@@ -14,6 +14,9 @@ else
   ln -sf ~/.cache/wal/colors-rofi-light.rasi ~/.cache/wal/colors-rofi.rasi
 fi
 
-# Reload dynamic configs
-qutebrowser ':config-source'
+# Source qutebrowser's config only if there's an active instance, else it will
+# spawn one.
+if pgrep qutebrowser &> /dev/null; then
+  qutebrowser ':config-source'
+fi
 
