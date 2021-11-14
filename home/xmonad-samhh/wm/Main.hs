@@ -40,6 +40,7 @@ import           XMonad.Hooks.InsertPosition (Focus (..), Position (..),
                                               insertPosition)
 import           XMonad.Hooks.ManageDocks    (docks)
 import           XMonad.Layout.ResizableTile (MirrorResize (MirrorExpand, MirrorShrink))
+import           XMonad.Operations           (killWindow)
 import qualified XMonad.StackSet             as W
 
 main :: IO ()
@@ -81,7 +82,8 @@ config t = desktopConfig
   , keys = \cfg@XConfig {XMonad.modMask = super, XMonad.terminal = term} ->
       M.fromList $
         [ ((super, K.xK_Return), spawn term)
-        , ((super .|. K.shiftMask, K.xK_q), kill)
+        , ((super .|. K.shiftMask, K.xK_q), (`whenJust` killWindow) =<< selectWindow def)
+        , ((super .|. K.shiftMask .|. K.controlMask, K.xK_q), kill)
         , ((super, K.xK_Down), windows W.focusDown)
         , ((super, K.xK_Up), windows W.focusUp)
         , ((super .|. K.shiftMask, K.xK_Down), windows W.swapDown)
