@@ -27,7 +27,8 @@ import           Workspace                   (spaceContainsWindow,
 import qualified Workspaces
 import           XMonad                      (ChangeLayout (NextLayout),
                                               IncMasterN (IncMasterN), Query,
-                                              Resize (Expand, Shrink), X,
+                                              Resize (Expand, Shrink), Window,
+                                              X,
                                               XConfig (XConfig, borderWidth, clickJustFocuses, focusFollowsMouse, focusedBorderColor, handleEventHook, keys, layoutHook, manageHook, modMask, normalBorderColor, terminal, workspaces),
                                               getDirectories, kill, launch,
                                               restart, sendMessage, spawn,
@@ -67,6 +68,12 @@ browserTarget x = spaceHasBrowser x <&> \case
 spawnWithBrowserTarget :: BrowserProfile -> Spawn -> X ()
 spawnWithBrowserTarget x y = spawn . (toSpawnable y <>) . (" " <>) =<< browserTarget x
 
+selectWindow' :: X (Maybe Window)
+selectWindow' = selectWindow def
+
+onSelectWindow :: (Window -> X ()) -> X ()
+onSelectWindow f = (`whenJust` f) =<< selectWindow'
+
 config t = desktopConfig
   { terminal = "alacritty"
   , modMask = K.modMask
@@ -82,7 +89,7 @@ config t = desktopConfig
   , keys = \cfg@XConfig {XMonad.modMask = super, XMonad.terminal = term} ->
       M.fromList $
         [ ((super, K.xK_Return), spawn term)
-        , ((super .|. K.shiftMask, K.xK_q), (`whenJust` killWindow) =<< selectWindow def)
+        , ((super .|. K.shiftMask, K.xK_q), onSelectWindow killWindow)
         , ((super .|. K.shiftMask .|. K.controlMask, K.xK_q), kill)
         , ((super, K.xK_Down), windows W.focusDown)
         , ((super, K.xK_Up), windows W.focusUp)
@@ -102,7 +109,7 @@ config t = desktopConfig
         , ((super, K.xK_s), withFocused . toggleFloat $ centreRect)
         , ((super, K.xK_a), windows copyToAll <> withFocused (enableFloat' videoRect))
         , ((super .|. K.shiftMask, K.xK_a), killAllOtherCopies <> withFocused disableFloat')
-        , ((super, K.xK_h), (`whenJust` windows . W.focusWindow) =<< selectWindow def)
+        , ((super, K.xK_h), onSelectWindow (windows . W.focusWindow))
         , ((super, K.xK_o), spawn' CloseNotif)
         , ((super .|. K.shiftMask, K.xK_o), spawn' CloseAllNotifs)
         , ((K.nomod, K.xK_VolDown), spawn' DecVol)
