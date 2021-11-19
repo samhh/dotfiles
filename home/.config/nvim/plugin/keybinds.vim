@@ -6,6 +6,9 @@ nnoremap Q <NOP>
 " Remap a questionable default for more consistency with C and D
 nnoremap Y y$
 
+" Easier redo
+nnoremap U <C-r>
+
 " Toggle to last open buffer
 nnoremap <Leader>v <C-^>
 
