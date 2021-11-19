@@ -12,8 +12,6 @@ import           XMonad.Config.Prime                 (Event (DestroyWindowEvent,
                                                       runQuery, sendMessage,
                                                       whenX, windows, (=?))
 import           XMonad.Hooks.ManageDocks            (ToggleStruts (ToggleStruts))
-import           XMonad.Hooks.RefocusLast            (refocusLastWhen,
-                                                      refocusingIsActive)
 import           XMonad.Layout                       (Full (Full))
 import           XMonad.Layout.MultiToggle           (Toggle (Toggle))
 import           XMonad.Layout.MultiToggle.Instances (StdTransformers (FULL))
@@ -87,4 +85,4 @@ getFullscreenEventHook Exit DestroyWindowEvent {ev_window = w, ev_event = evt} =
       toggleFullscreen'
   pure $ All True
     where isIgnorable = (== "pinentry-qt") . prev <$> readIORef lastClassNames
-getFullscreenEventHook _ evt = refocusLastWhen refocusingIsActive evt
+getFullscreenEventHook _ _ = pure $ All True

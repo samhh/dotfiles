@@ -23,7 +23,7 @@ import           Window                        (OnFullscreenDestroy (Exit),
                                                 enableFloat',
                                                 getFullscreenEventHook,
                                                 toggleFloat, toggleFullscreen',
-                                                videoRect, trackFocused)
+                                                trackFocused, videoRect)
 import           Workspace                     (spaceContainsWindow,
                                                 workspaceAutoAssign,
                                                 workspaceSwap, workspaceSwitch,
@@ -35,9 +35,9 @@ import           XMonad                        (ChangeLayout (NextLayout),
                                                 X,
                                                 XConfig (XConfig, borderWidth, clickJustFocuses, focusFollowsMouse, focusedBorderColor, handleEventHook, keys, layoutHook, manageHook, modMask, normalBorderColor, terminal, workspaces),
                                                 className, getDirectories, kill,
-                                                launch, restart, sendMessage,
-                                                spawn, windows, withFocused,
-                                                (.|.), (=?), logHook)
+                                                launch, logHook, restart,
+                                                sendMessage, spawn, windows,
+                                                withFocused, (.|.), (=?))
 import qualified XMonad
 import           XMonad.Actions.CopyWindow     (copyToAll, killAllOtherCopies)
 import           XMonad.Actions.EasyMotion     (ChordKeys (AnyKeys),
@@ -47,6 +47,8 @@ import           XMonad.Config.Desktop         (desktopConfig)
 import           XMonad.Hooks.InsertPosition   (Focus (..), Position (..),
                                                 insertPosition)
 import           XMonad.Hooks.ManageDocks      (docks)
+import           XMonad.Hooks.RefocusLast      (refocusLastWhen,
+                                                refocusingIsActive)
 import           XMonad.Hooks.WindowSwallowing (swallowEventHook)
 import           XMonad.Layout.ResizableTile   (MirrorResize (MirrorExpand, MirrorShrink))
 import           XMonad.Operations             (killWindow)
@@ -107,7 +109,10 @@ config t = desktopConfig
   , clickJustFocuses = False
   , logHook = trackFocused
   , manageHook = insertPosition Below Newer <> foldMap workspaceAutoAssign apps
-  , handleEventHook = getFullscreenEventHook Exit <> swallowEventHook (className =? "Alacritty") (pure True)
+  , handleEventHook =
+       getFullscreenEventHook Exit
+    <> refocusLastWhen refocusingIsActive
+    <> swallowEventHook (className =? "Alacritty") (pure True)
   , workspaces = Workspaces.name <$> Workspaces.workspaces
   , borderWidth = 3
   , normalBorderColor = c color0
