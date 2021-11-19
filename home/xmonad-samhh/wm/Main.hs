@@ -23,7 +23,7 @@ import           Window                        (OnFullscreenDestroy (Exit),
                                                 enableFloat',
                                                 getFullscreenEventHook,
                                                 toggleFloat, toggleFullscreen',
-                                                videoRect)
+                                                videoRect, trackFocused)
 import           Workspace                     (spaceContainsWindow,
                                                 workspaceAutoAssign,
                                                 workspaceSwap, workspaceSwitch,
@@ -37,7 +37,7 @@ import           XMonad                        (ChangeLayout (NextLayout),
                                                 className, getDirectories, kill,
                                                 launch, restart, sendMessage,
                                                 spawn, windows, withFocused,
-                                                (.|.), (=?))
+                                                (.|.), (=?), logHook)
 import qualified XMonad
 import           XMonad.Actions.CopyWindow     (copyToAll, killAllOtherCopies)
 import           XMonad.Actions.EasyMotion     (ChordKeys (AnyKeys),
@@ -105,6 +105,7 @@ config t = desktopConfig
   , modMask = K.modMask
   , focusFollowsMouse = False
   , clickJustFocuses = False
+  , logHook = trackFocused
   , manageHook = insertPosition Below Newer <> foldMap workspaceAutoAssign apps
   , handleEventHook = getFullscreenEventHook Exit <> swallowEventHook (className =? "Alacritty") (pure True)
   , workspaces = Workspaces.name <$> Workspaces.workspaces
