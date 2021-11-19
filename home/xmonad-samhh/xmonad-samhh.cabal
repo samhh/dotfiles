@@ -57,6 +57,7 @@ library
   exposed-modules:
     App
     Color
+    Data.Datum
     Data.Maybe.Utils
     Function
     Spawn
