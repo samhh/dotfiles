@@ -18,9 +18,6 @@ set nofoldenable
 set foldmethod=manual
 set foldexpr=nvim_treesitter#foldexpr()
 
-" Write swap file faster so that plugins like gitgutter are more responsive
-set updatetime=50
-
 " Display signs in number column
 set signcolumn=number
 
@@ -56,5 +53,14 @@ autocmd BufNewFile .exrc nested autocmd BufWritePost <buffer> nested ExrcTrust
 lua <<EOF
   require'Comment'.setup()
   require'hop'.setup()
+  require'gitsigns'.setup {
+    -- Imlicitly also disables all (other) default keybinds
+    keymaps = {
+      noremap = true,
+
+      ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
+      ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
+    }
+  }
 EOF
 

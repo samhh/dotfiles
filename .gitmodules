@@ -19,9 +19,9 @@
 [submodule "home/.config/nvim/pack/plugins/start/vim-bbye"]
   path = home/.config/nvim/pack/plugins/start/vim-bbye
   url = gh:moll/vim-bbye
-[submodule "home/.config/nvim/pack/plugins/start/vim-gitgutter"]
-  path = home/.config/nvim/pack/plugins/start/vim-gitgutter
-  url = gh:airblade/vim-gitgutter
+[submodule "home/.config/nvim/pack/plugins/start/gitsigns.nvim"]
+  path = home/.config/nvim/pack/plugins/start/gitsigns.nvim
+  url = gh:lewis6991/gitsigns.nvim
 [submodule "home/.config/nvim/pack/plugins/start/vim-trailing-whitespace"]
   path = home/.config/nvim/pack/plugins/start/vim-trailing-whitespace
   url = gh:bronson/vim-trailing-whitespace

@@ -38,9 +38,6 @@ nnoremap <Leader>/ :silent lgrep ''<Left>
 " Async make
 nnoremap <Leader>m :Make 
 
-"" Disable vim-gitgutter's default mappings
-let g:gitgutter_map_keys = 0
-
 " Navigate location list
 nmap <silent> gL :lprev<CR>
 nmap <silent> gl :lnext<CR>
