@@ -1,5 +1,8 @@
 local k = require('keymap')
 
+local pickers = require('telescope.builtin')
+local themes = require('telescope.themes')
+
 local function this_buf_set_option(opt, value)
   vim.api.nvim_buf_set_option(0, opt, value)
 end
@@ -170,4 +173,5 @@ k.mapn('<Leader>z', '<Cmd>lua vim.lsp.buf.formatting()<CR>')
 k.mapn('<Leader>e', '<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
 
 -- Offer code actions
-k.mapn('<Leader>g', '<Cmd>lua vim.lsp.buf.code_action()<CR>')
+_G.act = function() pickers.lsp_code_actions(themes.get_cursor()) end
+k.mapn('<Leader>g', '<Cmd>lua act()<CR>')
