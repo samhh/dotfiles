@@ -1,7 +1,7 @@
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained",
   highlight = { enable = true },
-  indent = { enable = true },
+  indent = { enable = false },
   autotag = { enable = true },
   context_commentstring = { enable = true },
   matchup = { enable = false },
