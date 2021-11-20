@@ -47,9 +47,6 @@
 [submodule "home/.config/nvim/pack/plugins/start/editorconfig-vim"]
   path = home/.config/nvim/pack/plugins/start/editorconfig-vim
   url = gh:editorconfig/editorconfig-vim
-[submodule "home/.config/nvim/pack/plugins/start/vim-sleuth"]
-  path = home/.config/nvim/pack/plugins/start/vim-sleuth
-  url = gh:tpope/vim-sleuth
 
 # Compilation
 [submodule "home/.config/nvim/pack/plugins/start/vim-dispatch"]
