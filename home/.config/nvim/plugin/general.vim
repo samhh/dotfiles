@@ -1,3 +1,9 @@
+" Use two spaces by default - these are overridden by editorconfig where
+" applicable
+set expandtab
+set softtabstop=2
+set shiftwidth=2
+
 " Always show line numbers
 set number
 
