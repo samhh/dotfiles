@@ -185,6 +185,7 @@ stylish-haskell-bin
 tshm-bin
 typescript-language-server-bin
 vscode-langservers-extracted
+yalc
 yarn
 
 # dev - spago tests
