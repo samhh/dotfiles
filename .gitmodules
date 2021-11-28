@@ -26,7 +26,7 @@
   path = home/.config/nvim/pack/plugins/start/vim-trailing-whitespace
   url = gh:bronson/vim-trailing-whitespace
 
-# Motions
+# Motions & Objects
 [submodule "home/.config/nvim/pack/plugins/start/comment.nvim"]
   path = home/.config/nvim/pack/plugins/start/comment.nvim
   url = gh:numtostr/comment.nvim
@@ -45,6 +45,9 @@
 [submodule "home/.config/nvim/pack/plugins/start/gitlinker.nvim"]
   path = home/.config/nvim/pack/plugins/start/gitlinker.nvim
   url = gh:ruifm/gitlinker.nvim
+[submodule "home/.config/nvim/pack/plugins/start/targets.vim"]
+  path = home/.config/nvim/pack/plugins/start/targets.vim
+  url = gh:wellle/targets.vim
 
 # Formatting
 [submodule "home/.config/nvim/pack/plugins/start/editorconfig-vim"]
