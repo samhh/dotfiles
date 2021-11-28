@@ -68,5 +68,9 @@ lua <<EOF
       ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
     }
   }
+
+  require'gitlinker'.setup {
+    mappings = 'gy'
+  }
 EOF
 

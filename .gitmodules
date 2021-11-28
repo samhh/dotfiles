@@ -42,6 +42,9 @@
 [submodule "home/.config/nvim/pack/plugins/start/hop.nvim"]
   path = home/.config/nvim/pack/plugins/start/hop.nvim
   url = gh:phaazon/hop.nvim
+[submodule "home/.config/nvim/pack/plugins/start/gitlinker.nvim"]
+  path = home/.config/nvim/pack/plugins/start/gitlinker.nvim
+  url = gh:ruifm/gitlinker.nvim
 
 # Formatting
 [submodule "home/.config/nvim/pack/plugins/start/editorconfig-vim"]
