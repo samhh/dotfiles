@@ -4,6 +4,12 @@ set fish_greeting
 # vi-like keybinds
 fish_vi_key_bindings
 
+# fzf keybind
+fzf_configure_bindings --directory=\cf
+
+# Show hidden dirs in fzf
+set -x fzf_fd_opts --hidden --exclude=.git
+
 # Exported variables
 ## Non-XDG locations
 set -x LEDGER_FILE ~/journal/main.journal
