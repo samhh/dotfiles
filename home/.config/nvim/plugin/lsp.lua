@@ -20,12 +20,12 @@ local function setup_servers()
   end
 
   local function attacher_fmt(client)
-      setup_keybinds()
+    setup_keybinds()
   end
 
   local function attacher_nofmt(client)
-      setup_keybinds()
-      client.resolved_capabilities.document_formatting = false
+    setup_keybinds()
+    client.resolved_capabilities.document_formatting = false
   end
 
   lspc.bashls.setup {
@@ -33,16 +33,16 @@ local function setup_servers()
   }
 
   if not lspc_cfgs.cssmodules then
-      lspc_cfgs.cssmodules = {
-          default_config = {
-              cmd = {'cssmodules-language-server'},
-              filetypes = {'javascript', 'javascriptreact', 'typescript', 'typescriptreact'},
-              init_options = {
-                  camelCase = true,
-              },
-              root_dir = require('lspconfig.util').root_pattern('package.json')
-          }
-      }
+    lspc_cfgs.cssmodules = {
+        default_config = {
+            cmd = {'cssmodules-language-server'},
+            filetypes = {'javascript', 'javascriptreact', 'typescript', 'typescriptreact'},
+            init_options = {
+                camelCase = true,
+            },
+            root_dir = require('lspconfig.util').root_pattern('package.json')
+        }
+    }
   end
 
   lspc_cfgs.cssmodules.setup {
