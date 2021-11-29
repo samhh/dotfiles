@@ -145,7 +145,8 @@ setup_qf()
 k.mapn('gr', '<Cmd>lua vim.lsp.buf.references()<CR>')
 
 -- Symbols search
-k.mapn('gs', '<Cmd>lua vim.lsp.buf.document_symbol()<CR>')
+_G.syml = function() pickers.lsp_document_symbols(themes.get_cursor()) end
+k.mapn('gs', '<Cmd>lua syml()<CR>')
 k.mapn('gS', '<Cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
 
 -- Format/fix active buffer
