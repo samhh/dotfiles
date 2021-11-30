@@ -3,9 +3,6 @@ let mapleader = ' '
 " Disable unneeded Ex mode bind that's easy to mistakenly hit
 nnoremap Q <NOP>
 
-" Remap a questionable default for more consistency with C and D
-nnoremap Y y$
-
 " Easier redo
 nnoremap U <C-r>
 
