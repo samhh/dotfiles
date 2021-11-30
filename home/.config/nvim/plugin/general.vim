@@ -27,9 +27,6 @@ set signcolumn=number
 " Keep n lines of context visible at all times
 set scrolloff=5
 
-" Live substitution
-set inccommand=nosplit
-
 " Only shallow search in editor's PWD
 set path=,,
 
