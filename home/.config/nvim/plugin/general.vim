@@ -16,9 +16,6 @@ set linebreak
 " Keep indentation aligned when line wrapping
 set breakindent
 
-" Allow background closing/hiding of buffers with unsaved changes
-set hidden
-
 " Disable folding on load by default to improve performance in massive files
 set nofoldenable
 set foldmethod=manual
