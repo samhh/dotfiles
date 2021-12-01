@@ -29,7 +29,7 @@ nnoremap gh :HopWord<CR>
 " :grep motions and shortcut
 let g:grepper = {}
 let g:grepper.quickfix = 0
-nmap gs <plug>(GrepperOperator)
+nmap gp <plug>(GrepperOperator)
 nnoremap <Leader>/ :silent lgrep ''<Left>
 
 " Async make
