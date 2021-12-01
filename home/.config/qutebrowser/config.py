@@ -59,6 +59,10 @@ c.url.default_page = "about:blank"
 c.url.searchengines = { "DEFAULT": "http://localhost:1234/?q={}" }
 c.window.transparent = True
 
+config.bind('gT', 'tab-prev')
+config.bind('gt', 'tab-next')
+config.bind('gH', 'back')
+config.bind('gh', 'forward')
 config.bind('X', 'spawn --userscript qute-pass --username-target secret --username-pattern "username: (.+)"')
 config.bind('V', 'spawn streamlink {url}')
 config.unbind('b')
