@@ -6,4 +6,4 @@ yalc.lock
 hie.yaml
 *.pyc
 .exrc
-
+.npmrc
