@@ -123,6 +123,9 @@ pacmanfile
 paru-bin
 pass
 pavucontrol
+# for git send-email
+perl-authen-sasl
+perl-io-socket-ssl
 playerctl
 progress
 python-pywal
