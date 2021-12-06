@@ -176,9 +176,11 @@ ghcup-hs-bin
 go
 gopls
 hlint-bin
+hugo
 nodejs
 nodejs-spago
 npm
+openring-git
 pandoc-bin
 purescript-language-server
 rustup
