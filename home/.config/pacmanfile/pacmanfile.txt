@@ -134,6 +134,7 @@ qrcp-bin
 ripgrep
 rofi
 scrot
+senpai-irc-git
 stow
 streamlink
 teensy-loader-cli
