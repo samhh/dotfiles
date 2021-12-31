@@ -80,7 +80,7 @@ ttf-monaco
 aerc
 alacritty
 arch-wiki-lite
-backblaze-b2
+backblaze-b2-bin
 bandwhich
 bangin
 bangin-server-node
@@ -181,7 +181,7 @@ hugo
 nodejs
 nodejs-spago
 npm
-openring-git
+openring
 pandoc-bin
 purescript-language-server
 rustup
