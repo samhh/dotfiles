@@ -89,7 +89,7 @@ local function setup_servers()
               end
 
               if not isReactDTs then
-                 vim.lsp.util.set_qflist(util.locations_to_items(results))
+                 vim.fn.setqflist(util.locations_to_items(results))
                  vim.api.nvim_command("copen")
                  vim.api.api.nvim_command("wincmd p")
               end
@@ -121,7 +121,7 @@ local function setup_qf()
     def_pubdiag_handler(err, method, res, cid, bufnr, cfg)
 
     local qfdiags = {}
-    for bufnr_, diags in pairs(vim.lsp.diagnostic.get_all()) do
+    for bufnr_, diags in pairs(vim.diagnostic.get()) do
       for _, diag in ipairs(diags) do
         -- Filter out deprecation diagnostics.
         if not string.match(diag.message, "deprecated") then
@@ -133,7 +133,7 @@ local function setup_qf()
         end
       end
     end
-    vim.lsp.util.set_qflist(qfdiags)
+    vim.fn.setqflist(qfdiags)
   end
 end
 
@@ -153,7 +153,7 @@ k.mapn('gS', '<Cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
 k.mapn('<Leader>z', '<Cmd>lua vim.lsp.buf.formatting()<CR>')
 
 -- Show diagnostics in popup
-k.mapn('<Leader>e', '<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
+k.mapn('<Leader>e', '<Cmd>lua vim.diagnostic.open_float(0)<CR>')
 
 -- Offer code actions
 _G.act = function() pickers.lsp_code_actions(themes.get_cursor()) end

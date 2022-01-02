@@ -1,8 +1,8 @@
 colorscheme wal
 
 function! DiagnosticsStatus() abort
-    let l:es = luaeval("vim.lsp.diagnostic.get_count(0, [[Error]])")
-    let l:ws = luaeval("vim.lsp.diagnostic.get_count(0, [[Warning]])")
+    let l:es = luaeval("#vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })")
+    let l:ws = luaeval("#vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })")
 
     return l:es + l:ws == 0 ? 'ok' : printf('%dw %de', ws, es)
 endfunction
