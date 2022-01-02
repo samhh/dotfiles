@@ -73,11 +73,11 @@ abbr -g top 'gotop'
 abbr -g mpc 'vimpc'
 
 # Arch package management-specific aliases
-abbr -g in 'sudo pacman -S'
+abbr -g in 'doas pacman -S'
 abbr -g ina 'paru -S'
-abbr -g up 'sudo pacman -Syu'
+abbr -g up 'doas pacman -Syu'
 abbr -g upa 'paru -Sau'
-abbr -g un 'sudo pacman -Rs'
+abbr -g un 'doas pacman -Rs'
 
 # Misc/specific aliases
 abbr -g sys 'systemctl'

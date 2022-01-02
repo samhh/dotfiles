@@ -54,11 +54,12 @@ gzip
 libtool
 m4
 make
+opendoas
+opendoas-sudo
 pacman
 patch
 pkgconf
 sed
-sudo
 texinfo
 which
 
