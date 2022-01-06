@@ -130,6 +130,7 @@ perl-io-socket-ssl
 playerctl
 progress
 python-pywal
+qbpm-git
 qmk
 qrcp-bin
 ripgrep
@@ -156,7 +157,6 @@ obsidian-appimage
 piper
 # for qute-pass
 python-tldextract
-qbpm-git
 qutebrowser
 simplescreenrecorder
 telegram-desktop
