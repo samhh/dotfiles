@@ -6,5 +6,5 @@ My personal dotfiles targeting a machine running [xmonad](https://xmonad.org) on
 
 A shell script (`./link.sh`) is included that sets up symlinks for everything. This uses [Stow](https://www.gnu.org/software/stow/) under the hood.
 
-In theory all prerequisite software is captured by the included [pacmanfile](https://github.com/mastertinner/pacmanfile) config.
+In theory all prerequisite software is captured by the included [pacmanfile](https://github.com/cloudlena/pacmanfile) config.
 
