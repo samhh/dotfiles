@@ -81,7 +81,7 @@ ttf-monaco
 aerc
 alacritty
 arch-wiki-lite
-backblaze-b2-bin
+backblaze-b2
 bandwhich
 bangin
 bangin-server-node
