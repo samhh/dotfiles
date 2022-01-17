@@ -67,36 +67,12 @@ local function setup_servers()
     --   - https://github.com/neovim/neovim/issues/14556
     --   - https://github.com/typescript-language-server/typescript-language-server/issues/216
     --   - https://github.com/microsoft/TypeScript/issues/37816
-    -- Specifically borrowed the below code from:
-    --   - https://github.com/typescript-language-server/typescript-language-server/issues/216#issuecomment-939369240
+    --
+    -- Plucks the first result and drops the rest. The API should support
+    -- `A | [A] | nil`, making this safe.
     handlers = {
-      ["textDocument/definition"] = function (_, results, params)
-        if results == nil or vim.tbl_isempty(results) then
-           local _ = vim.lsp.log.info() and vim.lsp.log.info(params.method, 'No location found')
-           return nil
-        end
-
-        if vim.tbl_islist(results) then
-           vim.lsp.util.jump_to_location(results[1])
-           if #results > 1 then
-              local isReactDTs = false
-
-              for _, result in pairs(results) do
-                 if string.match(result.uri, "react/index.d.ts") then
-                    isReactDTs = true
-                    break
-                 end
-              end
-
-              if not isReactDTs then
-                 vim.fn.setqflist(util.locations_to_items(results))
-                 vim.api.nvim_command("copen")
-                 vim.api.api.nvim_command("wincmd p")
-              end
-           end
-        else
-           vim.lsp.util.jump_to_location(results)
-        end
+      ["textDocument/definition"] = function (e, xs, ...)
+        vim.lsp.handlers['textDocument/definition'](err, xs[1], ...)
       end
     }
   }
