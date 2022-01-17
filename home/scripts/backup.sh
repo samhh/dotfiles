@@ -22,7 +22,4 @@ echo "Backing up logs..."
 duplicity --encrypt-key hello@samhh.com /mnt/nas/logs/ "b2://$keyId:$appKey@logs-dup"
 echo "Backing up mail..."
 duplicity --encrypt-key hello@samhh.com /mnt/nas/mail/ "b2://$keyId:$appKey@mail-dup"
-echo "Backing up vault..."
-duplicity --encrypt-key hello@samhh.com ~/vault/ "b2://$keyId:$appKey@vault-dup"
 echo "Finished backups."
-
