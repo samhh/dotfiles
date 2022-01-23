@@ -4,6 +4,7 @@ window:
         x: 10
         y: 10
     dynamic_title: true
+    opacity: .92
 
 draw_bold_text_with_bright_colors: true
 live_config_reload: true
@@ -16,8 +17,6 @@ font:
         family: 'Hasklig'
     italic:
         family: 'Hasklig'
-
-background_opacity: .92
 
 key_bindings:
     - { key: Return,         mods: Command|Shift,    action: SpawnNewInstance    }
