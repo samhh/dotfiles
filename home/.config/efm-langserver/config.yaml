@@ -14,15 +14,7 @@ tools:
     format-command: './node_modules/.bin/prettier --stdin-filepath ${INPUT}'
     format-stdin: true
 
-  stylish-haskell: &stylish-haskell
-    root-markers:
-      - cabal.project
-    format-command: 'stylish-haskell ${INPUT}'
-    format-stdin: true
-
 languages:
-  haskell:
-    - <<: *stylish-haskell
   javascript:
     - <<: *import-sort
     - <<: *prettier

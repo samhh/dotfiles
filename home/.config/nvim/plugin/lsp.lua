@@ -32,7 +32,7 @@ local function setup_servers()
   }
 
   lspc.efm.setup {
-    filetypes = { "haskell", "javascript", "typescript", "typescriptreact" }
+    filetypes = { "javascript", "typescript", "typescriptreact" }
   }
 
   lspc.eslint.setup {
@@ -44,7 +44,8 @@ local function setup_servers()
   }
 
   lspc.hls.setup {
-    on_attach = attacher_nofmt
+    on_attach = attacher_fmt,
+    settings = { haskell = { formattingProvider = "stylish-haskell" } }
   }
 
   lspc.purescriptls.setup {
