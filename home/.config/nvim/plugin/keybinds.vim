@@ -1,6 +1,14 @@
 let mapleader = ' '
 
-" Disable unneeded Ex mode bind that's easy to mistakenly hit
+" Separate, ergonomic, mnenomic cut and delete
+nnoremap d "_d
+nnoremap D "_D
+nnoremap c "_c
+nnoremap C "_C
+nnoremap x d
+nnoremap xx dd
+nnoremap X D
+
 nnoremap Q <NOP>
 
 " Easier redo
