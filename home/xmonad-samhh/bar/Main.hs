@@ -19,7 +19,7 @@ cfg t =
       position = Top,
       sepChar = "%",
       alignSep = "}{",
-      template = " %StdinReader% | %cpu%, %cputemps% | %memory% | %dynnetwork% }{ %mpris2%%mpd% | %default:Master% | %default:Capture% | %date% ",
+      template = " %StdinReader% | %cpu%, %cputemps% | %memory% | %dynnetwork% }{ %mpris2%%mpd% | %alsa:default:Master% | %alsa:default:Capture% | %date% ",
       commands =
         [ Run StdinReader
 
@@ -73,7 +73,7 @@ cfg t =
             ]
             10
 
-        , Run $ Volume
+        , Run $ Alsa
             "default"
             "Capture"
             [ "--template"
@@ -84,9 +84,8 @@ cfg t =
             , "-c"
             , s foreground
             ]
-            10
 
-        , Run $ Volume
+        , Run $ Alsa
             "default"
             "Master"
             [ "--template"
@@ -97,7 +96,6 @@ cfg t =
             , "-c"
             , c color1
             ]
-            10
 
         , Run $ Mpris2
             "mpv"

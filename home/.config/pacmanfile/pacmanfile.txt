@@ -1,4 +1,6 @@
 # core
+## for alsactl, for xmobar Alsa monitor
+alsa-utils
 amd-ucode
 base
 bluez
