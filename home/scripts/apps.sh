@@ -5,7 +5,6 @@ chromium
 discord
 discover-overlay
 firefox-developer-edition
-hades
 nheko
 obsidian
 pavucontrol
