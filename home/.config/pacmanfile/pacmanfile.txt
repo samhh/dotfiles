@@ -180,6 +180,7 @@ go
 gopls
 hlint-bin
 hugo
+just
 nodejs
 nodejs-spago
 npm

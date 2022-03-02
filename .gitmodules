@@ -86,6 +86,9 @@
 [submodule "home/.config/nvim/pack/plugins/start/vim-fish"]
   path = home/.config/nvim/pack/plugins/start/vim-fish
   url = gh:dag/vim-fish
+[submodule "home/.config/nvim/pack/plugins/start/vim-just"]
+  path = home/.config/nvim/pack/plugins/start/vim-just
+  url = gh:NoahTheDuke/vim-just
 
 # Theming
 [submodule "home/.config/nvim/pack/plugins/start/wal.vim"]
