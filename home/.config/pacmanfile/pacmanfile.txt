@@ -21,7 +21,6 @@ lib32-mesa-vdpau
 lib32-vulkan-radeon
 linux
 linux-firmware
-linux-headers
 man-db
 mesa-git
 nfs-utils
