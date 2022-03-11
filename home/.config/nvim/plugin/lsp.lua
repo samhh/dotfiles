@@ -96,21 +96,7 @@ local function setup_qf()
   local def_pubdiag_handler = vim.lsp.handlers[pubdiag]
   vim.lsp.handlers[pubdiag] = function(err, method, res, cid, bufnr, cfg)
     def_pubdiag_handler(err, method, res, cid, bufnr, cfg)
-
-    local qfdiags = {}
-    for bufnr_, diags in pairs(vim.diagnostic.get()) do
-      for _, diag in ipairs(diags) do
-        -- Filter out deprecation diagnostics.
-        if not string.match(diag.message, "deprecated") then
-          diag.bufnr = bufnr_
-          diag.lnum = diag.range.start.line + 1
-          diag.col = diag.range.start.character + 1
-          diag.text = diag.message
-          table.insert(qfdiags, diag)
-        end
-      end
-    end
-    vim.fn.setqflist(qfdiags)
+    vim.diagnostic.setqflist({ open = false })
   end
 end
 
