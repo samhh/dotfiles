@@ -92,7 +92,6 @@ duplicity
 exercism-bin
 fd
 feh
-firejail
 fish
 fisher
 fzf
