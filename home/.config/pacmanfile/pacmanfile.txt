@@ -138,7 +138,7 @@ scrot
 senpai-irc-git
 stow
 streamlink
-teensy-loader-cli
+teensy_loader_cli
 terpod-bin
 tiny-irc-client-bin
 urlscan
