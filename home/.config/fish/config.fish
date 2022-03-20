@@ -51,8 +51,9 @@ set -x DIFFPROG nvim -d
 ## Inform shell environment of preexisting ssh-agent socket
 set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 
-## Use fnm-supplied Node and check for local version config upon cd
-fnm env --use-on-cd | source
+## Inform Nix of non-nixpkgs channels like Home Manager. See:
+##   https://github.com/NixOS/nix/issues/2033
+set -x NIX_PATH ~/.nix-defexpr/channels/
 
 ## Source Nix
 bass source /etc/profile.d/nix-daemon.sh
