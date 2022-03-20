@@ -10,4 +10,8 @@
   xdg.dataHome = "/home/sam/.local/share/";
 
   programs.home-manager.enable = true;
+
+  home.packages = [
+    pkgs.direnv
+  ];
 }

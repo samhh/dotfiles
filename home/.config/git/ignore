@@ -7,3 +7,4 @@ hie.yaml
 *.pyc
 .exrc
 .npmrc
+.envrc

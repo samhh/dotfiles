@@ -58,6 +58,9 @@ set -x NIX_PATH ~/.nix-defexpr/channels/
 ## Source Nix
 bass source /etc/profile.d/nix-daemon.sh
 
+# Source direnv for Nix
+direnv hook fish | source
+
 # Sync colorscheme
 source "$XDG_CACHE_HOME/wal/colors.fish"
 cat "$XDG_CACHE_HOME/wal/sequences"
