@@ -172,7 +172,6 @@ efm-langserver
 fnm-bin
 ghcup-hs-bin
 go
-gopls
 hlint-bin
 hugo
 just

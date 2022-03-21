@@ -39,10 +39,6 @@ local function setup_servers()
     on_attach = attacher_fmt
   }
 
-  lspc.gopls.setup {
-    on_attach = attacher_fmt
-  }
-
   lspc.hls.setup {
     on_attach = attacher_fmt,
     settings = { haskell = { formattingProvider = "stylish-haskell" } }
