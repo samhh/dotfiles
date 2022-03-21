@@ -55,7 +55,7 @@ set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 ##   https://github.com/NixOS/nix/issues/2033
 set -x NIX_PATH ~/.nix-defexpr/channels/
 
-## Source Nix
+# Source Nix
 bass source /etc/profile.d/nix-daemon.sh
 
 # Source direnv for Nix

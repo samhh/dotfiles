@@ -69,4 +69,3 @@ config.unbind('b')
 config.unbind('B')
 config.unbind('m')
 config.unbind('M')
-
