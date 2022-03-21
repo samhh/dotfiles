@@ -146,8 +146,6 @@ config t = desktopConfig
         , ((super .|. K.shiftMask, K.xK_o), spawn' CloseAllNotifs)
         , ((K.nomod, K.xK_VolDown), spawn' DecVol)
         , ((K.nomod, K.xK_VolUp), spawn' IncVol)
-        , ((super, K.xK_VolDown), spawn' DecVolMpv)
-        , ((super, K.xK_VolUp), spawn' IncVolMpv)
         , ((K.nomod, K.xK_ToggleMute), spawn' ToggleMuteOutput)
         , ((super, K.xK_ToggleMute), spawn' ToggleMuteInput)
         , ((K.nomod, K.xK_MediaPrev), spawn' PlayPrevMpd)

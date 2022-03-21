@@ -109,7 +109,6 @@ libqalculate
 mpd
 mpd-mpris
 mpv
-mpv-mpris
 namcap
 neovim
 newsboat

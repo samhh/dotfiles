@@ -5,8 +5,6 @@ data Spawn
     | CloseAllNotifs
     | DecVol
     | IncVol
-    | DecVolMpv
-    | IncVolMpv
     | ToggleMuteOutput
     | ToggleMuteInput
     | PlayPrevMpd
@@ -31,8 +29,6 @@ toSpawnable CloseNotif = "dunstctl close"
 toSpawnable CloseAllNotifs = "dunstctl close-all"
 toSpawnable DecVol = "pactl set-sink-volume @DEFAULT_SINK@ -1%"
 toSpawnable IncVol = "pactl set-sink-volume @DEFAULT_SINK@ +1%"
-toSpawnable DecVolMpv = "playerctl -p mpv volume 0.05-"
-toSpawnable IncVolMpv = "playerctl -p mpv volume 0.05+"
 toSpawnable ToggleMuteOutput = "pactl set-sink-mute @DEFAULT_SINK@ toggle"
 toSpawnable ToggleMuteInput = "pactl set-source-mute '@DEFAULT_SOURCE@' toggle"
 toSpawnable PlayPrevMpd = "playerctl previous -p mpd"
