@@ -5,7 +5,6 @@ chromium
 discord
 discover-overlay
 firefox-developer-edition
-nheko
 obsidian
 pavucontrol
 piper
@@ -14,7 +13,6 @@ qutebrowser-unsplash
 simplescreenrecorder
 slack
 steam
-telegram-desktop
 zoom
 fin
 
