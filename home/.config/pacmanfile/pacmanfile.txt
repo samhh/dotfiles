@@ -29,7 +29,6 @@ pipewire-alsa
 pipewire-pulse
 unrar
 unzip
-vi
 vulkan-tools
 wpa_supplicant
 xf86-video-amdgpu
@@ -65,10 +64,8 @@ which
 # de
 physlock
 picom
-redshift
 xorg-server
 xorg-xinit
-xorg-xkill
 
 # fonts
 noto-fonts-emoji
@@ -77,85 +74,27 @@ ttf-fira-code
 ttf-monaco
 
 # cli utils
-aerc
 alacritty
-arch-wiki-lite
-backblaze-b2
-bandwhich
 bangin
 bangin-server-node
-beets
-bukubrow-bin
-buku-git
-dunst
-duplicity
-exercism-bin
-fd
-feh
-fish
 fisher
-fzf
-gdu-bin
-git
-git-delta
-gotop-bin
-gping
-hledger-bin
-inotify-tools
-jq
-khard
-lftp
-libqalculate
 mpd
 mpd-mpris
-mpv
 namcap
-neovim
-newsboat
 nix
 notify-send.sh
-offlineimap
 openssh
 pacman-contrib
 pacmanfile
 paru-bin
-pass
-pavucontrol
-# for git send-email
-perl-authen-sasl
-perl-io-socket-ssl
-playerctl
-progress
-python-pywal
 qbpm-git
-qmk
-qrcp-bin
-ripgrep
-rofi
-scrot
-senpai-irc-git
-stow
-streamlink
-teensy_loader_cli
-terpod-bin
-tiny-irc-client-bin
-urlscan
-vdirsyncer
-vimpc-git
-zathura-pdf-mupdf
 
 # gui apps
-chromium
-discord
 discover-overlay
-firefox-developer-edition
-obsidian-appimage
-piper
 # for qute-pass
 python-tldextract
 qutebrowser
-simplescreenrecorder
-telegram-desktop
+rofi # https://github.com/nix-community/home-manager/issues/354
 
 # gaming
 lib32-mangohud
@@ -165,40 +104,9 @@ proton-ge-custom-bin
 steam
 
 # dev
-bash-language-server
-cargo-outdated
-cssmodules-language-server
-efm-langserver
-fnm-bin
-ghcup-hs-bin
-go
-hlint-bin
-hugo
-just
-nodejs
-nodejs-spago
-npm
-openring
-pandoc-bin
 purescript-language-server
-rustup
-shellcheck-bin
-shunit2
-stylish-haskell-bin
 tshm-bin
-typescript-language-server-bin
-vscode-langservers-extracted
-yalc
-yarn
-
-# dev - spago tests
-bower
 
 # work
-1password
 browserstack-local-x64
-heroku-cli-bin
-nodejs-nodemon
-nodejs-nps
-slack-desktop
 zoom

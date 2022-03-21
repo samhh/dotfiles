@@ -4,7 +4,7 @@ read -r -d '' apps << fin
 chromium
 discord
 discover-overlay
-firefox-developer-edition
+firefox-devedition
 obsidian
 pavucontrol
 piper
