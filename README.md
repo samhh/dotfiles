@@ -4,7 +4,7 @@ My personal dotfiles targeting a machine running [xmonad](https://xmonad.org) on
 
 ## Usage
 
-A shell script (`./link.sh`) is included that sets up symlinks for everything. This uses [Stow](https://www.gnu.org/software/stow/) under the hood.
+A shell script (`./link.sh`) is included that sets up symlinks for everything. This uses [Stow](https://www.gnu.org/software/stow/) under the hood. A Nix shell config is included.
 
-In theory all prerequisite software is captured by the included [pacmanfile](https://github.com/cloudlena/pacmanfile) config.
+Most software is managed declaratively with [Home Manager](https://github.com/nix-community/home-manager) ([Nix](https://nixos.org)). What's left should be captured by the [pacmanfile](https://github.com/cloudlena/pacmanfile) config.
 
