@@ -1,10 +1,15 @@
 # dotfiles
 
-My personal dotfiles targeting a machine running [xmonad](https://xmonad.org) on [Arch](https://archlinux.org). Colour schemes are generated on the fly with [pywal](https://github.com/dylanaraps/pywal), either light or dark [depending upon the time of day](https://github.com/samhh/dotfiles/blob/master/home/scripts/wallpaper.sh). Keybindings are with [my keymap](https://git.sr.ht/~samhh/qmk_firmware/tree/samhh/item/keyboards/ergodox_ez/keymaps/samhh/README.md) in mind.
+My personal dotfiles for [NixOS](https://nixos.org). Keybindings are with [my keymap](https://git.sr.ht/~samhh/qmk_firmware/tree/samhh/item/keyboards/ergodox_ez/keymaps/samhh/README.md) in mind.
 
 ## Usage
 
-A shell script (`./link.sh`) is included that sets up symlinks for everything. This uses [Stow](https://www.gnu.org/software/stow/) under the hood. A Nix shell config is included.
+Do this once: `# ln -s /path/to/repo/configuration.nix /etc/nixos/`
 
-Most software is managed declaratively with [Home Manager](https://github.com/nix-community/home-manager) ([Nix](https://nixos.org)). What's left should be captured by the [pacmanfile](https://github.com/cloudlena/pacmanfile) config.
+Only the entrypoint module needs symlinking. Nix resolves relative imports at the module's real path.
 
+For now a few parts of the config presume the repo will be at `~/dotfiles/`. Anything that couldn't be configured in Nix lives in `:/cfg/`.
+
+## History
+
+I used to use Arch and macOS, as well as run a custom XMonad config. Those configs are preserved in this repo's commit history.

@@ -1,0 +1,111 @@
+{ ... }:
+
+let
+  # Contains nvim 0.6.1. We'll also use this for everything else related to nvim.
+  pkgs = import (builtins.fetchTarball {
+    url = "https://github.com/nixos/nixpkgs/archive/a73b85d7515fedd5479fd3ef089290c59a32e6b5.tar.gz";
+    sha256 = "0gpyvzy0yndjaq0aifzjm1c453ar9ma4610v6q5zhbp5vs4padlg";
+  }) {};
+
+  exrc-vim = pkgs.vimUtils.buildVimPlugin {
+    name = "exrc.vim";
+    src = builtins.fetchTarball {
+      url = "https://github.com/ii14/exrc.vim/archive/ae734ae2c087b370d869e41a2706a128d8f3fc37.tar.gz";
+      sha256 = "0jadpcg3hsfzbglh21zlfhj2d9ymyh73p3kd4wd9imlhdhsx99d7";
+    };
+  };
+
+  vim-just = pkgs.vimUtils.buildVimPlugin {
+    name = "vim-just";
+    src = builtins.fetchTarball {
+      url = "https://github.com/noahtheduke/vim-just/archive/312615d5b4c4aa2595d697faca5af345ba8fe102.tar.gz";
+      sha256 = "05c2qdnrjvxshy48m0s6msvqq47n536p8c4dvf0j28hm39hqb8gj";
+    };
+  };
+
+  uname = "sam";
+in {
+  home-manager.users.${uname} = {
+    programs.neovim = {
+      enable = true;
+      package = pkgs.neovim-unwrapped;
+
+      withNodeJs = false;
+      withPython3 = false;
+      withRuby = false;
+
+      plugins = with pkgs.vimPlugins; [
+        # General
+        exrc-vim
+        plenary-nvim
+        telescope-nvim
+        telescope-fzf-native-nvim
+
+        # Layout
+        vim-bbye
+        gitsigns-nvim
+        vim-trailing-whitespace
+
+        # Motions & Objects
+        comment-nvim
+        vim-surround
+        vim-grepper
+        vim-closer
+        hop-nvim
+        gitlinker-nvim
+        targets-vim
+
+        # Formatting
+        editorconfig-vim
+
+        # Compilation
+        vim-dispatch
+
+        # LSP
+        nvim-lspconfig
+
+        # Syntax
+        nvim-treesitter
+        nvim-treesitter-refactor
+        vim-matchup
+        dhall-vim
+        haskell-vim
+        purescript-vim
+        vim-fish
+        vim-just
+
+        # Theming
+        lightline-vim
+        kanagawa-nvim
+      ];
+    };
+
+    xdg.configFile = {
+      nvim = {
+        source = ./cfg/nvim;
+        recursive = true;
+      };
+      "efm-langserver/config.yaml".source = ./cfg/efm.yaml;
+    };
+
+    programs.git.ignores = [
+      ".exrc"
+    ];
+
+    home.packages = with pkgs; [
+      # For :TSUpdate
+      gcc
+
+      # Language servers
+      nodePackages.bash-language-server
+      efm-langserver
+      haskell-language-server
+      nodePackages.typescript-language-server
+      nodePackages.vscode-langservers-extracted
+
+      # Tools w/ language server interop
+      hlint
+      stylish-haskell
+    ];
+  };
+}
