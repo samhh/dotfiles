@@ -12,4 +12,4 @@ For now a few parts of the config presume the repo will be at `~/dotfiles/`. Any
 
 ## History
 
-I used to use Arch and macOS, as well as run a custom XMonad config. Those configs are preserved in this repo's commit history.
+I used to use Arch and macOS, as well as run a custom XMonad config. Those configs are preserved in this repo's commit history. Arch/XMonad specifically is available at `nixos~1`.
