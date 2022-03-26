@@ -17,7 +17,7 @@ in {
       ./network.nix
       ./rss.nix
       ./security.nix
-      ./shell.nix
+      ./terminal.nix
       ./user.nix
       ./vcs.nix
       ./web.nix
