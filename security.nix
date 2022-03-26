@@ -17,5 +17,10 @@ in {
     pinentryFlavor = "qt";
   };
 
-  programs.ssh.startAgent = true;
+  programs.ssh = {
+    startAgent = true;
+    extraConfig = ''
+      AddKeysToAgent yes
+    '';
+  };
 }
