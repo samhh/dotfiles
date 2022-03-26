@@ -15,6 +15,15 @@ let
     };
   };
 
+  # Included in more recent nixpkgs.
+  mkdir-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "mkdir.nvim";
+    src = builtins.fetchTarball {
+      url = "https://github.com/jghauser/mkdir.nvim/archive/01261650382bef195dab8ac39344234b57914f09.tar.gz";
+      sha256 = "1irpi2aqi2pr0ydxsw2d4m2lkhzkqcs6gvz15snvnsckvk03j3v7";
+    };
+  };
+
   vim-just = pkgs.vimUtils.buildVimPlugin {
     name = "vim-just";
     src = builtins.fetchTarball {
@@ -37,6 +46,7 @@ in {
       plugins = with pkgs.vimPlugins; [
         # General
         exrc-vim
+        mkdir-nvim
         plenary-nvim
         telescope-nvim
         telescope-fzf-native-nvim
