@@ -1,9 +1,10 @@
 { pkgs, ... }:
 
 let
+  # From 20220106. Close to 21.11, but supports the newly added swayidle module.
   home-manager = builtins.fetchTarball {
-    url = "https://github.com/nix-community/home-manager/archive/release-21.11.tar.gz";
-    sha256 = "1ix6cknhlrwpawlakrsd3616rgy1calnds2h6wfqrv6cfdwsyzzc";
+    url = "https://github.com/nix-community/home-manager/archive/5fb55d51e2dcdc0dd5f6c82968c3edff00d73b2b.tar.gz";
+    sha256 = "0mpl570j1yawkh60bqrygwzkmaz51z6rx5syikrjnr4qz9ibj5g5";
   };
 in {
   imports =

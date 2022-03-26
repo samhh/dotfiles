@@ -57,6 +57,8 @@ in {
             "${mod}+o" = "exec makoctl dismiss";
             "${mod}+Shift+o" = "exec makoctl dismiss -a";
             "${mod}+p" = "exec grimshot save area";
+            "${mod}+l" = "exec swaylock";
+            "${mod}+Shift+l" = "exec systemctl suspend";
           };
         };
       };
@@ -111,6 +113,18 @@ in {
       };
     };
 
+    services.swayidle = {
+      enable = true;
+      events = [{
+        event = "before-sleep";
+        command = "swaylock -f";
+      }];
+      timeouts = [{
+        timeout = 1800;
+        command = "swaylock -f";
+      }];
+    };
+
     services.gammastep = {
       enable = true;
       # Roughly London.
@@ -121,6 +135,7 @@ in {
     home.packages = with pkgs; [
       bemenu
       mako
+      swaylock
     ];
   };
 }
