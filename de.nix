@@ -65,7 +65,11 @@ in {
       enable = true;
       bars.${barName} = {
         theme = "bad-wolf";
-        blocks = [
+        blocks = let max = 35; in [
+          {
+            block = "focused_window";
+            max_width = max;
+          }
           {
             block = "cpu";
             format = "{utilization}";
@@ -94,7 +98,7 @@ in {
           {
             block = "music";
             player = "mpd";
-            max_width = 35;
+            max_width = max;
             dynamic_width = true;
           }
           {
