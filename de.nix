@@ -41,7 +41,7 @@ in {
           modifier = mod;
           # Scripts aren't imported into Nix as they have relatively-pathed
           # dependencies upon other scripts Nix that doesn't know about.
-          # Ideally the likes of bemenu would be packaged up in there as well
+          # Ideally the likes of dmenu would be packaged up in there as well
           # and not exposed in $PATH.
           keybindings = mkOptionDefault {
             "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
@@ -53,7 +53,7 @@ in {
             "${mod}+Return" = "exec ${pkgs.foot}/bin/foot";
             "${mod}+t" = "exec ${home}/dotfiles/scripts/web-search.sh";
             "${mod}+g" = "exec ${home}/dotfiles/scripts/apps.sh";
-            "${mod}+Shift+g" = "exec ${pkgs.bemenu}/bin/bemenu-run -p gui-all";
+            "${mod}+Shift+g" = "exec ${pkgs.dmenu}/bin/dmenu_run -p gui-all";
             "${mod}+d" = "exec ${home}/dotfiles/scripts/flatmarks.sh";
             "${mod}+Shift+d" = "exec ${home}/dotfiles/scripts/flatmarks-work.sh";
             "${mod}+x" = "exec ${home}/dotfiles/scripts/passmenu.sh";
@@ -147,7 +147,7 @@ in {
     home.packages = with pkgs; [
       # For some scripts.
       bash
-      bemenu
+      dmenu
       sway-contrib.grimshot
       # For scripts interacting with `swaymsg`.
       jq

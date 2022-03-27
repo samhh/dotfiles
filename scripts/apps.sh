@@ -17,7 +17,7 @@ steam
 zoom
 fin
 
-app=$(echo "$apps" | bemenu -p gui)
+app=$(echo "$apps" | dmenu -p gui)
 [[ -n $app ]] || exit
 
 exec $app & disown
