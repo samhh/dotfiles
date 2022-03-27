@@ -19,6 +19,7 @@ in {
   '';
 
   programs.sway.enable = true;
+  xdg.portal.wlr.enable = true;
 
   home-manager.users.${uname} = {
     wayland.windowManager.sway =
