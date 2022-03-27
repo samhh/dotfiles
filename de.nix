@@ -45,26 +45,26 @@ in {
           # Ideally the likes of bemenu would be packaged up in there as well
           # and not exposed in $PATH.
           keybindings = mkOptionDefault {
-            "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
-            "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -1%";
-            "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +1%";
-            "XF86AudioPlay" = "exec playerctl play-pause";
-            "XF86AudioPrev" = "exec playerctl previous";
-            "XF86AudioNext" = "exec playerctl next";
+            "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
+            "XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -1%";
+            "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +1%";
+            "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
+            "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
+            "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
             "${mod}+Return" = "exec ${pkgs.foot}/bin/foot";
             "${mod}+t" = "exec ${home}/dotfiles/scripts/web-search.sh";
             "${mod}+g" = "exec ${home}/dotfiles/scripts/apps.sh";
-            "${mod}+Shift+g" = "exec bemenu-run -p gui-all";
+            "${mod}+Shift+g" = "exec ${pkgs.bemenu}/bin/bemenu-run -p gui-all";
             "${mod}+d" = "exec ${home}/dotfiles/scripts/flatmarks.sh";
             "${mod}+Shift+d" = "exec ${home}/dotfiles/scripts/flatmarks-work.sh";
             "${mod}+x" = "exec ${home}/dotfiles/scripts/passmenu.sh";
             "${mod}+n" = "exec ${home}/dotfiles/scripts/pass-prefixed-line.sh \"username: \" username";
             "${mod}+m" = "exec ${home}/dotfiles/scripts/pass-prefixed-line.sh \"email: \" email";
             "${mod}+z" = "exec ${home}/dotfiles/scripts/definition-lookup.sh";
-            "${mod}+o" = "exec makoctl dismiss";
-            "${mod}+Shift+o" = "exec makoctl dismiss -a";
-            "${mod}+p" = "exec grimshot save area";
-            "${mod}+l" = "exec swaylock";
+            "${mod}+o" = "exec ${pkgs.mako}/bin/makoctl dismiss";
+            "${mod}+Shift+o" = "exec ${pkgs.mako}/bin/makoctl dismiss -a";
+            "${mod}+p" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot save area";
+            "${mod}+l" = "exec ${pkgs.swaylock}/bin/swaylock";
             "${mod}+Shift+l" = "exec systemctl suspend";
           };
         };
@@ -125,11 +125,11 @@ in {
       enable = true;
       events = [{
         event = "before-sleep";
-        command = "swaylock -f";
+        command = "${pkgs.swaylock}/bin/swaylock -f";
       }];
       timeouts = [{
         timeout = 1800;
-        command = "swaylock -f";
+        command = "${pkgs.swaylock}/bin/swaylock -f";
       }];
     };
 
@@ -144,10 +144,10 @@ in {
       # For some scripts.
       bash
       bemenu
+      sway-contrib.grimshot
       # For scripts interacting with `swaymsg`.
       jq
       mako
-      swaylock
     ];
   };
 }

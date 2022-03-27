@@ -49,8 +49,6 @@ in {
 
     home.packages = with pkgs; [
       pavucontrol
-      playerctl
-      pulseaudio # pactl
     ];
   };
 }
