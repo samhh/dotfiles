@@ -140,6 +140,14 @@ in {
       longitude = 0.1298;
     };
 
+    systemd.user.services.mako = {
+      Install.WantedBy = [ "multi-user.target" ];
+      Service = {
+        ExecStart = "${pkgs.mako}/bin/mako";
+        Restart = "always";
+      };
+    };
+
     home.packages = with pkgs; [
       # For some scripts.
       bash
@@ -147,7 +155,6 @@ in {
       sway-contrib.grimshot
       # For scripts interacting with `swaymsg`.
       jq
-      mako
     ];
   };
 }
