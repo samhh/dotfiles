@@ -60,6 +60,7 @@ in {
             "${mod}+x" = "exec ${home}/dotfiles/scripts/passmenu.sh";
             "${mod}+n" = "exec ${home}/dotfiles/scripts/pass-prefixed-line.sh \"username: \" username";
             "${mod}+m" = "exec ${home}/dotfiles/scripts/pass-prefixed-line.sh \"email: \" email";
+            "${mod}+z" = "exec ${home}/dotfiles/scripts/definition-lookup.sh";
             "${mod}+o" = "exec makoctl dismiss";
             "${mod}+Shift+o" = "exec makoctl dismiss -a";
             "${mod}+p" = "exec grimshot save area";
