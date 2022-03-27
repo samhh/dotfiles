@@ -66,6 +66,10 @@ in {
             "${mod}+l" = "exec ${pkgs.swaylock}/bin/swaylock";
             "${mod}+Shift+l" = "exec systemctl suspend";
           };
+          assigns = {
+            "8" = [{ class = "^Slack$"; }];
+            "9" = [{ class = "^discord$"; }];
+          };
         };
       };
 
