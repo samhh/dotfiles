@@ -84,8 +84,14 @@ in {
       ".envrc"
     ];
 
+    programs.tmux = {
+      enable = true;
+      prefix = "C-z";
+    };
+
     home.packages = with pkgs; [
       direnv
+      tmate
 
       fishPlugins.fzf-fish
     ];
