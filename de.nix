@@ -141,10 +141,7 @@ in {
 
     systemd.user.services.mako = {
       Install.WantedBy = [ "default.target" ];
-      Service = {
-        ExecStart = "${pkgs.mako}/bin/mako";
-        Restart = "always";
-      };
+      Service.ExecStart = "${pkgs.mako}/bin/mako";
     };
 
     home.packages = with pkgs; [
