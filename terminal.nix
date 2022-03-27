@@ -80,6 +80,10 @@ in {
       ];
     };
 
+    programs.git.ignores = [
+      ".envrc"
+    ];
+
     home.packages = with pkgs; [
       direnv
 
