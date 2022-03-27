@@ -1,7 +1,8 @@
-{ lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   uname = "sam";
+  home = config.users.users.${uname}.home;
   output = "DP-3";
   barName = "top";
 in {
@@ -38,6 +39,10 @@ in {
           }];
           gaps.inner = 10;
           modifier = mod;
+          # Scripts aren't imported into Nix as they have relatively-pathed
+          # dependencies upon other scripts Nix that doesn't know about.
+          # Ideally the likes of bemenu would be packaged up in there as well
+          # and not exposed in $PATH.
           keybindings = mkOptionDefault {
             "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
             "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -1%";
@@ -46,14 +51,14 @@ in {
             "XF86AudioPrev" = "exec playerctl previous";
             "XF86AudioNext" = "exec playerctl next";
             "${mod}+Return" = "exec ${pkgs.foot}/bin/foot";
-            "${mod}+t" = "exec ${./scripts/web-search.sh}";
-            "${mod}+g" = "exec ${./scripts/apps.sh}";
+            "${mod}+t" = "exec ${home}/dotfiles/scripts/web-search.sh";
+            "${mod}+g" = "exec ${home}/dotfiles/scripts/apps.sh";
             "${mod}+Shift+g" = "exec bemenu-run -p gui-all";
-            "${mod}+d" = "exec ${./scripts/flatmarks.sh}";
-            "${mod}+Shift+d" = "exec ${./scripts/flatmarks-work.sh}";
-            "${mod}+x" = "exec ${./scripts/passmenu.sh}";
-            "${mod}+n" = "exec ${./scripts/pass-prefixed-line.sh} \"username: \" username";
-            "${mod}+m" = "exec ${./scripts/pass-prefixed-line.sh} \"email: \" email";
+            "${mod}+d" = "exec ${home}/dotfiles/scripts/flatmarks.sh";
+            "${mod}+Shift+d" = "exec ${home}/dotfiles/scripts/flatmarks-work.sh";
+            "${mod}+x" = "exec ${home}/dotfiles/scripts/passmenu.sh";
+            "${mod}+n" = "exec ${home}/dotfiles/scripts/pass-prefixed-line.sh \"username: \" username";
+            "${mod}+m" = "exec ${home}/dotfiles/scripts/pass-prefixed-line.sh \"email: \" email";
             "${mod}+o" = "exec makoctl dismiss";
             "${mod}+Shift+o" = "exec makoctl dismiss -a";
             "${mod}+p" = "exec grimshot save area";
@@ -137,6 +142,8 @@ in {
       # For some scripts.
       bash
       bemenu
+      # For scripts interacting with `swaymsg`.
+      jq
       mako
       swaylock
     ];

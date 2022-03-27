@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-target=${1:-'tab'}
-
 base=~/bookmarks-work/
 
 # Find everything in bookmarks dir not a directory and not matching git pattern
@@ -18,4 +16,4 @@ file="$base$selected"
 
 url=$(head -1 $file)
 
-qbpm launch unsplash --target "$target" --untrusted-args "$url"
+"$(dirname "$0")/browser-launch.sh" "$url" unsplash
