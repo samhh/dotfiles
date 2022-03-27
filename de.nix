@@ -134,6 +134,8 @@ in {
     };
 
     home.packages = with pkgs; [
+      # For some scripts.
+      bash
       bemenu
       mako
       swaylock
