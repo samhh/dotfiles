@@ -53,7 +53,6 @@ in {
       # Work
       _1password-gui
       slack
-      # zoom-us
     ];
 
     programs.git.ignores = [
