@@ -67,7 +67,7 @@ in {
       enable = true;
       bars.${barName} = {
         theme = "bad-wolf";
-        blocks = let max = 35; in [
+        blocks = let max = 75; in [
           {
             block = "focused_window";
             max_width = max;
