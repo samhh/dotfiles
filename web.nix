@@ -19,6 +19,15 @@ in
     };
 
     home-manager.users.${uname} = {
+      xdg.mimeApps = {
+        enable = true;
+        defaultApplications = {
+          "text/html" = "org.qutebrowser.qutebrowser.desktop";
+          "x-scheme-handler/http" = "org.qutebrowser.qutebrowser.desktop";
+          "x-scheme-handler/https" = "org.qutebrowser.qutebrowser.desktop";
+        };
+      };
+
       programs.qutebrowser = {
         enable = true;
         searchEngines.DEFAULT = "http://localhost:${toString banginServerNodePort}/?q={}";
