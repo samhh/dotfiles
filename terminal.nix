@@ -25,8 +25,6 @@ let
   };
 
 in {
-  environment.binsh = "${pkgs.dash}/bin/dash";
-
   users.users.${uname}.shell = pkgs.fish;
 
   services.lorri.enable = true;
