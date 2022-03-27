@@ -102,6 +102,7 @@ in {
             player = "mpd";
             max_width = max;
             dynamic_width = true;
+            format = "{combo} ";
           }
           {
             block = "sound";
