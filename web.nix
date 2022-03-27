@@ -61,7 +61,7 @@ in {
     };
 
     systemd.user.services.banginServerNode = {
-      Install.WantedBy = [ "multi-user.target" ];
+      Install.WantedBy = [ "default.target" ];
       Service = {
         ExecStart = "${banginServerNode}/bin/bangin-server-node ${toString banginServerNodePort}";
         Restart = "always";

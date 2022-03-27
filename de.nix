@@ -140,7 +140,7 @@ in {
     };
 
     systemd.user.services.mako = {
-      Install.WantedBy = [ "multi-user.target" ];
+      Install.WantedBy = [ "default.target" ];
       Service = {
         ExecStart = "${pkgs.mako}/bin/mako";
         Restart = "always";
