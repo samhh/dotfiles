@@ -9,14 +9,6 @@ let
 
   banginServerNodePort = 1234;
 in {
-  systemd.services.banginServerNode = {
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      ExecStart = "${banginServerNode}/bin/bangin-server-node ${toString banginServerNodePort}";
-      Restart = "always";
-    };
-  };
-
   home-manager.users.${uname} = {
     xdg.mimeApps = {
       enable = true;
@@ -65,6 +57,14 @@ in {
         B  = "nop";
         m  = "nop";
         M  = "nop";
+      };
+    };
+
+    systemd.user.services.banginServerNode = {
+      Install.WantedBy = [ "multi-user.target" ];
+      Service = {
+        ExecStart = "${banginServerNode}/bin/bangin-server-node ${toString banginServerNodePort}";
+        Restart = "always";
       };
     };
 
