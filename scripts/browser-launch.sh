@@ -6,7 +6,7 @@ output="DP-3"
 query="$1"
 profile="$2"
 
-if [ -z "$output" ]; then
+if [ -n "$profile" ]; then
   app="qbpm launch $profile"
 else
   app="qutebrowser"
@@ -18,4 +18,5 @@ else
   target="window"
 fi
 
-"$app" --target "$target" --untrusted-args "$query"
+# Unquoted `$app` is intentional.
+$app --target "$target" --untrusted-args "$query"
