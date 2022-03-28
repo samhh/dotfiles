@@ -11,8 +11,8 @@ let
   fish-minimal-theme = {
     name = "fish-minimal-theme";
     src = builtins.fetchTarball {
-      url = "https://github.com/samhh/fish-minimal-theme/archive/0db0c0b227404a2b32f25b938b42cb5bf609a17e.tar.gz";
-      sha256 = "08fp2gvxrr3bcq008fl8dc3l62mxb5gvzc9dm6g57imifw4651q0";
+      url = "https://github.com/samhh/fish-minimal-theme/archive/9cabe0f044bb80bcbfec7d6804971836003df681.tar.gz";
+      sha256 = "1ilmnjxsaqzkjlqdn2m348bfjg23k6dkcak5p7qb84yz13pf3dfv";
     };
   };
 
