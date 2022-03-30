@@ -59,6 +59,7 @@ in {
         set -x DIFFPROG nvim -d
         set -x PASSWORD_STORE_DIR ${home}/passwords/
         set -x SSH_AUTH_SOCK /run/user/${toString uid}/ssh-agent
+        set -x DIRENV_LOG_FORMAT ""
       '';
       shellAbbrs = {
         "mpc" = "vimpc";
