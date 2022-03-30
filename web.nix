@@ -4,8 +4,8 @@ let
   uname = "sam";
   home = /. + config.users.users.${uname}.home;
 
-  qbpm = pkgs.callPackage /home/sam/nix/pkg/qbpm {};
-  banginServerNode = pkgs.callPackage /home/sam/nix/pkg/bangin-server-node.nix {};
+  qbpm = pkgs.callPackage ./pkg/qbpm.nix {};
+  banginServerNode = pkgs.callPackage ./pkg/bangin-server-node.nix {};
 
   banginServerNodePort = 1234;
 in {
