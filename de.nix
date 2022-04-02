@@ -144,7 +144,7 @@ in {
     };
 
     systemd.user.services.mako = {
-      Install.WantedBy = [ "default.target" ];
+      Install.WantedBy = [ "graphical-session.target" ];
       Service.ExecStart = "${pkgs.mako}/bin/mako";
     };
 
