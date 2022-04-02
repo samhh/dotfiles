@@ -46,12 +46,12 @@ in {
         url.default_page = "about:blank";
       };
       keyBindings.normal = {
-        gT = "tab-prev";
-        gt = "tab-next";
-        gH = "back";
-        gh = "forward";
-        X  = "spawn --userscript qute-pass --username-target secret --username-pattern \"username: (.+)\"";
-        V  = "spawn streamlink {url}";
+        T = "tab-prev";
+        t = "tab-next";
+        H = "back";
+        h = "forward";
+        x  = "spawn --userscript qute-pass --username-target secret --username-pattern \"username: (.+)\"";
+        v  = "spawn streamlink {url}";
 
         b  = "nop";
         B  = "nop";
