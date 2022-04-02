@@ -46,6 +46,8 @@ in {
         url.default_page = "about:blank";
       };
       keyBindings.normal = {
+        f = "hint all current";
+        F = "hint all tab";
         T = "tab-prev";
         t = "tab-next";
         H = "back";
