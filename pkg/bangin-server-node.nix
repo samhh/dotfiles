@@ -1,7 +1,7 @@
 { fetchurl, lib, pkgs, stdenv }:
 
 let
-  bangin = import ./bangin.nix { inherit fetchurl lib stdenv; };
+  bangin = pkgs.callPackage ./bangin.nix {};
 in
   stdenv.mkDerivation rec {
     pname = "bangin-server-node";
