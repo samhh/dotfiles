@@ -52,6 +52,10 @@ local function setup_servers()
     on_attach = attacher_fmt
   }
 
+  lspc.rnix.setup {
+    on_attach = attacher_fmt
+  }
+
   lspc.tsserver.setup {
     init_options = {
       plugins = { {

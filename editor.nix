@@ -110,6 +110,7 @@ in {
       nodePackages.bash-language-server
       efm-langserver
       haskell-language-server
+      rnix-lsp
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
 
