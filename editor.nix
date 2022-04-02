@@ -7,6 +7,8 @@ let
     sha256 = "0gpyvzy0yndjaq0aifzjm1c453ar9ma4610v6q5zhbp5vs4padlg";
   }) {};
 
+  tshm = pkgs.callPackage ./pkg/tshm.nix {};
+
   exrc-vim = pkgs.vimUtils.buildVimPlugin {
     name = "exrc.vim";
     src = builtins.fetchTarball {
@@ -117,6 +119,7 @@ in {
       # Tools w/ language server interop
       hlint
       stylish-haskell
+      tshm
     ];
   };
 }
