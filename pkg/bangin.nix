@@ -1,4 +1,4 @@
-{ fetchurl, lib, stdenv }:
+{ fetchurl, lib, pkgs, stdenv }:
 
 stdenv.mkDerivation rec {
   pname = "bangin";
@@ -9,11 +9,20 @@ stdenv.mkDerivation rec {
     sha256 = "lSY6LY009kYOid5DX3yiL2XQemYeYxtGWLLCd47AsQw=";
   };
 
+  buildInputs = with pkgs; [
+    makeWrapper
+  ];
+
   dontBuild = true;
 
   installPhase = ''
     mkdir -p $out/bin/
     mv bangin.sh $out/bin/bangin
+  '';
+
+  fixupPhase = with pkgs; ''
+    wrapProgram $out/bin/bangin \
+      --set PATH ${lib.makeBinPath [ gnused ]}
   '';
 
   meta = {
