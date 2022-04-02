@@ -2,10 +2,13 @@
 
 let
   uname = "sam";
-  home = /. + config.users.users.${uname}.home;
 
   qbpm = pkgs.callPackage ./pkg/qbpm.nix {};
   banginServerNode = pkgs.callPackage ./pkg/bangin-server-node.nix {};
+
+  getBanglist = x: builtins.fetchurl "https://git.sr.ht/~samhh/${x}.bangs/blob/master/${x}.bangs";
+
+  banglists = [ "arch" "dev" "english" "italiano" "nix" "pcgaming" "prelude" "uk" ];
 
   banginServerNodePort = 1234;
 in {
@@ -74,13 +77,11 @@ in {
       qbpm
     ];
 
-    xdg.dataFile."bangin/lists/arch.bangs".source = home + /dev/arch.bangs/arch.bangs;
-    xdg.dataFile."bangin/lists/dev.bangs".source = home + /dev/dev.bangs/dev.bangs;
-    xdg.dataFile."bangin/lists/english.bangs".source = home + /dev/english.bangs/english.bangs;
-    xdg.dataFile."bangin/lists/italiano.bangs".source = home + /dev/italiano.bangs/italiano.bangs;
-    xdg.dataFile."bangin/lists/pcgaming.bangs".source = home + /dev/pcgaming.bangs/pcgaming.bangs;
-    xdg.dataFile."bangin/lists/prelude.bangs".source = home + /dev/prelude.bangs/prelude.bangs;
-    xdg.dataFile."bangin/lists/trackers.bangs".source = home + /dev/trackers.bangs/trackers.bangs;
-    xdg.dataFile."bangin/lists/uk.bangs".source = home + /dev/uk.bangs/uk.bangs;
+    xdg.dataFile =
+      let go = x: {
+        name = "bangin/lists/${x}.bangs";
+        value.source = getBanglist x;
+      };
+      in builtins.listToAttrs (map go banglists);
   };
 }
