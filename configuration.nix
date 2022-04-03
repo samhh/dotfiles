@@ -29,6 +29,12 @@ in {
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "21.11";
 }
