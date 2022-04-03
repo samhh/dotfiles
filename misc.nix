@@ -2,7 +2,19 @@
 
 let
   uname = "sam";
+
+  # Contains this fix for Arch (not in <=1.2.14):
+  #   https://github.com/89luca89/distrobox/issues/221
+  distrobox = pkgs.distrobox.overrideAttrs (attrs: rec {
+    version = "e6342a05c3cc83d612bd05934a2025cceb86af32";
+    src = builtins.fetchurl {
+      url = "https://github.com/89luca89/distrobox/archive/${version}.tar.gz";
+      sha256 = "1ama58gv2cw48pxic9fjhjv4vvxj813i7wigb238jsdbqxryr4qp";
+    };
+  });
 in {
+  virtualisation.podman.enable = true;
+
   home-manager.users.${uname} = {
     programs.senpai = {
       enable = true;
@@ -18,6 +30,7 @@ in {
     home.packages = with pkgs; [
       # CLI
       bandwhich
+      distrobox
       fd
       gdu
       gnupg
