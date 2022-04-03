@@ -50,9 +50,6 @@ in {
         set fish_greeting
         fish_vi_key_bindings
 
-        fzf_configure_bindings --directory=\cf
-        set -x fzf_fd_opts --hidden --exclude=.git
-
         set -x VISUAL nvim
         set -x EDITOR nvim
         set -x MANPAGER nvim +Man!
@@ -94,8 +91,6 @@ in {
     home.packages = with pkgs; [
       direnv
       tmate
-
-      fishPlugins.fzf-fish
     ];
   };
 }
