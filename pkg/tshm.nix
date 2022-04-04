@@ -19,9 +19,11 @@ stdenv.mkDerivation rec {
   '';
 
   preFixup =
-    let libPath = with pkgs; lib.makeLibraryPath [ gmp ];
+    let
+      linker = stdenv.cc.bintools.dynamicLinker;
+      libPath = with pkgs; lib.makeLibraryPath [ gmp ];
     in ''
-      patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" --set-rpath ${libPath} $out/bin/tshm
+      patchelf --set-interpreter ${linker} --set-rpath ${libPath} $out/bin/tshm
     '';
 
   meta = {
