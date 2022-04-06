@@ -82,6 +82,10 @@ in {
         name = "bangin/lists/${x}.bangs";
         value.source = getBanglist x;
       };
-      in builtins.listToAttrs (map go banglists);
+      in
+        {
+          "qutebrowser/userscripts/qute-pass".source =
+            "${pkgs.qutebrowser}/share/qutebrowser/userscripts/qute-pass";
+        } // builtins.listToAttrs (map go banglists);
   };
 }
