@@ -66,6 +66,7 @@ in {
         "vi" = "nvim";
         "nixr" = "nixos-rebuild";
         "nixrr" = "doas nixos-rebuild";
+        "nixs" = "nix shell #nixpkgs";
         "nixu" = "nix-prefetch-url --unpack";
       };
       functions = {
