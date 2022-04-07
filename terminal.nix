@@ -64,9 +64,9 @@ in {
         "sysu" = "systemctl --user";
         "top" = "gotop";
         "vi" = "nvim";
-        "nixr" = "nixos-rebuild";
-        "nixrr" = "doas nixos-rebuild";
-        "nixs" = "nix shell nixpkgs#";
+        "up" = "nixos-rebuild build";
+        "upp" = "doas nixos-rebuild switch";
+        "sh" = "nix shell";
         "nixu" = "nix-prefetch-url --unpack";
       };
       functions = {
