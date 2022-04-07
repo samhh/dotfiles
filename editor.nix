@@ -112,6 +112,7 @@ in {
       nodePackages.bash-language-server
       efm-langserver
       haskell-language-server
+      rls
       rnix-lsp
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
