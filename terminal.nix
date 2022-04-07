@@ -25,9 +25,13 @@ let
   };
 
 in {
-  users.users.${uname}.shell = pkgs.fish;
+  # For nix-direnv.
+  nix.extraOptions = ''
+    keep-outputs = true
+    keep-derivations = true
+  '';
 
-  services.lorri.enable = true;
+  users.users.${uname}.shell = pkgs.fish;
 
   home-manager.users.${uname} = {
     programs.foot = {
@@ -79,9 +83,15 @@ in {
       ];
     };
 
+    programs.direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+
     programs.git.ignores = [
       "shell.nix"
       ".envrc"
+      ".direnv/"
     ];
 
     programs.tmux = {
@@ -90,7 +100,6 @@ in {
     };
 
     home.packages = with pkgs; [
-      direnv
       tmate
     ];
   };
