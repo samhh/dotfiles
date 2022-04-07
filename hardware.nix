@@ -10,8 +10,8 @@ in {
       systemd-boot = {
         enable = true;
         # My boot partition is only 100MB. Alongside Arch (sans "fallback")
-        # this leaves space for one backup/named boot entry and two rolling.
-        configurationLimit = 2;
+        # this leaves space for one backup/named boot entry and one rolling.
+        configurationLimit = 1;
       };
     };
 
