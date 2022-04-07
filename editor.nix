@@ -1,12 +1,6 @@
-{ ... }:
+{ pkgs, ... }:
 
 let
-  # Contains nvim 0.6.1. We'll also use this for everything else related to nvim.
-  pkgs = import (builtins.fetchTarball {
-    url = "https://github.com/nixos/nixpkgs/archive/a73b85d7515fedd5479fd3ef089290c59a32e6b5.tar.gz";
-    sha256 = "0gpyvzy0yndjaq0aifzjm1c453ar9ma4610v6q5zhbp5vs4padlg";
-  }) {};
-
   tshm = pkgs.callPackage ./pkg/tshm.nix {};
 
   exrc-vim = pkgs.vimUtils.buildVimPlugin {
