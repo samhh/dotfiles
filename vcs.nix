@@ -4,6 +4,8 @@ let
   uname = "sam";
   email = "hello@samhh.com";
 in {
+  environment.systemPackages = with pkgs; [ git ];
+
   home-manager.users.${uname}.programs.git = {
     enable = true;
     # For send-email support.
