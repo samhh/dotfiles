@@ -62,6 +62,7 @@ in {
         { url = "https://drewdevault.com/blog/index.xml"; title = "~Drew DeVault"; tags = [ "tech" ]; }
         { url = "https://alexschroeder.ch/wiki/feed/full/"; title = "~Alex Schroeder"; tags = [ "tech" ]; }
         { url = "http://neovim.io/news.xml"; title = "~Neovim"; tags = [ "tech" ]; }
+        { url = "https://christine.website/blog.rss"; title = "~Christine Dodrill"; tags = [ "tech" ]; }
 
         { url = "https://boilingsteam.com/feed/"; title = "~Boiling Steam"; tags = [ "gaming" ]; }
       ];
