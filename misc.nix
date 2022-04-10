@@ -61,6 +61,7 @@ in {
       obsidian
 
       # Dev
+      shellcheck
       nodePackages.yalc
 
       # Work
