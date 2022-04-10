@@ -11,7 +11,7 @@
 
   outputs = { nixpkgs, home-manager, ... }:
     let
-      host = "alakazam";
+      hostName = "alakazam";
       system = "x86_64-linux";
 
       pkgs = import nixpkgs {
@@ -22,7 +22,7 @@
 
       lib = nixpkgs.lib;
     in {
-      nixosConfigurations.${host} = lib.nixosSystem {
+      nixosConfigurations.${hostName} = lib.nixosSystem {
         inherit pkgs system;
 
         modules = [
@@ -47,6 +47,22 @@
           ./vcs.nix
           ./web.nix
         ];
+
+        specialArgs = {
+          inherit hostName;
+
+          uname = "sam";
+          email = "hello@samhh.com";
+
+          emailPassPath = "emails/migadu.com/mailbox/hello";
+          nasPath = "/mnt/nas";
+
+          termBin = "${pkgs.foot}/bin/foot";
+          editorBin = "${pkgs.neovim}/bin/nvim";
+          launcherBin = "${pkgs.dmenu}/bin/dmenu";
+          webBrowserBin = "${pkgs.qutebrowser}/bin/qutebrowser";
+          streamerBin = "${pkgs.streamlink}/bin/streamlink";
+        };
       };
     };
 }

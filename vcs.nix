@@ -1,9 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, email, emailPassPath, editorBin, uname, ... }:
 
-let
-  uname = "sam";
-  email = "hello@samhh.com";
-in {
+{
   environment.systemPackages = with pkgs; [ git ];
 
   home-manager.users.${uname}.programs.git = {
@@ -20,7 +17,7 @@ in {
         signingkey = "4667250BD56735A8";
       };
       credential."smtp://hello%40samhh.com@smtp.migadu.com%3a465".helper =
-        "!${./scripts/pass-git-credential.sh} emails/migadu.com/mailbox/hello";
+        "!${./scripts/pass-git-credential.sh} ${emailPassPath}";
       sendemail = {
         smtpserver = "smtp.migadu.com";
         smtpuser = email;
@@ -36,7 +33,7 @@ in {
       tag.gpgSign = true;
       merge.tool = "vimdiff";
       mergetool = {
-        vimdiff.path = "nvim";
+        vimdiff.path = editorBin;
         keepBackup = false;
       };
       blame.date = "short";

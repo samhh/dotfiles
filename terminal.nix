@@ -1,10 +1,9 @@
 # NB I'd recommend not calling this file shell.nix as that's globally ignored
 # in vcs.nix, and it's easy to forget to `git add -f`...
 
-{ config, pkgs, ... }:
+{ config, pkgs, uname, editorBin, webBrowserBin, ... }:
 
 let
-  uname = "sam";
   uid = config.users.users.${uname}.uid;
   home = config.users.users.${uname}.home;
 
@@ -43,7 +42,7 @@ in {
           pad = "10x10";
         };
         key-bindings.spawn-terminal = "Mod4+Shift+Return";
-        url.launch = "qutebrowser \${url}";
+        url.launch = "${webBrowserBin} \${url}";
         colors.alpha = .92;
       };
     };
@@ -54,10 +53,10 @@ in {
         set fish_greeting
         fish_vi_key_bindings
 
-        set -x VISUAL nvim
-        set -x EDITOR nvim
-        set -x MANPAGER nvim +Man!
-        set -x DIFFPROG nvim -d
+        set -x VISUAL ${editorBin}
+        set -x EDITOR ${editorBin}
+        set -x MANPAGER ${editorBin} +Man!
+        set -x DIFFPROG ${editorBin} -d
         set -x PASSWORD_STORE_DIR ${home}/passwords/
         set -x SSH_AUTH_SOCK /run/user/${toString uid}/ssh-agent
         set -x DIRENV_LOG_FORMAT ""

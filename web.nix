@@ -1,8 +1,6 @@
-{ config, pkgs, ... }:
+{ config, pkgs, termBin, editorBin, launcherBin, streamerBin, uname, ... }:
 
 let
-  uname = "sam";
-
   qbpm = pkgs.callPackage ./pkg/qbpm.nix {};
   banginServerNode = pkgs.callPackage ./pkg/bangin-server-node.nix {};
 
@@ -15,11 +13,13 @@ in {
   home-manager.users.${uname} = {
     xdg.mimeApps = {
       enable = true;
-      defaultApplications = {
-        "text/html" = "org.qutebrowser.qutebrowser.desktop";
-        "x-scheme-handler/http" = "org.qutebrowser.qutebrowser.desktop";
-        "x-scheme-handler/https" = "org.qutebrowser.qutebrowser.desktop";
-      };
+      defaultApplications =
+        let dt = "org.qutebrowser.qutebrowser.desktop";
+        in {
+          "text/html" = dt;
+          "x-scheme-handler/http" = dt;
+          "x-scheme-handler/https" = dt;
+        };
     };
 
     programs.qutebrowser = {
@@ -34,7 +34,7 @@ in {
           notifications.enabled = false;
           unknown_url_scheme_policy = "allow-all";
         };
-        editor.command = [ "foot" "nvim" "{}" ];
+        editor.command = [ termBin editorBin "{}" ];
         # Colemak home row keys.
         hints.chars = "arstneio";
         scrolling = {
@@ -57,8 +57,8 @@ in {
         h = "forward";
         yf = "hint links yank";
         x  =
-          "spawn --userscript qute-pass --username-target secret --username-pattern \"username: (.+)\" --dmenu-invocation dmenu";
-        v  = "spawn streamlink {url}";
+          "spawn --userscript qute-pass --username-target secret --username-pattern \"username: (.+)\" --dmenu-invocation ${launcherBin}";
+        v  = "spawn ${streamerBin} {url}";
 
         b  = "nop";
         B  = "nop";

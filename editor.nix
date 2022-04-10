@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, uname, ... }:
 
 let
   tshm = pkgs.callPackage ./pkg/tshm.nix {};
@@ -27,8 +27,6 @@ let
       sha256 = "05c2qdnrjvxshy48m0s6msvqq47n536p8c4dvf0j28hm39hqb8gj";
     };
   };
-
-  uname = "sam";
 in {
   home-manager.users.${uname} = {
     programs.neovim = {

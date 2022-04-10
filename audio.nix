@@ -1,7 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, nasPath, uname, ... }:
 
-let
-  uname = "sam";
+let musicDir = nasPath + "/music/archive";
 in {
   security.rtkit.enable = true;
 
@@ -17,7 +16,7 @@ in {
   home-manager.users.${uname} = {
     services.mpd = {
       enable = true;
-      musicDirectory = "/mnt/nas/music/archive/";
+      musicDirectory = musicDir;
       extraConfig = ''
         audio_output {
           type "pipewire"
@@ -28,12 +27,11 @@ in {
 
     services.mpdris2.enable = true;
 
-    programs.beets = let nas = "/mnt/nas/"; in {
+    programs.beets = {
       enable = true;
       settings = {
-        # Make sure this is in quotes...
-        directory = nas + "/music/archive/";
-        library = nas + "/music/archive/beets.blb";
+        directory = musicDir;
+        library = musicDir + "/beets.blb";
         paths = {
           default = "Albums/$albumartist/($year) $album%aunique{}/$track - $title";
           singleton = "Singles/$artist/$title";

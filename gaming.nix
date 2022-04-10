@@ -1,8 +1,7 @@
-{ lib, pkgs, ... }:
+{ pkgs, uname, ... }:
 
 let
   proton-ge-custom = pkgs.callPackage ./pkg/proton-ge.nix {};
-  uname = "sam";
 in {
   programs.steam.enable = true;
 

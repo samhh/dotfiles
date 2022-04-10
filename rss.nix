@@ -1,12 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, uname, webBrowserBin, ... }:
 
-let
-  uname = "sam";
-in {
+{
   home-manager.users.${uname} = {
     programs.newsboat = {
       enable = true;
-      browser = "\"${pkgs.qutebrowser}/bin/qutebrowser %u &\"";
+      browser = "\"${webBrowserBin} %u &\"";
       extraConfig = ''
         confirm-exit yes
         text-width 80

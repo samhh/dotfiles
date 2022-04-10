@@ -1,9 +1,6 @@
-{ ... }:
+{ uname, ... }:
 
-let
-  # consider across modules: https://stackoverflow.com/questions/47114586/how-to-make-global-variable-or-function-in-nix-file
-  uname = "sam";
-in {
+{
   users = {
     users.${uname} = {
       # UID needs setting explicitly so that it can be referenced elsewhere.

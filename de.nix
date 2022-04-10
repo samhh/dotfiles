@@ -1,7 +1,6 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, termBin, uname, ... }:
 
 let
-  uname = "sam";
   home = config.users.users.${uname}.home;
   output = "DP-3";
   barName = "top";
@@ -50,7 +49,7 @@ in {
             "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
             "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
             "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
-            "${mod}+Return" = "exec ${pkgs.foot}/bin/foot";
+            "${mod}+Return" = "exec ${termBin}";
             "${mod}+t" = "exec ${home}/dotfiles/scripts/web-search.sh";
             "${mod}+g" = "exec ${home}/dotfiles/scripts/apps.sh";
             "${mod}+Shift+g" = "exec ${pkgs.dmenu}/bin/dmenu_run -p gui-all";

@@ -1,8 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, uname, ... }:
 
-let
-  uname = "sam";
-in {
+{
   boot = {
     loader = {
       efi.canTouchEfiVariables = true;

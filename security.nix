@@ -1,8 +1,6 @@
-{ ... }:
+{ uname, ... }:
 
-let
-  uname = "sam";
-in {
+{
   security.sudo.enable = false;
   security.doas = {
     enable = true;

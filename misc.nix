@@ -1,8 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, uname, ... }:
 
 let
-  uname = "sam";
-
   # Contains this fix for Arch (not in <=1.2.14):
   #   https://github.com/89luca89/distrobox/issues/221
   distrobox = pkgs.distrobox.overrideAttrs (attrs: rec {
