@@ -56,7 +56,8 @@ in {
         H = "back";
         h = "forward";
         yf = "hint links yank";
-        x  = "spawn --userscript qute-pass --username-target secret --username-pattern \"username: (.+)\"";
+        x  =
+          "spawn --userscript qute-pass --username-target secret --username-pattern \"username: (.+)\" --dmenu-invocation dmenu";
         v  = "spawn streamlink {url}";
 
         b  = "nop";
