@@ -4,6 +4,7 @@ let
   home = config.users.users.${uname}.home;
   output = "DP-3";
   barName = "top";
+  wallpaperScript = "${home}/dotfiles/scripts/set-rand-wallpaper.sh ${nasPath}/bgs";
 in {
   fonts.fonts = with pkgs; [
     hasklig
@@ -49,7 +50,7 @@ in {
             "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
             "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
             "${mod}+Return" = "exec ${termBin}";
-            "${mod}+w" = "exec ${home}/dotfiles/scripts/set-rand-wallpaper.sh ${nasPath}/bgs";
+            "${mod}+w" = "exec ${wallpaperScript}";
             "${mod}+t" = "exec ${home}/dotfiles/scripts/web-search.sh";
             "${mod}+g" = "exec ${home}/dotfiles/scripts/apps.sh";
             "${mod}+Shift+g" = "exec ${pkgs.dmenu}/bin/dmenu_run -p gui-all";
@@ -142,9 +143,19 @@ in {
       longitude = 0.1298;
     };
 
-    systemd.user.services.mako = {
-      Install.WantedBy = [ "graphical-session.target" ];
-      Service.ExecStart = "${pkgs.mako}/bin/mako";
+    systemd.user.services = {
+      mako = {
+        Install.WantedBy = [ "graphical-session.target" ];
+        Service.ExecStart = "${pkgs.mako}/bin/mako";
+      };
+
+      wallpaper = {
+        Install.WantedBy = [ "graphical-session.target" ];
+        Service = {
+          Type = "oneshot";
+          ExecStart = wallpaperScript;
+        };
+      };
     };
 
     home.packages = with pkgs; [
