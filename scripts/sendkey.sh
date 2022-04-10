@@ -2,13 +2,12 @@
 
 key="B7C77CD313EAE76366FE1D7E4667250BD56735A8"
 
-read -r -d '' servers << fin
-keys.openpgp.org
+# These'll be separated at newlines, hence the awkward formatting.
+servers="keys.openpgp.org
 pgp.mit.edu
 pool.sks-keyservers.net
-keyserver.ubuntu.com
-fin
+keyserver.ubuntu.com"
 
-echo "$servers" | tr ' ' '\n' | while read server; do
+echo "$servers" | tr ' ' '\n' | while read -r server; do
   gpg --keyserver "$server" --send-keys "$key"
 done

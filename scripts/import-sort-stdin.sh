@@ -1,6 +1,6 @@
 #!/bin/sh
 
-code="$(< /dev/stdin)"
+code="$(cat /dev/stdin)"
 path="$1"
 
 # import-sort uses the file extension to determine how to format. It uses other

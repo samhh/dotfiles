@@ -10,7 +10,7 @@ w=$(echo "$output" | jq '.width')
 h=$(echo "$output" | jq '.height')
 
 res=$(curl -s "https://api.unsplash.com/photos/random?orientation=landscape" -H "Authorization: Client-ID $access_key")
-id=$(echo $res | jq -r '.id')
+id=$(echo "$res" | jq -r '.id')
 url_raw=$(echo "$res" | jq -r '.urls.raw')
 url="$url_raw&w=$w&h=$h"
 

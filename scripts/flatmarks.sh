@@ -14,6 +14,6 @@ selected=$(printf '%s\n' "${paths[@]}" | dmenu -p bookmark)
 
 file="$base$selected"
 
-url=$(head -1 $file)
+url=$(head -1 "$file")
 
 "$(dirname "$0")/browser-launch.sh" "$url"

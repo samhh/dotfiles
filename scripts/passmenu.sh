@@ -10,6 +10,6 @@ all_paths=( "${all_paths[@]%.gpg}" )
 
 selected_path=$(printf '%s\n' "${all_paths[@]}" | dmenu -p password)
 
-[[ -n $selected_path ]] || exit
+[[ -n "$selected_path" ]] || exit
 
-pass show $selected_path -c
+pass show "$selected_path" -c

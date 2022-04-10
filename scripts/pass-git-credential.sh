@@ -2,4 +2,4 @@
 
 pass_path=${1}
 
-echo "password=$(pass show $pass_path)"
+echo "password=$(pass show "$pass_path")"
