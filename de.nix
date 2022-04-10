@@ -1,4 +1,4 @@
-{ config, lib, pkgs, termBin, uname, ... }:
+{ config, lib, pkgs, termBin, uname, nasPath, ... }:
 
 let
   home = config.users.users.${uname}.home;
@@ -30,7 +30,6 @@ in {
           output.${output} = {
             mode = "2560x1440@240Hz";
             adaptive_sync = "on";
-            bg = "/mnt/nas/bgs/aenami_025.jpg fill";
           };
           bars = [{
             statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-${barName}.toml";
@@ -50,6 +49,7 @@ in {
             "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
             "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
             "${mod}+Return" = "exec ${termBin}";
+            "${mod}+w" = "exec ${home}/dotfiles/scripts/set-rand-wallpaper.sh ${nasPath}/bgs";
             "${mod}+t" = "exec ${home}/dotfiles/scripts/web-search.sh";
             "${mod}+g" = "exec ${home}/dotfiles/scripts/apps.sh";
             "${mod}+Shift+g" = "exec ${pkgs.dmenu}/bin/dmenu_run -p gui-all";
@@ -152,6 +152,7 @@ in {
       bash
       dmenu
       sway-contrib.grimshot
+      swaybg
       # For scripts interacting with `swaymsg`.
       jq
     ];
