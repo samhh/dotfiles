@@ -14,7 +14,6 @@ qbpm launch unsplash
 qbpm launch mum
 slack
 steam
-zoom
 fin
 
 app=$(echo "$apps" | dmenu -p gui)
