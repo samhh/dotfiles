@@ -62,6 +62,11 @@ in {
         set -x DIRENV_LOG_FORMAT ""
       '';
       shellAbbrs = {
+        "diff" = "nvim -d";
+        "grep" = "rg";
+        "find" = "fd";
+        "du" = "gdu";
+        "ping" = "gping";
         "mpc" = "vimpc";
         "sys" = "systemctl";
         "sysu" = "systemctl --user";
