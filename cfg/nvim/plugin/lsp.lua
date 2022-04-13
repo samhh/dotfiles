@@ -48,7 +48,7 @@ local function setup_servers()
     on_attach = attacher_fmt
   }
 
-  lspc.rls.setup {
+  lspc.rust_analyzer.setup {
     on_attach = attacher_fmt
   }
 

@@ -104,8 +104,10 @@ in {
       nodePackages.bash-language-server
       efm-langserver
       haskell-language-server
-      rls
       rnix-lsp
+      rust-analyzer
+      # Needed for rust-analyzer.
+      rustc
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
 
