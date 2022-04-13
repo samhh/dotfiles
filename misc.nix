@@ -30,6 +30,7 @@ in {
       bandwhich
       distrobox
       dogdns
+      duf
       fd
       gdu
       gnupg
