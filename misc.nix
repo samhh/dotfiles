@@ -37,6 +37,7 @@ in {
       gping
       gotop
       sway-contrib.grimshot
+      hyperfine
       imv
       khard
       lftp
