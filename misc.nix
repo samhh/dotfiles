@@ -47,6 +47,7 @@ in {
       pass
       qrcp
       ripgrep
+      qrencode
       sd
       streamlink
       tree
