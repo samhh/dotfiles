@@ -29,6 +29,7 @@ in {
       # CLI
       bandwhich
       distrobox
+      dogdns
       fd
       gdu
       gnupg
