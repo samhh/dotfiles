@@ -62,6 +62,7 @@ in {
         set -x DIRENV_LOG_FORMAT ""
       '';
       shellAbbrs = {
+        "man" = "tldr";
         "diff" = "nvim -d";
         "grep" = "rg";
         "find" = "fd";

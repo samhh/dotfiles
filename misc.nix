@@ -50,6 +50,7 @@ in {
       qrencode
       sd
       streamlink
+      tldr
       tree
       unrar
       unzip
