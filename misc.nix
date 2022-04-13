@@ -51,7 +51,7 @@ in {
       sd
       streamlink
       tldr
-      tree
+      tre-command
       unrar
       unzip
       vimpc

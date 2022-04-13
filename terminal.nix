@@ -66,6 +66,7 @@ in {
         "diff" = "nvim -d";
         "grep" = "rg";
         "find" = "fd";
+        "tree" = "tre";
         "sed" = "sd";
         "df" = "duf";
         "du" = "gdu";
