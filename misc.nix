@@ -47,7 +47,7 @@ in {
       pass
       qrcp
       ripgrep
-      gnused
+      sd
       streamlink
       tree
       unrar
