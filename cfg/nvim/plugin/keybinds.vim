@@ -35,10 +35,8 @@ nnoremap <Leader>h :noh<CR>
 nnoremap gh :HopWord<CR>
 
 " :grep motions and shortcut
-let g:grepper = {}
-let g:grepper.quickfix = 0
 nmap gp <plug>(GrepperOperator)
-nnoremap <Leader>/ :silent lgrep ''<Left>
+nnoremap <Leader>/ :silent grep ''<Left>
 
 " Async make
 nnoremap <Leader>m :Make 

@@ -91,18 +91,18 @@ local function setup_diags()
   )
 end
 
-local function setup_qf()
+local function setup_ll()
   local pubdiag = "textDocument/publishDiagnostics"
   local def_pubdiag_handler = vim.lsp.handlers[pubdiag]
   vim.lsp.handlers[pubdiag] = function(err, method, res, cid, bufnr, cfg)
     def_pubdiag_handler(err, method, res, cid, bufnr, cfg)
-    vim.diagnostic.setqflist({ open = false })
+    vim.diagnostic.setloclist({ open = false })
   end
 end
 
 setup_servers()
 setup_diags()
-setup_qf()
+setup_ll()
 
 -- Goto reference
 k.mapn('gr', '<Cmd>lua vim.lsp.buf.references()<CR>')
