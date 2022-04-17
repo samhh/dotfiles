@@ -49,6 +49,10 @@ autocmd TextYankPost * lua vim.highlight.on_yank { higroup = "IncSearch", timeou
 " Auto-trust exrc on creation
 autocmd BufNewFile .exrc nested autocmd BufWritePost <buffer> nested ExrcTrust
 
+" Improve performance of treesitter and syntax generally when executing macros
+" many times
+set lazyredraw
+
 " Initialise plugins
 lua <<EOF
   require'Comment'.setup()
