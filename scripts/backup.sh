@@ -5,7 +5,6 @@ appKey=$(pass misc/backblaze.com/app-key-pass)
 
 echo "Preparing logs..."
 mkdir -p /mnt/nas/logs/
-pacman -Qet > /mnt/nas/logs/packages.txt
 tree /mnt/nas/tv/ > /mnt/nas/logs/tv.txt
 tree /mnt/nas/movies/ > /mnt/nas/logs/movies.txt
 
