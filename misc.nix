@@ -14,16 +14,8 @@ in {
   virtualisation.podman.enable = true;
 
   home-manager.users.${uname} = {
-    programs.senpai = {
-      enable = true;
-      config = {
-        addr = "chat.sr.ht";
-	nick = "samhh";
-	password-cmd = "${pkgs.pass}/bin/pass show _irc/chat.sr.ht/token";
-      };
-    };
-
     xdg.configFile."khard/khard.conf".source = ./cfg/khard.conf;
+    xdg.configFile."senpai/senpai.scfg".source = ./cfg/senpai.scfg;
 
     home.packages = with pkgs; [
       # CLI
@@ -49,6 +41,7 @@ in {
       ripgrep
       qrencode
       sd
+      senpai
       streamlink
       tldr
       tre-command

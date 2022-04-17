@@ -1,0 +1,3 @@
+address chat.sr.ht
+nickname samhh
+password-cmd pass show _irc/chat.sr.ht/token
