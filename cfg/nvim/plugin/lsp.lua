@@ -108,7 +108,7 @@ setup_qf()
 k.mapn('gr', '<Cmd>lua vim.lsp.buf.references()<CR>')
 
 -- Local symbol search
-_G.syml = function() pickers.lsp_document_symbols() end
+_G.syml = function() pickers.treesitter() end
 k.mapn('gs', '<Cmd>lua syml()<CR>')
 
 -- Format/fix active buffer
