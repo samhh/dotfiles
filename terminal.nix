@@ -57,7 +57,6 @@ in {
         set -x EDITOR ${editorBin}
         set -x MANPAGER ${editorBin} +Man!
         set -x DIFFPROG ${editorBin} -d
-        set -x PASSWORD_STORE_DIR ${home}/passwords/
         set -x SSH_AUTH_SOCK /run/user/${toString uid}/ssh-agent
         set -x DIRENV_LOG_FORMAT ""
       '';
