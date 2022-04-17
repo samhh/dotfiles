@@ -51,7 +51,7 @@ in {
       vimpc
       wf-recorder
       wl-clipboard
-      # zathura
+      zathura
 
       # GUI
       discord
