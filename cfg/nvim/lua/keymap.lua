@@ -4,23 +4,21 @@ local Keymap = {
 
 local function mapIn(m)
   return function(l, r)
-    vim.api.nvim_set_keymap(
+    vim.keymap.set(
       m,
       l,
-      r,
-      { noremap = true }
+      r
     )
   end
 end
 
 local function mapInBuf(b, m)
   return function(l, r)
-    vim.api.nvim_buf_set_keymap(
-      b,
+    vim.keymap.set(
       m,
       l,
       r,
-      { noremap = true }
+      { buffer = b }
     )
   end
 end
