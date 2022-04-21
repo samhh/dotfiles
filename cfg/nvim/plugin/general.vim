@@ -24,6 +24,9 @@ set foldexpr=nvim_treesitter#foldexpr()
 " Display signs in number column
 set signcolumn=number
 
+" Global statusline shared by all windows
+set laststatus=3
+
 " Keep n lines of context visible at all times
 set scrolloff=5
 
