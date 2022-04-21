@@ -17,17 +17,18 @@ require'telescope'.setup {
 
 require'telescope'.load_extension('fzf')
 
+local function find_files_in(xs)
+  return pickers.find_files { previewer = false, search_dirs = xs }
+end
+
 -- Buffer selection
-_G.buf = pickers.buffers
-k.mapn('<Leader>b', '<Cmd>lua buf()<CR>')
+k.mapn('<Leader>b', pickers.buffers)
 
 -- Find in repo
-_G.repo = function() pickers.git_files { previewer = false } end
-k.mapn('<Leader>P', '<Cmd>lua repo()<CR>')
+k.mapn('<Leader>P', function() pickers.git_files { previewer = false } end)
 
 -- Find in directory of open buffer
-_G.sibling = function() pickers.find_files { previewer = false, search_dirs = { vim.fn.expand('%:h') } } end
-k.mapn('<Leader>l', '<Cmd>lua sibling()<CR>')
+k.mapn('<Leader>l', function() find_files_in({ vim.fn.expand('%:h') }) end)
 
 -- Find by path option
 local function get_telescope_paths()
@@ -47,5 +48,4 @@ local function get_telescope_paths()
   return telescope_paths
 end
 
-_G.path = function() pickers.find_files { previewer = false, search_dirs = get_telescope_paths() } end
-k.mapn('<Leader>p', '<Cmd>lua path()<CR>')
+k.mapn('<Leader>p', function() find_files_in(get_telescope_paths()) end)

@@ -108,8 +108,7 @@ setup_ll()
 k.mapn('gr', '<Cmd>lua vim.lsp.buf.references()<CR>')
 
 -- Local symbol search
-_G.syml = function() pickers.treesitter() end
-k.mapn('gs', '<Cmd>lua syml()<CR>')
+k.mapn('gs', function() pickers.treesitter() end)
 
 -- Format/fix active buffer
 k.mapn('<Leader>z', '<Cmd>lua vim.lsp.buf.formatting()<CR>')
@@ -118,5 +117,4 @@ k.mapn('<Leader>z', '<Cmd>lua vim.lsp.buf.formatting()<CR>')
 k.mapn('<Leader>e', '<Cmd>lua vim.diagnostic.open_float(0)<CR>')
 
 -- Offer code actions
-_G.act = function() pickers.lsp_code_actions(themes.get_cursor()) end
-k.mapn('<Leader>g', '<Cmd>lua act()<CR>')
+k.mapn('<Leader>g', function() pickers.lsp_code_actions(themes.get_cursor()) end)
