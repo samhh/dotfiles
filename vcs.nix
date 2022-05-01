@@ -56,6 +56,7 @@
       ps = "push";
       psf = "push --force-with-lease";
       rb = "rebase";
+      rbx = "rebase -i --autosquash";
       root = "rev-parse --show-toplevel";
       rs = "restore";
       rss = "restore --staged";
