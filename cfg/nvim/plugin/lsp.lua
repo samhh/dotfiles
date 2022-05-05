@@ -31,6 +31,10 @@ local function setup_servers()
     on_attach = attacher_fmt
   }
 
+  lspc.dhall_lsp_server.setup {
+    on_attach = attacher_fmt
+  }
+
   lspc.efm.setup {
     filetypes = { "javascript", "typescript", "typescriptreact" }
   }

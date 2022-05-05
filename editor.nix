@@ -102,6 +102,7 @@ in {
 
       # Language servers
       nodePackages.bash-language-server
+      dhall-lsp-server
       efm-langserver
       haskell-language-server
       rnix-lsp
