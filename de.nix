@@ -63,7 +63,7 @@ in {
             "${mod}+o" = "exec ${pkgs.mako}/bin/makoctl dismiss";
             "${mod}+Shift+o" = "exec ${pkgs.mako}/bin/makoctl dismiss -a";
             "${mod}+p" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot save area";
-            "${mod}+l" = "exec ${pkgs.swaylock}/bin/swaylock";
+            "${mod}+l" = "exec ${pkgs.swaylock}/bin/swaylock -c 000000";
             "${mod}+Shift+l" = "exec systemctl suspend";
           };
           assigns = {
@@ -128,11 +128,11 @@ in {
       enable = true;
       events = [{
         event = "before-sleep";
-        command = "${pkgs.swaylock}/bin/swaylock -f";
+        command = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
       }];
       timeouts = [{
         timeout = 1800;
-        command = "${pkgs.swaylock}/bin/swaylock -f";
+        command = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
       }];
     };
 
