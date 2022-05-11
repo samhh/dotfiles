@@ -38,6 +38,7 @@
           ./email.nix
           ./gaming.nix
           ./hardware.nix
+          ./hass.nix
           ./misc.nix
           ./network.nix
           ./rss.nix

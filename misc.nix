@@ -13,8 +13,6 @@ let
     };
   });
 in {
-  virtualisation.podman.enable = true;
-
   home-manager.users.${uname} = {
     xdg.configFile."khard/khard.conf".source = ./cfg/khard.conf;
     xdg.configFile."senpai/senpai.scfg".source = ./cfg/senpai.scfg;
