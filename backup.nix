@@ -19,7 +19,7 @@
               remoteuser = email;
               remotepasseval = "get_pass(\"${emailPassPath}\")";
               folderfilter =
-                "lambda folder: folder in ['Archive', 'Unfulfilled Orders', 'INBOX', 'Sent']";
+                "lambda folder: folder in ['Archive', 'Awaiting', 'Unfulfilled', 'Jobs 2021', 'INBOX', 'Sent']";
             };
           };
         };
