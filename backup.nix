@@ -2,7 +2,14 @@
 
 {
   home-manager.users.${uname} = {
-    programs.offlineimap.enable = true;
+    programs.offlineimap = {
+      enable = true;
+      pythonFile = ''
+        from subprocess import check_output
+        def get_pass(path):
+            return check_output("pass show " + path, shell=True).splitlines()[0]
+      '';
+    };
 
     accounts.email.accounts.main =
       let host = "imap.migadu.com";
