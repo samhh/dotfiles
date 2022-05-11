@@ -24,12 +24,6 @@ let
   };
 
 in {
-  # For nix-direnv.
-  nix.extraOptions = ''
-    keep-outputs = true
-    keep-derivations = true
-  '';
-
   users.users.${uname}.shell = pkgs.fish;
 
   home-manager.users.${uname} = {
