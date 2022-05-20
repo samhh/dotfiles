@@ -18,7 +18,17 @@
             pkgs = import nixpkgs {
               inherit system;
 
-              config.allowUnfree = true;
+              config.allowUnfreePredicate = pkg:
+                let pkgName = nixpkgs.lib.getName pkg;
+                in
+                  builtins.elem pkgName [
+                    "1password"
+                    "discord"
+                    "obsidian"
+                    "slack"
+                  ] ||
+                  # Steam includes a few unfree packages.
+                  (builtins.match "^steam(-.*)?" pkgName != null);
             };
           in nixpkgs.lib.nixosSystem {
             inherit pkgs system;
