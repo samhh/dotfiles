@@ -12,6 +12,8 @@ in {
     KERNEL=="ttyACM*", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789B]?", MODE:="0666"
   '';
 
+  virtualisation.podman.enable = true;
+
   home-manager.users.${uname} = {
     xdg.configFile."khard/khard.conf".source = ./cfg/khard.conf;
     xdg.configFile."senpai/senpai.scfg".source = ./cfg/senpai.scfg;

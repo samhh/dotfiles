@@ -7,6 +7,9 @@
     ../../modules/security.nix
     ../../modules/user.nix
 
+    # Temporary
+    ../tentacool/hass.nix
+
     ./audio.nix
     ./auth.nix
     ./backup.nix
@@ -16,7 +19,6 @@
     ./email.nix
     ./gaming.nix
     ./hardware.nix
-    ./hass.nix
     ./misc.nix
     ./network.nix
     ./rss.nix

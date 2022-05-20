@@ -47,6 +47,26 @@
               streamerBin = "${pkgs.streamlink}/bin/streamlink";
             };
           };
+
+        tentacool =
+          let
+            system = "x86_64-linux";
+            pkgs = import nixpkgs {
+              inherit system;
+            };
+          in nixpkgs.lib.nixosSystem {
+            inherit pkgs system;
+
+            modules = [
+              ./hosts/tentacool
+            ];
+
+            specialArgs = {
+              hostName = "tentacool";
+
+              uname = "sam";
+            };
+          };
       };
     };
 }

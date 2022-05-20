@@ -1,6 +1,10 @@
 { pkgs, uname, ... }:
 
 {
+  environment.systemPackages = with pkgs; [
+    certbot
+  ];
+
   networking.firewall.allowedTCPPorts = [
     # Let's Encrypt challenge
     80
@@ -24,11 +28,5 @@
       ];
       environment.TZ = "Europe/London";
     };
-  };
-
-  home-manager.users.${uname} = {
-    home.packages = with pkgs; [
-      certbot
-    ];
   };
 }
