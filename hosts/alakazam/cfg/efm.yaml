@@ -5,7 +5,7 @@ tools:
   import-sort: &import-sort
     root-markers:
       - node_modules/import-sort/
-    format-command: '~/dotfiles/scripts/import-sort-stdin.sh ${INPUT}'
+    format-command: '~/dotfiles/hosts/alakazam/scripts/import-sort-stdin.sh ${INPUT}'
     format-stdin: true
 
   prettier: &prettier

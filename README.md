@@ -4,7 +4,7 @@ My personal dotfiles for [NixOS](https://nixos.org). Keybindings are with [my ke
 
 ## Usage
 
-Do this once: `# ln -s /path/to/repo/flake.{nix,lock} /etc/nixos/`
+Do this once: `# ln -s /path/to/repo/hosts/host/flake.{nix,lock} /etc/nixos/`
 
 Only the entrypoint module and lockfile need symlinking. Nix resolves relative imports at the module's real path.
 

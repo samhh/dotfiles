@@ -4,7 +4,7 @@ let
   home = config.users.users.${uname}.home;
   output = "DP-3";
   barName = "top";
-  wallpaperScript = "${home}/dotfiles/scripts/set-rand-wallpaper.sh ${nasPath}/bgs";
+  wallpaperScript = "${home}/dotfiles/hosts/alakazam/scripts/set-rand-wallpaper.sh ${nasPath}/bgs";
 in {
   fonts.fonts = with pkgs; [
     hasklig
@@ -51,15 +51,15 @@ in {
             "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
             "${mod}+Return" = "exec ${termBin}";
             "${mod}+w" = "exec ${wallpaperScript}";
-            "${mod}+t" = "exec ${home}/dotfiles/scripts/web-search.sh";
-            "${mod}+g" = "exec ${home}/dotfiles/scripts/apps.sh";
+            "${mod}+t" = "exec ${home}/dotfiles/hosts/alakazam/scripts/web-search.sh";
+            "${mod}+g" = "exec ${home}/dotfiles/hosts/alakazam/scripts/apps.sh";
             "${mod}+Shift+g" = "exec ${pkgs.dmenu}/bin/dmenu_run -p gui-all";
-            "${mod}+d" = "exec ${home}/dotfiles/scripts/flatmarks.sh";
-            "${mod}+Shift+d" = "exec ${home}/dotfiles/scripts/flatmarks-work.sh";
-            "${mod}+x" = "exec ${home}/dotfiles/scripts/passmenu.sh";
-            "${mod}+n" = "exec ${home}/dotfiles/scripts/pass-prefixed-line.sh \"username: \" username";
-            "${mod}+m" = "exec ${home}/dotfiles/scripts/pass-prefixed-line.sh \"email: \" email";
-            "${mod}+z" = "exec ${home}/dotfiles/scripts/definition-lookup.sh";
+            "${mod}+d" = "exec ${home}/dotfiles/hosts/alakazam/scripts/flatmarks.sh";
+            "${mod}+Shift+d" = "exec ${home}/dotfiles/hosts/alakazam/scripts/flatmarks-work.sh";
+            "${mod}+x" = "exec ${home}/dotfiles/hosts/alakazam/scripts/passmenu.sh";
+            "${mod}+n" = "exec ${home}/dotfiles/hosts/alakazam/scripts/pass-prefixed-line.sh \"username: \" username";
+            "${mod}+m" = "exec ${home}/dotfiles/hosts/alakazam/scripts/pass-prefixed-line.sh \"email: \" email";
+            "${mod}+z" = "exec ${home}/dotfiles/hosts/alakazam/scripts/definition-lookup.sh";
             "${mod}+o" = "exec ${pkgs.mako}/bin/makoctl dismiss";
             "${mod}+Shift+o" = "exec ${pkgs.mako}/bin/makoctl dismiss -a";
             "${mod}+p" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot save area";
