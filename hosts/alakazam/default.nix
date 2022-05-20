@@ -3,6 +3,7 @@
 {
   imports = [
     ../../modules/locale.nix
+    ../../modules/user.nix
 
     ./audio.nix
     ./backup.nix
