@@ -3,8 +3,6 @@
 {
   networking = {
     inherit hostName;
-
-    interfaces.enp42s0.useDHCP = true;
   };
 
   services.printing.enable = true;
