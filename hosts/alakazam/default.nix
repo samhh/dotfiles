@@ -2,6 +2,8 @@
 
 {
   imports = [
+    ../../modules/locale.nix
+
     ./audio.nix
     ./backup.nix
     ./core.nix

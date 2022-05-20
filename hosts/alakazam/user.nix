@@ -14,10 +14,6 @@
     mutableUsers = false;
   };
 
-  i18n.defaultLocale = "en_GB.UTF-8";
-
-  time.timeZone = "Europe/London";
-
   home-manager.users.${uname}.xdg.userDirs = {
     enable = true;
     documents = "$HOME/docs";
