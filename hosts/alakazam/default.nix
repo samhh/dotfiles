@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../../modules/core.nix
     ../../modules/locale.nix
     ../../modules/security.nix
     ../../modules/user.nix
