@@ -6,6 +6,7 @@
     ../../modules/user.nix
 
     ./audio.nix
+    ./auth.nix
     ./backup.nix
     ./core.nix
     ./de.nix
@@ -17,7 +18,6 @@
     ./misc.nix
     ./network.nix
     ./rss.nix
-    ./security.nix
     ./terminal.nix
     ./user.nix
     ./vcs.nix
