@@ -1,7 +1,7 @@
-{ hostName, ... }:
+{ ... }:
 
 {
   networking = {
-    inherit hostName;
+    hostName = "tentacool";
   };
 }

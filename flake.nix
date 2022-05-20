@@ -32,8 +32,6 @@
             ];
 
             specialArgs = {
-              hostName = "alakazam";
-
               uname = "sam";
               email = "hello@samhh.com";
 
@@ -62,8 +60,6 @@
             ];
 
             specialArgs = {
-              hostName = "tentacool";
-
               uname = "sam";
             };
           };

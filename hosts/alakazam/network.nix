@@ -1,8 +1,8 @@
-{ hostName, nasPath, ... }:
+{ nasPath, ... }:
 
 {
   networking = {
-    inherit hostName;
+    hostName = "alakazam";
   };
 
   services.printing.enable = true;
