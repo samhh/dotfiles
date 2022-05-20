@@ -26,6 +26,11 @@ let
 in {
   users.users.${uname}.shell = pkgs.fish;
 
+  security.doas.extraRules = [{
+    users = [ uname ];
+    keepEnv = true;
+  }];
+
   home-manager.users.${uname} = {
     programs.foot = {
       enable = true;

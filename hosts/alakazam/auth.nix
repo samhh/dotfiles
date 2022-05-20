@@ -1,15 +1,6 @@
 { uname, ... }:
 
 {
-  security.sudo.enable = false;
-  security.doas = {
-    enable = true;
-    extraRules = [{
-      users = [ uname ];
-      keepEnv = true;
-    }];
-  };
-
   programs.gnupg.agent = {
     enable = true;
     pinentryFlavor = "qt";
