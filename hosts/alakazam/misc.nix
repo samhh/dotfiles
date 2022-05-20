@@ -43,7 +43,6 @@ in {
       streamlink
       tldr
       tre-command
-      unrar
       unzip
       vimpc
       wf-recorder
