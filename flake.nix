@@ -23,7 +23,6 @@
                 in
                   builtins.elem pkgName [
                     "1password"
-                    "discord"
                     "obsidian"
                     "slack"
                   ] ||

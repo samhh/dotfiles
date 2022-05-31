@@ -68,7 +68,6 @@ in {
           };
           assigns = {
             "8" = [{ class = "^Slack$"; }];
-            "9" = [{ class = "^discord$"; }];
           };
         };
       };

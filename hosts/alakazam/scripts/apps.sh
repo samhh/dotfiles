@@ -2,8 +2,6 @@
 
 read -r -d '' apps << fin
 chromium
-discord
-discover-overlay
 firefox
 obsidian
 pavucontrol

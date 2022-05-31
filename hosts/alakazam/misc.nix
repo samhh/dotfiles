@@ -52,7 +52,6 @@ in {
       zathura
 
       # GUI
-      discord
       obsidian
 
       # Dev
