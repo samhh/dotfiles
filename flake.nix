@@ -22,7 +22,6 @@
                 let pkgName = nixpkgs.lib.getName pkg;
                 in
                   builtins.elem pkgName [
-                    "1password"
                     "obsidian"
                     "slack"
                   ] ||

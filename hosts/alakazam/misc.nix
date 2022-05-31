@@ -59,7 +59,6 @@ in {
       nodePackages.yalc
 
       # Work
-      _1password-gui
       slack
     ];
 
