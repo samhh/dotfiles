@@ -1,8 +1,8 @@
 { config, pkgs, termBin, editorBin, launcherBin, streamerBin, uname, ... }:
 
 let
-  qbpm = pkgs.callPackage ./pkg/qbpm.nix {};
-  banginServerNode = pkgs.callPackage ./pkg/bangin-server-node.nix {};
+  qbpm = pkgs.callPackage ../../pkg/qbpm.nix {};
+  banginServerNode = pkgs.callPackage ../../pkg/bangin-server-node.nix {};
 
   getBanglist = x: builtins.fetchurl "https://git.sr.ht/~samhh/${x}.bangs/blob/master/${x}.bangs";
 

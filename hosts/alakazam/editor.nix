@@ -1,7 +1,7 @@
 { pkgs, uname, ... }:
 
 let
-  tshm = pkgs.callPackage ./pkg/tshm.nix {};
+  tshm = pkgs.callPackage ../../pkg/tshm.nix {};
 
   exrc-vim = pkgs.vimUtils.buildVimPlugin {
     name = "exrc.vim";
