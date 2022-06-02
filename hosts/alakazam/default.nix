@@ -7,9 +7,6 @@
     ../../modules/security.nix
     ../../modules/user.nix
 
-    # Temporary
-    ../tentacool/hass.nix
-
     ./audio.nix
     ./auth.nix
     ./backup.nix
