@@ -7,7 +7,7 @@
     ../../modules/security.nix
     ../../modules/user.nix
 
-    # ./hardware.nix
+    ./hardware.nix
     ./hass.nix
     ./network.nix
     ./ssh.nix
