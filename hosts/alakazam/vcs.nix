@@ -1,8 +1,6 @@
 { pkgs, email, emailPassPath, editorBin, uname, ... }:
 
 {
-  environment.systemPackages = with pkgs; [ git ];
-
   home-manager.users.${uname}.programs.git = {
     enable = true;
     # For send-email support.
