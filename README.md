@@ -2,19 +2,17 @@
 
 My personal dotfiles for [NixOS](https://nixos.org). Keybindings are with [my keymap](https://git.sr.ht/~samhh/qmk_firmware/tree/samhh/item/keyboards/ergodox_ez/keymaps/samhh/README.md) in mind.
 
+The repo configures two hosts, Alakazam and Tentacool. These are my personal machine and home server respectively.
+
 ## Usage
 
-Do this once: `# ln -s /path/to/repo/flake.{nix,lock} /etc/nixos/`
+Build your desired host with `nixos-rebuild --flake`. The Alakazam host requires `--impure`. Example:
 
-Only the entrypoint module and lockfile need symlinking. Nix resolves relative imports at the module's real path.
+```console
+# nixos-rebuild switch --flake ".#alakazam" --impure
+```
 
-Pass `--flake .#<host>` to `nixos-rebuild`. Also pass `--impure` for the Alakazam host.
-
-For now a few parts of the config presume the repo will be at `~/dotfiles/`. Anything that couldn't be configured in Home Manager lives in `./cfg/`.
-
-## Hosts
-
-The repo configures two hosts, Alakazam and Tentacool. These are my personal machine and home server respectively.
+For now a few parts of the Alakazam config presume the repo will be at `~/dotfiles/`. Anything that couldn't be configured in Home Manager lives in `./cfg/`.
 
 ## History
 
