@@ -8,8 +8,9 @@
     ../../modules/user.nix
 
     ./hardware.nix
-    ./hass.nix
     ./network.nix
     ./ssh.nix
+
+    ./svc/starmie.nix
   ];
 }
