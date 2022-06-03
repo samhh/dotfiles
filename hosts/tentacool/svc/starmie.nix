@@ -19,6 +19,9 @@
       # Mounting at a fairly high path due to the presence of relative symlinks.
       "/etc/letsencrypt:/ssl"
     ];
+    ports = [
+      "8123"
+    ];
     extraOptions = [
       "--network=host"
       # Zigbee
