@@ -14,6 +14,8 @@ EOF
 
 colorscheme kanagawa
 
+set winhl=Normal:Normal,NormalNC:ColorColumn
+
 function! DiagnosticsStatus() abort
     let l:es = luaeval("#vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })")
     let l:ws = luaeval("#vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })")
