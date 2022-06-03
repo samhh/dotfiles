@@ -164,6 +164,7 @@ in {
       sway-contrib.grimshot
       swaybg
       # For scripts interacting with `swaymsg`.
+      gron
       jq
     ];
   };
