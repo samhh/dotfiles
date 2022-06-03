@@ -12,6 +12,7 @@
     ./network.nix
     ./ssh.nix
 
+    ./svc/onix.nix
     ./svc/starmie.nix
   ];
 }
