@@ -1,4 +1,4 @@
-{ pkgs, uname, ... }:
+{ pkgs, tshmPlugin, uname, ... }:
 
 let
   tshm = pkgs.callPackage ../../pkg/tshm.nix {};
@@ -91,6 +91,8 @@ in {
       };
       "efm-langserver/config.yaml".source = ./cfg/efm.yaml;
     };
+
+    xdg.dataFile."typescript-tshm-plugin".source = tshmPlugin;
 
     programs.git.ignores = [
       ".exrc"

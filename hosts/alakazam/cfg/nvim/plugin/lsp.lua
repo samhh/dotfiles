@@ -64,7 +64,7 @@ local function setup_servers()
     init_options = {
       plugins = { {
         name = "typescript-tshm-plugin",
-        location = "/usr/lib/node_modules/typescript-tshm-plugin/"
+        location = "/home/sam/.local/share/typescript-tshm-plugin/"
       } }
     },
     on_attach = attacher_nofmt,
