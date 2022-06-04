@@ -20,7 +20,7 @@
       "/etc/letsencrypt:/ssl"
     ];
     ports = [
-      "8123"
+      "8123/tcp"
     ];
     extraOptions = [
       "--network=host"
