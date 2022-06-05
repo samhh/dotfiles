@@ -76,6 +76,7 @@
 
             specialArgs = {
               uname = "sam";
+              email = "hello@samhh.com";
             };
           };
       };

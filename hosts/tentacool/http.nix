@@ -1,9 +1,9 @@
-{ ... }:
+{ email, ... }:
 
 {
   security.acme = {
     acceptTerms = true;
-    defaults.email = "hello@samhh.com";
+    defaults = { inherit email; };
   };
 
   networking.firewall.allowedTCPPorts = [
