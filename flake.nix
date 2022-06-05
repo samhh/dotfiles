@@ -77,6 +77,8 @@
             specialArgs = {
               uname = "sam";
               email = "hello@samhh.com";
+
+              nasPath = "/mnt/nas";
             };
           };
       };
