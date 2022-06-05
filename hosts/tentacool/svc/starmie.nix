@@ -1,14 +1,8 @@
 { pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
-    certbot
-  ];
-
   networking.firewall.allowedTCPPorts = [
-    # Let's Encrypt challenge
-    80
-    # HASS
+    # HASS (LAN) non-SSL
     8123
   ];
 
@@ -16,8 +10,6 @@
     image = "ghcr.io/home-assistant/home-assistant:2022.5.3";
     volumes = [
       "hass:/config"
-      # Mounting at a fairly high path due to the presence of relative symlinks.
-      "/etc/letsencrypt:/ssl"
     ];
     extraOptions = [
       "--network=host"
@@ -25,5 +17,14 @@
       "--device=/dev/ttyUSB0"
     ];
     environment.TZ = "Europe/London";
+  };
+
+  services.nginx.virtualHosts."starmie.samhh.com" = {
+    enableACME = true;
+    forceSSL = true;
+    locations."/" = {
+      proxyPass = "http://127.0.0.1:8123";
+      proxyWebsockets = true;
+    };
   };
 }

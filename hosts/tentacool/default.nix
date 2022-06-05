@@ -9,6 +9,7 @@
 
     ./containers.nix
     ./hardware.nix
+    ./http.nix
     ./network.nix
     ./ssh.nix
 
