@@ -12,7 +12,7 @@ else
   app="qutebrowser"
 fi
 
-if [ "$("$(dirname "$0")/has-browser-instance.sh" "$output" "$profile")" = "true" ]; then
+if [ "$("$(dirname "$0")/has-browser-instance.sh" "$output" "$profile")" ]; then
   target="tab"
 else
   target="window"
