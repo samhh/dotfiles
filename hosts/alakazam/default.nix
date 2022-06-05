@@ -5,6 +5,7 @@
     ../../modules/core.nix
     ../../modules/locale.nix
     ../../modules/security.nix
+    ../../modules/snorlax.nix
     ../../modules/user.nix
 
     ./audio.nix
