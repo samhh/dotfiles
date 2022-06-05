@@ -8,6 +8,7 @@
     ../../modules/user.nix
 
     ./containers.nix
+    ./ddns.nix
     ./hardware.nix
     ./http.nix
     ./network.nix

@@ -27,4 +27,6 @@
       proxyWebsockets = true;
     };
   };
+
+  services.ddclient.domains = [ "starmie" ];
 }
