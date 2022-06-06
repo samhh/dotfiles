@@ -16,6 +16,7 @@
     ./ssh.nix
 
     ./svc/blastoise.nix
+    ./svc/chansey.nix
     ./svc/onix.nix
     ./svc/starmie.nix
   ];
