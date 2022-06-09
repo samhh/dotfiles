@@ -16,9 +16,9 @@ ws=$(
 # suffix. We'll assume that an empty `$profile` denotes the default profile and
 # adjust the check accordingly.
 if [ -z "$profile" ]; then
-  suffix=" - qutebrowser"
+  suffix=" - +qutebrowser"
 else
-  suffix=" - qutebrowser ($profile)"
+  suffix=" - +qutebrowser \($profile\)"
 fi
 
 echo "$ws" | gron | grep -E "json\.(nodes\[[0-9]+]\.)+name = \".+$suffix\""
