@@ -121,4 +121,4 @@ k.mapn('<Leader>z', '<Cmd>lua vim.lsp.buf.formatting()<CR>')
 k.mapn('<Leader>e', '<Cmd>lua vim.diagnostic.open_float(0)<CR>')
 
 -- Offer code actions
-k.mapn('<Leader>g', function() pickers.lsp_code_actions(themes.get_cursor()) end)
+k.mapn('<Leader>g', function() vim.lsp.buf.code_action() end)

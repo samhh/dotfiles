@@ -44,6 +44,7 @@ in {
         plenary-nvim
         telescope-nvim
         telescope-fzf-native-nvim
+        telescope-ui-select-nvim
 
         # Layout
         vim-bbye

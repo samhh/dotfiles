@@ -16,6 +16,7 @@ require'telescope'.setup {
 }
 
 require'telescope'.load_extension('fzf')
+require'telescope'.load_extension('ui-select')
 
 local function find_files_in(xs)
   return pickers.find_files { previewer = false, search_dirs = xs }
