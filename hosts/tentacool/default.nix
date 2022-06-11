@@ -18,6 +18,7 @@
     ./svc/blastoise.nix
     ./svc/chansey.nix
     ./svc/magneton.nix
+    ./svc/metapod.nix
     ./svc/onix.nix
     ./svc/poliwhirl.nix
     ./svc/starmie.nix
