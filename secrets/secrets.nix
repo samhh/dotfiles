@@ -5,4 +5,5 @@ let
 in
 {
   "ddns-token.age".publicKeys = [ tentacool ];
+  "pihole-pass.age".publicKeys = [ tentacool ];
 }

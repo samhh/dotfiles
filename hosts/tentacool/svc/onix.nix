@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 {
   networking.firewall.allowedTCPPorts = [
@@ -23,6 +23,7 @@
     ];
     environment = {
       WEB_PORT = "8053";
+      WEBPASSWORD = config.age.secrets.pihole-pass.path;
       TZ = "Europe/London";
     };
   };
