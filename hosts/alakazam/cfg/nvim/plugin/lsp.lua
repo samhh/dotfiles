@@ -14,8 +14,8 @@ local function setup_servers()
   local function setup_keybinds()
     this_buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
     k.buf.mapi('<C-u>', '<C-x><C-o>')
-    k.buf.mapn('K', '<cmd>lua vim.lsp.buf.hover()<CR>')
-    k.buf.mapn('<Leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>')
+    k.buf.mapn('K', function() vim.lsp.buf.hover() end)
+    k.buf.mapn('<Leader>r', function() vim.lsp.buf.rename() end)
   end
 
   local function attacher_fmt(client)
@@ -109,16 +109,16 @@ setup_diags()
 setup_ll()
 
 -- Goto reference
-k.mapn('gr', '<Cmd>lua vim.lsp.buf.references()<CR>')
+k.mapn('gr', function() vim.lsp.buf.references() end)
 
 -- Local symbol search
 k.mapn('gs', function() pickers.treesitter() end)
 
 -- Format/fix active buffer
-k.mapn('<Leader>z', '<Cmd>lua vim.lsp.buf.formatting()<CR>')
+k.mapn('<Leader>z', function() vim.lsp.buf.formatting() end)
 
 -- Show diagnostics in popup
-k.mapn('<Leader>e', '<Cmd>lua vim.diagnostic.open_float(0)<CR>')
+k.mapn('<Leader>e', function() vim.diagnostic.open_float(0) end)
 
 -- Offer code actions
 k.mapn('<Leader>g', function() vim.lsp.buf.code_action() end)
