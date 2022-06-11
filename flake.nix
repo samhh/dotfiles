@@ -8,13 +8,15 @@
         inputs.nixpkgs.follows = "nixpkgs";
       };
 
+      agenix.url = "github:ryantm/agenix";
+
       tshm-plugin = {
         url = "https://registry.yarnpkg.com/typescript-tshm-plugin/-/typescript-tshm-plugin-0.1.0.tgz";
         flake = false;
       };
     };
 
-  outputs = { nixpkgs, home-manager, tshm-plugin, ... }:
+  outputs = { nixpkgs, home-manager, agenix, tshm-plugin, ... }:
     {
       nixosConfigurations = {
         alakazam =
@@ -41,16 +43,19 @@
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
               }
+              agenix.nixosModule
               ./hosts/alakazam
             ];
 
             specialArgs = {
+              inherit system;
               uname = "sam";
               email = "hello@samhh.com";
 
               emailPassPath = "emails/migadu.com/mailbox/hello";
               nasPath = "/mnt/nas";
 
+              inherit agenix;
               tshmPlugin = tshm-plugin;
 
               termBin = "${pkgs.foot}/bin/foot";
@@ -71,14 +76,18 @@
             inherit pkgs system;
 
             modules = [
+              agenix.nixosModule
               ./hosts/tentacool
             ];
 
             specialArgs = {
+              inherit system;
               uname = "sam";
               email = "hello@samhh.com";
 
               nasPath = "/mnt/nas";
+
+              inherit agenix;
             };
           };
       };

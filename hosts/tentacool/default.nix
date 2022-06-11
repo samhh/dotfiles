@@ -4,6 +4,7 @@
   imports = [
     ../../modules/core.nix
     ../../modules/locale.nix
+    ../../modules/secrets.nix
     ../../modules/security.nix
     ../../modules/snorlax.nix
     ../../modules/user.nix

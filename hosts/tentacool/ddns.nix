@@ -1,10 +1,10 @@
-{ uname, ... }:
+{ config, ... }:
 
 {
   services.ddclient = {
     enable = true;
     protocol = "namecheap";
     username = "samhh.com";
-    passwordFile = "/home/${uname}/.ddnspw";
+    passwordFile = config.age.secrets.ddns-token.path;
   };
 }
