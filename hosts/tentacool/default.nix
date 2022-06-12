@@ -18,6 +18,7 @@
 
     ./svc/blastoise.nix
     ./svc/chansey.nix
+    ./svc/krabby.nix
     ./svc/magneton.nix
     ./svc/metapod.nix
     ./svc/onix.nix

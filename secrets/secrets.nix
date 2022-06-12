@@ -6,4 +6,5 @@ in
 {
   "ddns-token.age".publicKeys = [ tentacool ];
   "pihole-pass.age".publicKeys = [ tentacool ];
+  "radicale-htpasswd.age".publicKeys = [ tentacool ];
 }
