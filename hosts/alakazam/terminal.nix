@@ -96,6 +96,7 @@ in {
 
     programs.git.ignores = [
       "shell.nix"
+      "result"
       ".envrc"
       ".direnv/"
     ];
