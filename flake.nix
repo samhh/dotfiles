@@ -10,13 +10,15 @@
 
       agenix.url = "github:ryantm/agenix";
 
+      overseer.url = "path:./hosts/alakazam/overseer";
+
       tshm-plugin = {
         url = "https://registry.yarnpkg.com/typescript-tshm-plugin/-/typescript-tshm-plugin-0.1.0.tgz";
         flake = false;
       };
     };
 
-  outputs = { nixpkgs, home-manager, agenix, tshm-plugin, ... }:
+  outputs = { nixpkgs, home-manager, agenix, overseer, tshm-plugin, ... }:
     {
       nixosConfigurations = {
         alakazam =
@@ -55,7 +57,7 @@
               emailPassPath = "emails/migadu.com/mailbox/hello";
               nasPath = "/mnt/nas";
 
-              inherit agenix;
+              inherit agenix overseer;
               tshmPlugin = tshm-plugin;
 
               termBin = "${pkgs.foot}/bin/foot";
