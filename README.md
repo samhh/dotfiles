@@ -6,7 +6,7 @@ The repo configures two hosts, Alakazam and Tentacool. These are my personal mac
 
 ## Usage
 
-Build your desired host with `nixos-rebuild --flake`. The Alakazam host requires `--impure`. Example:
+Build your desired host with `nixos-rebuild --flake`. Both hosts require `--impure`. Example:
 
 ```console
 # nixos-rebuild switch --flake ".#alakazam" --impure
