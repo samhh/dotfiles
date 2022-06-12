@@ -1,3 +1,6 @@
+# Note that an A record for any given subdomain already needs to exist in order
+# for DDNS to work.
+
 { config, ... }:
 
 {

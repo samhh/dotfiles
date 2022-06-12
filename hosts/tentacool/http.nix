@@ -1,3 +1,5 @@
+# Note that DDNS needs to be up and running before a certificate can be issued.
+
 { email, ... }:
 
 {
