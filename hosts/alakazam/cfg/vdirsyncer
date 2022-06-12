@@ -13,6 +13,6 @@ fileext = ".vcf"
 
 [storage contacts_remote]
 type = "carddav"
-url = "https://cdav.migadu.com"
-username = "hello@samhh.com"
-password.fetch = ["command", "pass", "show", "emails/migadu.com/mailbox/hello"]
+url = "https://krabby.samhh.com"
+username = "sam"
+password.fetch = ["command", "pass", "show", "lan/krabby"]
