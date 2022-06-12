@@ -14,6 +14,7 @@
     ./hardware.nix
     ./http.nix
     ./network.nix
+    ./secrets.nix
     ./ssh.nix
 
     ./svc/blastoise.nix
