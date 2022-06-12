@@ -23,10 +23,10 @@
     ];
     environment = {
       WEB_PORT = "8053";
-      # Ideally we wouldn't `readFile`:
-      #   https://github.com/ryantm/agenix/tree/7e5e58b98c3dcbf497543ff6f22591552ebfe65b#builtinsreadfile-anti-pattern
-      WEBPASSWORD = builtins.readFile config.age.secrets.pihole-pass.path;
       TZ = "Europe/London";
     };
+    environmentFiles = [
+      config.age.secrets.pihole-env.path
+    ];
   };
 }
