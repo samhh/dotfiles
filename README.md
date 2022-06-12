@@ -6,10 +6,10 @@ The repo configures two hosts, Alakazam and Tentacool. These are my personal mac
 
 ## Usage
 
-Build your desired host with `nixos-rebuild --flake`. Both hosts require `--impure`. Example:
+Build your desired host with `nixos-rebuild --flake`. Tentacool requires `--impure`. Example:
 
 ```console
-# nixos-rebuild switch --flake ".#alakazam" --impure
+# nixos-rebuild switch --flake ".#alakazam"
 ```
 
 For now a few parts of the Alakazam config presume the repo will be at `~/dotfiles/`. Anything that couldn't be configured in Home Manager lives in `./cfg/`.

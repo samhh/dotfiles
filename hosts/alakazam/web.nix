@@ -3,10 +3,7 @@
 let
   qbpm = pkgs.callPackage ../../pkg/qbpm.nix {};
   banginServerNode = pkgs.callPackage ../../pkg/bangin-server-node.nix {};
-
-  getBanglist = x: builtins.fetchurl "https://git.sr.ht/~samhh/${x}.bangs/blob/master/${x}.bangs";
-
-  banglists = [ "arch" "dev" "english" "italiano" "nix" "pcgaming" "prelude" "uk" ];
+  bangup = pkgs.callPackage ../../pkg/bangup/default.nix {};
 
   banginServerNodePort = 1234;
 in {
@@ -74,20 +71,15 @@ in {
     };
 
     home.packages = with pkgs; [
+      bangup
       ungoogled-chromium
       firefox-wayland
       qbpm
     ];
 
-    xdg.dataFile =
-      let go = x: {
-        name = "bangin/lists/${x}.bangs";
-        value.source = getBanglist x;
-      };
-      in
-        {
-          "qutebrowser/userscripts/qute-pass".source =
-            "${pkgs.qutebrowser}/share/qutebrowser/userscripts/qute-pass";
-        } // builtins.listToAttrs (map go banglists);
+    xdg.configFile."bangin/bangin.lists".source = ./cfg/bangin.lists;
+
+    xdg.dataFile."qutebrowser/userscripts/qute-pass".source =
+      "${pkgs.qutebrowser}/share/qutebrowser/userscripts/qute-pass";
   };
 }
