@@ -1,4 +1,4 @@
-{ fetchurl, lib, pkgs, stdenv }:
+{ fetchurl, installShellFiles, lib, pkgs, stdenv }:
 
 stdenv.mkDerivation rec {
   pname = "bangin";
@@ -10,6 +10,7 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = with pkgs; [
+    installShellFiles
     makeWrapper
   ];
 
@@ -18,6 +19,8 @@ stdenv.mkDerivation rec {
   installPhase = ''
     mkdir -p $out/bin/
     mv bangin.sh $out/bin/bangin
+
+    installManPage bangin.1
   '';
 
   fixupPhase = with pkgs; ''
