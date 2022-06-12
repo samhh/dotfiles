@@ -12,7 +12,7 @@ in
       sha256 = "14pnqljbgxk7gncd7k59mk889kc5z6wl0asbxpp6si6rwg7malnx";
     };
 
-    buildInputs = with pkgs; [
+    nativeBuildInputs = with pkgs; [
       gnused
       makeWrapper
     ];
