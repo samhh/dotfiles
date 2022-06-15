@@ -100,14 +100,5 @@ in {
       ".envrc"
       ".direnv/"
     ];
-
-    programs.tmux = {
-      enable = true;
-      prefix = "C-z";
-    };
-
-    home.packages = with pkgs; [
-      tmate
-    ];
   };
 }
