@@ -108,6 +108,7 @@ in {
       dhall-lsp-server
       efm-langserver
       haskell-language-server
+      nodePackages.purescript-language-server
       rnix-lsp
       rust-analyzer
       # Needed for rust-analyzer.
