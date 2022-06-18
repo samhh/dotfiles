@@ -4,11 +4,18 @@
   };
 
   outputs = { self, nixpkgs, ... }:
-    let system = "x86_64-linux"; in
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
     {
       packages.${system}.default =
-        nixpkgs.legacyPackages.${system}.haskellPackages.developPackage {
+        pkgs.haskellPackages.developPackage {
           root = ./.;
+          # Needed for HLS to work inside `nix develop` (after a `cabal build`).
+          modifier = drv: pkgs.haskell.lib.addBuildTools drv (with pkgs.haskellPackages; [
+            cabal-install
+          ]);
         };
 
       apps.${system}.default = {
