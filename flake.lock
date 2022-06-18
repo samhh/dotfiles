@@ -93,7 +93,7 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-e/P0/cT71rEwDDp+wZfHT90bp2ngCU8Z5+xtulY4wKo=",
+        "narHash": "sha256-e9nQvTrxx91yQYWbPUvAgtQSwIinq2uetg70wPZ0A3I=",
         "path": "./hosts/alakazam/overseer",
         "type": "path"
       },

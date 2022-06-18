@@ -34,5 +34,9 @@ executable os
 library
   import:                  common
   hs-source-dirs:          lib/
+  build-depends:
+      aeson                ^>=2.0
+    , process              ^>=1.6
   exposed-modules:
+    Overseer.Hardware
     Overseer.Hardware.CPU

@@ -1,6 +1,10 @@
 module Main where
 
-import Prelude
+import           CLI                   (Opts (..), getOpts)
+import           Overseer.Hardware     (HardwareItem (..))
+import           Overseer.Hardware.CPU (cpuTemp)
+import           Prelude
 
 main :: IO ()
-main = putTextLn "Hello, world!"
+main = getOpts >>= \case
+  Hardware CPU -> cpuTemp >>= putTextLn
