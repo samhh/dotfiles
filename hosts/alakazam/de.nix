@@ -1,4 +1,4 @@
-{ config, lib, pkgs, overseer, system, termBin, uname, nasPath, ... }:
+{ config, lib, pkgs, system, termBin, uname, nasPath, ... }:
 
 let
   home = config.users.users.${uname}.home;
@@ -158,8 +158,6 @@ in {
     };
 
     home.packages = with pkgs; [
-      overseer.packages.${system}.default
-
       # For some scripts.
       bash
       dmenu
