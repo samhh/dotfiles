@@ -1,12 +1,12 @@
 lua <<EOF
   require'kanagawa'.setup {
     transparent = true,
-    commentStyle = "NONE",
-    functionStyle = "NONE",
-    keywordStyle = "NONE",
-    statementStyle = "NONE",
-    typeStyle = "NONE",
-    variablebuiltinStyle = "NONE",
+    commentStyle = {},
+    functionStyle = {},
+    keywordStyle = {},
+    statementStyle = {},
+    typeStyle = {},
+    variablebuiltinStyle = {},
     specialException = false,
     specialReturn = false,
   }

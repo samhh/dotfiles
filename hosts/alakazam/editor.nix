@@ -9,16 +9,9 @@ let
       url = "https://github.com/ii14/exrc.vim/archive/ae734ae2c087b370d869e41a2706a128d8f3fc37.tar.gz";
       sha256 = "0jadpcg3hsfzbglh21zlfhj2d9ymyh73p3kd4wd9imlhdhsx99d7";
     };
-  };
-
-  # Included in more recent nixpkgs.
-  mkdir-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "mkdir.nvim";
-    src = builtins.fetchTarball {
-      url = "https://github.com/jghauser/mkdir.nvim/archive/01261650382bef195dab8ac39344234b57914f09.tar.gz";
-      sha256 = "1irpi2aqi2pr0ydxsw2d4m2lkhzkqcs6gvz15snvnsckvk03j3v7";
-    };
-  };
+    # Tests run via `make` will fail as they're expecting `vim`.
+    dontBuild = true;
+};
 
   vim-just = pkgs.vimUtils.buildVimPlugin {
     name = "vim-just";
@@ -27,6 +20,7 @@ let
       sha256 = "05c2qdnrjvxshy48m0s6msvqq47n536p8c4dvf0j28hm39hqb8gj";
     };
   };
+
 in {
   home-manager.users.${uname} = {
     programs.neovim = {
