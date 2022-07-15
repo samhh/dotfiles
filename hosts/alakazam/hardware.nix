@@ -7,8 +7,8 @@
       timeout = 30;
       systemd-boot = {
         enable = true;
-        # My boot partition is only 100MB. Alongside Arch (sans "fallback")
-        # this leaves space for one backup/named boot entry and one rolling.
+        # My boot partition is only 100MB. This leaves space for only one
+        # fallback/named boot entry and one rolling.
         configurationLimit = 1;
       };
     };
