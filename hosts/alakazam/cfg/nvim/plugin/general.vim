@@ -60,6 +60,7 @@ set lazyredraw
 lua <<EOF
   require'Comment'.setup()
   require'hop'.setup()
+  require'nvim-surround'.setup()
   require'gitsigns'.setup {
     -- Imlicitly also disables all (other) default keybinds
     keymaps = {
