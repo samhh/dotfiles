@@ -118,7 +118,7 @@ k.mapn('gs', function() pickers.treesitter() end)
 k.mapn('<Leader>z', function() vim.lsp.buf.formatting() end)
 
 -- Show diagnostics in popup
-k.mapn('<Leader>e', function() vim.diagnostic.open_float(0) end)
+k.mapn('<Leader>e', function() vim.diagnostic.open_float() end)
 
 -- Offer code actions
 k.mapn('<Leader>g', function() vim.lsp.buf.code_action() end)
