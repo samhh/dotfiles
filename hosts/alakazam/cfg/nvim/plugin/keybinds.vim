@@ -42,12 +42,16 @@ nnoremap <Leader>/ :silent grep ''<Left>
 nnoremap <Leader>m :Make 
 
 " Navigate location list
-nmap <silent> gL :lprev<CR>
-nmap <silent> gl :lnext<CR>
+command! Lprev try | lprev | catch | llast | catch | endtry
+command! Lnext try | lnext | catch | lfirst | catch | endtry
+nmap <silent> gL :Lprev<CR>
+nmap <silent> gl :Lnext<CR>
 
 " Navigate quickfix list
-nmap <silent> gF :cprev<CR>
-nmap <silent> gf :cnext<CR>
+command! Cprev try | cprev | catch | clast | catch | endtry
+command! Cnext try | cnext | catch | cfirst | catch | endtry
+nmap <silent> gF :Cprev<CR>
+nmap <silent> gf :Cnext<CR>
 
 " Navigate jumplist
 nmap <silent> gJ <C-o>
