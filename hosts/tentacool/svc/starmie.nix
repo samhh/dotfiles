@@ -19,6 +19,13 @@
     environment.TZ = "Europe/London";
   };
 
+  services.mosquitto = {
+    enable = true;
+    # Implies local-only mode, which works out of the box where for some reason
+    # an `allow_anonymous` listener doesn't.
+    listeners = [ ];
+  };
+
   services.nginx.virtualHosts."starmie.samhh.com" = {
     enableACME = true;
     forceSSL = true;
