@@ -1,7 +1,5 @@
 { ... }:
 
-let zigbeeDevAddr = "/dev/ttyUSB0";
-in
 {
   networking.firewall.allowedTCPPorts = [
     # HASS (LAN) non-SSL
@@ -17,7 +15,6 @@ in
     ];
     extraOptions = [
       "--network=host"
-      "--device=${zigbeeDevAddr}"
     ];
     environment.TZ = "Europe/London";
   };
@@ -34,7 +31,7 @@ in
     settings = {
       homeassistant = true;
       permit_join = true;
-      serial.port = zigbeeDevAddr;
+      serial.port = "/dev/ttyUSB0";
       frontend = true;
     };
   };
