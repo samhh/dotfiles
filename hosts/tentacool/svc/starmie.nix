@@ -1,9 +1,13 @@
 { ... }:
 
+let zigbeeDevAddr = "/dev/ttyUSB0";
+in
 {
   networking.firewall.allowedTCPPorts = [
     # HASS (LAN) non-SSL
     8123
+    # Zigbee2MQTT frontend
+    8080
   ];
 
   virtualisation.oci-containers.containers.hass = {
@@ -13,8 +17,7 @@
     ];
     extraOptions = [
       "--network=host"
-      # Zigbee
-      "--device=/dev/ttyUSB0"
+      "--device=${zigbeeDevAddr}"
     ];
     environment.TZ = "Europe/London";
   };
@@ -24,6 +27,16 @@
     # Implies local-only mode, which works out of the box where for some reason
     # an `allow_anonymous` listener doesn't.
     listeners = [ ];
+  };
+
+  services.zigbee2mqtt = {
+    enable = true;
+    settings = {
+      homeassistant = true;
+      permit_join = true;
+      serial.port = zigbeeDevAddr;
+      frontend = true;
+    };
   };
 
   services.nginx.virtualHosts."starmie.samhh.com" = {
