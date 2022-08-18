@@ -2,6 +2,9 @@
 
 {
   networking.firewall.allowedTCPPorts = [
+    # Mosquitto broker
+    1883
+
     # Zigbee2MQTT frontend
     8080
   ];
