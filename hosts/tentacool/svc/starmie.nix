@@ -4,8 +4,6 @@
   networking.firewall.allowedTCPPorts = [
     # HASS (LAN) non-SSL
     8123
-    # Zigbee2MQTT frontend
-    8080
   ];
 
   virtualisation.oci-containers.containers.hass = {
@@ -17,23 +15,6 @@
       "--network=host"
     ];
     environment.TZ = "Europe/London";
-  };
-
-  services.mosquitto = {
-    enable = true;
-    # Implies local-only mode, which works out of the box where for some reason
-    # an `allow_anonymous` listener doesn't.
-    listeners = [ ];
-  };
-
-  services.zigbee2mqtt = {
-    enable = true;
-    settings = {
-      homeassistant = true;
-      permit_join = true;
-      serial.port = "/dev/ttyUSB0";
-      frontend = true;
-    };
   };
 
   services.nginx.virtualHosts."starmie.samhh.com" = {
