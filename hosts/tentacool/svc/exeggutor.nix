@@ -1,9 +1,11 @@
 { ... }:
 
+let mosquittoPort = 1883;
+in
 {
   networking.firewall.allowedTCPPorts = [
     # Mosquitto broker
-    1883
+    mosquittoPort
 
     # Zigbee2MQTT frontend
     8080
@@ -11,9 +13,17 @@
 
   services.mosquitto = {
     enable = true;
-    # Implies local-only mode, which works out of the box where for some reason
-    # an `allow_anonymous` listener doesn't.
-    listeners = [ ];
+    listeners = [
+      # LAN w/o credentials
+      {
+        address = "0.0.0.0";
+        port = mosquittoPort;
+        settings.allow_anonymous = true;
+        acl = [
+          "topic readwrite #"
+        ];
+      }
+    ];
   };
 
   services.zigbee2mqtt = {
