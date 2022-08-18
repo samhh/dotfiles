@@ -2,7 +2,12 @@
 
 let
   home = config.users.users.${uname}.home;
+  qrcpPort = 8090;
 in {
+  networking.firewall.allowedTCPPorts = [
+    qrcpPort
+  ];
+
   # Fixes Teensy loader flashing Ergodox EZ:
   #   https://github.com/zsa/docs/issues/14
   services.udev.extraRules = ''
@@ -61,6 +66,10 @@ in {
       # Work
       slack
     ];
+
+    programs.fish.shellInit = ''
+      set -x QRCP_PORT ${toString qrcpPort}
+    '';
 
     programs.password-store = {
       enable = true;
