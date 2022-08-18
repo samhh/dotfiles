@@ -17,6 +17,7 @@ in {
     KERNEL=="ttyACM*", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789B]?", MODE:="0666"
   '';
 
+  boot.enableContainers = false;
   virtualisation.podman.enable = true;
 
   home-manager.users.${uname} = {
