@@ -68,6 +68,7 @@ in {
       slack
     ];
 
+    # Fix qrcp port so we can allow it through firewall.
     programs.fish.shellInit = ''
       set -x QRCP_PORT ${toString qrcpPort}
     '';
