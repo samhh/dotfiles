@@ -59,7 +59,6 @@
               tshmPlugin = tshm-plugin;
 
               termBin = "${pkgs.foot}/bin/foot";
-              editorBin = "${pkgs.neovim}/bin/nvim";
               launcherBin = "${pkgs.dmenu}/bin/dmenu";
               webBrowserBin = "${pkgs.qutebrowser}/bin/qutebrowser";
               streamerBin = "${pkgs.streamlink}/bin/streamlink";

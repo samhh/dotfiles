@@ -1,11 +1,12 @@
 # NB I'd recommend not calling this file shell.nix as that's globally ignored
 # in vcs.nix, and it's easy to forget to `git add -f`...
 
-{ config, pkgs, uname, editorBin, webBrowserBin, ... }:
+{ config, pkgs, uname, webBrowserBin, ... }:
 
 let
   uid = config.users.users.${uname}.uid;
   home = config.users.users.${uname}.home;
+  editorBin = "${config.home-manager.users.${uname}.programs.neovim.finalPackage}/bin/nvim";
 
   fish-minimal-theme = {
     name = "fish-minimal-theme";

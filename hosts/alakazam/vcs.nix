@@ -1,6 +1,8 @@
-{ pkgs, email, emailPassPath, editorBin, uname, ... }:
+{ config, pkgs, email, emailPassPath, uname, ... }:
 
-{
+let
+  editorBin = "${config.home-manager.users.${uname}.programs.neovim.finalPackage}/bin/nvim";
+in {
   home-manager.users.${uname}.programs.git = {
     enable = true;
     # For send-email support.

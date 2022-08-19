@@ -1,9 +1,11 @@
-{ config, pkgs, termBin, editorBin, launcherBin, streamerBin, uname, ... }:
+{ config, pkgs, termBin, launcherBin, streamerBin, uname, ... }:
 
 let
   qbpm = pkgs.callPackage ../../pkg/qbpm.nix {};
   banginServerNode = pkgs.callPackage ../../pkg/bangin-server-node.nix {};
   bangup = pkgs.callPackage ../../pkg/bangup/default.nix {};
+
+  editorBin = "${config.home-manager.users.${uname}.programs.neovim.finalPackage}/bin/nvim";
 
   banginServerNodePort = 1234;
 in {
