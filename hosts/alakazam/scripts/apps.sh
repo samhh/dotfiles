@@ -6,6 +6,7 @@ firefox
 obsidian
 pavucontrol
 piper
+polymc
 qutebrowser
 qutebrowser --target private-window
 qbpm launch unsplash
