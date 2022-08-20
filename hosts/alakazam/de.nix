@@ -1,6 +1,8 @@
 { config, lib, pkgs, system, termBin, uname, nasPath, ... }:
 
 let
+  corrupter = pkgs.callPackage ../../pkg/corrupter.nix {};
+
   home = config.users.users.${uname}.home;
   output = "DP-3";
   barName = "top";
@@ -63,7 +65,7 @@ in {
             "${mod}+o" = "exec ${pkgs.mako}/bin/makoctl dismiss";
             "${mod}+Shift+o" = "exec ${pkgs.mako}/bin/makoctl dismiss -a";
             "${mod}+p" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot save area";
-            "${mod}+l" = "exec ${pkgs.swaylock}/bin/swaylock -c 000000";
+            "${mod}+l" = "exec ${home}/dotfiles/hosts/alakazam/scripts/lock.sh";
             "${mod}+Shift+l" = "exec systemctl suspend";
           };
           assigns = {
@@ -161,9 +163,12 @@ in {
     home.packages = with pkgs; [
       # For some scripts.
       bash
+      # For lock script.
+      corrupter
       dmenu
       sway-contrib.grimshot
       swaybg
+      swaylock
       # For scripts interacting with `swaymsg`.
       gron
       jq
