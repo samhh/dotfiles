@@ -52,6 +52,8 @@
     opengl.enable = true;
   };
 
+  services.ratbagd.enable = true;
+
   home-manager.users.${uname}.home.packages = with pkgs; [
     lm_sensors
     piper
