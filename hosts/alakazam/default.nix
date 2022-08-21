@@ -20,7 +20,6 @@
     ./hardware.nix
     ./misc.nix
     ./network.nix
-    ./rss.nix
     ./terminal.nix
     ./user.nix
     ./vcs.nix
