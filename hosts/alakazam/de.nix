@@ -6,7 +6,6 @@ let
   scripts = "${config.users.users.${uname}.home}/dotfiles/hosts/alakazam/scripts";
   output = "DP-3";
   barName = "top";
-  wallpaperScript = "${scripts}/set-rand-wallpaper.sh ${nasPath}/bgs";
 in {
   fonts.fonts = with pkgs; [
     hasklig
@@ -52,7 +51,7 @@ in {
             "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
             "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
             "${mod}+Return" = "exec ${termBin}";
-            "${mod}+w" = "exec ${wallpaperScript}";
+            "${mod}+w" = "exec systemctl --user restart wallpaper";
             "${mod}+t" = "exec ${scripts}/web-search.sh";
             "${mod}+g" = "exec ${scripts}/apps.sh";
             "${mod}+Shift+g" = "exec ${pkgs.dmenu}/bin/dmenu_run -p gui-all";
@@ -154,8 +153,10 @@ in {
       wallpaper = {
         Install.WantedBy = [ "graphical-session.target" ];
         Service = {
-          Type = "oneshot";
-          ExecStart = wallpaperScript;
+          ExecStart = "${scripts}/set-rand-wallpaper.sh ${nasPath}/bgs";
+          Environment =
+            let deps = with pkgs; [ coreutils findutils procps swaybg ];
+            in [ "PATH=${lib.makeBinPath deps}" ];
         };
       };
     };
@@ -167,7 +168,6 @@ in {
       corrupter
       dmenu
       sway-contrib.grimshot
-      swaybg
       swaylock
       # For scripts interacting with `swaymsg`.
       gron
