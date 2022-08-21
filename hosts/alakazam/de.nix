@@ -144,22 +144,25 @@ in {
       longitude = 0.1298;
     };
 
-    systemd.user.services = {
-      mako = {
-        Install.WantedBy = [ "graphical-session.target" ];
-        Service.ExecStart = "${pkgs.mako}/bin/mako";
-      };
+    systemd.user.services =
+      let wmTarget = "sway-session.target";
+      in
+      {
+        mako = {
+          Install.WantedBy = [ wmTarget ];
+          Service.ExecStart = "${pkgs.mako}/bin/mako";
+        };
 
-      wallpaper = {
-        Install.WantedBy = [ "graphical-session.target" ];
-        Service = {
-          ExecStart = "${scripts}/set-rand-wallpaper.sh ${nasPath}/bgs";
-          Environment =
-            let deps = with pkgs; [ coreutils findutils procps swaybg ];
-            in [ "PATH=${lib.makeBinPath deps}" ];
+        wallpaper = {
+          Install.WantedBy = [ wmTarget ];
+          Service = {
+            ExecStart = "${scripts}/set-rand-wallpaper.sh ${nasPath}/bgs";
+            Environment =
+              let deps = with pkgs; [ coreutils findutils procps swaybg ];
+              in [ "PATH=${lib.makeBinPath deps}" ];
+          };
         };
       };
-    };
 
     home.packages = with pkgs; [
       # For some scripts.
