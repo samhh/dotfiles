@@ -166,14 +166,17 @@ in {
     xdg.configFile."tofi/config".source = ./cfg/tofi.cfg;
 
     home.packages = with pkgs; [
-      # For some scripts.
+      sway-contrib.grimshot
+
+      # For various scripts.
       bash
+      dmenu
+      tofi
+
       # For lock script.
       corrupter
-      dmenu
-      sway-contrib.grimshot
       swaylock
-      tofi
+
       # For scripts interacting with `swaymsg`.
       gron
       jq
