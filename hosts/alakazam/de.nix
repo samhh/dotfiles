@@ -165,6 +165,14 @@ in {
 
     xdg.configFile."tofi/config".source = ./cfg/tofi.cfg;
 
+    gtk = {
+      enable = true;
+      theme = {
+        package = pkgs.mojave-gtk-theme;
+        name = "Mojave-Light";
+      };
+    };
+
     home.packages = with pkgs; [
       sway-contrib.grimshot
 
