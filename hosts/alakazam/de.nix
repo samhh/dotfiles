@@ -131,10 +131,6 @@ in {
         event = "before-sleep";
         command = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
       }];
-      timeouts = [{
-        timeout = 1800;
-        command = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
-      }];
     };
 
     services.gammastep = {
