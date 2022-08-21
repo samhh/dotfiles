@@ -1,6 +1,6 @@
 #!/bin/sh
 
-query=$(echo "" | tofi --prompt web)
+query=$(echo "" | dmenu -p web)
 
 if [ -z "$query" ]; then exit 1; fi
 

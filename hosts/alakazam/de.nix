@@ -170,6 +170,7 @@ in {
       bash
       # For lock script.
       corrupter
+      dmenu
       sway-contrib.grimshot
       swaylock
       tofi
