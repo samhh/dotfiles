@@ -3,10 +3,10 @@
 let
   corrupter = pkgs.callPackage ../../pkg/corrupter.nix {};
 
-  home = config.users.users.${uname}.home;
+  scripts = "${config.users.users.${uname}.home}/dotfiles/hosts/alakazam/scripts";
   output = "DP-3";
   barName = "top";
-  wallpaperScript = "${home}/dotfiles/hosts/alakazam/scripts/set-rand-wallpaper.sh ${nasPath}/bgs";
+  wallpaperScript = "${scripts}/set-rand-wallpaper.sh ${nasPath}/bgs";
 in {
   fonts.fonts = with pkgs; [
     hasklig
@@ -53,19 +53,19 @@ in {
             "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
             "${mod}+Return" = "exec ${termBin}";
             "${mod}+w" = "exec ${wallpaperScript}";
-            "${mod}+t" = "exec ${home}/dotfiles/hosts/alakazam/scripts/web-search.sh";
-            "${mod}+g" = "exec ${home}/dotfiles/hosts/alakazam/scripts/apps.sh";
+            "${mod}+t" = "exec ${scripts}/web-search.sh";
+            "${mod}+g" = "exec ${scripts}/apps.sh";
             "${mod}+Shift+g" = "exec ${pkgs.dmenu}/bin/dmenu_run -p gui-all";
-            "${mod}+d" = "exec ${home}/dotfiles/hosts/alakazam/scripts/flatmarks.sh";
-            "${mod}+Shift+d" = "exec ${home}/dotfiles/hosts/alakazam/scripts/flatmarks-work.sh";
-            "${mod}+x" = "exec ${home}/dotfiles/hosts/alakazam/scripts/passmenu.sh";
-            "${mod}+n" = "exec ${home}/dotfiles/hosts/alakazam/scripts/pass-prefixed-line.sh \"username: \" username";
-            "${mod}+m" = "exec ${home}/dotfiles/hosts/alakazam/scripts/pass-prefixed-line.sh \"email: \" email";
-            "${mod}+z" = "exec ${home}/dotfiles/hosts/alakazam/scripts/definition-lookup.sh";
+            "${mod}+d" = "exec ${scripts}/flatmarks.sh";
+            "${mod}+Shift+d" = "exec ${scripts}/flatmarks-work.sh";
+            "${mod}+x" = "exec ${scripts}/passmenu.sh";
+            "${mod}+n" = "exec ${scripts}/pass-prefixed-line.sh \"username: \" username";
+            "${mod}+m" = "exec ${scripts}/pass-prefixed-line.sh \"email: \" email";
+            "${mod}+z" = "exec ${scripts}/definition-lookup.sh";
             "${mod}+o" = "exec ${pkgs.mako}/bin/makoctl dismiss";
             "${mod}+Shift+o" = "exec ${pkgs.mako}/bin/makoctl dismiss -a";
             "${mod}+p" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot save area";
-            "${mod}+l" = "exec ${home}/dotfiles/hosts/alakazam/scripts/lock.sh";
+            "${mod}+l" = "exec ${scripts}/lock.sh";
             "${mod}+Shift+l" = "exec systemctl suspend";
           };
           assigns = {
