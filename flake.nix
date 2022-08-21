@@ -59,7 +59,7 @@
               tshmPlugin = tshm-plugin;
 
               termBin = "${pkgs.foot}/bin/foot";
-              launcherBin = "${pkgs.dmenu}/bin/dmenu";
+              launcherBin = "${pkgs.callPackage ./pkg/tofi.nix {}}/bin/tofi";
               webBrowserBin = "${pkgs.qutebrowser}/bin/qutebrowser";
               streamerBin = "${pkgs.streamlink}/bin/streamlink";
             };

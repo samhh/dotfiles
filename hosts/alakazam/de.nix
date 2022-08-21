@@ -2,6 +2,7 @@
 
 let
   corrupter = pkgs.callPackage ../../pkg/corrupter.nix {};
+  tofi = pkgs.callPackage ../../pkg/tofi.nix {};
 
   scripts = "${config.users.users.${uname}.home}/dotfiles/hosts/alakazam/scripts";
   output = "DP-3";
@@ -41,7 +42,7 @@ in {
           modifier = mod;
           # Scripts aren't imported into Nix as they have relatively-pathed
           # dependencies upon other scripts Nix that doesn't know about.
-          # Ideally the likes of dmenu would be packaged up in there as well
+          # Ideally the likes of tofi would be packaged up in there as well
           # and not exposed in $PATH.
           keybindings = mkOptionDefault {
             "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
@@ -54,7 +55,7 @@ in {
             "${mod}+w" = "exec systemctl --user restart wallpaper";
             "${mod}+t" = "exec ${scripts}/web-search.sh";
             "${mod}+g" = "exec ${scripts}/apps.sh";
-            "${mod}+Shift+g" = "exec ${pkgs.dmenu}/bin/dmenu_run -p gui-all";
+            "${mod}+Shift+g" = "exec ${tofi}/bin/tofi-run --prompt gui-all | xargs swaymsg exec --";
             "${mod}+d" = "exec ${scripts}/flatmarks.sh";
             "${mod}+Shift+d" = "exec ${scripts}/flatmarks-work.sh";
             "${mod}+x" = "exec ${scripts}/passmenu.sh";
@@ -162,14 +163,16 @@ in {
         };
       };
 
+    xdg.configFile."tofi/config".source = ./cfg/tofi.cfg;
+
     home.packages = with pkgs; [
       # For some scripts.
       bash
       # For lock script.
       corrupter
-      dmenu
       sway-contrib.grimshot
       swaylock
+      tofi
       # For scripts interacting with `swaymsg`.
       gron
       jq
