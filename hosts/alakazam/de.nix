@@ -156,6 +156,8 @@ in {
             Environment =
               let deps = with pkgs; [ coreutils findutils procps swaybg ];
               in [ "PATH=${lib.makeBinPath deps}" ];
+            Restart = "always";
+            RuntimeMaxSec = "3h";
           };
         };
       };
