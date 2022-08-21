@@ -71,7 +71,7 @@ in {
           assigns = {
             "8" = [{ class = "^Slack$"; }];
           };
-          floating.criteria = [{ app_id = "^pinentry-qt$"; }];
+          floating.criteria = [{ app_id = "^pinentry-gtk$"; }];
         };
       };
 

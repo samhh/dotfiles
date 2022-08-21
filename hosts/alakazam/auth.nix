@@ -3,7 +3,7 @@
 {
   programs.gnupg.agent = {
     enable = true;
-    pinentryFlavor = "qt";
+    pinentryFlavor = "gtk2";
   };
 
   programs.ssh = {
