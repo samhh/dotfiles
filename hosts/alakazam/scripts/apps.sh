@@ -15,7 +15,7 @@ slack
 steam
 fin
 
-app=$(echo "$apps" | tofi --prompt gui)
+app=$(echo "$apps" | tofi --prompt 'gui ')
 [[ -n $app ]] || exit
 
 exec $app & disown
