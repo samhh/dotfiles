@@ -17,7 +17,10 @@ in {
         signingkey = "4667250BD56735A8";
       };
       credential."smtp://hello%40samhh.com@smtp.migadu.com%3a465".helper =
-        "!${./scripts/pass-git-credential.sh} ${emailPassPath}";
+        let script = pkgs.writeShellScriptBin "pass-git-credential" ''
+          echo "password=$(pass show "$1")"
+        '';
+        in "!${script}/bin/pass-git-credential ${emailPassPath}";
       sendemail = {
         smtpserver = "smtp.migadu.com";
         smtpuser = email;
