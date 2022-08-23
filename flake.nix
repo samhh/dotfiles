@@ -3,6 +3,9 @@
     {
       nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+      darwin.url = "github:lnl7/nix-darwin";
+      darwin.inputs.nixpkgs.follows = "nixpkgs";
+
       home-manager = {
         url = "github:nix-community/home-manager/master";
         inputs.nixpkgs.follows = "nixpkgs";
@@ -16,7 +19,7 @@
       };
     };
 
-  outputs = { nixpkgs, home-manager, agenix, tshm-plugin, ... }:
+  outputs = { nixpkgs, darwin, home-manager, agenix, tshm-plugin, ... }:
     {
       nixosConfigurations = {
         alakazam =
@@ -90,5 +93,28 @@
             };
           };
       };
+
+      darwinConfigurations.lapras =
+        let
+          system = "aarch64-darwin";
+          pkgs = import nixpkgs {
+            inherit system;
+          };
+        in darwin.lib.darwinSystem {
+          inherit system;
+
+          modules = [
+            home-manager.darwinModules.home-manager {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+            }
+            ./hosts/lapras
+          ];
+
+          specialArgs = {
+            uname = "sam";
+            email = "hello@samhh.com";
+          };
+        };
     };
 }
