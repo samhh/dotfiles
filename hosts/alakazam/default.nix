@@ -9,12 +9,13 @@
     ../../modules/nixos/snorlax.nix
     ../../modules/nixos/user.nix
 
+    ../../modules/editor.nix
+
     ./audio.nix
     ./auth.nix
     ./backup.nix
     ./core.nix
     ./de.nix
-    ./editor.nix
     ./email.nix
     ./gaming.nix
     ./hardware.nix

@@ -1,7 +1,7 @@
 { pkgs, tshmPlugin, uname, ... }:
 
 let
-  tshm = pkgs.callPackage ../../pkg/tshm.nix {};
+  tshm = pkgs.callPackage ../pkg/tshm.nix {};
 
   exrc-vim = pkgs.vimUtils.buildVimPlugin {
     name = "exrc.vim";
@@ -110,7 +110,12 @@ in {
       ".exrc"
     ];
 
-    home.packages = with pkgs; [
+    home.packages =
+      let distroSpecific =
+        if pkgs.stdenv.isDarwin
+        then [ ]
+        else with pkgs; [ haskell-language-server tshm ];
+    in with pkgs; [
       # For :TSUpdate
       gcc
 
@@ -118,7 +123,6 @@ in {
       nodePackages.bash-language-server
       dhall-lsp-server
       efm-langserver
-      haskell-language-server
       nodePackages.purescript-language-server
       rnix-lsp
       rust-analyzer
@@ -130,7 +134,6 @@ in {
       # Tools w/ language server interop
       hlint
       stylish-haskell
-      tshm
-    ];
+    ] ++ distroSpecific;
   };
 }
