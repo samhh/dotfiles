@@ -24,14 +24,6 @@ let
     };
   };
 
-  fish-async-prompt = {
-    name = "fish-async-prompt";
-    src = builtins.fetchTarball {
-      url = "https://github.com/acomagu/fish-async-prompt/archive/b866f232a4a5ded7e16cda648648c43925c01ba0.tar.gz";
-      sha256 = "140pnmpry2gxdlibv5yh92asp5qv1gp43ylynyj41yk03yf615j6";
-    };
-  };
-
 in {
   users.users.${uname}.shell = pkgs.fish;
 
@@ -121,7 +113,6 @@ in {
         mktouch = "mkdir -p (dirname $argv); touch $argv;";
       };
       plugins = [
-        fish-async-prompt
         fish-minimal-theme
         z
       ];
