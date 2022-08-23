@@ -2,12 +2,12 @@
 
 {
   imports = [
-    ../../modules/core.nix
-    ../../modules/locale.nix
-    ../../modules/secrets.nix
-    ../../modules/security.nix
-    ../../modules/snorlax.nix
-    ../../modules/user.nix
+    ../../modules/nixos/core.nix
+    ../../modules/nixos/locale.nix
+    ../../modules/nixos/secrets.nix
+    ../../modules/nixos/security.nix
+    ../../modules/nixos/snorlax.nix
+    ../../modules/nixos/user.nix
 
     ./audio.nix
     ./auth.nix
