@@ -9,7 +9,6 @@
     ../../modules/snorlax.nix
     ../../modules/user.nix
 
-    ./containers.nix
     ./ddns.nix
     ./hardware.nix
     ./http.nix
