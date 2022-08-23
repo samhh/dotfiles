@@ -10,6 +10,7 @@
     ../../modules/nixos/user.nix
 
     ../../modules/editor.nix
+    ../../modules/terminal.nix
     ../../modules/vcs.nix
 
     ./audio.nix
@@ -22,7 +23,6 @@
     ./hardware.nix
     ./misc.nix
     ./network.nix
-    ./terminal.nix
     ./user.nix
     ./web.nix
   ];
