@@ -8,7 +8,7 @@ all_paths=( "$base_path"/**/*.gpg )
 all_paths=( "${all_paths[@]#"$base_path"/}" )
 all_paths=( "${all_paths[@]%.gpg}" )
 
-selected_path=$(printf '%s\n' "${all_paths[@]}" | tofi --prompt 'password ')
+selected_path=$(printf '%s\n' "${all_paths[@]}" | tofi --prompt password)
 
 [[ -n "$selected_path" ]] || exit
 

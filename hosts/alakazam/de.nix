@@ -55,7 +55,7 @@ in {
             "${mod}+w" = "exec systemctl --user restart wallpaper";
             "${mod}+t" = "exec ${scripts}/web-search.sh";
             "${mod}+g" = "exec ${scripts}/apps.sh";
-            "${mod}+Shift+g" = "exec ${tofi}/bin/tofi-run --prompt 'gui-all ' | xargs swaymsg exec --";
+            "${mod}+Shift+g" = "exec ${tofi}/bin/tofi-run --prompt gui-all | xargs swaymsg exec --";
             "${mod}+d" = "exec ${scripts}/flatmarks.sh";
             "${mod}+Shift+d" = "exec ${scripts}/flatmarks-work.sh";
             "${mod}+x" = "exec ${scripts}/passmenu.sh";

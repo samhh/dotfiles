@@ -8,7 +8,7 @@ readarray -d '' paths < <(find $base -type f -not -path '*/.git*' -print0)
 # Remove prefix from strings
 paths=( "${paths[@]#"$base"}" )
 
-selected=$(printf '%s\n' "${paths[@]}" | tofi --prompt 'bookmark-work ')
+selected=$(printf '%s\n' "${paths[@]}" | tofi --prompt bookmark-work)
 
 [[ -n $selected ]] || exit
 

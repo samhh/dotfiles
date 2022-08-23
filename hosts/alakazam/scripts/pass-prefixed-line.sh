@@ -12,7 +12,7 @@ all_paths=( "$base_path"/**/*.gpg )
 all_paths=( "${all_paths[@]#"$base_path"/}" )
 all_paths=( "${all_paths[@]%.gpg}" )
 
-selected_path=$(printf '%s\n' "${all_paths[@]}" | tofi --prompt "$friendly_name ")
+selected_path=$(printf '%s\n' "${all_paths[@]}" | tofi --prompt "$friendly_name")
 
 [[ -n "$selected_path" ]] || exit
 
