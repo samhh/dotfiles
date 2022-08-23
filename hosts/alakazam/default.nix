@@ -2,12 +2,7 @@
 
 {
   imports = [
-    ../../modules/nixos/core.nix
-    ../../modules/nixos/locale.nix
-    ../../modules/nixos/secrets.nix
-    ../../modules/nixos/security.nix
-    ../../modules/nixos/snorlax.nix
-    ../../modules/nixos/user.nix
+    ../../modules/nixos
 
     ../../modules/editor.nix
     ../../modules/terminal.nix
