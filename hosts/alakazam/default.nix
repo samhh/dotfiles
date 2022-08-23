@@ -10,6 +10,7 @@
     ../../modules/nixos/user.nix
 
     ../../modules/editor.nix
+    ../../modules/vcs.nix
 
     ./audio.nix
     ./auth.nix
@@ -23,7 +24,6 @@
     ./network.nix
     ./terminal.nix
     ./user.nix
-    ./vcs.nix
     ./web.nix
   ];
 }
