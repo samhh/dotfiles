@@ -178,7 +178,6 @@ in {
 
       # For various scripts.
       bash
-      dmenu
       tofi
 
       # For lock script.
