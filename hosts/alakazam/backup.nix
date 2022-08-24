@@ -13,7 +13,8 @@
 
     accounts.email.accounts.main =
       let host = "imap.migadu.com";
-      in {
+      in
+      {
         primary = true;
         imap.host = host;
         offlineimap = {

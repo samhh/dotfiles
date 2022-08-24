@@ -22,7 +22,8 @@ stdenv.mkDerivation rec {
     let
       linker = stdenv.cc.bintools.dynamicLinker;
       libPath = with pkgs; lib.makeLibraryPath [ gmp ];
-    in ''
+    in
+    ''
       patchelf --set-interpreter ${linker} --set-rpath ${libPath} $out/bin/tshm
     '';
 

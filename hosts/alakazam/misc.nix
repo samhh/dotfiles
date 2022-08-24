@@ -3,7 +3,8 @@
 let
   home = config.users.users.${uname}.home;
   qrcpPort = 8090;
-in {
+in
+{
   networking.firewall.allowedTCPPorts = [
     qrcpPort
   ];

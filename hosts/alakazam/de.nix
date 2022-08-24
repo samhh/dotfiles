@@ -1,13 +1,14 @@
 { config, lib, pkgs, system, termBin, uname, nasPath, ... }:
 
 let
-  corrupter = pkgs.callPackage ../../pkg/corrupter.nix {};
-  tofi = pkgs.callPackage ../../pkg/tofi.nix {};
+  corrupter = pkgs.callPackage ../../pkg/corrupter.nix { };
+  tofi = pkgs.callPackage ../../pkg/tofi.nix { };
 
   scripts = "${config.users.users.${uname}.home}/dotfiles/hosts/alakazam/scripts";
   output = "DP-3";
   barName = "top";
-in {
+in
+{
   fonts.fonts = with pkgs; [
     hasklig
     noto-fonts-emoji
@@ -25,7 +26,8 @@ in {
 
     wayland.windowManager.sway =
       let mod = "Mod4";
-      in with lib; {
+      in
+      with lib; {
         enable = true;
         # The NixOS wiki says this makes GTK "work properly". /shrug
         wrapperFeatures.gtk = true;
@@ -79,50 +81,51 @@ in {
       enable = true;
       bars.${barName} = {
         theme = "bad-wolf";
-        blocks = let max = 75; in [
-          {
-            block = "focused_window";
-            max_width = max;
-          }
-          {
-            block = "cpu";
-            format = "{utilization}";
-          }
-          {
-            block = "temperature";
-            driver = "sensors";
-            chip = "k10temp-pci-00c3";
-            format = "{max}";
-            collapsed = false;
-            interval = 1;
-            good = 1;
-            idle = 50;
-            info = 70;
-            warning = 85;
-          }
-          {
-            block = "memory";
-            display_type = "memory";
-            clickable = false;
-            format_mem = "{mem_used}";
-          }
-          {
-            block = "net";
-          }
-          {
-            block = "music";
-            player = "mpd";
-            max_width = max;
-            dynamic_width = true;
-            format = "{combo} ";
-          }
-          {
-            block = "sound";
-          }
-          {
-            block = "time";
-          }
-        ];
+        blocks = let max = 75; in
+          [
+            {
+              block = "focused_window";
+              max_width = max;
+            }
+            {
+              block = "cpu";
+              format = "{utilization}";
+            }
+            {
+              block = "temperature";
+              driver = "sensors";
+              chip = "k10temp-pci-00c3";
+              format = "{max}";
+              collapsed = false;
+              interval = 1;
+              good = 1;
+              idle = 50;
+              info = 70;
+              warning = 85;
+            }
+            {
+              block = "memory";
+              display_type = "memory";
+              clickable = false;
+              format_mem = "{mem_used}";
+            }
+            {
+              block = "net";
+            }
+            {
+              block = "music";
+              player = "mpd";
+              max_width = max;
+              dynamic_width = true;
+              format = "{combo} ";
+            }
+            {
+              block = "sound";
+            }
+            {
+              block = "time";
+            }
+          ];
       };
     };
 

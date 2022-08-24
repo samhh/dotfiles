@@ -31,18 +31,20 @@
               config.allowUnfreePredicate = pkg:
                 let pkgName = nixpkgs.lib.getName pkg;
                 in
-                  builtins.elem pkgName [
-                    "obsidian"
-                    "slack"
-                  ] ||
-                  # Steam includes a few unfree packages.
-                  (builtins.match "^steam(-.*)?" pkgName != null);
+                builtins.elem pkgName [
+                  "obsidian"
+                  "slack"
+                ] ||
+                # Steam includes a few unfree packages.
+                (builtins.match "^steam(-.*)?" pkgName != null);
             };
-          in nixpkgs.lib.nixosSystem {
+          in
+          nixpkgs.lib.nixosSystem {
             inherit pkgs system;
 
             modules = [
-              home-manager.nixosModules.home-manager {
+              home-manager.nixosModules.home-manager
+              {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
               }
@@ -74,7 +76,8 @@
             pkgs = import nixpkgs {
               inherit system;
             };
-          in nixpkgs.lib.nixosSystem {
+          in
+          nixpkgs.lib.nixosSystem {
             inherit pkgs system;
 
             modules = [
@@ -100,11 +103,13 @@
           pkgs = import nixpkgs {
             inherit system;
           };
-        in darwin.lib.darwinSystem {
+        in
+        darwin.lib.darwinSystem {
           inherit system;
 
           modules = [
-            home-manager.darwinModules.home-manager {
+            home-manager.darwinModules.home-manager
+            {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
             }

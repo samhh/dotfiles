@@ -1,9 +1,9 @@
 { config, pkgs, termBin, launcherBin, streamerBin, uname, ... }:
 
 let
-  qbpm = pkgs.callPackage ../../pkg/qbpm.nix {};
-  banginServerNode = pkgs.callPackage ../../pkg/bangin-server-node.nix {};
-  bangup = pkgs.callPackage ../../pkg/bangup/default.nix {};
+  qbpm = pkgs.callPackage ../../pkg/qbpm.nix { };
+  banginServerNode = pkgs.callPackage ../../pkg/bangin-server-node.nix { };
+  bangup = pkgs.callPackage ../../pkg/bangup/default.nix { };
 
   editorBin = "${config.home-manager.users.${uname}.programs.neovim.finalPackage}/bin/nvim";
   scripts = "${config.users.users.${uname}.home}/dotfiles/hosts/alakazam/scripts";
@@ -11,7 +11,8 @@ let
   banginServerNodePort = 1234;
 
   desktopName = "qutebrowserConditional";
-in {
+in
+{
   home-manager.users.${uname} = {
     xdg.desktopEntries.${desktopName} = {
       name = "Qutebrowser (profile-conditional)";
@@ -22,7 +23,8 @@ in {
       enable = true;
       defaultApplications =
         let dt = "${desktopName}.desktop";
-        in {
+        in
+        {
           "text/html" = dt;
           "x-scheme-handler/http" = dt;
           "x-scheme-handler/https" = dt;
@@ -63,14 +65,14 @@ in {
         H = "back";
         h = "forward";
         yf = "hint links yank";
-        x  =
+        x =
           "spawn --userscript qute-pass --username-target secret --username-pattern \"username: (.+)\" --dmenu-invocation ${launcherBin}";
-        v  = "spawn ${streamerBin} {url}";
+        v = "spawn ${streamerBin} {url}";
 
-        b  = "nop";
-        B  = "nop";
-        m  = "nop";
-        M  = "nop";
+        b = "nop";
+        B = "nop";
+        m = "nop";
+        M = "nop";
       };
     };
 

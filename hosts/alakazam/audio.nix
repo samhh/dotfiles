@@ -1,7 +1,8 @@
 { pkgs, nasPath, uname, ... }:
 
 let musicDir = nasPath + "/music/archive";
-in {
+in
+{
   security.rtkit.enable = true;
 
   services.pipewire = {
@@ -36,12 +37,12 @@ in {
           default = "Albums/$albumartist/($year) $album%aunique{}/$track - $title";
           singleton = "Singles/$artist/$title";
           comp = "Compilations/$album%aunique{}/$track - $title";
-	};
+        };
         plugins = [ "replaygain" "fetchart" "smartplaylist" "mpdupdate" ];
         replaygain = {
           backend = "gstreamer";
-	  overwrite = true;
-	};
+          overwrite = true;
+        };
       };
     };
 

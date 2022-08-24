@@ -1,7 +1,7 @@
 { pkgs, tshmPlugin, uname, ... }:
 
 let
-  tshm = pkgs.callPackage ../../pkg/tshm.nix {};
+  tshm = pkgs.callPackage ../../pkg/tshm.nix { };
 
   exrc-vim = pkgs.vimUtils.buildVimPlugin {
     name = "exrc.vim";
@@ -11,7 +11,7 @@ let
     };
     # Tests run via `make` will fail as they're expecting `vim`.
     dontBuild = true;
-};
+  };
 
   vim-just = pkgs.vimUtils.buildVimPlugin {
     name = "vim-just";
@@ -37,7 +37,8 @@ let
     };
   };
 
-in {
+in
+{
   home-manager.users.${uname} = {
     programs.neovim = {
       enable = true;
@@ -115,25 +116,26 @@ in {
         if pkgs.stdenv.isDarwin
         then [ ]
         else with pkgs; [ haskell-language-server tshm ];
-    in with pkgs; [
-      # For :TSUpdate
-      gcc
+      in
+      with pkgs; [
+        # For :TSUpdate
+        gcc
 
-      # Language servers
-      nodePackages.bash-language-server
-      dhall-lsp-server
-      efm-langserver
-      nodePackages.purescript-language-server
-      rnix-lsp
-      rust-analyzer
-      # Needed for rust-analyzer.
-      rustc
-      nodePackages.typescript-language-server
-      nodePackages.vscode-langservers-extracted
+        # Language servers
+        nodePackages.bash-language-server
+        dhall-lsp-server
+        efm-langserver
+        nodePackages.purescript-language-server
+        rnix-lsp
+        rust-analyzer
+        # Needed for rust-analyzer.
+        rustc
+        nodePackages.typescript-language-server
+        nodePackages.vscode-langservers-extracted
 
-      # Tools w/ language server interop
-      hlint
-      stylish-haskell
-    ] ++ distroSpecific;
+        # Tools w/ language server interop
+        hlint
+        stylish-haskell
+      ] ++ distroSpecific;
   };
 }
