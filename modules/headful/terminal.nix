@@ -5,26 +5,33 @@ let
   home = config.users.users.${uname}.home;
   editorBin = "${config.home-manager.users.${uname}.programs.neovim.finalPackage}/bin/nvim";
 
-  fish-minimal-theme = {
-    name = "fish-minimal-theme";
-    src = builtins.fetchTarball {
-      url = "https://github.com/samhh/fish-minimal-theme/archive/9cabe0f044bb80bcbfec7d6804971836003df681.tar.gz";
-      sha256 = "1ilmnjxsaqzkjlqdn2m348bfjg23k6dkcak5p7qb84yz13pf3dfv";
-    };
-  };
-
-  z = {
-    name = "z";
-    src = builtins.fetchTarball {
-      url = "https://github.com/jethrokuan/z/archive/45a9ff6d0932b0e9835cbeb60b9794ba706eef10.tar.gz";
-      sha256 = "1kjyl4gx26q8175wcizvsm0jwhppd00rixdcr1p7gifw6s308sd5";
-    };
-  };
+  # Workaround for incompatibililty between nixpkgs fish plugins and
+  # home-manager:
+  #   https://github.com/nix-community/home-manager/issues/2451
+  #
+  # Can't use `pkgs.wrapFish` directly as it drops everything except the
+  # binary, and Home Manager relies upon other stuff in the package such
+  # as a script for completions generation.
+  customFish =
+    pkgs.fish.overrideAttrs (attrs: {
+      fixupPhase =
+        let
+          overrides = {
+            pluginPkgs = with pkgs.fishPlugins; [
+              fish-minimal-theme
+              z
+            ];
+          };
+        in
+        ''
+          cp ${pkgs.wrapFish overrides}/bin/fish $out/bin/fish
+        '';
+    });
 
 in
 lib.mkMerge [
   {
-    users.users.${uname}.shell = pkgs.fish;
+    users.users.${uname}.shell = customFish;
 
     security.doas.extraRules = [{
       users = [ uname ];
@@ -34,6 +41,7 @@ lib.mkMerge [
     home-manager.users.${uname} = {
       programs.fish = {
         enable = true;
+        package = customFish;
         shellInit = ''
           set fish_greeting
           fish_vi_key_bindings
@@ -58,10 +66,6 @@ lib.mkMerge [
           mkcd = "mkdir -p $argv; cd $argv;";
           mktouch = "mkdir -p (dirname $argv); touch $argv;";
         };
-        plugins = [
-          fish-minimal-theme
-          z
-        ];
       };
 
       programs.direnv = {

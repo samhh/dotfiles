@@ -35,6 +35,11 @@
       };
 
       overlay-selfpkgs = final: prev: selfpkgs prev // {
+        fishPlugins = prev.fishPlugins // {
+          fish-minimal-theme = prev.callPackage ./pkgs/fishPlugins/fish-minimal-theme.nix { };
+          z = prev.callPackage ./pkgs/fishPlugins/z.nix { };
+        };
+
         vimPlugins = prev.vimPlugins // {
           exrc-vim = prev.callPackage ./pkgs/vimPlugins/exrc-vim.nix { };
           eyeliner-nvim = prev.callPackage ./pkgs/vimPlugins/eyeliner-nvim.nix { };
