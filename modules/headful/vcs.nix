@@ -77,10 +77,12 @@ in
           smtpencryption = "ssl";
         };
         credential."smtp://hello%40samhh.com@smtp.migadu.com%3a465".helper =
-          let script = pkgs.writeShellScriptBin "pass-git-credential" ''
-            echo "password=$(pass show "$1")"
-          '';
-          in "!${script}/bin/pass-git-credential ${emailPassPath}";
+          let
+            script = pkgs.writeShellScriptBin "pass-git-credential" ''
+              echo "password=$(pass show "$1")"
+            '';
+          in
+          "!${script}/bin/pass-git-credential ${emailPassPath}";
       };
     })
   ];

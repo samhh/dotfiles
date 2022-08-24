@@ -112,10 +112,11 @@ in
     ];
 
     home.packages =
-      let distroSpecific =
-        if pkgs.stdenv.isDarwin
-        then [ ]
-        else with pkgs; [ haskell-language-server tshm ];
+      let
+        distroSpecific =
+          if pkgs.stdenv.isDarwin
+          then [ ]
+          else with pkgs; [ haskell-language-server tshm ];
       in
       with pkgs; [
         # For :TSUpdate
