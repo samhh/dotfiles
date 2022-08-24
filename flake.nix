@@ -34,7 +34,14 @@
         tshm = prev.callPackage ./pkgs/tshm.nix { };
       };
 
-      overlay-selfpkgs = final: selfpkgs;
+      overlay-selfpkgs = final: prev: selfpkgs prev // {
+        vimPlugins = prev.vimPlugins // {
+          exrc-vim = prev.callPackage ./pkgs/vimPlugins/exrc-vim.nix { };
+          eyeliner-nvim = prev.callPackage ./pkgs/vimPlugins/eyeliner-nvim.nix { };
+          nvim-surround = prev.callPackage ./pkgs/vimPlugins/nvim-surround.nix { };
+          vim-just = prev.callPackage ./pkgs/vimPlugins/vim-just.nix { };
+        };
+      };
 
     in
     (flake-utils.lib.eachDefaultSystem (system:
