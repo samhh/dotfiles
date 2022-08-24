@@ -31,14 +31,14 @@
             pkgs = import nixpkgs { inherit system; };
           in
           {
-            bangin = pkgs.callPackage ./pkg/bangin.nix { };
-            bangin-server-node = pkgs.callPackage ./pkg/bangin-server-node.nix { };
-            bangup = pkgs.callPackage ./pkg/bangup { };
-            corrupter = pkgs.callPackage ./pkg/corrupter.nix { };
-            proton-ge = pkgs.callPackage ./pkg/proton-ge.nix { };
-            qbpm = pkgs.callPackage ./pkg/qbpm.nix { };
-            tofi = pkgs.callPackage ./pkg/tofi.nix { };
-            tshm = pkgs.callPackage ./pkg/tshm.nix { };
+            bangin = pkgs.callPackage ./pkgs/bangin.nix { };
+            bangin-server-node = pkgs.callPackage ./pkgs/bangin-server-node.nix { };
+            bangup = pkgs.callPackage ./pkgs/bangup { };
+            corrupter = pkgs.callPackage ./pkgs/corrupter.nix { };
+            proton-ge = pkgs.callPackage ./pkgs/proton-ge.nix { };
+            qbpm = pkgs.callPackage ./pkgs/qbpm.nix { };
+            tofi = pkgs.callPackage ./pkgs/tofi.nix { };
+            tshm = pkgs.callPackage ./pkgs/tshm.nix { };
           }
         ); in
 
