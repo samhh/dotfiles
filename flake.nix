@@ -36,6 +36,26 @@
       }
     )) //
 
+    (
+      let
+        system = "x86_64-linux";
+        pkgs = import nixpkgs { inherit system; };
+      in
+      {
+        packages.${system} =
+          {
+            bangin = pkgs.callPackage ./pkg/bangin.nix { };
+            bangin-server-node = pkgs.callPackage ./pkg/bangin-server-node.nix { };
+            bangup = pkgs.callPackage ./pkg/bangup { };
+            corrupter = pkgs.callPackage ./pkg/corrupter.nix { };
+            proton-ge = pkgs.callPackage ./pkg/proton-ge.nix { };
+            qbpm = pkgs.callPackage ./pkg/qbpm.nix { };
+            tofi = pkgs.callPackage ./pkg/tofi.nix { };
+            tshm = pkgs.callPackage ./pkg/tshm.nix { };
+          };
+      }
+    ) //
+
     {
       nixosConfigurations = {
         alakazam =

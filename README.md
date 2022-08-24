@@ -22,6 +22,15 @@ Build your desired host with `nixos-rebuild --flake` (or `darwin-rebuild` on mac
 
 For now some Alakazam scripts presume the repo will be at `~/dotfiles/`. Anything that couldn't be configured in Home Manager lives in `./cfg/`.
 
+### Packages
+
+Some packages not in nixpkgs are defined in `:/pkg/`. These can be built and run as flake outputs. Example:
+
+```console
+$ echo "declare const foo: Bar" | nix run ".#tshm" -- -a
+foo :: Bar
+```
+
 ## History
 
 I used to run various different operating systems and window managers. Those configs are preserved in this repo's commit history. Arch/XMonad specifically is available at `nixos~1`.
