@@ -6,6 +6,7 @@ in
     buildInputs = with pkgs; [
       git
       git-crypt
+      nixpkgs-fmt
       tree
     ];
   }
