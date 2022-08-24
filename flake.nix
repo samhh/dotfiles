@@ -6,6 +6,8 @@
       darwin.url = "github:lnl7/nix-darwin";
       darwin.inputs.nixpkgs.follows = "nixpkgs";
 
+      flake-utils.url = "github:numtide/flake-utils";
+
       home-manager = {
         url = "github:nix-community/home-manager/master";
         inputs.nixpkgs.follows = "nixpkgs";
@@ -19,7 +21,22 @@
       };
     };
 
-  outputs = { nixpkgs, darwin, home-manager, agenix, tshm-plugin, ... }:
+  outputs = { nixpkgs, darwin, home-manager, agenix, flake-utils, tshm-plugin, ... }:
+    (flake-utils.lib.eachDefaultSystem (system:
+      let pkgs = nixpkgs.legacyPackages.${system};
+      in
+      {
+        devShell = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            git
+            git-crypt
+            nixpkgs-fmt
+            tree
+          ];
+        };
+      }
+    )) //
+
     {
       nixosConfigurations = {
         alakazam =
