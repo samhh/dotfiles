@@ -22,6 +22,27 @@
     };
 
   outputs = { nixpkgs, darwin, home-manager, agenix, flake-utils, tshm-plugin, ... }:
+    # Only support Alakazam's system architecture for the timebeing.
+    let
+      selfpkgs =
+        (
+          let
+            system = "x86_64-linux";
+            pkgs = import nixpkgs { inherit system; };
+          in
+          {
+            bangin = pkgs.callPackage ./pkg/bangin.nix { };
+            bangin-server-node = pkgs.callPackage ./pkg/bangin-server-node.nix { };
+            bangup = pkgs.callPackage ./pkg/bangup { };
+            corrupter = pkgs.callPackage ./pkg/corrupter.nix { };
+            proton-ge = pkgs.callPackage ./pkg/proton-ge.nix { };
+            qbpm = pkgs.callPackage ./pkg/qbpm.nix { };
+            tofi = pkgs.callPackage ./pkg/tofi.nix { };
+            tshm = pkgs.callPackage ./pkg/tshm.nix { };
+          }
+        ); in
+
+
     (flake-utils.lib.eachDefaultSystem (system:
       let pkgs = nixpkgs.legacyPackages.${system};
       in
@@ -42,17 +63,7 @@
         pkgs = import nixpkgs { inherit system; };
       in
       {
-        packages.${system} =
-          {
-            bangin = pkgs.callPackage ./pkg/bangin.nix { };
-            bangin-server-node = pkgs.callPackage ./pkg/bangin-server-node.nix { };
-            bangup = pkgs.callPackage ./pkg/bangup { };
-            corrupter = pkgs.callPackage ./pkg/corrupter.nix { };
-            proton-ge = pkgs.callPackage ./pkg/proton-ge.nix { };
-            qbpm = pkgs.callPackage ./pkg/qbpm.nix { };
-            tofi = pkgs.callPackage ./pkg/tofi.nix { };
-            tshm = pkgs.callPackage ./pkg/tshm.nix { };
-          };
+        packages.${system} = selfpkgs;
       }
     ) //
 
@@ -89,7 +100,7 @@
             ];
 
             specialArgs = {
-              inherit system;
+              inherit system selfpkgs;
               uname = "sam";
               email = "hello@samhh.com";
 
@@ -100,7 +111,7 @@
               tshmPlugin = tshm-plugin;
 
               termBin = "${pkgs.foot}/bin/foot";
-              launcherBin = "${pkgs.callPackage ./pkg/tofi.nix {}}/bin/tofi";
+              launcherBin = "${selfpkgs.tofi}/bin/tofi";
               webBrowserBin = "${pkgs.qutebrowser}/bin/qutebrowser";
               streamerBin = "${pkgs.streamlink}/bin/streamlink";
             };

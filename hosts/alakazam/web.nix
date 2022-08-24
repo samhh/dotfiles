@@ -1,10 +1,6 @@
-{ config, pkgs, termBin, launcherBin, streamerBin, uname, ... }:
+{ config, pkgs, selfpkgs, termBin, launcherBin, streamerBin, uname, ... }:
 
 let
-  qbpm = pkgs.callPackage ../../pkg/qbpm.nix { };
-  banginServerNode = pkgs.callPackage ../../pkg/bangin-server-node.nix { };
-  bangup = pkgs.callPackage ../../pkg/bangup/default.nix { };
-
   editorBin = "${config.home-manager.users.${uname}.programs.neovim.finalPackage}/bin/nvim";
   scripts = "${config.users.users.${uname}.home}/dotfiles/hosts/alakazam/scripts";
 
@@ -79,10 +75,10 @@ in
     systemd.user.services.banginServerNode = {
       Install.WantedBy = [ "default.target" ];
       Service.ExecStart =
-        "${banginServerNode}/bin/bangin-server-node ${toString banginServerNodePort}";
+        "${selfpkgs.bangin-server-node}/bin/bangin-server-node ${toString banginServerNodePort}";
     };
 
-    home.packages = with pkgs; [
+    home.packages = with pkgs; with selfpkgs; [
       bangup
       ungoogled-chromium
       firefox-wayland

@@ -1,9 +1,6 @@
-{ config, lib, pkgs, system, termBin, uname, nasPath, ... }:
+{ config, lib, pkgs, selfpkgs, system, termBin, uname, nasPath, ... }:
 
 let
-  corrupter = pkgs.callPackage ../../pkg/corrupter.nix { };
-  tofi = pkgs.callPackage ../../pkg/tofi.nix { };
-
   scripts = "${config.users.users.${uname}.home}/dotfiles/hosts/alakazam/scripts";
   output = "DP-3";
   barName = "top";
@@ -57,7 +54,7 @@ in
             "${mod}+w" = "exec systemctl --user restart wallpaper";
             "${mod}+t" = "exec ${scripts}/web-search.sh";
             "${mod}+g" = "exec ${scripts}/apps.sh";
-            "${mod}+Shift+g" = "exec ${tofi}/bin/tofi-run --prompt gui-all | xargs swaymsg exec --";
+            "${mod}+Shift+g" = "exec ${selfpkgs.tofi}/bin/tofi-run --prompt gui-all | xargs swaymsg exec --";
             "${mod}+d" = "exec ${scripts}/flatmarks.sh";
             "${mod}+Shift+d" = "exec ${scripts}/flatmarks-work.sh";
             "${mod}+x" = "exec ${scripts}/passmenu.sh";
@@ -176,7 +173,7 @@ in
       };
     };
 
-    home.packages = with pkgs; [
+    home.packages = with pkgs; with selfpkgs; [
       sway-contrib.grimshot
 
       # For various scripts.
