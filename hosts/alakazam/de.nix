@@ -190,6 +190,9 @@ in
       # For scripts interacting with `swaymsg`.
       gron
       jq
+
+      # For backup script.
+      tree
     ];
   };
 }

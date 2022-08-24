@@ -31,7 +31,6 @@
             git
             git-crypt
             nixpkgs-fmt
-            tree
           ];
         };
       }
