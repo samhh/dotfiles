@@ -15,6 +15,7 @@
     ./hardware.nix
     ./misc.nix
     ./network.nix
+    ./security.nix
     ./user.nix
     ./web.nix
   ];
