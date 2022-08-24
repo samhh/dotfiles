@@ -33,11 +33,6 @@ lib.mkMerge [
   {
     users.users.${uname}.shell = customFish;
 
-    security.doas.extraRules = [{
-      users = [ uname ];
-      keepEnv = true;
-    }];
-
     home-manager.users.${uname} = {
       programs.fish = {
         enable = true;
@@ -97,6 +92,11 @@ lib.mkMerge [
   })
 
   (lib.mkIf pkgs.stdenv.isLinux {
+    security.doas.extraRules = [{
+      users = [ uname ];
+      keepEnv = true;
+    }];
+
     home-manager.users.${uname} = {
       programs.foot = {
         enable = true;
