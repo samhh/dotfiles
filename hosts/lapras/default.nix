@@ -2,9 +2,7 @@
 
 {
   imports = [
-    ../../modules/editor.nix
-    ../../modules/terminal.nix
-    ../../modules/vcs.nix
+    ../../modules/headful
 
     ./auth.nix
     ./core.nix

@@ -3,10 +3,7 @@
 {
   imports = [
     ../../modules/nixos
-
-    ../../modules/editor.nix
-    ../../modules/terminal.nix
-    ../../modules/vcs.nix
+    ../../modules/headful
 
     ./audio.nix
     ./auth.nix
