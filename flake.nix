@@ -1,10 +1,12 @@
 {
   inputs =
     {
-      nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+      agenix.url = "github:ryantm/agenix";
 
-      darwin.url = "github:lnl7/nix-darwin";
-      darwin.inputs.nixpkgs.follows = "nixpkgs";
+      darwin = {
+        url = "github:lnl7/nix-darwin";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
 
       flake-utils.url = "github:numtide/flake-utils";
 
@@ -13,7 +15,7 @@
         inputs.nixpkgs.follows = "nixpkgs";
       };
 
-      agenix.url = "github:ryantm/agenix";
+      nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
       tshm-plugin = {
         url = "https://registry.yarnpkg.com/typescript-tshm-plugin/-/typescript-tshm-plugin-0.1.0.tgz";
@@ -21,7 +23,7 @@
       };
     };
 
-  outputs = { nixpkgs, darwin, home-manager, agenix, flake-utils, tshm-plugin, ... }:
+  outputs = { agenix, darwin, flake-utils, home-manager, nixpkgs, tshm-plugin, ... }:
     let
       selfpkgs = prev: {
         bangin = prev.callPackage ./pkgs/bangin.nix { };
