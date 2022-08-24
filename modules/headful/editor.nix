@@ -1,4 +1,4 @@
-{ pkgs, selfpkgs, tshmPlugin, uname, ... }:
+{ pkgs, tshmPlugin, uname, ... }:
 
 let
   exrc-vim = pkgs.vimUtils.buildVimPlugin {
@@ -114,7 +114,7 @@ in
         distroSpecific =
           if pkgs.stdenv.isDarwin
           then [ ]
-          else with pkgs; with selfpkgs; [ haskell-language-server tshm ];
+          else with pkgs; [ haskell-language-server tshm ];
       in
       with pkgs; [
         # For :TSUpdate

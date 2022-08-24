@@ -22,27 +22,21 @@
     };
 
   outputs = { nixpkgs, darwin, home-manager, agenix, flake-utils, tshm-plugin, ... }:
-    # Only support Alakazam's system architecture for the timebeing.
     let
-      selfpkgs =
-        (
-          let
-            system = "x86_64-linux";
-            pkgs = import nixpkgs { inherit system; };
-          in
-          {
-            bangin = pkgs.callPackage ./pkgs/bangin.nix { };
-            bangin-server-node = pkgs.callPackage ./pkgs/bangin-server-node.nix { };
-            bangup = pkgs.callPackage ./pkgs/bangup { };
-            corrupter = pkgs.callPackage ./pkgs/corrupter.nix { };
-            proton-ge = pkgs.callPackage ./pkgs/proton-ge.nix { };
-            qbpm = pkgs.callPackage ./pkgs/qbpm.nix { };
-            tofi = pkgs.callPackage ./pkgs/tofi.nix { };
-            tshm = pkgs.callPackage ./pkgs/tshm.nix { };
-          }
-        ); in
+      selfpkgs = prev: {
+        bangin = prev.callPackage ./pkgs/bangin.nix { };
+        bangin-server-node = prev.callPackage ./pkgs/bangin-server-node.nix { };
+        bangup = prev.callPackage ./pkgs/bangup { };
+        corrupter = prev.callPackage ./pkgs/corrupter.nix { };
+        proton-ge = prev.callPackage ./pkgs/proton-ge.nix { };
+        qbpm = prev.callPackage ./pkgs/qbpm.nix { };
+        tofi = prev.callPackage ./pkgs/tofi.nix { };
+        tshm = prev.callPackage ./pkgs/tshm.nix { };
+      };
 
+      overlay-selfpkgs = final: selfpkgs;
 
+    in
     (flake-utils.lib.eachDefaultSystem (system:
       let pkgs = nixpkgs.legacyPackages.${system};
       in
@@ -63,7 +57,7 @@
         pkgs = import nixpkgs { inherit system; };
       in
       {
-        packages.${system} = selfpkgs;
+        packages.${system} = selfpkgs pkgs;
       }
     ) //
 
@@ -74,6 +68,8 @@
             system = "x86_64-linux";
             pkgs = import nixpkgs {
               inherit system;
+
+              overlays = [ overlay-selfpkgs ];
 
               config.allowUnfreePredicate = pkg:
                 let pkgName = nixpkgs.lib.getName pkg;
@@ -100,7 +96,7 @@
             ];
 
             specialArgs = {
-              inherit system selfpkgs;
+              inherit system;
               uname = "sam";
               email = "hello@samhh.com";
 
@@ -111,7 +107,7 @@
               tshmPlugin = tshm-plugin;
 
               termBin = "${pkgs.foot}/bin/foot";
-              launcherBin = "${selfpkgs.tofi}/bin/tofi";
+              launcherBin = "${pkgs.tofi}/bin/tofi";
               webBrowserBin = "${pkgs.qutebrowser}/bin/qutebrowser";
               streamerBin = "${pkgs.streamlink}/bin/streamlink";
             };

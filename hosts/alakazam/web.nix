@@ -1,4 +1,4 @@
-{ config, pkgs, selfpkgs, termBin, launcherBin, streamerBin, uname, ... }:
+{ config, pkgs, termBin, launcherBin, streamerBin, uname, ... }:
 
 let
   editorBin = "${config.home-manager.users.${uname}.programs.neovim.finalPackage}/bin/nvim";
@@ -75,10 +75,10 @@ in
     systemd.user.services.banginServerNode = {
       Install.WantedBy = [ "default.target" ];
       Service.ExecStart =
-        "${selfpkgs.bangin-server-node}/bin/bangin-server-node ${toString banginServerNodePort}";
+        "${pkgs.bangin-server-node}/bin/bangin-server-node ${toString banginServerNodePort}";
     };
 
-    home.packages = with pkgs; with selfpkgs; [
+    home.packages = with pkgs; [
       bangup
       ungoogled-chromium
       firefox-wayland

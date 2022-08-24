@@ -1,4 +1,4 @@
-{ config, lib, pkgs, selfpkgs, system, termBin, uname, nasPath, ... }:
+{ config, lib, pkgs, system, termBin, uname, nasPath, ... }:
 
 let
   scripts = "${config.users.users.${uname}.home}/dotfiles/hosts/alakazam/scripts";
@@ -54,7 +54,7 @@ in
             "${mod}+w" = "exec systemctl --user restart wallpaper";
             "${mod}+t" = "exec ${scripts}/web-search.sh";
             "${mod}+g" = "exec ${scripts}/apps.sh";
-            "${mod}+Shift+g" = "exec ${selfpkgs.tofi}/bin/tofi-run --prompt gui-all | xargs swaymsg exec --";
+            "${mod}+Shift+g" = "exec ${pkgs.tofi}/bin/tofi-run --prompt gui-all | xargs swaymsg exec --";
             "${mod}+d" = "exec ${scripts}/flatmarks.sh";
             "${mod}+Shift+d" = "exec ${scripts}/flatmarks-work.sh";
             "${mod}+x" = "exec ${scripts}/passmenu.sh";
@@ -173,7 +173,7 @@ in
       };
     };
 
-    home.packages = with pkgs; with selfpkgs; [
+    home.packages = with pkgs; [
       sway-contrib.grimshot
 
       # For various scripts.
