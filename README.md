@@ -24,7 +24,7 @@ For now some Alakazam scripts presume the repo will be at `~/dotfiles/`. Anythin
 
 ### Packages
 
-Some packages not in nixpkgs are defined in `:/pkg/`. These can be built and run as flake outputs. Example:
+Some packages not in nixpkgs are defined in `:/pkgs/`. These can be built and run as flake outputs. Example:
 
 ```console
 $ echo "declare const foo: Bar" | nix run ".#tshm" -- -a
