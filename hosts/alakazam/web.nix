@@ -72,6 +72,23 @@ in
       };
     };
 
+    programs.bangin = {
+      enable = true;
+      lists =
+        let f = x: "https://git.sr.ht/~samhh/${x}.bangs/blob/master/${x}.bangs";
+        in
+        map f [
+          "arch"
+          "dev"
+          "english"
+          "italiano"
+          "nix"
+          "pcgaming"
+          "prelude"
+          "uk"
+        ];
+    };
+
     systemd.user.services.banginServerNode = {
       Install.WantedBy = [ "default.target" ];
       Service.ExecStart =
@@ -84,8 +101,6 @@ in
       firefox-wayland
       qbpm
     ];
-
-    xdg.configFile."bangin/bangin.lists".source = ./cfg/bangin.lists;
 
     xdg.dataFile."qutebrowser/userscripts/qute-pass".source =
       "${pkgs.qutebrowser}/share/qutebrowser/userscripts/qute-pass";
