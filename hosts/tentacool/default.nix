@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../../modules/nixos
+    ../../shared/nixos
 
     ./ddns.nix
     ./hardware.nix

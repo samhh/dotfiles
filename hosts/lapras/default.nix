@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../../modules/headful
+    ../../shared/headful
 
     ./auth.nix
     ./core.nix
