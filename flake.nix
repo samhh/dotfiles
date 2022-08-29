@@ -132,6 +132,8 @@
             system = "x86_64-linux";
             pkgs = import nixpkgs {
               inherit system;
+
+              overlays = [ overlay-selfpkgs ];
             };
           in
           nixpkgs.lib.nixosSystem {
@@ -159,10 +161,12 @@
           system = "aarch64-darwin";
           pkgs = import nixpkgs {
             inherit system;
+
+            overlays = [ overlay-selfpkgs ];
           };
         in
         darwin.lib.darwinSystem {
-          inherit system;
+          inherit pkgs system;
 
           modules = [
             home-manager.darwinModules.home-manager
