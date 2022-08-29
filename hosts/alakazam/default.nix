@@ -16,7 +16,9 @@
     ./misc.nix
     ./network.nix
     ./security.nix
+    ./terminal.nix
     ./user.nix
+    ./vcs.nix
     ./web.nix
   ];
 }
