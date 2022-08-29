@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./blastoise.nix
     ./chansey.nix
     ./exeggutor.nix
     ./krabby.nix
