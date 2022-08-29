@@ -180,6 +180,8 @@
           specialArgs = {
             uname = "sam";
             email = "hello@samhh.com";
+
+            tshmPlugin = tshm-plugin;
           };
         };
     };
