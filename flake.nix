@@ -95,6 +95,7 @@
                 # Steam includes a few unfree packages.
                 (builtins.match "^steam(-.*)?" pkgName != null);
             };
+            uname = "sam";
           in
           nixpkgs.lib.nixosSystem {
             inherit pkgs system;
@@ -104,14 +105,17 @@
               {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
+
+                home-manager.users.${uname}.imports = [
+                  ./modules
+                ];
               }
               agenix.nixosModule
               ./hosts/alakazam
             ];
 
             specialArgs = {
-              inherit system;
-              uname = "sam";
+              inherit system uname;
               email = "hello@samhh.com";
 
               emailPassPath = "emails/migadu.com/mailbox/hello";
@@ -164,6 +168,7 @@
 
             overlays = [ overlay-selfpkgs ];
           };
+          uname = "sam";
         in
         darwin.lib.darwinSystem {
           inherit pkgs system;
@@ -173,12 +178,16 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+
+              home-manager.users.${uname}.imports = [
+                ./modules
+              ];
             }
             ./hosts/lapras
           ];
 
           specialArgs = {
-            uname = "sam";
+            inherit uname;
             email = "hello@samhh.com";
 
             tshmPlugin = tshm-plugin;
