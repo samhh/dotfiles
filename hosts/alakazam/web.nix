@@ -89,10 +89,9 @@ in
         ];
     };
 
-    systemd.user.services.banginServerNode = {
-      Install.WantedBy = [ "default.target" ];
-      Service.ExecStart =
-        "${pkgs.bangin-server-node}/bin/bangin-server-node ${toString banginServerNodePort}";
+    services.bangin-server-node = {
+      enable = true;
+      port = banginServerNodePort;
     };
 
     home.packages = with pkgs; [
