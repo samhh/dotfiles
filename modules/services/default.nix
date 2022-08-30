@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./programs
-    ./services
+    ./bangin-server-node.nix
   ];
 }
