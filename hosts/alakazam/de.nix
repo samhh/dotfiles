@@ -1,4 +1,4 @@
-{ config, lib, pkgs, apps, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   scripts = "${config.users.users.${config.username}.home}/dotfiles/hosts/alakazam/scripts";
@@ -50,7 +50,7 @@ in
             "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
             "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
             "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
-            "${mod}+Return" = "exec ${apps.terminal.bin}";
+            "${mod}+Return" = "exec ${config.apps.terminal.bin}";
             "${mod}+w" = "exec systemctl --user restart wallpaper";
             "${mod}+t" = "exec ${scripts}/web-search.sh";
             "${mod}+g" = "exec ${scripts}/apps.sh";

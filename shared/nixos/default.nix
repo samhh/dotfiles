@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./config.nix
     ./core.nix
     ./locale.nix
     ./secrets.nix
