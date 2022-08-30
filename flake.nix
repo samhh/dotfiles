@@ -40,6 +40,8 @@
       };
 
       overlay-selfpkgs = final: prev: selfpkgs prev // {
+        agenix = agenix.defaultPackage.${final.system};
+
         fishPlugins = prev.fishPlugins // {
           fish-minimal-theme = prev.callPackage ./pkgs/fishPlugins/fish-minimal-theme.nix { };
           z = prev.callPackage ./pkgs/fishPlugins/z.nix { };
@@ -127,8 +129,6 @@
             ];
 
             specialArgs = {
-              inherit agenix system;
-
               tshmPlugin = tshm-plugin;
             };
           };
@@ -150,10 +150,6 @@
               globalCfg
               ./hosts/tentacool
             ];
-
-            specialArgs = {
-              inherit agenix system;
-            };
           };
       };
 
