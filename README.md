@@ -31,6 +31,8 @@ $ echo "declare const foo: Bar" | nix run ".#tshm" -- -a
 foo :: Bar
 ```
 
+Additionally some Home Manager modules are defined in `:/modules/`.
+
 ## History
 
 I used to run various different operating systems and window managers. Those configs are preserved in this repo's commit history. Arch/XMonad specifically is available at `nixos~1`.
