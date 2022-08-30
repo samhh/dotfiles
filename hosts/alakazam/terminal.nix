@@ -68,8 +68,8 @@ in
 
         "sys" = "systemctl";
         "sysu" = "systemctl --user";
-        "up" = "nixos-rebuild build";
-        "upp" = "doas nixos-rebuild switch";
+        "up" = "nixos-rebuild build --flake .#";
+        "upp" = "doas nixos-rebuild switch --flake .#";
       };
     };
   };
