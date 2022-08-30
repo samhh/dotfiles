@@ -50,6 +50,15 @@
         };
       };
 
+      homeManagerCfg = uname: {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+
+        home-manager.users.${uname}.imports = [
+          ./modules
+        ];
+      };
+
     in
     (flake-utils.lib.eachDefaultSystem (system:
       let pkgs = nixpkgs.legacyPackages.${system};
@@ -102,14 +111,7 @@
 
             modules = [
               home-manager.nixosModules.home-manager
-              {
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-
-                home-manager.users.${uname}.imports = [
-                  ./modules
-                ];
-              }
+              (homeManagerCfg uname)
               agenix.nixosModule
               ./hosts/alakazam
             ];
@@ -175,14 +177,7 @@
 
           modules = [
             home-manager.darwinModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-
-              home-manager.users.${uname}.imports = [
-                ./modules
-              ];
-            }
+            (homeManagerCfg uname)
             ./hosts/lapras
           ];
 
