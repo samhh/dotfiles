@@ -74,7 +74,7 @@
       # Usable both here and in module `config`s.
       localCfg = import ./shared/config.nix { };
       globalCfg = {
-        imports = [ ./modules/config.nix ];
+        imports = [ ./config ];
         config = localCfg;
       };
 
@@ -83,7 +83,7 @@
         home-manager.useUserPackages = true;
 
         home-manager.users.${localCfg.username}.imports = [
-          ./modules/home-manager
+          ./modules
         ];
       };
 
