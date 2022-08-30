@@ -120,10 +120,12 @@
             pkgs = getPkgs system;
 
             modules = [
+              globalCfg
+
               home-manager.nixosModules.home-manager
               homeManagerCfg
               agenix.nixosModule
-              globalCfg
+
               ./hosts/alakazam
             ];
 
@@ -138,8 +140,10 @@
             pkgs = getPkgs system;
 
             modules = [
-              agenix.nixosModule
               globalCfg
+
+              agenix.nixosModule
+
               ./hosts/tentacool
             ];
           };
@@ -151,9 +155,11 @@
           pkgs = getPkgs system;
 
           modules = [
+            globalCfg
+
             home-manager.darwinModules.home-manager
             homeManagerCfg
-            globalCfg
+
             ./hosts/lapras
           ];
 
