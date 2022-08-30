@@ -55,6 +55,22 @@
         };
       };
 
+      getPkgs = system: import nixpkgs {
+        inherit system;
+
+        overlays = [ overlay-selfpkgs ];
+
+        config.allowUnfreePredicate = pkg:
+          let pkgName = nixpkgs.lib.getName pkg;
+          in
+          builtins.elem pkgName [
+            "obsidian"
+            "slack"
+          ] ||
+          # Steam includes a few unfree packages.
+          (builtins.match "^steam(-.*)?" pkgName != null);
+      };
+
       # Usable both here and in module `config`s.
       localCfg = import ./shared/config.nix { };
       globalCfg = {
@@ -99,26 +115,9 @@
     {
       nixosConfigurations = {
         alakazam =
-          let
+          nixpkgs.lib.nixosSystem rec {
             system = "x86_64-linux";
-            pkgs = import nixpkgs {
-              inherit system;
-
-              overlays = [ overlay-selfpkgs ];
-
-              config.allowUnfreePredicate = pkg:
-                let pkgName = nixpkgs.lib.getName pkg;
-                in
-                builtins.elem pkgName [
-                  "obsidian"
-                  "slack"
-                ] ||
-                # Steam includes a few unfree packages.
-                (builtins.match "^steam(-.*)?" pkgName != null);
-            };
-          in
-          nixpkgs.lib.nixosSystem {
-            inherit pkgs system;
+            pkgs = getPkgs system;
 
             modules = [
               home-manager.nixosModules.home-manager
@@ -134,16 +133,9 @@
           };
 
         tentacool =
-          let
+          nixpkgs.lib.nixosSystem rec {
             system = "x86_64-linux";
-            pkgs = import nixpkgs {
-              inherit system;
-
-              overlays = [ overlay-selfpkgs ];
-            };
-          in
-          nixpkgs.lib.nixosSystem {
-            inherit pkgs system;
+            pkgs = getPkgs system;
 
             modules = [
               agenix.nixosModule
@@ -154,16 +146,9 @@
       };
 
       darwinConfigurations.lapras =
-        let
+        darwin.lib.darwinSystem rec {
           system = "aarch64-darwin";
-          pkgs = import nixpkgs {
-            inherit system;
-
-            overlays = [ overlay-selfpkgs ];
-          };
-        in
-        darwin.lib.darwinSystem {
-          inherit pkgs system;
+          pkgs = getPkgs system;
 
           modules = [
             home-manager.darwinModules.home-manager
