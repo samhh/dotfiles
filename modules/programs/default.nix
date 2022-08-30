@@ -2,6 +2,6 @@
 
 {
   imports = [
-    ./programs
+    ./bangin.nix
   ];
 }
