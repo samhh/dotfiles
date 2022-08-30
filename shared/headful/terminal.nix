@@ -1,4 +1,4 @@
-{ config, lib, pkgs, webBrowserBin, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   editorBin = "${config.home-manager.users.${config.username}.programs.neovim.finalPackage}/bin/nvim";

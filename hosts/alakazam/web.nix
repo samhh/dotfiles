@@ -1,4 +1,4 @@
-{ config, pkgs, termBin, launcherBin, streamerBin, ... }:
+{ config, pkgs, apps, ... }:
 
 let
   editorBin = "${config.home-manager.users.${config.username}.programs.neovim.finalPackage}/bin/nvim";
@@ -39,7 +39,7 @@ in
           notifications.enabled = false;
           unknown_url_scheme_policy = "allow-all";
         };
-        editor.command = [ termBin editorBin "{}" ];
+        editor.command = [ apps.terminal.bin editorBin "{}" ];
         # Colemak home row keys.
         hints.chars = "arstneio";
         scrolling = {
@@ -62,8 +62,8 @@ in
         h = "forward";
         yf = "hint links yank";
         x =
-          "spawn --userscript qute-pass --username-target secret --username-pattern \"username: (.+)\" --dmenu-invocation ${launcherBin}";
-        v = "spawn ${streamerBin} {url}";
+          "spawn --userscript qute-pass --username-target secret --username-pattern \"username: (.+)\" --dmenu-invocation ${apps.launcher.bin}";
+        v = "spawn ${apps.streamer.bin} {url}";
 
         b = "nop";
         B = "nop";

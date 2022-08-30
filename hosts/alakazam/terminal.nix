@@ -1,4 +1,4 @@
-{ config, pkgs, webBrowserBin, ... }:
+{ config, pkgs, apps, ... }:
 
 let
   uid = config.users.users.${config.username}.uid;
@@ -19,7 +19,7 @@ in
           pad = "10x10";
         };
         key-bindings.spawn-terminal = "Mod4+Shift+Return";
-        url.launch = "${webBrowserBin} \${url}";
+        url.launch = "${apps.webBrowser.bin} \${url}";
         colors = {
           alpha = .92;
 

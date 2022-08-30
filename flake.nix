@@ -128,10 +128,12 @@
 
               tshmPlugin = tshm-plugin;
 
-              termBin = "${pkgs.foot}/bin/foot";
-              launcherBin = "${pkgs.tofi}/bin/tofi";
-              webBrowserBin = "${pkgs.qutebrowser}/bin/qutebrowser";
-              streamerBin = "${pkgs.streamlink}/bin/streamlink";
+              apps = {
+                terminal.bin = "${pkgs.foot}/bin/foot";
+                launcher.bin = "${pkgs.tofi}/bin/tofi";
+                webBrowser.bin = "${pkgs.qutebrowser}/bin/qutebrowser";
+                streamer.bin = "${pkgs.streamlink}/bin/streamlink";
+              };
             };
           };
 
