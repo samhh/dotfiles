@@ -50,12 +50,19 @@
         };
       };
 
-      homeManagerCfg = uname: {
+      # Usable both here and in module `config`s.
+      localCfg = import ./shared/config.nix { };
+      globalCfg = {
+        imports = [ ./modules/config.nix ];
+        config = localCfg;
+      };
+
+      homeManagerCfg = {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
 
-        home-manager.users.${uname}.imports = [
-          ./modules
+        home-manager.users.${localCfg.username}.imports = [
+          ./modules/home-manager
         ];
       };
 
@@ -104,26 +111,21 @@
                 # Steam includes a few unfree packages.
                 (builtins.match "^steam(-.*)?" pkgName != null);
             };
-            uname = "sam";
           in
           nixpkgs.lib.nixosSystem {
             inherit pkgs system;
 
             modules = [
               home-manager.nixosModules.home-manager
-              (homeManagerCfg uname)
+              homeManagerCfg
               agenix.nixosModule
+              globalCfg
               ./hosts/alakazam
             ];
 
             specialArgs = {
-              inherit system uname;
-              email = "hello@samhh.com";
+              inherit agenix system;
 
-              emailPassPath = "emails/migadu.com/mailbox/hello";
-              nasPath = "/mnt/nas";
-
-              inherit agenix;
               tshmPlugin = tshm-plugin;
 
               termBin = "${pkgs.foot}/bin/foot";
@@ -147,17 +149,12 @@
 
             modules = [
               agenix.nixosModule
+              globalCfg
               ./hosts/tentacool
             ];
 
             specialArgs = {
-              inherit system;
-              uname = "sam";
-              email = "hello@samhh.com";
-
-              nasPath = "/mnt/nas";
-
-              inherit agenix;
+              inherit agenix system;
             };
           };
       };
@@ -170,21 +167,18 @@
 
             overlays = [ overlay-selfpkgs ];
           };
-          uname = "sam";
         in
         darwin.lib.darwinSystem {
           inherit pkgs system;
 
           modules = [
             home-manager.darwinModules.home-manager
-            (homeManagerCfg uname)
+            homeManagerCfg
+            globalCfg
             ./hosts/lapras
           ];
 
           specialArgs = {
-            inherit uname;
-            email = "hello@samhh.com";
-
             tshmPlugin = tshm-plugin;
           };
         };

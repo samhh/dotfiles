@@ -1,4 +1,4 @@
-{ pkgs, uname, ... }:
+{ config, pkgs, ... }:
 
 {
   boot = {
@@ -54,7 +54,7 @@
 
   services.ratbagd.enable = true;
 
-  home-manager.users.${uname}.home.packages = with pkgs; [
+  home-manager.users.${config.username}.home.packages = with pkgs; [
     lm_sensors
     piper
   ];

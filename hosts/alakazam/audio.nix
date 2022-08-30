@@ -1,6 +1,6 @@
-{ pkgs, nasPath, uname, ... }:
+{ config, pkgs, ... }:
 
-let musicDir = nasPath + "/music/archive";
+let musicDir = config.nas.path + "/music/archive";
 in
 {
   security.rtkit.enable = true;
@@ -14,7 +14,7 @@ in
     pulse.enable = true;
   };
 
-  home-manager.users.${uname} = {
+  home-manager.users.${config.username} = {
     services.mpd = {
       enable = true;
       musicDirectory = musicDir;

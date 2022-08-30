@@ -1,7 +1,7 @@
-{ pkgs, tshmPlugin, uname, ... }:
+{ config, pkgs, tshmPlugin, ... }:
 
 {
-  home-manager.users.${uname} = {
+  home-manager.users.${config.username} = {
     programs.neovim = {
       enable = true;
       package = pkgs.neovim-unwrapped;

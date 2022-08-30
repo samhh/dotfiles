@@ -1,19 +1,19 @@
-{ config, email, uname, ... }:
+{ config, ... }:
 
 let
-  editorBin = "${config.home-manager.users.${uname}.programs.neovim.finalPackage}/bin/nvim";
+  editorBin = "${config.home-manager.users.${config.username}.programs.neovim.finalPackage}/bin/nvim";
 
 in
 {
-  home-manager.users.${uname}.programs.git = {
+  home-manager.users.${config.username}.programs.git = {
     enable = true;
     delta.enable = true;
     extraConfig = {
       push.default = "simple";
       pull.ff = "only";
       user = {
-        name = "Sam A. Horvath-Hunt";
-        email = email;
+        name = config.fullName;
+        email = config.email.address;
       };
       url = {
         "git@git.sr.ht:~".insteadOf = "sh:";

@@ -1,17 +1,17 @@
-{ pkgs, uname, ... }:
+{ config, pkgs, ... }:
 
 {
-  home-manager.users.${uname}.programs.aerc = {
+  home-manager.users.${config.username}.programs.aerc = {
     enable = true;
 
     extraAccounts = {
       "@samhh.com" = {
         source = "imaps://hello%40samhh.com@imap.migadu.com";
-        source-cred-cmd = "pass show emails/migadu.com/mailbox/hello";
+        source-cred-cmd = "pass show ${config.email.pass.path}";
         outgoing = "smtps://hello%40samhh.com@smtp.migadu.com";
-        outgoing-cred-cmd = "pass show emails/migadu.com/mailbox/hello";
+        outgoing-cred-cmd = "pass show ${config.email.pass.path}";
         default = "INBOX";
-        from = "Sam A. Horvath-Hunt <hello@samhh.com>";
+        from = "${config.fullName} <${config.email.address}>";
         copy = "Sent";
       };
 
@@ -21,7 +21,7 @@
         outgoing = "smtps+plain://sam%40unsplash.com@smtp.gmail.com";
         outgoing-cred-cmd = "pass show emails/unsplash.com/sam";
         default = "INBOX";
-        from = "Sam A. Horvath-Hunt <sam@unsplash.com>";
+        from = "${config.fullName} <sam@unsplash.com>";
         copy = "[Gmail]/Sent Mail";
       };
     };

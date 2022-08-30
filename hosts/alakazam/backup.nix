@@ -1,7 +1,7 @@
-{ pkgs, email, emailPassPath, nasPath, uname, ... }:
+{ config, pkgs, ... }:
 
 {
-  home-manager.users.${uname} = {
+  home-manager.users.${config.username} = {
     programs.offlineimap = {
       enable = true;
       pythonFile = ''
@@ -20,12 +20,12 @@
         offlineimap = {
           enable = true;
           extraConfig = {
-            local.localfolders = nasPath + "/mail/";
+            local.localfolders = config.nas.path + "/mail/";
             remote = {
               type = "IMAP";
               remotehost = host;
-              remoteuser = email;
-              remotepasseval = "get_pass(\"${emailPassPath}\")";
+              remoteuser = config.email.address;
+              remotepasseval = "get_pass(\"${config.email.pass.path}\")";
               folderfilter =
                 "lambda folder: folder in ['Archive', 'Awaiting', 'Unfulfilled', 'Jobs 2021', 'INBOX', 'Sent']";
             };

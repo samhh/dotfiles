@@ -1,7 +1,7 @@
-{ pkgs, email, emailPassPath, uname, ... }:
+{ config, pkgs, ... }:
 
 {
-  home-manager.users.${uname}.programs.git = {
+  home-manager.users.${config.username}.programs.git = {
     # GPG signing
     extraConfig = {
       user.signingkey = "4667250BD56735A8";
@@ -14,7 +14,7 @@
     extraConfig = {
       sendemail = {
         smtpserver = "smtp.migadu.com";
-        smtpuser = email;
+        smtpuser = config.email.address;
         smtpencryption = "ssl";
       };
       credential."smtp://hello%40samhh.com@smtp.migadu.com%3a465".helper =
@@ -23,7 +23,7 @@
             echo "password=$(pass show "$1")"
           '';
         in
-        "!${script}/bin/pass-git-credential ${emailPassPath}";
+        "!${script}/bin/pass-git-credential ${config.email.pass.path}";
     };
   };
 }

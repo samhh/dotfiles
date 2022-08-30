@@ -1,11 +1,11 @@
 # Note that DDNS needs to be up and running before a certificate can be issued.
 
-{ email, ... }:
+{ config, ... }:
 
 {
   security.acme = {
     acceptTerms = true;
-    defaults = { inherit email; };
+    defaults.email = config.email.address;
   };
 
   networking.firewall.allowedTCPPorts = [

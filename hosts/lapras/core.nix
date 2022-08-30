@@ -1,4 +1,4 @@
-{ pkgs, uname, ... }:
+{ config, pkgs, ... }:
 
 {
   nix = {
@@ -10,5 +10,5 @@
 
   services.nix-daemon.enable = true;
 
-  home-manager.users.${uname}.home.stateVersion = "22.05";
+  home-manager.users.${config.username}.home.stateVersion = "22.05";
 }

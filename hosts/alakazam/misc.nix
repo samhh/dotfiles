@@ -1,7 +1,7 @@
-{ config, pkgs, uname, ... }:
+{ config, pkgs, ... }:
 
 let
-  home = config.users.users.${uname}.home;
+  home = config.users.users.${config.username}.home;
   qrcpPort = 8090;
 in
 {
@@ -20,7 +20,7 @@ in
 
   virtualisation.podman.enable = true;
 
-  home-manager.users.${uname} = {
+  home-manager.users.${config.username} = {
     xdg.configFile."khard/khard.conf".source = ./cfg/khard.conf;
     xdg.configFile."senpai/senpai.scfg".source = ./cfg/senpai.scfg;
 

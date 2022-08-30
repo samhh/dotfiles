@@ -1,4 +1,4 @@
-{ uname, ... }:
+{ ... }:
 
 {
   programs.gnupg.agent = {

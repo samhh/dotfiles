@@ -1,15 +1,15 @@
-{ config, pkgs, termBin, launcherBin, streamerBin, uname, ... }:
+{ config, pkgs, termBin, launcherBin, streamerBin, ... }:
 
 let
-  editorBin = "${config.home-manager.users.${uname}.programs.neovim.finalPackage}/bin/nvim";
-  scripts = "${config.users.users.${uname}.home}/dotfiles/hosts/alakazam/scripts";
+  editorBin = "${config.home-manager.users.${config.username}.programs.neovim.finalPackage}/bin/nvim";
+  scripts = "${config.users.users.${config.username}.home}/dotfiles/hosts/alakazam/scripts";
 
   banginServerNodePort = 1234;
 
   desktopName = "qutebrowserConditional";
 in
 {
-  home-manager.users.${uname} = {
+  home-manager.users.${config.username} = {
     xdg.desktopEntries.${desktopName} = {
       name = "Qutebrowser (profile-conditional)";
       exec = "${scripts}/browser-launch.sh";

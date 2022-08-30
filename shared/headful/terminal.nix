@@ -1,7 +1,7 @@
-{ config, lib, pkgs, uname, webBrowserBin, ... }:
+{ config, lib, pkgs, webBrowserBin, ... }:
 
 let
-  editorBin = "${config.home-manager.users.${uname}.programs.neovim.finalPackage}/bin/nvim";
+  editorBin = "${config.home-manager.users.${config.username}.programs.neovim.finalPackage}/bin/nvim";
 
   # Workaround for incompatibililty between nixpkgs fish plugins and
   # home-manager:
@@ -28,9 +28,9 @@ let
 
 in
 {
-  users.users.${uname}.shell = customFish;
+  users.users.${config.username}.shell = customFish;
 
-  home-manager.users.${uname} = {
+  home-manager.users.${config.username} = {
     programs.fish = {
       enable = true;
       package = customFish;

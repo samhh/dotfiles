@@ -31,7 +31,7 @@ $ echo "declare const foo: Bar" | nix run ".#tshm" -- -a
 foo :: Bar
 ```
 
-Additionally some Home Manager modules are defined in `:/modules/`.
+Additionally some Home Manager modules are defined in `:/modules/home-manager/`.
 
 ## History
 

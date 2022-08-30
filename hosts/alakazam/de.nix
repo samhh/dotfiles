@@ -1,7 +1,7 @@
-{ config, lib, pkgs, system, termBin, uname, nasPath, ... }:
+{ config, lib, pkgs, termBin, ... }:
 
 let
-  scripts = "${config.users.users.${uname}.home}/dotfiles/hosts/alakazam/scripts";
+  scripts = "${config.users.users.${config.username}.home}/dotfiles/hosts/alakazam/scripts";
   output = "DP-3";
   barName = "top";
 in
@@ -14,7 +14,7 @@ in
   programs.sway.enable = true;
   xdg.portal.wlr.enable = true;
 
-  home-manager.users.${uname} = {
+  home-manager.users.${config.username} = {
     # Autostart, but only in tty1. Can't use ordinary
     # `environment.loginShellInit` as fish isn't POSIX-compliant.
     programs.fish.loginShellInit = ''
@@ -153,7 +153,7 @@ in
         wallpaper = {
           Install.WantedBy = [ wmTarget ];
           Service = {
-            ExecStart = "${scripts}/set-rand-wallpaper.sh ${nasPath}/bgs";
+            ExecStart = "${scripts}/set-rand-wallpaper.sh ${config.nas.path}/bgs";
             Environment =
               let deps = with pkgs; [ coreutils findutils procps swaybg ];
               in [ "PATH=${lib.makeBinPath deps}" ];

@@ -1,7 +1,7 @@
-{ pkgs, uname, ... }:
+{ config, pkgs, ... }:
 
 {
-  home-manager.users.${uname} = {
+  home-manager.users.${config.username} = {
     home.packages = with pkgs; [ gnupg ];
 
     home.file.".gnupg/gpg-agent.conf".text = ''

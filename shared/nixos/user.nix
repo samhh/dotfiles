@@ -1,8 +1,8 @@
-{ uname, ... }:
+{ config, ... }:
 
 {
   users = {
-    users.${uname} = {
+    users.${config.username} = {
       # UID needs setting explicitly so that it can be referenced elsewhere.
       uid = 1000;
       isNormalUser = true;

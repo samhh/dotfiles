@@ -1,15 +1,15 @@
-{ config, pkgs, uname, webBrowserBin, ... }:
+{ config, pkgs, webBrowserBin, ... }:
 
 let
-  uid = config.users.users.${uname}.uid;
+  uid = config.users.users.${config.username}.uid;
 in
 {
   security.doas.extraRules = [{
-    users = [ uname ];
+    users = [ config.username ];
     keepEnv = true;
   }];
 
-  home-manager.users.${uname} = {
+  home-manager.users.${config.username} = {
     programs.foot = {
       enable = true;
       server.enable = true;
