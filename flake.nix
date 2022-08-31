@@ -30,13 +30,10 @@
     let
       selfpkgs = import ./pkgs;
 
-      overlay-selfpkgs = final: prev: selfpkgs final // {
+      overlay-selfpkgs = final: prev: selfpkgs prev // {
         agenix = agenix.defaultPackage.${final.system};
 
-        fishPlugins = prev.fishPlugins // {
-          fish-minimal-theme = final.callPackage ./pkgs/fishPlugins/fish-minimal-theme.nix { };
-          z = final.callPackage ./pkgs/fishPlugins/z.nix { };
-        };
+        fishPlugins = prev.fishPlugins // (final.callPackage ./pkgs/fishPlugins { });
 
         vimPlugins = prev.vimPlugins // {
           exrc-vim = final.callPackage ./pkgs/vimPlugins/exrc-vim.nix { };
