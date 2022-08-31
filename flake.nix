@@ -28,30 +28,30 @@
 
   outputs = { agenix, darwin, flake-utils, home-manager, nixpkgs, tshm-plugin, ... }:
     let
-      selfpkgs = prev: {
-        bangin = prev.callPackage ./pkgs/bangin.nix { };
-        bangin-server-node = prev.callPackage ./pkgs/bangin-server-node.nix { };
-        bangup = prev.callPackage ./pkgs/bangup { };
-        corrupter = prev.callPackage ./pkgs/corrupter.nix { };
-        proton-ge = prev.callPackage ./pkgs/proton-ge.nix { };
-        qbpm = prev.callPackage ./pkgs/qbpm.nix { };
-        tofi = prev.callPackage ./pkgs/tofi.nix { };
-        tshm = prev.callPackage ./pkgs/tshm.nix { };
+      selfpkgs = pkgs: {
+        bangin = pkgs.callPackage ./pkgs/bangin.nix { };
+        bangin-server-node = pkgs.callPackage ./pkgs/bangin-server-node.nix { };
+        bangup = pkgs.callPackage ./pkgs/bangup { };
+        corrupter = pkgs.callPackage ./pkgs/corrupter.nix { };
+        proton-ge = pkgs.callPackage ./pkgs/proton-ge.nix { };
+        qbpm = pkgs.callPackage ./pkgs/qbpm.nix { };
+        tofi = pkgs.callPackage ./pkgs/tofi.nix { };
+        tshm = pkgs.callPackage ./pkgs/tshm.nix { };
       };
 
-      overlay-selfpkgs = final: prev: selfpkgs prev // {
+      overlay-selfpkgs = final: prev: selfpkgs final // {
         agenix = agenix.defaultPackage.${final.system};
 
         fishPlugins = prev.fishPlugins // {
-          fish-minimal-theme = prev.callPackage ./pkgs/fishPlugins/fish-minimal-theme.nix { };
-          z = prev.callPackage ./pkgs/fishPlugins/z.nix { };
+          fish-minimal-theme = final.callPackage ./pkgs/fishPlugins/fish-minimal-theme.nix { };
+          z = final.callPackage ./pkgs/fishPlugins/z.nix { };
         };
 
         vimPlugins = prev.vimPlugins // {
-          exrc-vim = prev.callPackage ./pkgs/vimPlugins/exrc-vim.nix { };
-          eyeliner-nvim = prev.callPackage ./pkgs/vimPlugins/eyeliner-nvim.nix { };
-          nvim-surround = prev.callPackage ./pkgs/vimPlugins/nvim-surround.nix { };
-          vim-just = prev.callPackage ./pkgs/vimPlugins/vim-just.nix { };
+          exrc-vim = final.callPackage ./pkgs/vimPlugins/exrc-vim.nix { };
+          eyeliner-nvim = final.callPackage ./pkgs/vimPlugins/eyeliner-nvim.nix { };
+          nvim-surround = final.callPackage ./pkgs/vimPlugins/nvim-surround.nix { };
+          vim-just = final.callPackage ./pkgs/vimPlugins/vim-just.nix { };
         };
       };
 
