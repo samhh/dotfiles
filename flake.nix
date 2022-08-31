@@ -28,16 +28,7 @@
 
   outputs = { agenix, darwin, flake-utils, home-manager, nixpkgs, tshm-plugin, ... }:
     let
-      selfpkgs = pkgs: {
-        bangin = pkgs.callPackage ./pkgs/bangin.nix { };
-        bangin-server-node = pkgs.callPackage ./pkgs/bangin-server-node.nix { };
-        bangup = pkgs.callPackage ./pkgs/bangup { };
-        corrupter = pkgs.callPackage ./pkgs/corrupter.nix { };
-        proton-ge = pkgs.callPackage ./pkgs/proton-ge.nix { };
-        qbpm = pkgs.callPackage ./pkgs/qbpm.nix { };
-        tofi = pkgs.callPackage ./pkgs/tofi.nix { };
-        tshm = pkgs.callPackage ./pkgs/tshm.nix { };
-      };
+      selfpkgs = import ./pkgs;
 
       overlay-selfpkgs = final: prev: selfpkgs final // {
         agenix = agenix.defaultPackage.${final.system};
