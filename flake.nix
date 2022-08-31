@@ -28,10 +28,10 @@
 
   outputs = { agenix, darwin, flake-utils, home-manager, nixpkgs, tshm-plugin, ... }:
     let
-      selfpkgs = import ./pkgs;
+      runnable = import ./pkgs;
 
-      overlay-selfpkgs = final: prev:
-        selfpkgs prev //
+      overlay = final: prev:
+        runnable prev //
         {
           agenix = agenix.defaultPackage.${final.system};
 
@@ -42,7 +42,7 @@
       getPkgs = system: import nixpkgs {
         inherit system;
 
-        overlays = [ overlay-selfpkgs ];
+        overlays = [ overlay ];
 
         config.allowUnfreePredicate = pkg:
           let pkgName = nixpkgs.lib.getName pkg;
@@ -92,7 +92,7 @@
         pkgs = import nixpkgs { inherit system; };
       in
       {
-        packages.${system} = selfpkgs pkgs;
+        packages.${system} = runnable pkgs;
       }
     ) //
 
