@@ -30,13 +30,14 @@
     let
       selfpkgs = import ./pkgs;
 
-      overlay-selfpkgs = final: prev: selfpkgs prev // {
-        agenix = agenix.defaultPackage.${final.system};
+      overlay-selfpkgs = final: prev:
+        selfpkgs prev //
+        {
+          agenix = agenix.defaultPackage.${final.system};
 
-        fishPlugins = prev.fishPlugins // (final.callPackage ./pkgs/fishPlugins { });
-
-        vimPlugins = prev.vimPlugins // (final.callPackage ./pkgs/vimPlugins { });
-      };
+          fishPlugins = prev.fishPlugins // (final.callPackage ./pkgs/fishPlugins { });
+          vimPlugins = prev.vimPlugins // (final.callPackage ./pkgs/vimPlugins { });
+        };
 
       getPkgs = system: import nixpkgs {
         inherit system;
