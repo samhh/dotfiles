@@ -35,12 +35,7 @@
 
         fishPlugins = prev.fishPlugins // (final.callPackage ./pkgs/fishPlugins { });
 
-        vimPlugins = prev.vimPlugins // {
-          exrc-vim = final.callPackage ./pkgs/vimPlugins/exrc-vim.nix { };
-          eyeliner-nvim = final.callPackage ./pkgs/vimPlugins/eyeliner-nvim.nix { };
-          nvim-surround = final.callPackage ./pkgs/vimPlugins/nvim-surround.nix { };
-          vim-just = final.callPackage ./pkgs/vimPlugins/vim-just.nix { };
-        };
+        vimPlugins = prev.vimPlugins // (final.callPackage ./pkgs/vimPlugins { });
       };
 
       getPkgs = system: import nixpkgs {
