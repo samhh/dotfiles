@@ -81,18 +81,18 @@
             nixpkgs-fmt
           ];
         };
+
+        packages =
+          let
+            byPlatform = with pkgs;
+              if stdenv.isDarwin
+              then lib.flip builtins.removeAttrs linuxOnly
+              else lib.id;
+            linuxOnly = [ "corrupter" "proton-ge" "tofi" ];
+          in
+          byPlatform (import ./pkgs { inherit pkgs; });
       }
     )) //
-
-    (
-      let
-        system = "x86_64-linux";
-        pkgs = import nixpkgs { inherit system; };
-      in
-      {
-        packages.${system} = import ./pkgs { inherit pkgs; };
-      }
-    ) //
 
     {
       nixosConfigurations = {
