@@ -100,9 +100,7 @@
 
             modules = baseModules pkgs ++ [ ./hosts/alakazam ];
 
-            specialArgs = {
-              tshmPlugin = tshm-plugin;
-            };
+            specialArgs.tshmPlugin = tshm-plugin;
           };
 
         tentacool =
@@ -121,9 +119,7 @@
 
           modules = baseModules pkgs ++ [ ./hosts/lapras ];
 
-          specialArgs = {
-            tshmPlugin = tshm-plugin;
-          };
+          specialArgs.tshmPlugin = tshm-plugin;
         };
     };
 }
