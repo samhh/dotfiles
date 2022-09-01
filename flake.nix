@@ -123,24 +123,24 @@
       }
     )) //
 
-    (getSystems [
+    (with flake-utils.lib.system; getSystems [
       {
         hostname = "alakazam";
-        system = "x86_64-linux";
+        system = x86_64-linux;
         isNixOS = true;
         isHeadful = true;
       }
 
       {
         hostname = "tentacool";
-        system = "x86_64-linux";
+        system = x86_64-linux;
         isNixOS = true;
         isHeadful = false;
       }
 
       {
         hostname = "lapras";
-        system = "aarch64-darwin";
+        system = aarch64-darwin;
         isNixOS = false;
         isHeadful = true;
       }
