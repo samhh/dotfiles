@@ -1,4 +1,4 @@
-{ fetchurl, stdenv }:
+{ fetchurl, lib, stdenv }:
 
 stdenv.mkDerivation rec {
   pname = "proton-ge-custom";
@@ -13,4 +13,6 @@ stdenv.mkDerivation rec {
     mkdir -p $out
     mv * $out/
   '';
+
+  meta.platforms = lib.platforms.linux;
 }

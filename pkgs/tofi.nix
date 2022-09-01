@@ -1,4 +1,4 @@
-{ fetchurl, pkgs, stdenv }:
+{ fetchurl, lib, pkgs, stdenv }:
 
 stdenv.mkDerivation rec {
   pname = "tofi";
@@ -11,4 +11,6 @@ stdenv.mkDerivation rec {
   };
 
   buildInputs = with pkgs; [ cairo harfbuzz libxkbcommon meson ninja pango pkg-config scdoc wayland wayland-protocols ];
+
+  meta.platforms = lib.platforms.linux;
 }

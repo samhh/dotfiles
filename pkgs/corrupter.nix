@@ -1,4 +1,4 @@
-{ fetchurl, pkgs }:
+{ fetchurl, lib, pkgs }:
 
 pkgs.buildGoModule rec {
   pname = "corrupter";
@@ -11,4 +11,6 @@ pkgs.buildGoModule rec {
   };
 
   vendorSha256 = null;
+
+  meta.platforms = lib.platforms.linux;
 }
