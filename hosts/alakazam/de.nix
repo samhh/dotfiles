@@ -130,7 +130,7 @@ in
       enable = true;
       events = [{
         event = "before-sleep";
-        command = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
+        command = "${scripts}/lock.sh";
       }];
     };
 
