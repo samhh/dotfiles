@@ -53,21 +53,18 @@
           (builtins.match "^steam(-.*)?" pkgName != null);
       };
 
-      # Usable both here and in module `config`s.
-      localCfg = import ./shared/config.nix { };
-      globalCfg = {
-        imports = [ ./config ];
-        config = localCfg;
-      };
+      baseModules = pkgs: [
+        agenix.nixosModule
 
-      homeManagerCfg = {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
+        (
+          if pkgs.stdenv.isDarwin
+          then home-manager.darwinModules.home-manager
+          else home-manager.nixosModules.home-manager
+        )
 
-        home-manager.users.${localCfg.username}.imports = [
-          ./modules
-        ];
-      };
+        (import ./config)
+        (import ./shared/core.nix)
+      ];
 
     in
     (flake-utils.lib.eachDefaultSystem (system:
@@ -95,15 +92,7 @@
             system = "x86_64-linux";
             pkgs = getPkgs system;
 
-            modules = [
-              globalCfg
-
-              home-manager.nixosModules.home-manager
-              homeManagerCfg
-              agenix.nixosModule
-
-              ./hosts/alakazam
-            ];
+            modules = baseModules pkgs ++ [ ./hosts/alakazam ];
 
             specialArgs = {
               tshmPlugin = tshm-plugin;
@@ -115,13 +104,7 @@
             system = "x86_64-linux";
             pkgs = getPkgs system;
 
-            modules = [
-              globalCfg
-
-              agenix.nixosModule
-
-              ./hosts/tentacool
-            ];
+            modules = baseModules pkgs ++ [ ./hosts/tentacool ];
           };
       };
 
@@ -130,14 +113,7 @@
           system = "aarch64-darwin";
           pkgs = getPkgs system;
 
-          modules = [
-            globalCfg
-
-            home-manager.darwinModules.home-manager
-            homeManagerCfg
-
-            ./hosts/lapras
-          ];
+          modules = baseModules pkgs ++ [ ./hosts/lapras ];
 
           specialArgs = {
             tshmPlugin = tshm-plugin;
