@@ -108,7 +108,6 @@
         "Rq" = ":reply -aq<Enter>";
         "gP" = ":prev-part<Enter>";
         "gp" = ":next-part<Enter>";
-        "go" = ":pipe ${pkgs.urlscan}/bin/urlscan<Enter>";
       };
 
       "compose" = {
