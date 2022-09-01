@@ -28,6 +28,8 @@
 
   outputs = { self, agenix, darwin, flake-utils, home-manager, nixpkgs, tshm-plugin }:
     let
+      compose = with nixpkgs.lib; flip pipe;
+
       overlay = system: final: prev:
         self.packages.${system} //
         {
@@ -53,24 +55,58 @@
           (builtins.match "^steam(-.*)?" pkgName != null);
       };
 
-      baseModules = pkgs: [
-        agenix.nixosModule
+      getSystem = { hostname, system, isNixOS, isHeadful }:
+        let
+          pkgs = getPkgs system;
+          cfgs =
+            if isNixOS
+            then "nixosConfigurations"
+            else "darwinConfigurations";
+          sys =
+            if isNixOS
+            then nixpkgs.lib.nixosSystem
+            else darwin.lib.darwinSystem;
+        in
+        {
+          ${cfgs}.${hostname} = sys {
+            inherit pkgs system;
 
-        (
-          if pkgs.stdenv.isDarwin
-          then home-manager.darwinModules.home-manager
-          else home-manager.nixosModules.home-manager
-        )
+            modules =
+              [
+                agenix.nixosModule
 
-        (import ./cfg)
-        (import ./shared)
+                (
+                  if pkgs.stdenv.isDarwin
+                  then home-manager.darwinModules.home-manager
+                  else home-manager.nixosModules.home-manager
+                )
 
-        (
-          if pkgs.stdenv.isDarwin
-          then { }
-          else import ./nixos
-        )
-      ];
+                (import ./cfg)
+                (import ./shared)
+
+                (
+                  if pkgs.stdenv.isDarwin
+                  then { }
+                  else import ./nixos
+                )
+
+                (
+                  if isHeadful
+                  then import ./headful
+                  else { }
+                )
+
+                ./hosts/${hostname}
+              ];
+
+            specialArgs =
+              if isHeadful
+              then { tshmPlugin = tshm-plugin; }
+              else { };
+          };
+        };
+
+      getSystems = with nixpkgs.lib; fold (compose [ getSystem recursiveUpdate ]) { };
 
     in
     (flake-utils.lib.eachDefaultSystem (system:
@@ -91,35 +127,26 @@
       }
     )) //
 
-    {
-      nixosConfigurations = {
-        alakazam =
-          nixpkgs.lib.nixosSystem rec {
-            system = "x86_64-linux";
-            pkgs = getPkgs system;
+    (getSystems [
+      {
+        hostname = "alakazam";
+        system = "x86_64-linux";
+        isNixOS = true;
+        isHeadful = true;
+      }
 
-            modules = baseModules pkgs ++ [ ./hosts/alakazam ];
+      {
+        hostname = "tentacool";
+        system = "x86_64-linux";
+        isNixOS = true;
+        isHeadful = false;
+      }
 
-            specialArgs.tshmPlugin = tshm-plugin;
-          };
-
-        tentacool =
-          nixpkgs.lib.nixosSystem rec {
-            system = "x86_64-linux";
-            pkgs = getPkgs system;
-
-            modules = baseModules pkgs ++ [ ./hosts/tentacool ];
-          };
-      };
-
-      darwinConfigurations.lapras =
-        darwin.lib.darwinSystem rec {
-          system = "aarch64-darwin";
-          pkgs = getPkgs system;
-
-          modules = baseModules pkgs ++ [ ./hosts/lapras ];
-
-          specialArgs.tshmPlugin = tshm-plugin;
-        };
-    };
+      {
+        hostname = "lapras";
+        system = "aarch64-darwin";
+        isNixOS = false;
+        isHeadful = true;
+      }
+    ]);
 }

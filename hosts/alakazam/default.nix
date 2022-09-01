@@ -2,8 +2,6 @@
 
 {
   imports = [
-    ../../headful
-
     ./audio.nix
     ./auth.nix
     ./backup.nix
