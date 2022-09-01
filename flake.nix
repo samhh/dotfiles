@@ -27,10 +27,10 @@
     };
 
   outputs = { self, agenix, darwin, flake-utils, home-manager, nixpkgs, tshm-plugin }:
-    with nixpkgs.lib;
     let
-      compose = flip pipe;
-
+      getLib = { lib, ... }: lib // import ./lib { inherit lib; };
+    in
+    with getLib nixpkgs; let
       overlay = system: final: prev:
         self.packages.${system} //
         {
@@ -90,9 +90,15 @@
               ];
 
             specialArgs =
-              if isHeadful
-              then { tshmPlugin = tshm-plugin; }
-              else { };
+              # This essentially acts as a `lib` overlay (an actual overlay
+              # change only affects `pkgs.lib`).
+              { lib = getLib pkgs; } //
+
+              (
+                if isHeadful
+                then { tshmPlugin = tshm-plugin; }
+                else { }
+              );
           };
         };
 
