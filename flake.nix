@@ -55,6 +55,17 @@
           (builtins.match "^steam(-.*)?" pkgName != null);
       };
 
+      baseModules = [
+        agenix.nixosModule
+        (import ./cfg)
+        (import ./shared)
+      ];
+
+      sysModules = isNixOS:
+        if isNixOS
+        then [ home-manager.nixosModules.home-manager (import ./nixos) ]
+        else [ home-manager.darwinModules.home-manager ];
+
       getSystem = { hostname, system, isNixOS, isHeadful }:
         let
           pkgs = getPkgs system;
@@ -71,31 +82,9 @@
           ${cfgs}.${hostname} = sys {
             inherit pkgs system;
 
-            modules =
+            modules = baseModules ++ sysModules isNixOS ++
               [
-                agenix.nixosModule
-
-                (
-                  if pkgs.stdenv.isDarwin
-                  then home-manager.darwinModules.home-manager
-                  else home-manager.nixosModules.home-manager
-                )
-
-                (import ./cfg)
-                (import ./shared)
-
-                (
-                  if pkgs.stdenv.isDarwin
-                  then { }
-                  else import ./nixos
-                )
-
-                (
-                  if isHeadful
-                  then import ./headful
-                  else { }
-                )
-
+                (if isHeadful then import ./headful else { })
                 ./hosts/${hostname}
               ];
 
