@@ -63,7 +63,7 @@
         )
 
         (import ./config)
-        (import ./shared/core.nix)
+        (import ./shared)
       ];
 
     in
