@@ -27,8 +27,9 @@
     };
 
   outputs = { self, agenix, darwin, flake-utils, home-manager, nixpkgs, tshm-plugin }:
+    with nixpkgs.lib;
     let
-      compose = with nixpkgs.lib; flip pipe;
+      compose = flip pipe;
 
       overlay = system: final: prev:
         self.packages.${system} //
@@ -45,7 +46,7 @@
         overlays = [ (overlay system) ];
 
         config.allowUnfreePredicate = pkg:
-          let pkgName = nixpkgs.lib.getName pkg;
+          let pkgName = getName pkg;
           in
           builtins.elem pkgName [
             "obsidian"
@@ -95,7 +96,7 @@
           };
         };
 
-      getSystems = with nixpkgs.lib; fold (compose [ getSystem recursiveUpdate ]) { };
+      getSystems = fold (compose [ getSystem recursiveUpdate ]) { };
 
     in
     (flake-utils.lib.eachDefaultSystem (system:
