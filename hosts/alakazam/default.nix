@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ../../nixos
     ../../headful
 
     ./audio.nix

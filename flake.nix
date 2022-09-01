@@ -64,6 +64,12 @@
 
         (import ./cfg)
         (import ./shared)
+
+        (
+          if pkgs.stdenv.isDarwin
+          then { }
+          else import ./nixos
+        )
       ];
 
     in

@@ -2,8 +2,6 @@
 
 {
   imports = [
-    ../../nixos
-
     ./ddns.nix
     ./hardware.nix
     ./http.nix
