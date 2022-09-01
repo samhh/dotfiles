@@ -82,15 +82,9 @@
           ];
         };
 
-        packages =
-          let
-            byPlatform = with pkgs;
-              if stdenv.isDarwin
-              then lib.flip builtins.removeAttrs linuxOnly
-              else lib.id;
-            linuxOnly = [ "corrupter" "proton-ge" "tofi" ];
-          in
-          byPlatform (import ./pkgs { inherit pkgs; });
+        packages = with pkgs.lib;
+          let isSupportedPlatform = pkg: ! pkg.meta.unsupported;
+          in filterAttrs (const isSupportedPlatform) (import ./pkgs { inherit pkgs; });
       }
     )) //
 
