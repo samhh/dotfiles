@@ -62,7 +62,7 @@
           else home-manager.nixosModules.home-manager
         )
 
-        (import ./config)
+        (import ./cfg)
         (import ./shared)
       ];
 
