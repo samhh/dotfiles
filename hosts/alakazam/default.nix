@@ -2,8 +2,8 @@
 
 {
   imports = [
-    ../../shared/nixos
-    ../../shared/headful
+    ../../nixos
+    ../../headful
 
     ./audio.nix
     ./auth.nix
