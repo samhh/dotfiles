@@ -26,12 +26,10 @@
       };
     };
 
-  outputs = { agenix, darwin, flake-utils, home-manager, nixpkgs, tshm-plugin, ... }:
+  outputs = { self, agenix, darwin, flake-utils, home-manager, nixpkgs, tshm-plugin }:
     let
-      runnable = import ./pkgs;
-
       overlay = final: prev:
-        runnable prev //
+        self.packages."x86_64-linux" //
         {
           agenix = agenix.defaultPackage.${final.system};
 
@@ -92,7 +90,7 @@
         pkgs = import nixpkgs { inherit system; };
       in
       {
-        packages.${system} = runnable pkgs;
+        packages.${system} = import ./pkgs { inherit pkgs; };
       }
     ) //
 
