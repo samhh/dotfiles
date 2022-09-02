@@ -57,6 +57,9 @@
       };
 
       baseModules = [
+        {
+          nix.registry.nixpkgs.flake = nixpkgs;
+        }
         agenix.nixosModule
         (import ./cfg)
         (import ./shared)
