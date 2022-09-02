@@ -58,7 +58,12 @@
 
       baseModules = [
         {
-          nix.registry.nixpkgs.flake = nixpkgs;
+          nix = {
+            # Modern nix CLI
+            registry.nixpkgs.flake = nixpkgs;
+            # Legacy nix-* CLI
+            nixPath = [ "nixpkgs=${nixpkgs}" ];
+          };
         }
         agenix.nixosModule
         (import ./cfg)
