@@ -14,11 +14,11 @@ in
     volumes = [
       "zwavejs2mqtt:/usr/src/app/store"
     ];
-    ports = [
-      (let p = toString webInterfacePort; in "${p}:${p}/tcp")
-    ];
     extraOptions = [
       "--device=${stick}:/dev/zwave"
+
+      # Container needs access to Spearow on host.
+      "--network=host"
     ];
     environment.TZ = "Europe/London";
   };
