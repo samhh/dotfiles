@@ -20,6 +20,9 @@ in
       # Container needs access to Spearow on host.
       "--network=host"
     ];
-    environment.TZ = "Europe/London";
+    environment = {
+      TZ = "Europe/London";
+      PORT = toString webInterfacePort;
+    };
   };
 }
