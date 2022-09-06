@@ -9,6 +9,7 @@
     ./metapod.nix
     ./onix.nix
     ./poliwhirl.nix
+    ./spearow.nix
     ./starmie.nix
     ./vulpix.nix
   ];
