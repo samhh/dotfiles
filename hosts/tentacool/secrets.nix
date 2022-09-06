@@ -8,5 +8,6 @@
       file = ../../secrets/radicale-htpasswd.age;
       owner = "radicale";
     };
+    zwave-env.file = ../../secrets/zwave-env.age;
   };
 }

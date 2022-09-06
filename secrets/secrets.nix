@@ -7,4 +7,5 @@ in
   "ddns-token.age".publicKeys = [ tentacool ];
   "pihole-env.age".publicKeys = [ tentacool ];
   "radicale-htpasswd.age".publicKeys = [ tentacool ];
+  "zwave-env.age".publicKeys = [ tentacool ];
 }

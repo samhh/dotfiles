@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 let
   stick = "/dev/serial/by-id/usb-Silicon_Labs_CP2102N_USB_to_UART_Bridge_Controller_c6970d0f91bcea11a1ec96e368aed703-if00-port0";
@@ -24,5 +24,8 @@ in
       TZ = "Europe/London";
       PORT = toString webInterfacePort;
     };
+    environmentFiles = [
+      config.age.secrets.zwave-env.path
+    ];
   };
 }
