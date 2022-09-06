@@ -6,7 +6,13 @@ output="DP-3"
 query="$1"
 profile="$2"
 
-if [ -n "$profile" ]; then
+isUnsplashAddr=$(case "$query" in
+  *figma.com*|*linear.com*|*gettyimages*) echo "yep" ;;
+esac)
+
+if [ "$isUnsplashAddr" ]; then
+  app="qbpm launch unsplash"
+elif [ -n "$profile" ]; then
   app="qbpm launch $profile"
 else
   app="qutebrowser"
