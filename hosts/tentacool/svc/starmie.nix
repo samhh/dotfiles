@@ -1,9 +1,10 @@
 { ... }:
 
+let lanPort = 8123;
+in
 {
   networking.firewall.allowedTCPPorts = [
-    # HASS (LAN) non-SSL
-    8123
+    lanPort
   ];
 
   virtualisation.oci-containers.containers.hass = {
@@ -21,7 +22,7 @@
     enableACME = true;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "http://127.0.0.1:8123";
+      proxyPass = "http://127.0.0.1:${toString lanPort}";
       proxyWebsockets = true;
     };
   };

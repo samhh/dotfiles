@@ -1,5 +1,7 @@
 { config, ... }:
 
+let webPort = 5232;
+in
 {
   services.radicale = {
     enable = true;
@@ -14,7 +16,7 @@
     enableACME = true;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "http://127.0.0.1:5232";
+      proxyPass = "http://127.0.0.1:${toString webPort}";
     };
   };
 

@@ -1,11 +1,10 @@
 { ... }:
 
-let mosquittoPort = 1883;
+let brokerPort = 1883;
 in
 {
   networking.firewall.allowedTCPPorts = [
-    # Mosquitto broker
-    mosquittoPort
+    brokerPort
   ];
 
   services.mosquitto = {
@@ -14,7 +13,7 @@ in
       # LAN w/o credentials
       {
         address = "0.0.0.0";
-        port = mosquittoPort;
+        port = brokerPort;
         settings.allow_anonymous = true;
         acl = [
           "topic readwrite #"

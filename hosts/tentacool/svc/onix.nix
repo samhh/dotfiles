@@ -1,15 +1,16 @@
 { config, ... }:
 
+let
+  dnsPort = 53;
+  webPort = 8053;
+in
 {
   networking.firewall.allowedTCPPorts = [
-    # Pi-Hole
-    8053
-    # DNS
-    53
+    dnsPort
+    webPort
   ];
   networking.firewall.allowedUDPPorts = [
-    # DNS
-    53
+    dnsPort
   ];
 
   virtualisation.oci-containers.containers.pihole = {
@@ -22,7 +23,7 @@
       "--network=host"
     ];
     environment = {
-      WEB_PORT = "8053";
+      WEB_PORT = toString webPort;
       TZ = "Europe/London";
     };
     environmentFiles = [

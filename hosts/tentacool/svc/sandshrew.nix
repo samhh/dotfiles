@@ -2,11 +2,11 @@
 
 let
   stick = "/dev/serial/by-id/usb-Silicon_Labs_CP2102N_USB_to_UART_Bridge_Controller_c6970d0f91bcea11a1ec96e368aed703-if00-port0";
-  webInterfacePort = 8091;
+  webPort = 8091;
 in
 {
   networking.firewall.allowedTCPPorts = [
-    webInterfacePort
+    webPort
   ];
 
   virtualisation.oci-containers.containers.zwavejs2mqtt = {
@@ -22,7 +22,7 @@ in
     ];
     environment = {
       TZ = "Europe/London";
-      PORT = toString webInterfacePort;
+      PORT = toString webPort;
     };
     environmentFiles = [
       config.age.secrets.zwave-env.path
