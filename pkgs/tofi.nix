@@ -2,12 +2,11 @@
 
 stdenv.mkDerivation rec {
   pname = "tofi";
-  # Latest release doesn't yet contain --require-match or --prompt-padding.
-  version = "adc683b7fa847bc1776e3bece532c39aff12b039";
+  version = "0.6.0";
 
   src = fetchurl {
-    url = "https://github.com/philj56/tofi/archive/${version}.tar.gz";
-    sha256 = "192g1qwhnfhqcmmzv08frdkqwwi7z40nc6axhplvcmgn0mp524z9";
+    url = "https://github.com/philj56/tofi/archive/refs/tags/v${version}.tar.gz";
+    sha256 = "05jh65klqzbgszgyq6a1cllskk54acibkvz2xvnqnyxf0b9dv8v5";
   };
 
   buildInputs = with pkgs; [ cairo harfbuzz libxkbcommon meson ninja pango pkg-config scdoc wayland wayland-protocols ];
