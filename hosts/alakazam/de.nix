@@ -21,13 +21,12 @@ in
   programs.sway.enable = true;
   xdg.portal.wlr.enable = true;
 
-  home-manager.users.${config.username} = {
-    # Autostart, but only in tty1. Can't use ordinary
-    # `environment.loginShellInit` as fish isn't POSIX-compliant.
-    programs.fish.loginShellInit = ''
-      if test -z $DISPLAY; and test (tty) = /dev/tty1; exec sway; end
-    '';
+  # Autostart WM only in TTY1.
+  environment.loginShellInit = ''
+    if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then exec sway; fi
+  '';
 
+  home-manager.users.${config.username} = {
     wayland.windowManager.sway =
       let mod = "Mod4";
       in
