@@ -19,6 +19,8 @@ ssh -t sam@tentacool \
     sudo tar -c -C /var/lib/zigbee2mqtt/ . > ~/backups/exeggutor.tar
     tar -f ~/backups/exeggutor.tar --delete ./log/ &&
 
+    sudo podman volume export zwavejs2mqtt > ~/backups/sandshrew.tar
+
     sudo podman volume export hass > ~/backups/starmie.tar &&
     tar -f ~/backups/starmie.tar --wildcards --delete 'home-assistant_v2.*' &&
 
