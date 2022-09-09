@@ -52,7 +52,8 @@ in
         "vi" = "nvim";
 
         "sh" = "nix shell";
-        "nixu" = "nix-prefetch-url --unpack";
+        "nixh" = "nix-prefetch-url";
+        "nixhu" = "nix-prefetch-url --unpack";
       };
       functions = {
         mkcd = "mkdir -p $argv; cd $argv;";
