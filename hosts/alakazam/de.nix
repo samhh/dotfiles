@@ -130,7 +130,7 @@ in
       enable = true;
       events = [{
         event = "before-sleep";
-        command = "${scripts}/lock.sh";
+        command = "${scripts}/lock.sh -f";
       }];
     };
 
