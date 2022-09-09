@@ -64,10 +64,6 @@ lua <<EOF
 
   require'nvim-surround'.setup()
 
-  require'eyeliner'.setup {
-    highlight_on_key = true,
-  }
-
   require'gitsigns'.setup {
     -- Imlicitly also disables all (other) default keybinds
     keymaps = {

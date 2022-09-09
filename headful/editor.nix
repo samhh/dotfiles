@@ -32,7 +32,6 @@
         hop-nvim
         gitlinker-nvim
         targets-vim
-        eyeliner-nvim
 
         # Formatting
         editorconfig-vim
