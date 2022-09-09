@@ -3,4 +3,4 @@
 img="/tmp/lock.png"
 
 grimshot save screen - | corrupter - > "$img"
-swaylock -i "$img"
+swaylock -i "$img" "$@"
