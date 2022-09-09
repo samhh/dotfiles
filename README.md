@@ -20,7 +20,7 @@ Build your desired host with `nixos-rebuild --flake` (or `darwin-rebuild` on mac
 # nixos-rebuild switch --flake ".#alakazam"
 ```
 
-For now some Alakazam scripts presume the repo will be at `~/dotfiles/`. Anything that couldn't be configured in Home Manager lives in `./cfg/`.
+For now some Alakazam scripts presume the repo will be at `~/dotfiles/`. Anything that couldn't be configured in Home Manager lives in `./cfg/` (NB not `:/cfg/`, which defines custom Nix configuration).
 
 ### Packages
 
