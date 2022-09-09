@@ -4,6 +4,13 @@ let
   scripts = "${config.users.users.${config.username}.home}/dotfiles/hosts/alakazam/scripts";
   output = "DP-3";
   barName = "top";
+
+  locker = pkgs.writeShellScriptBin "locker" ''
+    img="/tmp/lock.png"
+
+    ${pkgs.sway-contrib.grimshot}/bin/grimshot save screen - | ${pkgs.corrupter}/bin/corrupter - > "$img"
+    ${pkgs.swaylock}/bin/swaylock -i "$img" "$@"
+  '';
 in
 {
   fonts.fonts = with pkgs; [
@@ -64,7 +71,7 @@ in
             "${mod}+o" = "exec ${pkgs.mako}/bin/makoctl dismiss";
             "${mod}+Shift+o" = "exec ${pkgs.mako}/bin/makoctl dismiss -a";
             "${mod}+p" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot save area";
-            "${mod}+l" = "exec ${scripts}/lock.sh";
+            "${mod}+l" = "exec ${locker}/bin/locker";
             "${mod}+Shift+l" = "exec systemctl suspend";
           };
           assigns = {
@@ -130,7 +137,7 @@ in
       enable = true;
       events = [{
         event = "before-sleep";
-        command = "${scripts}/lock.sh -f";
+        command = "exec ${locker}/bin/locker -f";
       }];
     };
 
@@ -179,10 +186,6 @@ in
       # For various scripts.
       bash
       tofi
-
-      # For lock script.
-      corrupter
-      swaylock
 
       # For scripts interacting with `swaymsg`.
       gron
