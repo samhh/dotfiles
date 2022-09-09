@@ -77,7 +77,9 @@ local function setup_servers()
     -- `A | [A] | nil`, making this safe.
     handlers = {
       ["textDocument/definition"] = function (e, xs, ...)
-        vim.lsp.handlers['textDocument/definition'](err, xs[1], ...)
+        if xs ~= nil then
+          vim.lsp.handlers['textDocument/definition'](err, xs[1], ...)
+        end
       end
     }
   }
