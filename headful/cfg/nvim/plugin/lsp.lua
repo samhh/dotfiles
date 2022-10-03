@@ -24,7 +24,7 @@ local function setup_servers()
 
   local function attacher_nofmt(client)
     setup_keybinds()
-    client.resolved_capabilities.document_formatting = false
+    client.server_capabilities.documentFormattingProvider = false
   end
 
   lspc.bashls.setup {
