@@ -117,7 +117,7 @@ k.mapn('gr', function() vim.lsp.buf.references() end)
 k.mapn('gs', function() pickers.treesitter() end)
 
 -- Format/fix active buffer
-k.mapn('<Leader>z', function() vim.lsp.buf.formatting() end)
+k.mapn('<Leader>z', function() vim.lsp.buf.format({ async = true }) end)
 
 -- Show diagnostics in popup
 k.mapn('<Leader>e', function() vim.diagnostic.open_float() end)
