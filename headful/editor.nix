@@ -77,13 +77,15 @@
         distroSpecific =
           if pkgs.stdenv.isDarwin
           then [ ]
-          else with pkgs; [ haskell-language-server tshm ];
+          else with pkgs; [ tshm ];
       in
       with pkgs; [
         # For :TSUpdate
         gcc
 
         # Language servers
+        ## Don't install HLS as it's version-dependent. Instead install in the
+        ## project's Nix dev shell.
         nodePackages.bash-language-server
         dhall-lsp-server
         efm-langserver
