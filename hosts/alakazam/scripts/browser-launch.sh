@@ -7,7 +7,7 @@ query="$1"
 profile="$2"
 
 isUnsplashAddr=$(case "$query" in
-  *figma.com*|*linear.app*|*gettyimages*) echo "yep" ;;
+  *figma.com*|*linear.app*|*trello.com*|*gettyimages*) echo "yep" ;;
 esac)
 
 if [ "$isUnsplashAddr" ]; then
