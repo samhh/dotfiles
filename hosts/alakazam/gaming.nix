@@ -8,7 +8,7 @@
 
     home.packages = with pkgs; [
       mangohud
-      polymc
+      prismlauncher
       proton-ge
     ];
   };

@@ -34,7 +34,7 @@
         targets-vim
 
         # Formatting
-        editorconfig-vim
+        editorconfig-nvim
 
         # Compilation
         vim-dispatch
