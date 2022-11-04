@@ -1,5 +1,12 @@
+-- Workaround for:
+--   https://github.com/NixOS/nixpkgs/issues/189838#issuecomment-1301609540
+local parser_install_dir = vim.fn.stdpath("cache") .. "/treesitters"
+vim.fn.mkdir(parser_install_dir, "p")
+vim.opt.runtimepath:append(parser_install_dir)
+
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = {},
+  parser_install_dir = parser_install_dir,
+  ensure_installed = "all",
   highlight = { enable = true },
   indent = { enable = false },
   autotag = { enable = true },
