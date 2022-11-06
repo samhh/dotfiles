@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./backup.nix
     ./ddns.nix
     ./hardware.nix
     ./http.nix

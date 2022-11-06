@@ -4,8 +4,10 @@ let
 
 in
 {
+  "b2-env.age".publicKeys = [ alakazam tentacool ];
   "ddns-token.age".publicKeys = [ tentacool ];
   "pihole-env.age".publicKeys = [ tentacool ];
   "radicale-htpasswd.age".publicKeys = [ tentacool ];
+  "restic.age".publicKeys = [ alakazam tentacool ];
   "zwave-env.age".publicKeys = [ tentacool ];
 }
