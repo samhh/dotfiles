@@ -36,8 +36,8 @@ in
       dfs = "diff --staged";
       ca = "commit --amend --no-edit";
       cam = "commit --amend";
-      cm = "commit -m";
-      cma = "commit -am";
+      cm = "commit";
+      cma = "commit -a";
       cmx = "commit --fixup";
       cp = "cherry-pick";
       ft = "fetch";
