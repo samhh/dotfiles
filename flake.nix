@@ -119,6 +119,7 @@
       {
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
+            agenix.defaultPackage.${system}
             git
             git-crypt
             nixpkgs-fmt

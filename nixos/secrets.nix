@@ -16,5 +16,5 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [ agenix restic ];
+  environment.systemPackages = with pkgs; [ restic ];
 }
