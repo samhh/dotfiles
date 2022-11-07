@@ -5,8 +5,6 @@ appKey=$(pass misc/backblaze.com/app-key-pass)
 
 echo "Preparing logs..."
 mkdir -p /mnt/nas/logs/
-tree /mnt/nas/tv/ > /mnt/nas/logs/tv.txt
-tree /mnt/nas/movies/ > /mnt/nas/logs/movies.txt
 "$(dirname "$0")"/seedbox/sonarr.sh > /mnt/nas/logs/sonarr.txt
 "$(dirname "$0")"/seedbox/radarr.sh > /mnt/nas/logs/radarr.txt
 
