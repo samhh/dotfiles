@@ -43,6 +43,7 @@ in
       libnotify
       libqalculate
       mpv
+      nvd
       qrcp
       ripgrep
       qrencode
