@@ -1,5 +1,6 @@
 # Note that an A record for any given subdomain already needs to exist in order
-# for DDNS to work.
+# for DDNS to work. It'll also need manually cleaning up after the service is
+# removed.
 
 { config, ... }:
 
