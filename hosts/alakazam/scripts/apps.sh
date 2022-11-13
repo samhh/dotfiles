@@ -3,6 +3,7 @@
 read -r -d '' apps << fin
 chromium
 firefox
+lutris
 obsidian
 pavucontrol
 piper
