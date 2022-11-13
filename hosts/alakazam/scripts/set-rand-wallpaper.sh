@@ -4,4 +4,5 @@ dir="$1"
 
 kill "$(pgrep swaybg)" 2> /dev/null
 
-find "$dir" -type f | shuf -n1 | xargs swaybg -m fill -i
+# The not path hides dotfiles and `@eaDir`.
+find "$dir" -type f -not -path '*/[@.]*' | shuf -n1 | xargs swaybg -m fill -i
