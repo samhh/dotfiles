@@ -42,7 +42,6 @@ in
       lftp
       libnotify
       libqalculate
-      mpv
       nvd
       qrcp
       ripgrep
@@ -98,5 +97,10 @@ in
       # npm
       ".npmrc"
     ];
+
+    programs.mpv = {
+      enable = true;
+      config.volume = 65;
+    };
   };
 }
