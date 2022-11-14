@@ -100,6 +100,9 @@ in
 
     programs.mpv = {
       enable = true;
+      package = pkgs.mpv.override {
+        scripts = with pkgs.mpvScripts; [ mpris ];
+      };
       config.volume = 65;
       bindings.MBTN_LEFT = "cycle pause";
     };
