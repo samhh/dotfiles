@@ -63,7 +63,7 @@ in
         yf = "hint links yank";
         x =
           "spawn --userscript qute-pass --username-target secret --username-pattern \"username: (.+)\" --dmenu-invocation ${config.apps.launcher.bin}";
-        v = "spawn ${pkgs.mpv}/bin/mpv {url}";
+        v = "spawn ${pkgs.mpv}/bin/mpv --title=Picture-in-Picture {url}";
 
         b = "nop";
         B = "nop";

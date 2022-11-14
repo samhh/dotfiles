@@ -4,6 +4,11 @@ let
   scripts = "${config.users.users.${config.username}.home}/dotfiles/hosts/alakazam/scripts";
   output = "DP-3";
   barName = "top";
+  res = { w = 2560; h = 1440; r = 240; };
+  gap = 10;
+
+  # Matches both Firefox and any other windows following this schema.
+  pipWindowTitleRegex = "^Picture-in-Picture$";
 
   locker = pkgs.writeShellScriptBin "locker" ''
     img="/tmp/lock.png"
@@ -36,14 +41,14 @@ in
         wrapperFeatures.gtk = true;
         config = {
           output.${output} = {
-            mode = "2560x1440@240Hz";
+            mode = with res; "${toString w}x${toString h}@${toString r}Hz";
             adaptive_sync = "on";
           };
           bars = [{
             statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-${barName}.toml";
             position = "top";
           }];
-          gaps.inner = 10;
+          gaps.inner = gap;
           modifier = mod;
           # Scripts aren't imported into Nix as they have relatively-pathed
           # dependencies upon other scripts Nix that doesn't know about.
@@ -77,6 +82,18 @@ in
             "8" = [{ class = "^Slack$"; }];
           };
           floating.criteria = [{ app_id = "^pinentry-gtk$"; }];
+          window.commands = [{
+            criteria.title = pipWindowTitleRegex;
+            command =
+              let
+                  # 16:9
+                  win = { w = 800; h = 450; };
+                  # It's actually double this for some reason I can't recall.
+                  gap' = gap * 2;
+                  approxBarHeight = 20;
+                  pos = { w = res.w - win.w - gap'; h = res.h - win.h - gap' - approxBarHeight; };
+               in "floating enable; sticky enable; resize set ${toString win.w} ${toString win.h}; move position ${toString pos.w} ${toString pos.h}";
+          }];
         };
       };
 
