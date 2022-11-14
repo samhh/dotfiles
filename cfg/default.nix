@@ -19,7 +19,6 @@ with lib; {
       terminal.bin = mkOption { type = types.str; };
       launcher.bin = mkOption { type = types.str; };
       webBrowser.bin = mkOption { type = types.str; };
-      streamer.bin = mkOption { type = types.str; };
     };
   };
 
