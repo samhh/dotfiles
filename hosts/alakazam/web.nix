@@ -2,6 +2,7 @@
 
 let
   editorBin = "${config.home-manager.users.${config.username}.programs.neovim.finalPackage}/bin/nvim";
+  mpvBin = "${config.home-manager.users.${config.username}.programs.mpv.finalPackage}/bin/mpv";
   scripts = "${config.users.users.${config.username}.home}/dotfiles/hosts/alakazam/scripts";
 
   banginServerNodePort = 1234;
@@ -63,7 +64,7 @@ in
         yf = "hint links yank";
         x =
           "spawn --userscript qute-pass --username-target secret --username-pattern \"username: (.+)\" --dmenu-invocation ${config.apps.launcher.bin}";
-        v = "spawn ${pkgs.mpv}/bin/mpv --title=Picture-in-Picture {url}";
+        v = "spawn ${mpvBin} --title=Picture-in-Picture {url}";
 
         b = "nop";
         B = "nop";
