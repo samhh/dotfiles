@@ -33,8 +33,9 @@ in
 
   home-manager.users.${config.username} = {
     wayland.windowManager.sway =
-      let mod = "Mod4";
-          mprisPlayers = lib.concatStringsSep "," [ "mpv" "firefox" "qutebrowser" "mpd" ];
+      let
+        mod = "Mod4";
+        mprisPlayers = lib.concatStringsSep "," [ "mpv" "firefox" "qutebrowser" "mpd" ];
       in
       with lib; {
         enable = true;
@@ -87,14 +88,15 @@ in
             criteria.title = pipWindowTitleRegex;
             command =
               let
-                  # 16:9
-                  win = { w = 800; h = 450; };
-                  # The gap is actually double that configured for some reason,
-                  # so this is `gap * 2` in spirit.
-                  spacing = gap * 3;
-                  approxBarHeight = 19;
-                  pos = { w = res.w - win.w - spacing; h = res.h - win.h - spacing - approxBarHeight; };
-               in "floating enable; sticky enable; border none; resize set ${toString win.w} ${toString win.h}; move position ${toString pos.w} ${toString pos.h}";
+                # 16:9
+                win = { w = 800; h = 450; };
+                # The gap is actually double that configured for some reason,
+                # so this is `gap * 2` in spirit.
+                spacing = gap * 3;
+                approxBarHeight = 19;
+                pos = { w = res.w - win.w - spacing; h = res.h - win.h - spacing - approxBarHeight; };
+              in
+              "floating enable; sticky enable; border none; resize set ${toString win.w} ${toString win.h}; move position ${toString pos.w} ${toString pos.h}";
           }];
         };
       };
