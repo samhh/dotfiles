@@ -49,7 +49,6 @@ in
       qrencode
       sd
       senpai
-      streamlink
       tldr
       tre-command
       unzip
