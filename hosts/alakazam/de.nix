@@ -91,9 +91,9 @@ in
                   win = { w = 800; h = 450; };
                   # It's actually double this for some reason I can't recall.
                   gap' = gap * 2;
-                  approxBarHeight = 20;
+                  approxBarHeight = 19;
                   pos = { w = res.w - win.w - gap'; h = res.h - win.h - gap' - approxBarHeight; };
-               in "floating enable; sticky enable; resize set ${toString win.w} ${toString win.h}; move position ${toString pos.w} ${toString pos.h}";
+               in "floating enable; sticky enable; border none; resize set ${toString win.w} ${toString win.h}; move position ${toString pos.w} ${toString pos.h}";
           }];
         };
       };
