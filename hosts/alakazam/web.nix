@@ -53,6 +53,9 @@ in
           show = "multiple";
         };
         url.default_page = "about:blank";
+        # Ideally we'd support dynamic light/dark themes, but until then let's
+        # avoid some blindingly bright pages at nighttime.
+        colors.webpage.preferred_color_scheme = "dark";
       };
       keyBindings.normal = {
         f = "hint all current";
