@@ -34,6 +34,7 @@ in
   home-manager.users.${config.username} = {
     wayland.windowManager.sway =
       let mod = "Mod4";
+          mprisPlayers = lib.concatStringsSep "," [ "mpv" "firefox" "qutebrowser" "mpd" ];
       in
       with lib; {
         enable = true;
@@ -58,9 +59,9 @@ in
             "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
             "XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -1%";
             "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +1%";
-            "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
-            "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
-            "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
+            "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl -p \"${mprisPlayers}\" play-pause";
+            "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl -p \"${mprisPlayers}\" previous";
+            "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl -p \"${mprisPlayers}\" next";
             "${mod}+Return" = "exec ${config.apps.terminal.bin}";
             "${mod}+w" = "exec systemctl --user restart wallpaper";
             "${mod}+t" = "exec ${scripts}/web-search.sh";
