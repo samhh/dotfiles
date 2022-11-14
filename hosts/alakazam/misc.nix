@@ -101,6 +101,7 @@ in
     programs.mpv = {
       enable = true;
       config.volume = 65;
+      bindings.MBTN_LEFT = "cycle pause";
     };
   };
 }
