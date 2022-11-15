@@ -18,6 +18,8 @@
         inputs.nixpkgs.follows = "nixpkgs";
       };
 
+      nix-colors.url = "github:misterio77/nix-colors";
+
       nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
       tshm-plugin = {
@@ -26,7 +28,7 @@
       };
     };
 
-  outputs = { self, agenix, darwin, flake-utils, home-manager, nixpkgs, tshm-plugin }:
+  outputs = { self, agenix, darwin, flake-utils, home-manager, nix-colors, nixpkgs, tshm-plugin }:
     let
       getLib = { lib, ... }: lib // import ./lib { inherit lib; };
     in
@@ -102,11 +104,10 @@
               # change only affects `pkgs.lib`).
               { lib = getLib pkgs; } //
 
-              (
-                if isHeadful
-                then { tshmPlugin = tshm-plugin; }
-                else { }
-              );
+              (if isHeadful then {
+                inherit nix-colors;
+                tshmPlugin = tshm-plugin;
+              } else { });
           };
         };
 

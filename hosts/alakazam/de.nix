@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, nix-colors, pkgs, ... }:
 
 let
   scripts = "${config.users.users.${config.username}.home}/dotfiles/hosts/alakazam/scripts";
@@ -30,6 +30,8 @@ in
   environment.loginShellInit = ''
     if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then exec sway; fi
   '';
+
+  colorScheme = nix-colors.colorSchemes.kanagawa;
 
   home-manager.users.${config.username} = {
     wayland.windowManager.sway =
