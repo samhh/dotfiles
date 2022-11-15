@@ -5,6 +5,7 @@ let
   output = "DP-3";
   barName = "top";
   res = { w = 2560; h = 1440; r = 240; };
+  barHeight = 24;
   gap = 10;
 
   # Matches both Firefox and any other windows following this schema.
@@ -49,7 +50,7 @@ in
             adaptive_sync = "on";
           };
           bars = [{
-            statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-${barName}.toml";
+            statusCommand = "${pkgs.waybar}/bin/waybar";
             position = "top";
           }];
           gaps.inner = gap;
@@ -95,64 +96,108 @@ in
                 # The gap is actually double that configured for some reason,
                 # so this is `gap * 2` in spirit.
                 spacing = gap * 3;
-                approxBarHeight = 19;
-                pos = { w = res.w - win.w - spacing; h = res.h - win.h - spacing - approxBarHeight; };
+                pos = { w = res.w - win.w - spacing; h = res.h - win.h - spacing - barHeight; };
               in
               "floating enable; sticky enable; border none; resize set ${toString win.w} ${toString win.h}; move position ${toString pos.w} ${toString pos.h}";
           }];
         };
       };
 
-    programs.i3status-rust = {
+    programs.waybar = {
       enable = true;
-      bars.${barName} = {
-        theme = "bad-wolf";
-        blocks = let max = 75; in
-          [
-            {
-              block = "focused_window";
-              max_width = max;
-            }
-            {
-              block = "cpu";
-              format = "{utilization}";
-            }
-            {
-              block = "temperature";
-              driver = "sensors";
-              chip = "k10temp-pci-00c3";
-              format = "{max}";
-              collapsed = false;
-              interval = 1;
-              good = 1;
-              idle = 50;
-              info = 70;
-              warning = 85;
-            }
-            {
-              block = "memory";
-              display_type = "memory";
-              clickable = false;
-              format_mem = "{mem_used}";
-            }
-            {
-              block = "net";
-            }
-            {
-              block = "music";
-              player = "mpd";
-              max_width = max;
-              dynamic_width = true;
-              format = "{combo} ";
-            }
-            {
-              block = "sound";
-            }
-            {
-              block = "time";
-            }
-          ];
+      settings = {
+        ${barName} = {
+          position = "top";
+          height = barHeight;
+
+          modules-left = [ "sway/workspaces" "sway/mode" ];
+          modules-center = [ "sway/window" ];
+          modules-right = [ "cpu" "temperature" "memory" "network" "mpd" "pulseaudio" "clock" ];
+
+          cpu = {
+            interval = 1;
+            states = {
+              warning = 50;
+              critical = 90;
+            };
+          };
+
+          temperature.critical-threshold = 75;
+
+          memory = {
+            interval = 1;
+            format = "{used}/{total}GB";
+            states = {
+              warning = 65;
+              critical = 85;
+            };
+          };
+
+          network = {
+            interval = 1;
+            format = "↑{bandwidthUpBits} ↓{bandwidthDownBits}";
+          };
+
+          mpd = rec {
+            format = "{title} — {artist}";
+            format-paused = format;
+          };
+
+          pulseaudio.format-muted = "0%";
+
+          clock.format = "{:%a %d/%m %H:%M}";
+        };
       };
+      style = with lib; ''
+        * {
+          min-height: ${toString barHeight}px;
+          font-family: Hasklig;
+          font-size: 12px;
+        }
+
+        #waybar {
+          opacity: .92;
+        }
+
+        #workspaces button {
+          padding: 0;
+        }
+
+        #workspaces button.focused {
+          background: #${config.colorScheme.colors.base01};
+        }
+
+        #workspaces button,
+        #mode,
+        #window,
+        #cpu,
+        #temperature,
+        #memory,
+        #network,
+        #mpd,
+        #pulseaudio,
+        #clock {
+          color: #${config.colorScheme.colors.base05};
+        }
+
+        #mpd.paused,
+        #mpd.stopped {
+          color: #${config.colorScheme.colors.base03};
+        }
+
+        #cpu.warning,
+        #temperature.critical,
+        #memory.warning,
+        #mpd.disconnected,
+        #pulseaudio.muted {
+          color: #${config.colorScheme.colors.base09};
+        }
+
+        #cpu.critical,
+        #memory.critical {
+          color: #${config.colorScheme.colors.base08};
+        }
+      '';
     };
 
     services.swayidle = {
