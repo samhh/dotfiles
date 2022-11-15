@@ -197,8 +197,8 @@ in
     gtk = {
       enable = true;
       theme = {
-        package = pkgs.mojave-gtk-theme;
-        name = "Mojave-Light";
+        package = (nix-colors.lib-contrib { inherit pkgs; }).gtkThemeFromScheme { scheme = config.colorScheme; };
+        name = config.colorScheme.slug;
       };
     };
 
