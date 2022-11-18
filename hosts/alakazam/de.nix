@@ -50,10 +50,7 @@ in
             mode = with res; "${toString w}x${toString h}@${toString r}Hz";
             adaptive_sync = "on";
           };
-          bars = [{
-            statusCommand = "${pkgs.waybar}/bin/waybar";
-            position = "top";
-          }];
+          bars = [ ];
           gaps.inner = gap;
           modifier = mod;
           # Scripts aren't imported into Nix as they have relatively-pathed
@@ -106,6 +103,10 @@ in
 
     programs.waybar = {
       enable = true;
+      systemd = {
+        enable = true;
+        target = wmTarget;
+      };
       settings = {
         ${barName} = {
           position = "top";
