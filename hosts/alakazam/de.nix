@@ -3,6 +3,7 @@
 let
   scripts = "${config.users.users.${config.username}.home}/dotfiles/hosts/alakazam/scripts";
   output = "DP-3";
+  wmTarget = "sway-session.target";
   barName = "top";
   res = { w = 2560; h = 1440; r = 240; };
   barHeight = 24;
@@ -215,27 +216,24 @@ in
       longitude = 0.1298;
     };
 
-    systemd.user.services =
-      let wmTarget = "sway-session.target";
-      in
-      {
-        mako = {
-          Install.WantedBy = [ wmTarget ];
-          Service.ExecStart = "${pkgs.mako}/bin/mako";
-        };
+    systemd.user.services = {
+      mako = {
+        Install.WantedBy = [ wmTarget ];
+        Service.ExecStart = "${pkgs.mako}/bin/mako";
+      };
 
-        wallpaper = {
-          Install.WantedBy = [ wmTarget ];
-          Service = {
-            ExecStart = "${scripts}/set-rand-wallpaper.sh ${config.nas.path}/bgs";
-            Environment =
-              let deps = with pkgs; [ coreutils findutils procps swaybg ];
-              in [ "PATH=${lib.makeBinPath deps}" ];
-            Restart = "always";
-            RuntimeMaxSec = "3h";
-          };
+      wallpaper = {
+        Install.WantedBy = [ wmTarget ];
+        Service = {
+          ExecStart = "${scripts}/set-rand-wallpaper.sh ${config.nas.path}/bgs";
+          Environment =
+            let deps = with pkgs; [ coreutils findutils procps swaybg ];
+            in [ "PATH=${lib.makeBinPath deps}" ];
+          Restart = "always";
+          RuntimeMaxSec = "3h";
         };
       };
+    };
 
     xdg.configFile."tofi/config".source = ./cfg/tofi.cfg;
 
