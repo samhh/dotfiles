@@ -201,6 +201,7 @@ in
           color: #${config.colorScheme.colors.base03};
         }
 
+        #workspaces button.urgent,
         #cpu.warning,
         #temperature.critical,
         #memory.warning,
