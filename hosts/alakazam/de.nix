@@ -10,6 +10,9 @@ let
   # it.
   approxBarHeight = 24;
   gap = 10;
+  bgOpacityPerc = 92;
+  # The same as the percentage. Ideally we'd calculate this here in Nix.
+  bgOpacityHex = "EB";
 
   # Matches both Firefox and any other windows following this schema.
   pipWindowTitleRegex = "^Picture-in-Picture$";
@@ -163,7 +166,7 @@ in
         }
 
         #waybar {
-          opacity: .92;
+          opacity: 0.${toString bgOpacityPerc};
         }
 
         #workspaces button {
@@ -243,27 +246,25 @@ in
 
     xdg.configFile."tofi/config".text =
       let
-        fontSize = 10;
-        vPadding = (approxBarHeight - (fontSize * 2)) / 2;
+        vPadding = 10;
+        hPadding = vPadding * 1.5;
       in
       ''
         fuzzy-match = true
 
-        anchor = top
-        width = 100%
-        height = ${toString approxBarHeight}
-        horizontal = true
-        font-size = ${toString fontSize}
+        width = 425
+        height = 200
+        font-size = 10
         font = monospace
         outline-width = 0
         border-width = 0
-        min-input-width = 150
-        result-spacing = 20
+        corner-radius = 2
+        result-spacing = ${toString (vPadding / 2)}
         padding-top = ${toString vPadding}
         padding-bottom = ${toString vPadding}
-        padding-left = 10
-        padding-right = 10
-        prompt-padding = 10
+        padding-left = ${toString hPadding}
+        padding-right = ${toString hPadding}
+        prompt-padding = ${toString hPadding}
 
         background-color = ${config.colorScheme.colors.base00}${bgOpacityHex}
         text-color       = ${config.colorScheme.colors.base05}
