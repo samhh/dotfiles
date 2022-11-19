@@ -241,30 +241,34 @@ in
       };
     };
 
-    xdg.configFile."tofi/config".text = ''
-      fuzzy-match = true
+    xdg.configFile."tofi/config".text =
+      let
+        fontSize = 10;
+        vPadding = (approxBarHeight - (fontSize * 2)) / 2;
+      in
+      ''
+        fuzzy-match = true
 
-      anchor = top
-      width = 100%
-      # Matches status bar
-      height = 19
-      horizontal = true
-      font-size = 10
-      font = monospace
-      outline-width = 0
-      border-width = 0
-      min-input-width = 150
-      result-spacing = 20
-      padding-top = 0
-      padding-bottom = 0
-      padding-left = 10
-      padding-right = 10
-      prompt-padding = 10
+        anchor = top
+        width = 100%
+        height = ${toString approxBarHeight}
+        horizontal = true
+        font-size = ${toString fontSize}
+        font = monospace
+        outline-width = 0
+        border-width = 0
+        min-input-width = 150
+        result-spacing = 20
+        padding-top = ${toString vPadding}
+        padding-bottom = ${toString vPadding}
+        padding-left = 10
+        padding-right = 10
+        prompt-padding = 10
 
-      # From kanagawa.nvim
-      background-color = #16161D
-      selection-color = #A3D4D5
-    '';
+        # From kanagawa.nvim
+        background-color = #16161D
+        selection-color = #A3D4D5
+      '';
 
     gtk = {
       enable = true;
