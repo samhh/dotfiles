@@ -13,6 +13,9 @@ let
   bgOpacityPerc = 92;
   # The same as the percentage. Ideally we'd calculate this here in Nix.
   bgOpacityHex = "EB";
+  vPadding = 10;
+  hPadding = builtins.floor (vPadding * 1.5);
+  borderRadius = 2;
 
   # Matches both Firefox and any other windows following this schema.
   pipWindowTitleRegex = "^Picture-in-Picture$";
@@ -232,7 +235,17 @@ in
       longitude = 0.1298;
     };
 
+    programs.mako = {
+      enable = true;
+      backgroundColor = "#${config.colorScheme.colors.base00}${bgOpacityHex}";
+      borderSize = 0;
+      inherit borderRadius;
+      padding = "${toString vPadding},${toString hPadding}";
+    };
+
     systemd.user.services = {
+      # Needs to be defined explicitly, see:
+      #   https://github.com/nix-community/home-manager/issues/2028#issuecomment-1231564220
       mako = {
         Install.WantedBy = [ wmTarget ];
         Service.ExecStart = "${pkgs.mako}/bin/mako";
@@ -251,32 +264,27 @@ in
       };
     };
 
-    xdg.configFile."tofi/config".text =
-      let
-        vPadding = 10;
-        hPadding = vPadding * 1.5;
-      in
-      ''
-        fuzzy-match = true
+    xdg.configFile."tofi/config".text = ''
+      fuzzy-match = true
 
-        width = 425
-        height = 200
-        font-size = 10
-        font = monospace
-        outline-width = 0
-        border-width = 0
-        corner-radius = 2
-        result-spacing = ${toString (vPadding / 2)}
-        padding-top = ${toString vPadding}
-        padding-bottom = ${toString vPadding}
-        padding-left = ${toString hPadding}
-        padding-right = ${toString hPadding}
-        prompt-padding = ${toString hPadding}
+      width = 425
+      height = 200
+      font-size = 10
+      font = monospace
+      outline-width = 0
+      border-width = 0
+      corner-radius = ${toString borderRadius}
+      result-spacing = ${toString (vPadding / 2)}
+      padding-top = ${toString vPadding}
+      padding-bottom = ${toString vPadding}
+      padding-left = ${toString hPadding}
+      padding-right = ${toString hPadding}
+      prompt-padding = ${toString hPadding}
 
-        background-color = ${config.colorScheme.colors.base00}${bgOpacityHex}
-        text-color       = ${config.colorScheme.colors.base05}
-        selection-color  = ${config.colorScheme.colors.base09}
-      '';
+      background-color = ${config.colorScheme.colors.base00}${bgOpacityHex}
+      text-color       = ${config.colorScheme.colors.base05}
+      selection-color  = ${config.colorScheme.colors.base09}
+    '';
 
     gtk = {
       enable = true;
