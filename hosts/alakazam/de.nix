@@ -265,9 +265,9 @@ in
         padding-right = 10
         prompt-padding = 10
 
-        # From kanagawa.nvim
-        background-color = #16161D
-        selection-color = #A3D4D5
+        background-color = ${config.colorScheme.colors.base00}${bgOpacityHex}
+        text-color       = ${config.colorScheme.colors.base05}
+        selection-color  = ${config.colorScheme.colors.base09}
       '';
 
     gtk = {
