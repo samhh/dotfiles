@@ -236,7 +236,30 @@ in
       };
     };
 
-    xdg.configFile."tofi/config".source = ./cfg/tofi.cfg;
+    xdg.configFile."tofi/config".text = ''
+      fuzzy-match = true
+
+      anchor = top
+      width = 100%
+      # Matches status bar
+      height = 19
+      horizontal = true
+      font-size = 10
+      font = monospace
+      outline-width = 0
+      border-width = 0
+      min-input-width = 150
+      result-spacing = 20
+      padding-top = 0
+      padding-bottom = 0
+      padding-left = 10
+      padding-right = 10
+      prompt-padding = 10
+
+      # From kanagawa.nvim
+      background-color = #16161D
+      selection-color = #A3D4D5
+    '';
 
     gtk = {
       enable = true;
