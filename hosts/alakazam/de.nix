@@ -132,7 +132,13 @@ in
             };
           };
 
-          temperature.critical-threshold = 75;
+          temperature = {
+            interval = 1;
+            # Might not be stable but at time of writing this appears to
+            # correspond to the output of `sensors k10temp-pci-00c3`.
+            hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
+            critical-threshold = 75;
+          };
 
           memory = {
             interval = 1;
