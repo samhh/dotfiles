@@ -6,7 +6,9 @@ let
   wmTarget = "sway-session.target";
   barName = "top";
   res = { w = 2560; h = 1440; r = 240; };
-  barHeight = 24;
+  # It's approx because Waybar won't respect it if the contents need to exceed
+  # it.
+  approxBarHeight = 24;
   gap = 10;
 
   # Matches both Firefox and any other windows following this schema.
@@ -94,7 +96,10 @@ in
                 # The gap is actually double that configured for some reason,
                 # so this is `gap * 2` in spirit.
                 spacing = gap * 3;
-                pos = { w = res.w - win.w - spacing; h = res.h - win.h - spacing - barHeight; };
+                pos = {
+                  w = res.w - win.w - spacing;
+                  h = res.h - win.h - spacing - approxBarHeight;
+                };
               in
               "floating enable; sticky enable; border none; resize set ${toString win.w} ${toString win.h}; move position ${toString pos.w} ${toString pos.h}";
           }];
@@ -110,7 +115,7 @@ in
       settings = {
         ${barName} = {
           position = "top";
-          height = barHeight;
+          height = approxBarHeight;
 
           modules-left = [ "sway/workspaces" "sway/mode" ];
           modules-center = [ "sway/window" ];
@@ -152,7 +157,7 @@ in
       };
       style = with lib; ''
         * {
-          min-height: ${toString barHeight}px;
+          min-height: 0;
           font-family: Hasklig;
           font-size: 12px;
         }
