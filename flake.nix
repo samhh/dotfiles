@@ -113,11 +113,12 @@
 
     in
     (flake-utils.lib.eachDefaultSystem (system:
-      let pkgs = import nixpkgs {
-        inherit system;
+      let
+        pkgs = import nixpkgs {
+          inherit system;
 
-        overlays = [ (const (const { agenix = agenix.defaultPackage.${system}; })) ];
-      };
+          overlays = [ (const (const { agenix = agenix.defaultPackage.${system}; })) ];
+        };
       in
       {
         devShells.default = import ./shell.nix { inherit pkgs; };
