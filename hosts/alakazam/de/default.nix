@@ -21,7 +21,7 @@ let
   pipWindowTitleRegex = "^Picture-in-Picture$";
 
   locker = import ./locker.nix { inherit pkgs; };
-  wallpaper = import ./wallpaper.nix { inherit pkgs; };
+  wallpaper = import ./wallpaper.nix { inherit config pkgs; };
 in
 {
   fonts.fonts = with pkgs; [
@@ -250,7 +250,7 @@ in
       wallpaper = {
         Install.WantedBy = [ wmTarget ];
         Service = {
-          ExecStart = "${wallpaper}/bin/wallpaper ${config.nas.path}/bgs";
+          ExecStart = "${wallpaper}/bin/wallpaper";
           Restart = "always";
           RuntimeMaxSec = "3h";
         };

@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 pkgs.writeShellScriptBin "wallpaper" ''
-  dir="$1"
+  dir="${config.nas.path}/bgs"
 
   # The not path hides dotfiles and `@eaDir`.
   ${pkgs.findutils}/bin/find "$dir" -type f -not -path '*/[@.]*' | \
