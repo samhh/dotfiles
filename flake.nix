@@ -113,17 +113,14 @@
 
     in
     (flake-utils.lib.eachDefaultSystem (system:
-      let pkgs = nixpkgs.legacyPackages.${system};
+      let pkgs = import nixpkgs {
+        inherit system;
+
+        overlays = [ (const (const { agenix = agenix.defaultPackage.${system}; })) ];
+      };
       in
       {
-        devShells.default = pkgs.mkShell {
-          buildInputs = with pkgs; [
-            agenix.defaultPackage.${system}
-            git
-            git-crypt
-            nixpkgs-fmt
-          ];
-        };
+        devShells.default = import ./shell.nix { inherit pkgs; };
 
         packages = with pkgs.lib;
           let isSupportedPlatform = pkg: ! pkg.meta.unsupported;
