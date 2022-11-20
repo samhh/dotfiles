@@ -256,7 +256,7 @@ in
         Service = {
           ExecStart = "${scripts}/set-rand-wallpaper.sh ${config.nas.path}/bgs";
           Environment =
-            let deps = with pkgs; [ coreutils findutils procps swaybg ];
+            let deps = with pkgs; [ coreutils findutils swaybg ];
             in [ "PATH=${lib.makeBinPath deps}" ];
           Restart = "always";
           RuntimeMaxSec = "3h";
