@@ -20,12 +20,7 @@ let
   # Matches both Firefox and any other windows following this schema.
   pipWindowTitleRegex = "^Picture-in-Picture$";
 
-  locker = pkgs.writeShellScriptBin "locker" ''
-    img="/tmp/lock.png"
-
-    ${pkgs.sway-contrib.grimshot}/bin/grimshot save screen - | ${pkgs.corrupter}/bin/corrupter - > "$img"
-    ${pkgs.swaylock}/bin/swaylock -i "$img" "$@"
-  '';
+  locker = import ./locker.nix { inherit pkgs; };
 in
 {
   fonts.fonts = with pkgs; [
