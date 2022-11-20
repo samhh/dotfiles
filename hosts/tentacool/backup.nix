@@ -16,10 +16,7 @@
             "--keep-monthly 6"
           ];
           timerConfig.OnCalendar = "04:00";
-          extraBackupArgs = [
-            "--exclude=@eaDir/"
-            "--exclude=.DS_Store"
-          ];
+          extraBackupArgs = map (x: "--exclude=${x}") config.nas.hiddenFiles;
         };
       # The bucket names appended with "2" aren't typos. There was a bug in the
       # UI when I tried to create them matching the usual schema.

@@ -12,7 +12,13 @@ with lib; {
       address = mkOption { type = types.str; };
       pass.path = mkOption { type = types.str; };
     };
-    nas.path = mkOption { type = types.str; };
+    nas = {
+      path = mkOption { type = types.str; };
+      hiddenFiles = mkOption {
+        type = types.listOf types.str;
+        description = "Files which you'd typically want excluded, such as metadata and other dotfiles.";
+      };
+    };
 
     # Potentially system-specific.
     apps = {
@@ -29,6 +35,9 @@ with lib; {
       address = "hello@samhh.com";
       pass.path = "emails/migadu.com/mailbox/hello";
     };
-    nas.path = "/mnt/nas";
+    nas = {
+      path = "/mnt/nas";
+      hiddenFiles = [ "@eaDir" ".DS_Store" ];
+    };
   };
 }

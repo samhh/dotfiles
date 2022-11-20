@@ -21,7 +21,7 @@ let
   pipWindowTitleRegex = "^Picture-in-Picture$";
 
   locker = import ./locker.nix { inherit pkgs; };
-  wallpaper = import ./wallpaper.nix { inherit config pkgs; };
+  wallpaper = import ./wallpaper.nix { inherit config lib pkgs; };
 in
 {
   fonts.fonts = with pkgs; [
