@@ -21,6 +21,7 @@ let
   pipWindowTitleRegex = "^Picture-in-Picture$";
 
   locker = import ./locker.nix { inherit pkgs; };
+  wallpaper = import ./wallpaper.nix { inherit pkgs; };
 in
 {
   fonts.fonts = with pkgs; [
@@ -249,10 +250,7 @@ in
       wallpaper = {
         Install.WantedBy = [ wmTarget ];
         Service = {
-          ExecStart = "${scripts}/set-rand-wallpaper.sh ${config.nas.path}/bgs";
-          Environment =
-            let deps = with pkgs; [ coreutils findutils swaybg ];
-            in [ "PATH=${lib.makeBinPath deps}" ];
+          ExecStart = "${wallpaper}/bin/wallpaper ${config.nas.path}/bgs";
           Restart = "always";
           RuntimeMaxSec = "3h";
         };
