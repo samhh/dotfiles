@@ -7,6 +7,5 @@
   corrupter = pkgs.callPackage ./corrupter.nix { };
   proton-ge = pkgs.callPackage ./proton-ge.nix { };
   qbpm = pkgs.callPackage ./qbpm.nix { };
-  tofi = pkgs.callPackage ./tofi.nix { };
   tshm = pkgs.callPackage ./tshm.nix { };
 }
