@@ -111,8 +111,6 @@
           };
         };
 
-      getSystems = fold (compose [ getSystem recursiveUpdate ]) { };
-
     in
     (flake-utils.lib.eachDefaultSystem (system:
       let pkgs = nixpkgs.legacyPackages.${system};
@@ -133,26 +131,8 @@
       }
     )) //
 
-    (with flake-utils.lib.system; getSystems [
-      {
-        hostname = "alakazam";
-        system = x86_64-linux;
-        isNixOS = true;
-        isHeadful = true;
-      }
-
-      {
-        hostname = "tentacool";
-        system = x86_64-linux;
-        isNixOS = true;
-        isHeadful = false;
-      }
-
-      {
-        hostname = "lapras";
-        system = aarch64-darwin;
-        isNixOS = false;
-        isHeadful = true;
-      }
-    ]);
+    (
+      let f = fold (compose [ getSystem recursiveUpdate ]) { };
+      in f (import ./hosts.nix { systems = flake-utils.lib.system; })
+    );
 }
