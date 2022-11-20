@@ -77,7 +77,7 @@
         then [ home-manager.nixosModules.home-manager (import ./nixos) ]
         else [ home-manager.darwinModules.home-manager ];
 
-      getSystem = { hostname, system, isNixOS, isHeadful }:
+      getSystem = { hostname, system, isNixOS, isHeadful, config }:
         let
           pkgs = getPkgs system;
           cfgs =
@@ -96,7 +96,7 @@
             modules = baseModules ++ sysModules isNixOS ++
               [
                 (if isHeadful then import ./headful else { })
-                ./hosts/${hostname}
+                config
               ];
 
             specialArgs =
@@ -130,6 +130,6 @@
 
     (
       let f = fold (compose [ getSystem recursiveUpdate ]) { };
-      in f (import ./hosts.nix { systems = flake-utils.lib.system; })
+      in f (import ./hosts { systems = flake-utils.lib.system; })
     );
 }

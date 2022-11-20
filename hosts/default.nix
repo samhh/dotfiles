@@ -6,6 +6,7 @@ with systems; [
     system = x86_64-linux;
     isNixOS = true;
     isHeadful = true;
+    config = ./alakazam;
   }
 
   {
@@ -13,6 +14,7 @@ with systems; [
     system = x86_64-linux;
     isNixOS = true;
     isHeadful = false;
+    config = ./tentacool;
   }
 
   {
@@ -20,5 +22,6 @@ with systems; [
     system = aarch64-darwin;
     isNixOS = false;
     isHeadful = true;
+    config = ./lapras;
   }
 ]
