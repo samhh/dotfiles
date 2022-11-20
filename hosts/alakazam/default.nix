@@ -6,7 +6,7 @@
     ./auth.nix
     ./backup.nix
     ./core.nix
-    ./de.nix
+    ./de
     ./email.nix
     ./gaming.nix
     ./hardware.nix
