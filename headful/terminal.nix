@@ -61,6 +61,16 @@ in
       };
     };
 
+    # The standard `command-not-found` functionality is incompatible with a
+    # flakes-only setup. This is a userland alternative. See:
+    #
+    #   https://discourse.nixos.org/t/command-not-found-unable-to-open-database/3807/6
+    #   https://github.com/nixos/nixpkgs/issues/39789#issuecomment-1037931569
+    #   https://github.com/nixos/nixpkgs/pull/187894#issuecomment-1234292290
+    #
+    # Remember to manually run `nix-index` at least once to generate the index.
+    programs.nix-index.enable = true;
+
     programs.direnv = {
       enable = true;
       nix-direnv.enable = true;
