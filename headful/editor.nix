@@ -43,7 +43,7 @@
         nvim-lspconfig
 
         # Syntax
-        nvim-treesitter
+        nvim-treesitter.withAllGrammars
         nvim-treesitter-refactor
         vim-matchup
         dhall-vim
