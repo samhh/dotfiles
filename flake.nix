@@ -132,5 +132,9 @@
     (
       let f = fold (compose [ getSystem recursiveUpdate ]) { };
       in f (import ./hosts { systems = flake-utils.lib.system; })
-    );
+    ) //
+
+    {
+      templates = import ./templates;
+    };
 }
