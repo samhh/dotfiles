@@ -16,5 +16,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: cachix/install-nix-action@v17
-      # https://github.com/NixOS/nix/issues/6908
-      - run: nix develop -c bash -c 'nixpkgs-fmt --check .'
+      - run: nix develop -c nixpkgs-fmt --check .
