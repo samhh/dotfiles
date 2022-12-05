@@ -1,8 +1,5 @@
 #!/bin/sh
 
-keyId=$(pass misc/backblaze.com/app-key-id-pass)
-appKey=$(pass misc/backblaze.com/app-key-pass)
-
 echo "Preparing logs..."
 mkdir -p /mnt/nas/logs/
 "$(dirname "$0")"/seedbox/sonarr.sh > /mnt/nas/logs/sonarr.txt
@@ -32,20 +29,3 @@ offlineimap
 
 echo "Syncing contacts..."
 vdirsyncer sync
-
-echo "Backing up archive..."
-duplicity --encrypt-key hello@samhh.com /mnt/nas/archive/ "b2://$keyId:$appKey@archive-dup"
-
-echo "Backing up keys..."
-duplicity --encrypt-key hello@samhh.com /mnt/nas/keys/ "b2://$keyId:$appKey@keys-dup"
-
-echo "Backing up logs..."
-duplicity --encrypt-key hello@samhh.com /mnt/nas/logs/ "b2://$keyId:$appKey@logs-dup"
-
-echo "Backing up mail..."
-duplicity --encrypt-key hello@samhh.com /mnt/nas/mail/ "b2://$keyId:$appKey@mail-dup"
-
-echo "Backing up manuals..."
-duplicity --encrypt-key hello@samhh.com /mnt/nas/manuals/ "b2://$keyId:$appKey@manuals-dup"
-
-echo "Finished backups."
