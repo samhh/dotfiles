@@ -5,6 +5,7 @@ on:
 
 jobs:
   test:
+    name: Validate Nix
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -12,6 +13,7 @@ jobs:
       - run: nix flake check
 
   fmt-check:
+    name: Check formatting
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
