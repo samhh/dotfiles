@@ -176,6 +176,7 @@ in
 
         #workspaces button {
           padding: 0;
+          border-radius: 0;
         }
 
         #workspaces button.focused {
