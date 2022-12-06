@@ -183,6 +183,16 @@ in
           background: #${config.colorScheme.colors.base01};
         }
 
+        #cpu,
+        #temperature,
+        #memory,
+        #network,
+        #mpd,
+        #pulseaudio,
+        #clock {
+          padding: 0 8px;
+        }
+
         #workspaces button,
         #mode,
         #window,
