@@ -11,7 +11,6 @@ prismlauncher
 qutebrowser
 qutebrowser --target private-window
 qbpm launch unsplash
-qbpm launch mum
 slack
 steam
 fin
