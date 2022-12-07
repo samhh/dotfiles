@@ -23,6 +23,7 @@ in
   home-manager.users.${config.username} = {
     xdg.configFile."khard/khard.conf".source = ./cfg/khard.conf;
     xdg.configFile."senpai/senpai.scfg".source = ./cfg/senpai.scfg;
+    xdg.configFile."vdirsyncer/config".source = ./cfg/vdirsyncer;
 
     home.packages = with pkgs; [
       # CLI
@@ -51,6 +52,7 @@ in
       tldr
       tre-command
       unzip
+      vdirsyncer
       vimpc
       wf-recorder
       wl-clipboard

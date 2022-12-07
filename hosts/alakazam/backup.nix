@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
   home-manager.users.${config.username} = {
@@ -32,11 +32,5 @@
           };
         };
       };
-
-    xdg.configFile."vdirsyncer/config".source = ./cfg/vdirsyncer;
-
-    home.packages = with pkgs; [
-      vdirsyncer
-    ];
   };
 }
