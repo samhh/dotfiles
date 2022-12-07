@@ -36,8 +36,6 @@
     xdg.configFile."vdirsyncer/config".source = ./cfg/vdirsyncer;
 
     home.packages = with pkgs; [
-      backblaze-b2
-      duplicity
       vdirsyncer
     ];
   };
