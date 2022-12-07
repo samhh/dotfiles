@@ -1,11 +1,14 @@
 { ... }:
 
-let lanPort = 8123;
+let
+  lanPort = 8123;
+  mDNSPort = 5353;
 in
 {
-  networking.firewall.allowedTCPPorts = [
-    lanPort
-  ];
+  networking.firewall = {
+    allowedTCPPorts = [ lanPort ];
+    allowedUDPPorts = [ mDNSPort ];
+  };
 
   virtualisation.oci-containers.containers.hass = {
     image = "ghcr.io/home-assistant/home-assistant:2022.12.0";
