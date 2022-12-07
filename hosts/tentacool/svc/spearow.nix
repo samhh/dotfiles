@@ -12,8 +12,8 @@ in
     listeners = [
       # LAN w/o credentials
       {
-        address = "0.0.0.0";
         port = brokerPort;
+        omitPasswordAuth = true;
         settings.allow_anonymous = true;
         acl = [
           "topic readwrite #"
