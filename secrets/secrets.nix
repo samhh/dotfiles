@@ -6,6 +6,7 @@ in
 {
   "b2-env.age".publicKeys = [ alakazam tentacool ];
   "ddns-token.age".publicKeys = [ tentacool ];
+  "krabby.age".publicKeys = [ alakazam ];
   "pihole-env.age".publicKeys = [ tentacool ];
   "radicale-htpasswd.age".publicKeys = [ tentacool ];
   "restic.age".publicKeys = [ alakazam tentacool ];

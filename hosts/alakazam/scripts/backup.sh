@@ -26,6 +26,3 @@ scp -r sam@tentacool:"~/backups/*" "/mnt/nas/archive/tentacool/"
 
 echo "Syncing mail..."
 offlineimap
-
-echo "Syncing contacts..."
-vdirsyncer sync

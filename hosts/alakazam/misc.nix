@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   home = config.users.users.${config.username}.home;
@@ -20,10 +20,43 @@ in
 
   virtualisation.podman.enable = true;
 
+  services.vdirsyncer = {
+    enable = true;
+    jobs.krabby = {
+      # So that we can read the decryped secret, which is owned by this user.
+      user = config.username;
+      group = "users";
+      forceDiscover = true;
+      config = {
+        pairs.contacts = {
+          a = "contacts_local";
+          b = "contacts_remote";
+          collections = [ "from a" "from b" ];
+        };
+        storages = {
+          contacts_local = {
+            type = "filesystem";
+            path = "~/contacts/";
+            fileext = ".vcf";
+          };
+          contacts_remote = {
+            type = "carddav";
+            url = "https://krabby.samhh.com";
+            username = "sam";
+            # Without the quotes the config output will be corrupt.
+            "password.fetch" = [ "command" "cat" config.age.secrets.krabby.path ];
+          };
+        };
+      };
+    };
+  };
+
+  # Hack to allow the vdirsyncer unit to write to $HOME.
+  systemd.services."vdirsyncer@krabby".serviceConfig.ProtectHome = lib.mkForce false;
+
   home-manager.users.${config.username} = {
     xdg.configFile."khard/khard.conf".source = ./cfg/khard.conf;
     xdg.configFile."senpai/senpai.scfg".source = ./cfg/senpai.scfg;
-    xdg.configFile."vdirsyncer/config".source = ./cfg/vdirsyncer;
 
     home.packages = with pkgs; [
       # CLI
@@ -52,7 +85,6 @@ in
       tldr
       tre-command
       unzip
-      vdirsyncer
       vimpc
       wf-recorder
       wl-clipboard

@@ -12,6 +12,7 @@
     ./hardware.nix
     ./misc.nix
     ./network.nix
+    ./secrets.nix
     ./security.nix
     ./terminal.nix
     ./user.nix
