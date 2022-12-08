@@ -4,7 +4,6 @@
   imports = [
     ./audio.nix
     ./auth.nix
-    ./backup.nix
     ./core.nix
     ./de
     ./email.nix
