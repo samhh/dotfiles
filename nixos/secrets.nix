@@ -14,7 +14,7 @@
       b2-env.file = ../secrets/b2-env.age;
       migadu = {
         file = ../secrets/migadu.age;
-        # For offlineimap;
+        # For aerc & offlineimap;
         owner = config.username;
         group = "users";
       };

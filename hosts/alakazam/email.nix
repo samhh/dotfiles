@@ -7,9 +7,9 @@
     extraAccounts = {
       "@samhh.com" = {
         source = "imaps://hello%40samhh.com@imap.migadu.com";
-        source-cred-cmd = "pass show ${config.email.pass.path}";
+        source-cred-cmd = "cat ${config.age.secrets.migadu.path}";
         outgoing = "smtps://hello%40samhh.com@smtp.migadu.com";
-        outgoing-cred-cmd = "pass show ${config.email.pass.path}";
+        outgoing-cred-cmd = "cat ${config.age.secrets.migadu.path}";
         default = "INBOX";
         from = "${config.fullName} <${config.email.address}>";
         copy = "Sent";
