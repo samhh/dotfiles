@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   age = {
@@ -12,6 +12,12 @@
     # $ B2_ACCOUNT_ID=foo B2_ACCOUNT_KEY=bar restic snapshots -r b2:bucket-name
     secrets = {
       b2-env.file = ../secrets/b2-env.age;
+      migadu = {
+        file = ../secrets/migadu.age;
+        # For offlineimap;
+        owner = config.username;
+        group = "users";
+      };
       restic.file = ../secrets/restic.age;
     };
   };

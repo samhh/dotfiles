@@ -23,6 +23,3 @@ ssh -t sam@tentacool \
     sudo podman cp pihole:/backup.tar.gz ~/backups/onix.tar.gz
   "
 scp -r sam@tentacool:"~/backups/*" "/mnt/nas/archive/tentacool/"
-
-echo "Syncing mail..."
-offlineimap
