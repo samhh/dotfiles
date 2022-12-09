@@ -20,11 +20,12 @@ stdenv.mkDerivation rec {
 
   preFixup =
     let
+      patchelf = "${pkgs.patchelf}/bin/patchelf";
       linker = stdenv.cc.bintools.dynamicLinker;
       libPath = with pkgs; lib.makeLibraryPath [ gmp ];
     in
     ''
-      patchelf --set-interpreter ${linker} --set-rpath ${libPath} $out/bin/tshm
+      ${patchelf} --set-interpreter ${linker} --set-rpath ${libPath} $out/bin/tshm
     '';
 
   meta = {
