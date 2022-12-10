@@ -12,7 +12,7 @@ with lib; {
   };
 
   config = mkIf cfg.enable {
-    systemd.user.services.banginServerNode = {
+    systemd.user.services.bangin-server-node = {
       Install.WantedBy = [ "default.target" ];
       Service.ExecStart =
         "${pkgs.bangin-server-node}/bin/bangin-server-node ${toString cfg.port}";
