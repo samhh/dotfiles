@@ -11,5 +11,6 @@
     ./sandshrew.nix
     ./spearow.nix
     ./starmie.nix
+    ./tauros.nix
   ];
 }

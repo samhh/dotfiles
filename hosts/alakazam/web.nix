@@ -5,8 +5,6 @@ let
   mpvBin = "${config.home-manager.users.${config.username}.programs.mpv.finalPackage}/bin/mpv";
   scripts = "${config.users.users.${config.username}.home}/dotfiles/hosts/alakazam/scripts";
 
-  banginServerNodePort = 1234;
-
   desktopName = "qutebrowserConditional";
 in
 {
@@ -30,7 +28,7 @@ in
 
     programs.qutebrowser = {
       enable = true;
-      searchEngines.DEFAULT = "http://localhost:${toString banginServerNodePort}/?q={}";
+      searchEngines.DEFAULT = "https://tauros.samhh.com/?q={}";
       settings = {
         confirm_quit = [ "downloads" ];
         content = {
@@ -76,30 +74,7 @@ in
       };
     };
 
-    programs.bangin = {
-      enable = true;
-      lists =
-        let f = x: "https://git.sr.ht/~samhh/${x}.bangs/blob/master/${x}.bangs";
-        in
-        map f [
-          "arch"
-          "dev"
-          "english"
-          "italiano"
-          "nix"
-          "pcgaming"
-          "prelude"
-          "uk"
-        ];
-    };
-
-    services.bangin-server-node = {
-      enable = true;
-      port = banginServerNodePort;
-    };
-
     home.packages = with pkgs; [
-      bangup
       ungoogled-chromium
       firefox-wayland
       qbpm
