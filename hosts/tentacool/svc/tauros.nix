@@ -11,6 +11,11 @@ in
 
   services.ddclient.domains = [ "tauros" ];
 
+  services.bangin-server-node = {
+    enable = true;
+    port = port;
+  };
+
   home-manager.users.${config.username} = {
     programs.bangin = {
       enable = true;
@@ -27,11 +32,6 @@ in
           "prelude"
           "uk"
         ];
-    };
-
-    services.bangin-server-node = {
-      enable = true;
-      port = port;
     };
 
     home.packages = with pkgs; [ bangup ];
