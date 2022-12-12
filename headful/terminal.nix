@@ -77,6 +77,8 @@ in
     };
 
     programs.git.ignores = [
+      "flake.nix"
+      "flake.lock"
       "shell.nix"
       "result"
       ".envrc"
