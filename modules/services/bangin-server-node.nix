@@ -14,8 +14,12 @@ with lib; {
   config = mkIf cfg.enable {
     systemd.services.bangin-server-node = {
       wantedBy = [ "default.target" ];
-      serviceConfig.ExecStart =
-        "${pkgs.bangin-server-node}/bin/bangin-server-node ${toString cfg.port}";
+      serviceConfig = {
+        # So that bangin has access to its config.
+        User = config.username;
+        ExecStart =
+          "${pkgs.bangin-server-node}/bin/bangin-server-node ${toString cfg.port}";
+      };
     };
   };
 }
