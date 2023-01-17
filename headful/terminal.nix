@@ -15,10 +15,7 @@ let
       fixupPhase =
         let
           overrides = {
-            pluginPkgs = with pkgs.fishPlugins; [
-              fish-minimal-theme
-              z
-            ];
+            pluginPkgs = with pkgs.fishPlugins; [ fish-minimal-theme ];
           };
         in
         ''
@@ -75,6 +72,8 @@ in
       enable = true;
       nix-direnv.enable = true;
     };
+
+    programs.zoxide.enable = true;
 
     programs.git.ignores = [
       "flake.nix"
