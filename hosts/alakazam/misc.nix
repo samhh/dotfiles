@@ -61,6 +61,7 @@ in
     home.packages = with pkgs; [
       # CLI
       bandwhich
+      bat
       distrobox
       dogdns
       duf

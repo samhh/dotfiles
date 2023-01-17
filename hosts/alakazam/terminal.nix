@@ -71,6 +71,7 @@ in
         "ping" = "gping";
         "mpc" = "vimpc";
         "top" = "gotop";
+        "cat" = "bat";
 
         "sys" = "systemctl";
         "sysu" = "systemctl --user";
