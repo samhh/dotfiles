@@ -299,6 +299,7 @@ in
     };
 
     home.packages = with pkgs; [
+      emote
       sway-contrib.grimshot
 
       # For various scripts.

@@ -2,6 +2,7 @@
 
 read -r -d '' apps << fin
 chromium
+emote
 firefox
 lutris
 obsidian
