@@ -3,8 +3,10 @@
 {
   services.openssh = {
     enable = true;
-    passwordAuthentication = false;
-    permitRootLogin = "no";
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+    };
   };
 
   users.users.${config.username}.openssh.authorizedKeys.keys = [
