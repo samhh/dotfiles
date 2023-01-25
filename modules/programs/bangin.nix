@@ -7,7 +7,7 @@ with lib; {
     enable = mkEnableOption "bangin";
 
     bangs = mkOption {
-      type = types.attrsOf types.string;
+      type = types.attrsOf types.str;
       default = { };
       example = literalExpression ''
         { "!foo,!bar" = "https://foo.bar/{{{s}}}" }
@@ -18,7 +18,7 @@ with lib; {
     };
 
     lists = mkOption {
-      type = types.listOf types.string;
+      type = types.listOf types.str;
       default = [ ];
       example = literalExpression ''
         [ "https://foo.bar/baz.bangs" ]
