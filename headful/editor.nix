@@ -36,9 +36,6 @@
         # Formatting
         editorconfig-nvim
 
-        # Compilation
-        vim-dispatch
-
         # LSP
         nvim-lspconfig
 

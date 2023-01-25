@@ -38,9 +38,6 @@ nnoremap gh :HopWord<CR>
 nmap gp <plug>(GrepperOperator)
 nnoremap <Leader>/ :silent grep ''<Left>
 
-" Async make
-nnoremap <Leader>m :Make 
-
 " Navigate location list
 command! Lprev try | lprev | catch | llast | catch | endtry
 command! Lnext try | lnext | catch | lfirst | catch | endtry
