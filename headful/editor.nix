@@ -47,9 +47,7 @@
         nvim-treesitter-refactor
         vim-matchup
         dhall-vim
-        haskell-vim
         purescript-vim
-        vim-fish
         vim-just
 
         # Theming
