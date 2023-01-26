@@ -52,6 +52,21 @@
     opengl.enable = true;
   };
 
+  # systemd-oomd is unhelpful unless everything is plugged into cgroups:
+  #   https://github.com/nixos/nixpkgs/issues/113903#issuecomment-857296349
+  #
+  # earlyoom on the other hand is a helpful emergency brake when memory usage
+  # spirals.
+  systemd.oomd.enable = false;
+  services.earlyoom = {
+    enable = true;
+    killHook = pkgs.writeShellScript "earlyoom-kill-hook" ''
+      ${pkgs.libnotify}/bin/notify-send -u critical \
+        "Process \"$EARLYOOM_NAME\" terminated" \
+        "System OOM killer triggered."
+    '';
+  };
+
   services.ratbagd.enable = true;
 
   home-manager.users.${config.username}.home.packages = with pkgs; [
