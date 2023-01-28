@@ -1,4 +1,4 @@
-{ config, pkgs, tshmPlugin, ... }:
+{ config, lib, pkgs, tshmPlugin, ... }:
 
 {
   home-manager.users.${config.username} = {
@@ -53,12 +53,9 @@
       ];
     };
 
-    xdg.configFile = {
-      nvim = {
-        source = ./cfg/nvim;
-        recursive = true;
-      };
-      "efm-langserver/config.yaml".source = ./cfg/efm.yaml;
+    xdg.configFile.nvim = {
+      source = ./cfg/nvim;
+      recursive = true;
     };
 
     xdg.dataFile."npmlibs/node_modules/typescript-tshm-plugin".source = tshmPlugin;
@@ -66,6 +63,21 @@
     programs.git.ignores = [
       ".exrc"
     ];
+
+    programs.efm-langserver = {
+      enable = true;
+      languages =
+        let
+          js = [ "javascript" "typescript" "typescriptreact" ];
+          prettier = {
+            root-markers = [ "node_modules/prettier/" ];
+            format-command = "./node_modules/.bin/prettier --stdin-filepath \${INPUT}";
+            format-stdin = true;
+          };
+          f = x: { name = x; value = [ prettier ]; };
+        in
+        lib.listToAttrs (map f js);
+    };
 
     home.packages =
       let
@@ -83,7 +95,6 @@
         ## project's Nix dev shell.
         nodePackages.bash-language-server
         dhall-lsp-server
-        efm-langserver
         nodePackages.purescript-language-server
         rnix-lsp
         rust-analyzer
