@@ -58,8 +58,6 @@
       recursive = true;
     };
 
-    xdg.dataFile."npmlibs/node_modules/typescript-tshm-plugin".source = tshmPlugin;
-
     programs.git.ignores = [
       ".exrc"
     ];
@@ -79,33 +77,31 @@
         lib.listToAttrs (map f js);
     };
 
-    home.packages =
-      let
-        distroSpecific =
-          if pkgs.stdenv.isDarwin
-          then [ ]
-          else with pkgs; [ tshm ];
-      in
-      with pkgs; [
-        # For :TSUpdate
-        gcc
+    programs.tshm = {
+      enable = pkgs.stdenv.isLinux;
+      installEditorPlugin = true;
+    };
 
-        # Language servers
-        ## Don't install HLS as it's version-dependent. Instead install in the
-        ## project's Nix dev shell.
-        nodePackages.bash-language-server
-        dhall-lsp-server
-        nodePackages.purescript-language-server
-        rnix-lsp
-        rust-analyzer
-        # Needed for rust-analyzer.
-        rustc
-        nodePackages.typescript-language-server
-        nodePackages.vscode-langservers-extracted
+    home.packages = with pkgs; [
+      # For :TSUpdate
+      gcc
 
-        # Tools w/ language server interop
-        hlint
-        stylish-haskell
-      ] ++ distroSpecific;
+      # Language servers
+      ## Don't install HLS as it's version-dependent. Instead install in the
+      ## project's Nix dev shell.
+      nodePackages.bash-language-server
+      dhall-lsp-server
+      nodePackages.purescript-language-server
+      rnix-lsp
+      rust-analyzer
+      # Needed for rust-analyzer.
+      rustc
+      nodePackages.typescript-language-server
+      nodePackages.vscode-langservers-extracted
+
+      # Tools w/ language server interop
+      hlint
+      stylish-haskell
+    ];
   };
 }

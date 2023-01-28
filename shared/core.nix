@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, tshmPlugin, ... }:
 
 {
   nix = {
@@ -15,5 +15,6 @@
       home.stateVersion = "22.05";
       imports = [ ../modules/programs ];
     };
+    extraSpecialArgs = { inherit tshmPlugin; };
   };
 }
