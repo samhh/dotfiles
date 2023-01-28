@@ -11,8 +11,6 @@ ssh -t sam@tentacool \
     rm -rf ~/backups/ &&
     mkdir -p ~/backups/ &&
 
-    sudo podman volume export zwavejs2mqtt > ~/backups/sandshrew.tar
-
     sudo podman volume export hass > ~/backups/starmie.tar &&
     tar -f ~/backups/starmie.tar --wildcards --delete 'home-assistant_v2.*' &&
 
