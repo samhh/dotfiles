@@ -3,6 +3,15 @@
 { config, pkgs, ... }:
 
 let
+  radarrLogs = pkgs.writeShellScript "radarr-logs" ''
+    endpoint="$(cat ${config.age.secrets.radarr-host.path})/api/v3/movie"
+    auth="X-Api-Key: $(cat ${config.age.secrets.radarr-api-key.path})"
+
+    ${pkgs.curl}/bin/curl -s -H "$auth" "$endpoint" | \
+        ${pkgs.jq}/bin/jq -r 'map(.title + " HASFILE:" + (.hasFile | tostring)) | join("\n")' > \
+          ${config.nas.path}/logs/radarr.txt
+  '';
+
   sonarrLogs = pkgs.writeShellScript "sonarr-logs" ''
     endpoint="$(cat ${config.age.secrets.sonarr-host.path})/api/v3/series"
     auth="X-Api-Key: $(cat ${config.age.secrets.sonarr-api-key.path})"
@@ -92,19 +101,38 @@ in
   };
 
   systemd = {
-    services."sonarr-logs" = {
-      description = "Sonarr logs";
-      wantedBy = [ "multi-user.target" ];
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart = sonarrLogs;
+    services = {
+      "radarr-logs" = {
+        description = "Radarr logs";
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = radarrLogs;
+        };
+      };
+
+      "sonarr-logs" = {
+        description = "Sonarr logs";
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = sonarrLogs;
+        };
       };
     };
 
-    timers."sonarr-logs" = {
-      description = "Run Sonarr logs";
-      wantedBy = [ "timers.target" ];
-      timerConfig.OnCalendar = "daily";
+    timers = {
+      "radarr-logs" = {
+        description = "Run Radarr logs";
+        wantedBy = [ "timers.target" ];
+        timerConfig.OnCalendar = "daily";
+      };
+
+      "sonarr-logs" = {
+        description = "Run Sonarr logs";
+        wantedBy = [ "timers.target" ];
+        timerConfig.OnCalendar = "daily";
+      };
     };
   };
 }
