@@ -1,6 +1,17 @@
-# General data backups. Service backups are handled by the respective services.
-{ config, ... }:
+# General data backups. Local service backups are handled by the respective
+# services.
+{ config, pkgs, ... }:
 
+let
+  sonarrLogs = pkgs.writeShellScript "sonarr-logs" ''
+    endpoint="$(cat ${config.age.secrets.sonarr-host.path})/api/v3/series"
+    auth="X-Api-Key: $(cat ${config.age.secrets.sonarr-api-key.path})"
+
+    ${pkgs.curl}/bin/curl -s -H "$auth" "$endpoint" | \
+        ${pkgs.jq}/bin/jq 'map(.title) | join(", ")' > \
+          ${config.nas.path}/logs/sonarr.txt
+  '';
+in
 {
   # The B2 buckets presumably need creating in the web UI first. Remember to
   # set file lifecycle to "keep only the last version".
@@ -78,5 +89,22 @@
           };
         };
       };
+  };
+
+  systemd = {
+    services."sonarr-logs" = {
+      description = "Sonarr logs";
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = sonarrLogs;
+      };
+    };
+
+    timers."sonarr-logs" = {
+      description = "Run Sonarr logs";
+      wantedBy = [ "timers.target" ];
+      timerConfig.OnCalendar = "daily";
+    };
   };
 }

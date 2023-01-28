@@ -11,5 +11,7 @@ in
   "pihole-env.age".publicKeys = [ tentacool ];
   "radicale-htpasswd.age".publicKeys = [ tentacool ];
   "restic.age".publicKeys = [ alakazam tentacool ];
+  "sonarr-api-key.age".publicKeys = [ tentacool ];
+  "sonarr-host.age".publicKeys = [ tentacool ];
   "zwave-env.age".publicKeys = [ tentacool ];
 }
