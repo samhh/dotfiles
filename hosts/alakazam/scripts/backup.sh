@@ -11,9 +11,6 @@ ssh -t sam@tentacool \
     rm -rf ~/backups/ &&
     mkdir -p ~/backups/ &&
 
-    sudo podman volume export hass > ~/backups/starmie.tar &&
-    tar -f ~/backups/starmie.tar --wildcards --delete 'home-assistant_v2.*' &&
-
     sudo podman exec pihole sh -c 'pihole -a -t && mv /pi-hole-tentacool-teleporter_*.tar.gz /backup.tar.gz' &&
     sudo podman cp pihole:/backup.tar.gz ~/backups/onix.tar.gz
   "
