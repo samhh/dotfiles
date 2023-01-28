@@ -13,7 +13,7 @@ with lib; {
 
   config = mkIf cfg.enable {
     systemd.services.bangin-server-node = {
-      wantedBy = [ "default.target" ];
+      wantedBy = [ "multi-user.target" ];
       serviceConfig = {
         # So that bangin has access to its config.
         User = config.username;
