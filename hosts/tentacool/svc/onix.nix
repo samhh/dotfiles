@@ -20,7 +20,7 @@ in
   ];
 
   virtualisation.oci-containers.containers.pihole = {
-    image = "pihole/pihole:2022.11.2";
+    image = "pihole/pihole:2023.01.10";
     volumes = [
       "pihole:/etc/pihole"
       "dnsmasq:/etc/dnsmasq.d"
