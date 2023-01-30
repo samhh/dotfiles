@@ -131,6 +131,10 @@ in
 
       # npm
       ".npmrc"
+
+      # Obsidian
+      ".obsidian"
+      ".trash"
     ];
 
     programs.mpv = {
