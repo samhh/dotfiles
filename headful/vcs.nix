@@ -31,7 +31,6 @@ in
     aliases = {
       br = "branch";
       bs = "bisect";
-      co = "checkout";
       df = "diff";
       dfs = "diff --staged";
       ca = "commit --amend --no-edit";
