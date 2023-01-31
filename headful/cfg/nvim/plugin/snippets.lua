@@ -1,7 +1,8 @@
 require('snippy').setup({
   mappings = {
     is = {
-      [' '] = 'expand_or_advance',
+      ['<Space>'] = 'expand_or_advance',
+      ['<S-Space>'] = 'previous',
     },
   },
 })
