@@ -15,3 +15,7 @@ snippet pbta$
   fc.assert(fc.asyncProperty(
     ${0}
   ))
+
+snippet sum$
+  export type ${1:Name} = Sum.Member<'${2:Member}'${0}>
+  export const $1 = Sum.create<$1>()
