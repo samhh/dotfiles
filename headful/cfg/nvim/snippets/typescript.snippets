@@ -17,9 +17,9 @@ snippet pbta$
   ))
 
 snippet sum$
-  export type ${1:Name} = Sum.Member<'${2:Member}'${0}>
+  export type ${1:X} = Sum.Member<'${2:Y}'${0}>
   export const $1 = Sum.create<$1>()
 
 snippet new$
-  type ${1:Name}Symbol = { readonly $1: unique symbol }
-  export type $1 = Newtype<$1Symbol, ${2:Type}>
+  type ${1:X}Symbol = { readonly $1: unique symbol }
+  export type $1 = Newtype<$1Symbol, ${2:Y}>
