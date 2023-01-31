@@ -33,6 +33,9 @@
         gitlinker-nvim
         targets-vim
 
+        # Snippets
+        nvim-snippy
+
         # Formatting
         editorconfig-nvim
 
