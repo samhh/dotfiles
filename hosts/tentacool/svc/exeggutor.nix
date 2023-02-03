@@ -3,8 +3,13 @@
 let
   webPort = 8080;
   backup = pkgs.writeShellScript "exeggutor-backup" ''
-    ${pkgs.gnutar}/bin/tar -c -C ${config.services.zigbee2mqtt.dataDir} --exclude ./log . > \
-      ${config.nas.path}/archive/tentacool/exeggutor.tar
+    set -e
+
+    tmp=$(mktemp)
+
+    ${pkgs.gnutar}/bin/tar -c -C ${config.services.zigbee2mqtt.dataDir} --exclude ./log . > "$tmp"
+
+    mv "$tmp" ${config.nas.path}/archive/tentacool/exeggutor.tar
   '';
 in
 {

@@ -4,6 +4,8 @@ let
   lanPort = 8123;
   mDNSPort = 5353;
   backup = pkgs.writeShellScript "starmie-backup" ''
+    set -e
+
     tmp=$(mktemp)
 
     ${pkgs.podman}/bin/podman volume export hass > "$tmp"

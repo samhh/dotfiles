@@ -4,10 +4,16 @@ let
   dnsPort = 53;
   webPort = 8053;
   backup = pkgs.writeShellScript "onix-backup" ''
+    set -e
+
+    tmp=$(mktemp)
+
     ${pkgs.podman}/bin/podman exec pihole sh -c \
       'pihole -a -t && mv /pi-hole-tentacool-teleporter_*.tar.gz /backup.tar.gz'
 
-    ${pkgs.podman}/bin/podman cp pihole:/backup.tar.gz ${config.nas.path}/archive/tentacool/onix.tar.gz
+    ${pkgs.podman}/bin/podman cp pihole:/backup.tar.gz "$tmp"
+
+    mv "$tmp" ${config.nas.path}/archive/tentacool/onix.tar.gz
   '';
 in
 {
