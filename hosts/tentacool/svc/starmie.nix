@@ -44,6 +44,7 @@ in
     services."starmie-backup" = {
       description = "Starmie backup";
       wantedBy = [ "multi-user.target" ];
+      requires = [ "podman-hass.service" ];
       serviceConfig = {
         Type = "oneshot";
         ExecStart = backup;

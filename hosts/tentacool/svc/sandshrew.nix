@@ -37,6 +37,7 @@ in
     services."sandshrew-backup" = {
       description = "Sandshrew backup";
       wantedBy = [ "multi-user.target" ];
+      requires = [ "podman-zwavejs2mqtt.service" ];
       serviceConfig = {
         Type = "oneshot";
         ExecStart = backup;

@@ -26,6 +26,7 @@ in
     services."exeggutor-backup" = {
       description = "Exeggutor backup";
       wantedBy = [ "multi-user.target" ];
+      requires = [ "zigbee2mqtt.service" ];
       serviceConfig = {
         Type = "oneshot";
         ExecStart = backup;

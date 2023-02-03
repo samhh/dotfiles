@@ -41,6 +41,7 @@ in
     services."onix-backup" = {
       description = "Onix backup";
       wantedBy = [ "multi-user.target" ];
+      requires = [ "podman-pihole.service" ];
       serviceConfig = {
         Type = "oneshot";
         ExecStart = backup;
