@@ -4,6 +4,7 @@ read -r -d '' apps << fin
 chromium
 emote
 firefox
+gddccontrol
 lutris
 obsidian
 pavucontrol

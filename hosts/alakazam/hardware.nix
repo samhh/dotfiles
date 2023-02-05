@@ -67,6 +67,8 @@
     '';
   };
 
+  services.ddccontrol.enable = true;
+
   services.ratbagd.enable = true;
 
   home-manager.users.${config.username}.home.packages = with pkgs; [
