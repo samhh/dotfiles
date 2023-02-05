@@ -21,7 +21,7 @@ in
   };
 
   virtualisation.oci-containers.containers.hass = {
-    image = "ghcr.io/home-assistant/home-assistant:2023.1.7";
+    image = "ghcr.io/home-assistant/home-assistant:2023.2.2";
     volumes = [
       "hass:/config"
     ];
