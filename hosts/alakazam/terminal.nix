@@ -79,5 +79,9 @@ in
         "upp" = "doas nixos-rebuild --flake .# switch";
       };
     };
+
+    home.packages = with pkgs; [
+      upterm
+    ];
   };
 }
