@@ -93,6 +93,7 @@ in
 
       # GUI
       obsidian
+      xdg_utils # Required by Obsidian for opening links on click.
 
       # Dev
       shellcheck
