@@ -36,7 +36,7 @@
       overlay = system: final: prev:
         self.packages.${system} //
         {
-          agenix = agenix.defaultPackage.${final.system};
+          agenix = agenix.packages.${final.system}.default;
 
           fishPlugins = prev.fishPlugins // (final.callPackage ./pkgs/fishPlugins { });
           vimPlugins = prev.vimPlugins // (final.callPackage ./pkgs/vimPlugins { });
@@ -67,7 +67,7 @@
             nixPath = [ "nixpkgs=${nixpkgs}" ];
           };
         }
-        agenix.nixosModule
+        agenix.nixosModules.default
         (import ./cfg)
         (import ./shared)
       ];
@@ -117,7 +117,7 @@
         pkgs = import nixpkgs {
           inherit system;
 
-          overlays = [ (const (const { agenix = agenix.defaultPackage.${system}; })) ];
+          overlays = [ (const (const { agenix = agenix.packages.${system}.default; })) ];
         };
       in
       {
