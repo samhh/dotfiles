@@ -242,7 +242,7 @@ in
       longitude = 0.1298;
     };
 
-    programs.mako = {
+    services.mako = {
       enable = true;
       backgroundColor = "#${config.colorScheme.colors.base00}${bgOpacityHex}";
       borderSize = 0;
@@ -251,13 +251,6 @@ in
     };
 
     systemd.user.services = {
-      # Needs to be defined explicitly, see:
-      #   https://github.com/nix-community/home-manager/issues/2028#issuecomment-1231564220
-      mako = {
-        Install.WantedBy = [ wmTarget ];
-        Service.ExecStart = "${pkgs.mako}/bin/mako";
-      };
-
       wallpaper = {
         Install.WantedBy = [ wmTarget ];
         Service = {
