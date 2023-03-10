@@ -3,6 +3,7 @@
 {
   imports = [
     ./chansey.nix
+    ./cloyster.nix
     ./exeggutor.nix
     ./krabby.nix
     ./magnemite.nix
