@@ -3,6 +3,8 @@
 let
   lanPort = 8123;
   mDNSPort = 5353;
+  homekitBridgePort = 21064;
+
   backup = pkgs.writeShellScript "starmie-backup" ''
     set -e
 
@@ -16,7 +18,7 @@ let
 in
 {
   networking.firewall = {
-    allowedTCPPorts = [ lanPort ];
+    allowedTCPPorts = [ lanPort homekitBridgePort ];
     allowedUDPPorts = [ mDNSPort ];
   };
 
