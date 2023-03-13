@@ -54,6 +54,11 @@ in
   # Hack to allow the vdirsyncer unit to write to $HOME.
   systemd.services."vdirsyncer@krabby".serviceConfig.ProtectHome = lib.mkForce false;
 
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = [ config.username ];
+  };
+
   home-manager.users.${config.username} = {
     xdg.configFile."khard/khard.conf".source = ./cfg/khard.conf;
     xdg.configFile."senpai/senpai.scfg".source = ./cfg/senpai.scfg;

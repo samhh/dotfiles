@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 read -r -d '' apps << fin
+1password
 chromium
 cider
 emote

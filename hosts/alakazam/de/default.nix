@@ -251,6 +251,24 @@ in
     };
 
     systemd.user.services = {
+      # Needed by 1Password. From:
+      #   https://github.com/nix-community/home-manager/issues/3739#issue-1609877168
+      sway-polkit-authentication-agent = {
+        Unit = {
+          Description = "Sway Polkit authentication agent";
+          Documentation = "https://gitlab.freedesktop.org/polkit/polkit/";
+          After = [ "graphical-session-pre.target" ];
+          PartOf = [ "graphical-session.target" ];
+        };
+
+        Service = {
+          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+          Restart = "always";
+        };
+
+        Install.WantedBy = [ "graphical-session.target" ];
+      };
+
       wallpaper = {
         Install.WantedBy = [ wmTarget ];
         Service = {
