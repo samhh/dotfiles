@@ -11,11 +11,11 @@ isUnsplashAddr=$(case "$query" in
 esac)
 
 if [ "$isUnsplashAddr" ]; then
-  app="qbpm launch unsplash"
+  app="librewolf -P unsplash"
 elif [ -n "$profile" ]; then
-  app="qbpm launch $profile"
+  app="librewolf -P $profile"
 else
-  app="qutebrowser"
+  app="librewolf"
 fi
 
 if [ "$("$(dirname "$0")/has-browser-instance.sh" "$output" "$profile")" ]; then
@@ -25,4 +25,4 @@ else
 fi
 
 # Unquoted `$app` is intentional.
-$app --target "$target" --untrusted-args "$query"
+$app --new-"$target" "https://tauros.samhh.com/?q=$query"

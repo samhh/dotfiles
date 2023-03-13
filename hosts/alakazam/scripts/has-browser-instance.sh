@@ -11,14 +11,12 @@ ws=$(
   jq ".nodes[] | select(.name==\"$output\") | .nodes[] | select($is_active_ws)"
 )
 
-# All browser instance window titles have the form "<page title> - qutebrowser",
-# however only those launched via qbpm have an additional "(<profile name>)"
-# suffix. We'll assume that an empty `$profile` denotes the default profile and
-# adjust the check accordingly.
+# Requires the following addon to be configured accordingly:
+#   https://addons.mozilla.org/en-GB/firefox/addon/window-titler/
 if [ -z "$profile" ]; then
-  suffix=" - +qutebrowser"
+  prefix="\[P: default] "
 else
-  suffix=" - +qutebrowser \($profile\)"
+  prefix="\[P: $profile] "
 fi
 
-echo "$ws" | gron | grep -E "json\.(nodes\[[0-9]+]\.)+name = \".+$suffix\""
+echo "$ws" | gron | grep -iE "json\.(nodes\[[0-9]+]\.)+name = \"$prefix.+\""

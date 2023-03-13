@@ -5,12 +5,12 @@ let
   mpvBin = "${config.home-manager.users.${config.username}.programs.mpv.finalPackage}/bin/mpv";
   scripts = "${config.users.users.${config.username}.home}/dotfiles/hosts/alakazam/scripts";
 
-  desktopName = "qutebrowserConditional";
+  desktopName = "workspaceConditionalBrowser";
 in
 {
   home-manager.users.${config.username} = {
     xdg.desktopEntries.${desktopName} = {
-      name = "Qutebrowser (profile-conditional)";
+      name = "LibreWolf (profile-conditional)";
       exec = "${scripts}/browser-launch.sh";
     };
 
