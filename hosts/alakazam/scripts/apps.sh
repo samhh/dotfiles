@@ -8,14 +8,13 @@ emote
 firefox
 gddccontrol
 librewolf
+librewolf -P unsplash
+librewolf --private-window
 lutris
 obsidian
 pavucontrol
 piper
 prismlauncher
-qutebrowser
-qutebrowser --target private-window
-qbpm launch unsplash
 slack
 steam
 fin

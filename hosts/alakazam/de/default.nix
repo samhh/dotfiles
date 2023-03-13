@@ -43,7 +43,7 @@ in
     wayland.windowManager.sway =
       let
         mod = "Mod4";
-        mprisPlayers = lib.concatStringsSep "," [ "mpv" "firefox" "qutebrowser" "cider" "mpd" ];
+        mprisPlayers = lib.concatStringsSep "," [ "mpv" "firefox" "cider" "mpd" ];
       in
       with lib; {
         enable = true;
