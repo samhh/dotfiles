@@ -75,9 +75,7 @@ in
             "${mod}+Shift+g" = "exec ${pkgs.tofi}/bin/tofi-run --prompt gui-all | xargs swaymsg exec --";
             "${mod}+d" = "exec ${scripts}/flatmarks.sh";
             "${mod}+Shift+d" = "exec ${scripts}/flatmarks-work.sh";
-            "${mod}+x" = "exec ${scripts}/passmenu.sh";
-            "${mod}+n" = "exec ${scripts}/pass-prefixed-line.sh \"username: \" username";
-            "${mod}+m" = "exec ${scripts}/pass-prefixed-line.sh \"email: \" email";
+            "${mod}+x" = "exec ${pkgs._1password-gui}/bin/1password --quick-access";
             "${mod}+z" = "exec ${scripts}/definition-lookup.sh";
             "${mod}+o" = "exec ${pkgs.mako}/bin/makoctl dismiss";
             "${mod}+Shift+o" = "exec ${pkgs.mako}/bin/makoctl dismiss -a";
