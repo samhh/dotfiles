@@ -31,10 +31,7 @@ with lib; {
   config = {
     username = "sam";
     fullName = "Sam A. Horvath-Hunt";
-    email = {
-      address = "hello@samhh.com";
-      pass.path = "emails/migadu.com/mailbox/hello";
-    };
+    email.address = "hello@samhh.com";
     nas = {
       path = "/mnt/nas";
       hiddenFiles = [ "@eaDir" ".DS_Store" ];

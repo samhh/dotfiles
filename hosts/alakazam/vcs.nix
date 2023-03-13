@@ -19,11 +19,11 @@
       };
       credential."smtp://hello%40samhh.com@smtp.migadu.com%3a465".helper =
         let
-          script = pkgs.writeShellScriptBin "pass-git-credential" ''
-            echo "password=$(pass show "$1")"
+          script = pkgs.writeShellScriptBin "cat-git-credential" ''
+            echo "password=$(cat "$1")"
           '';
         in
-        "!${script}/bin/pass-git-credential ${config.email.pass.path}";
+        "!${script}/bin/cat-git-credential ${config.age.secrets.migadu.path}";
     };
   };
 }
