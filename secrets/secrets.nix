@@ -6,6 +6,7 @@ in
 {
   "b2-env.age".publicKeys = [ alakazam tentacool ];
   "ddns-token.age".publicKeys = [ tentacool ];
+  "gmail.age".publicKeys = [ alakazam ];
   "krabby.age".publicKeys = [ alakazam ];
   "migadu.age".publicKeys = [ alakazam tentacool ];
   "pihole-env.age".publicKeys = [ tentacool ];

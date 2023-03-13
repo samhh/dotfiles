@@ -17,9 +17,9 @@
 
       "@unsplash.com" = {
         source = "imaps://sam%40unsplash.com@imap.gmail.com";
-        source-cred-cmd = "pass show emails/unsplash.com/sam";
+        source-cred-cmd = "cat ${config.age.secrets.gmail.path}";
         outgoing = "smtps+plain://sam%40unsplash.com@smtp.gmail.com";
-        outgoing-cred-cmd = "pass show emails/unsplash.com/sam";
+        outgoing-cred-cmd = "cat ${config.age.secrets.gmail.path}";
         default = "INBOX";
         from = "${config.fullName} <sam@unsplash.com>";
         copy = "[Gmail]/Sent Mail";
