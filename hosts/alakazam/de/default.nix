@@ -84,6 +84,7 @@ in
             "${mod}+Shift+l" = "exec systemctl suspend";
           };
           assigns = {
+            "7" = [{ class = "1Password"; }];
             "8" = [{ class = "^Slack$"; }];
           };
           floating.criteria = [{ app_id = "^pinentry-gtk$"; }];
