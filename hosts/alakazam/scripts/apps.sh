@@ -7,6 +7,7 @@ cider
 emote
 firefox
 gddccontrol
+librewolf
 lutris
 obsidian
 pavucontrol

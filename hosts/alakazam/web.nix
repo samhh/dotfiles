@@ -74,6 +74,15 @@ in
       };
     };
 
+    programs.librewolf = {
+      enable = true;
+      settings = {
+        "privacy.clearOnShutdown.cookies" = false;
+        "privacy.clearOnShutdown.cache" = false;
+        "media.autoplay.blocking_policy" = 2;
+      };
+    };
+
     home.packages = with pkgs; [
       ungoogled-chromium
       firefox-wayland
