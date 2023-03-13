@@ -32,6 +32,8 @@ in
         "privacy.clearOnShutdown.cookies" = false;
         "privacy.clearOnShutdown.cache" = false;
         "media.autoplay.blocking_policy" = 2;
+        # Breaks dark mode.
+        "privacy.resistFingerprinting" = false;
       };
     };
 
