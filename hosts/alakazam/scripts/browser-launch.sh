@@ -25,4 +25,4 @@ else
 fi
 
 # Unquoted `$app` is intentional.
-$app --new-"$target" "https://tauros.samhh.com/?q=$query"
+$app --new-"$target" "$query"
