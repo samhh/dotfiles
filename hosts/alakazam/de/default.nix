@@ -120,7 +120,7 @@ in
 
           modules-left = [ "sway/workspaces" "sway/mode" ];
           modules-center = [ "sway/window" ];
-          modules-right = [ "cpu" "temperature" "memory" "network" "mpd" "pulseaudio" "clock" ];
+          modules-right = [ "cpu" "temperature" "memory" "network" "tray" "mpd" "pulseaudio" "clock" ];
 
           cpu = {
             interval = 1;
