@@ -76,6 +76,7 @@ in
             "${mod}+d" = "exec ${scripts}/flatmarks.sh";
             "${mod}+Shift+d" = "exec ${scripts}/flatmarks-work.sh";
             "${mod}+x" = "exec ${pkgs._1password-gui}/bin/1password --quick-access";
+            "${mod}+c" = "exec ${pkgs._1password-gui}/bin/1password --toggle";
             "${mod}+z" = "exec ${scripts}/definition-lookup.sh";
             "${mod}+o" = "exec ${pkgs.mako}/bin/makoctl dismiss";
             "${mod}+Shift+o" = "exec ${pkgs.mako}/bin/makoctl dismiss -a";
