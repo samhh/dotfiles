@@ -50,6 +50,7 @@
     cpu.amd.updateMicrocode = true;
     video.hidpi.enable = true;
     opengl.enable = true;
+    bluetooth.enable = true;
   };
 
   # systemd-oomd is unhelpful unless everything is plugged into cgroups:
@@ -68,6 +69,8 @@
   };
 
   services.ddccontrol.enable = true;
+
+  services.blueman.enable = true;
 
   services.ratbagd.enable = true;
 
