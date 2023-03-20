@@ -58,10 +58,19 @@ in
           gaps.inner = gap;
           modifier = mod;
 
-          input."1452:613:Apple_Inc._Magic_Trackpad" = {
-            natural_scroll = "enabled";
-            scroll_factor = "0.3";
-          };
+          input =
+            let
+              wiredTrackpadId = "1452:613:Apple_Inc._Magic_Trackpad";
+              wirelessTrackpadId = "76:613:Apple_Inc._Magic_Trackpad_2";
+              cfg = {
+                natural_scroll = "enabled";
+                scroll_factor = "0.3";
+              };
+            in
+            {
+              ${wiredTrackpadId} = cfg;
+              ${wirelessTrackpadId} = cfg;
+            };
 
           # Scripts aren't imported into Nix as they have relatively-pathed
           # dependencies upon other scripts Nix that doesn't know about.
