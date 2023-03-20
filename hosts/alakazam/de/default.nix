@@ -113,6 +113,11 @@ in
               "floating enable; sticky enable; border none; resize set ${toString win.w} ${toString win.h}; move position ${toString pos.w} ${toString pos.h}";
           }];
         };
+
+        extraConfig = ''
+          bindgesture swipe:3:left workspace next
+          bindgesture swipe:3:right workspace prev
+        '';
       };
 
     programs.waybar = {
