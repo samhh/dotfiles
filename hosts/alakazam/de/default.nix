@@ -57,6 +57,12 @@ in
           bars = [ ];
           gaps.inner = gap;
           modifier = mod;
+
+          input."1452:613:Apple_Inc._Magic_Trackpad" = {
+            natural_scroll = "enabled";
+            scroll_factor = "0.3";
+          };
+
           # Scripts aren't imported into Nix as they have relatively-pathed
           # dependencies upon other scripts Nix that doesn't know about.
           # Ideally the likes of tofi would be packaged up in there as well
