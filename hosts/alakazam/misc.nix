@@ -95,6 +95,7 @@ in
       wf-recorder
       wl-clipboard
       zathura
+      ffmpeg_5-full # For `ffplay`.
 
       # GUI
       obsidian

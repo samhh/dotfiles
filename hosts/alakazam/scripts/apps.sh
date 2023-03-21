@@ -5,6 +5,7 @@ read -r -d '' apps << fin
 chromium
 cider
 emote
+ffplay /dev/video0
 firefox
 gddccontrol
 librewolf
