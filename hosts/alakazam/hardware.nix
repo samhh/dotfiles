@@ -74,8 +74,12 @@
 
   services.ratbagd.enable = true;
 
-  home-manager.users.${config.username}.home.packages = with pkgs; [
-    lm_sensors
-    piper
-  ];
+  home-manager.users.${config.username} = {
+    services.blueman-applet.enable = true;
+
+    home.packages = with pkgs; [
+      lm_sensors
+      piper
+    ];
+  };
 }
