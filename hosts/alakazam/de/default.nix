@@ -154,9 +154,9 @@ in
 
           temperature = {
             interval = 1;
-            # Might not be stable but at time of writing this appears to
-            # correspond to the output of `sensors k10temp-pci-00c3`.
-            hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
+            # Should correspond to the output of `sensors k10temp-pci-00c3`, and
+            # have the name `k10temp`. Not stable long-term.
+            hwmon-path = "/sys/class/hwmon/hwmon3/temp1_input";
             critical-threshold = 75;
           };
 
