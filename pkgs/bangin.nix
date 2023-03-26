@@ -2,11 +2,11 @@
 
 stdenv.mkDerivation rec {
   pname = "bangin";
-  version = "0.2.0";
+  version = "0.2.1";
 
   src = fetchurl {
     url = "https://git.sr.ht/~samhh/bangin/archive/${version}.tar.gz";
-    sha256 = "lSY6LY009kYOid5DX3yiL2XQemYeYxtGWLLCd47AsQw=";
+    sha256 = "12a66vm0954bbq05q063k9273gjbd838qdyid0hmjmirbx7ydgia";
   };
 
   nativeBuildInputs = with pkgs; [
@@ -25,7 +25,7 @@ stdenv.mkDerivation rec {
 
   fixupPhase = with pkgs; ''
     wrapProgram $out/bin/bangin \
-      --set PATH ${lib.makeBinPath [ gnused ]}
+      --set PATH ${lib.makeBinPath [ gawk ]}
   '';
 
   meta = {
