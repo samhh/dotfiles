@@ -19,7 +19,7 @@ in
   ];
 
   virtualisation.oci-containers.containers.zwavejs2mqtt = {
-    image = "zwavejs/zwave-js-ui:8.10.1";
+    image = "zwavejs/zwave-js-ui:8.13.0";
     volumes = [
       "zwavejs2mqtt:/usr/src/app/store"
     ];
