@@ -48,7 +48,6 @@
   hardware = {
     enableRedistributableFirmware = true;
     cpu.amd.updateMicrocode = true;
-    video.hidpi.enable = true;
     opengl.enable = true;
     bluetooth.enable = true;
   };
