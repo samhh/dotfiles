@@ -142,7 +142,7 @@ in
 
           modules-left = [ "sway/workspaces" "sway/mode" ];
           modules-center = [ "sway/window" ];
-          modules-right = [ "cpu" "temperature" "memory" "network" "tray" "mpd" "pulseaudio" "clock" ];
+          modules-right = [ "cpu" "memory" "network" "tray" "mpd" "pulseaudio" "clock" ];
 
           cpu = {
             interval = 1;
@@ -150,14 +150,6 @@ in
               warning = 50;
               critical = 90;
             };
-          };
-
-          temperature = {
-            interval = 1;
-            # Should correspond to the output of `sensors k10temp-pci-00c3`, and
-            # have the name `k10temp`. Not stable long-term.
-            hwmon-path = "/sys/class/hwmon/hwmon3/temp1_input";
-            critical-threshold = 75;
           };
 
           memory = {
@@ -205,7 +197,6 @@ in
         }
 
         #cpu,
-        #temperature,
         #memory,
         #network,
         #mpd,
@@ -218,7 +209,6 @@ in
         #mode,
         #window,
         #cpu,
-        #temperature,
         #memory,
         #network,
         #mpd,
@@ -234,7 +224,6 @@ in
 
         #workspaces button.urgent,
         #cpu.warning,
-        #temperature.critical,
         #memory.warning,
         #mpd.disconnected,
         #pulseaudio.muted {
