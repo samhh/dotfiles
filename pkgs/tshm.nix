@@ -2,11 +2,11 @@
 
 stdenv.mkDerivation rec {
   pname = "tshm";
-  version = "0.4.0";
+  version = "0.4.2";
 
   src = fetchurl {
-    url = "https://github.com/samhh/tshm/releases/download/${version}/tshm-linux-amd64";
-    sha256 = "03nnhmplmn2mqibqclyr28dhh1v0f4dn18k4rnbvc9xy2l4k32xf";
+    url = "https://github.com/samhh/tshm/releases/download/${version}/tshm-${version}-linux-x86_64";
+    sha256 = "0bcc029kricsnz3ixqknrnl99hgdi07nk5r8gzj0kz6d5xal2c3k";
   };
 
   dontUnpack = true;
