@@ -46,7 +46,6 @@
         nvim-treesitter.withAllGrammars
         nvim-treesitter-refactor
         vim-matchup
-        dhall-vim
         purescript-vim
         vim-just
 
