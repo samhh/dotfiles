@@ -314,7 +314,7 @@ in
     gtk = {
       enable = true;
       theme = {
-        package = (nix-colors.lib-contrib { inherit pkgs; }).gtkThemeFromScheme { scheme = config.colorScheme; };
+        package = (nix-colors.lib.contrib { inherit pkgs; }).gtkThemeFromScheme { scheme = config.colorScheme; };
         name = config.colorScheme.slug;
       };
     };

@@ -2,7 +2,7 @@
 
 {
   imports = [
-    nix-colors.homeManagerModule
+    nix-colors.homeManagerModules.default
     ./editor.nix
     ./terminal.nix
     ./vcs.nix
