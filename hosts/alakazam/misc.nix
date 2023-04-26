@@ -116,19 +116,9 @@ in
       slack
     ];
 
-    programs.password-store = {
-      enable = true;
-      settings.PASSWORD_STORE_DIR = "${home}/passwords/";
-    };
-
     # Fix qrcp port so we can allow it through firewall.
-    #
-    # Source fish completions until this is fixed:
-    #   https://github.com/nix-community/home-manager/issues/2898
     programs.fish.shellInit = ''
       set -x QRCP_PORT ${toString qrcpPort}
-
-      source ${pkgs.pass}/share/fish/vendor_completions.d/pass.fish
     '';
 
     programs.git.ignores = [
