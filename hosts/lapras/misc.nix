@@ -2,8 +2,8 @@
 
 {
   home-manager.users.${config.username}.home.packages = with pkgs; [
+    fd
     pass
     ripgrep
-    shellcheck
   ];
 }
