@@ -61,6 +61,9 @@ in
 
   home-manager.users.${config.username} = {
     xdg.configFile."khard/khard.conf".source = ./cfg/khard.conf;
+
+    # The Home Manager config module is outdated. See:
+    #   https://github.com/nix-community/home-manager/issues/2534
     xdg.configFile."senpai/senpai.scfg".text = ''
       address chat.sr.ht
       nickname samhh
