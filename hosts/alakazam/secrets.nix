@@ -9,6 +9,13 @@
       group = "users";
     };
 
+    irc-token = {
+      file = ../../secrets/irc-token.age;
+      # For senpai.
+      owner = config.username;
+      group = "users";
+    };
+
     krabby = {
       file = ../../secrets/krabby.age;
       # For vdirsyncer.

@@ -67,7 +67,7 @@ in
     xdg.configFile."senpai/senpai.scfg".text = ''
       address chat.sr.ht
       nickname samhh
-      password-cmd pass show _irc/chat.sr.ht/token
+      password-cmd cat ${config.age.secrets.irc-token.path}
     '';
 
     home.packages = with pkgs; [
