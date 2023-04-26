@@ -61,7 +61,11 @@ in
 
   home-manager.users.${config.username} = {
     xdg.configFile."khard/khard.conf".source = ./cfg/khard.conf;
-    xdg.configFile."senpai/senpai.scfg".source = ./cfg/senpai.scfg;
+    xdg.configFile."senpai/senpai.scfg".text = ''
+      address chat.sr.ht
+      nickname samhh
+      password-cmd pass show _irc/chat.sr.ht/token
+    '';
 
     home.packages = with pkgs; [
       # CLI
