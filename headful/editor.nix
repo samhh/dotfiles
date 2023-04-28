@@ -36,9 +36,6 @@
         # Snippets
         nvim-snippy
 
-        # Formatting
-        editorconfig-nvim
-
         # LSP
         nvim-lspconfig
 

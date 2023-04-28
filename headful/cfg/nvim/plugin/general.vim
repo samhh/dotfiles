@@ -1,5 +1,5 @@
-" Use two spaces by default - these are overridden by editorconfig where
-" applicable
+" Use two spaces by default - these are overridden by the built-in EditorConfig
+" where applicable
 set expandtab
 set softtabstop=2
 set shiftwidth=2
