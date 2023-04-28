@@ -29,9 +29,10 @@ in
           # As per:
           #   https://github.com/rebelot/kanagawa.nvim/issues/58#issuecomment-1184386932
           #
-          # Except the background, which is ignored. I prefer it without the
-          # blueish hue.
+          # Except the background, which is translucent near-black. I prefer it
+          # without the blueish hue.
           foreground = config.colorScheme.colors.base05;
+          background = "121212";
           selection-foreground = config.colorScheme.colors.base04;
           selection-background = "2d4f67";
           regular0 = "090618";
