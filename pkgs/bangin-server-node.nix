@@ -5,11 +5,11 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "bangin-server-node";
-  version = "0.1.1";
+  version = "0.2.0";
 
   src = fetchurl {
     url = "https://git.sr.ht/~samhh/bangin-server-node/archive/${version}.tar.gz";
-    sha256 = "14pnqljbgxk7gncd7k59mk889kc5z6wl0asbxpp6si6rwg7malnx";
+    sha256 = "15jr0cn1w59dwnp0vvc3bnx0j8f3f8lay8rnp31zc19ln6vy2mzx";
   };
 
   nativeBuildInputs = with pkgs; [

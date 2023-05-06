@@ -9,6 +9,11 @@ with lib; {
     port = mkOption {
       type = types.int;
     };
+
+    fallback = mkOption {
+      type = types.str;
+      default = "https://duckduckgo.com/?q={{{s}}}";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -18,7 +23,7 @@ with lib; {
         # So that bangin has access to its config.
         User = config.username;
         ExecStart =
-          "${pkgs.bangin-server-node}/bin/bangin-server-node ${toString cfg.port}";
+          "${pkgs.bangin-server-node}/bin/bangin-server-node ${toString cfg.port} ${cfg.fallback}";
       };
     };
   };
