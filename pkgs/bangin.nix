@@ -6,7 +6,7 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "https://git.sr.ht/~samhh/bangin/archive/${version}.tar.gz";
-    sha256 = "12a66vm0954bbq05q063k9273gjbd838qdyid0hmjmirbx7ydgia";
+    sha256 = "16r9ncsfxaa0s10fym559wq285m0fzhvirpzxi74ggahw73fx51d";
   };
 
   nativeBuildInputs = with pkgs; [
