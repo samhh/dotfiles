@@ -16,4 +16,4 @@ file="$base$selected"
 
 url=$(head -1 "$file")
 
-"$(dirname "$0")/browser-launch.sh" "$url" unsplash
+"$(dirname "$0")/browser-launch.sh" "$url"

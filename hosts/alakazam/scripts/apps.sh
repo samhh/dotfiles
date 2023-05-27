@@ -9,7 +9,6 @@ ffplay /dev/video0
 firefox
 gddccontrol
 librewolf
-librewolf -P unsplash
 librewolf --private-window
 lutris
 obsidian
