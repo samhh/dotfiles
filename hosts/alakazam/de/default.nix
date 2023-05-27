@@ -88,8 +88,8 @@ in
             "${mod}+t" = "exec ${scripts}/web-search.sh";
             "${mod}+g" = "exec ${scripts}/apps.sh";
             "${mod}+Shift+g" = "exec ${pkgs.tofi}/bin/tofi-run --prompt gui-all | xargs swaymsg exec --";
-            "${mod}+d" = "exec ${scripts}/flatmarks.sh";
-            "${mod}+Shift+d" = "exec ${scripts}/flatmarks-work.sh";
+            "${mod}+d" = "exec ${scripts}/flatmarks.sh ~/bookmarks/";
+            "${mod}+Shift+d" = "exec ${scripts}/flatmarks.sh ~/bookmarks-work/";
             # Quick access clipboard is currently broken on Sway:
             #   https://www.reddit.com/r/1Password/comments/yq32ar/unable_to_copy_from_quick_access_in_linux/
             "${mod}+x" = "exec ${pkgs._1password-gui}/bin/1password --quick-access";

@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-base=~/bookmarks/
+base="$1"
 
 # Find everything in bookmarks dir not a directory and not matching git pattern
-readarray -d '' paths < <(find $base -type f -not -path '*/.git*' -print0)
+readarray -d '' paths < <(find "$base" -type f -not -path '*/.git*' -print0)
 
 # Remove prefix from strings
 paths=( "${paths[@]#"$base"}" )
 
-selected=$(printf '%s\n' "${paths[@]}" | tofi --prompt bookmark)
+selected=$(printf '%s\n' "${paths[@]}" | tofi --prompt "$(basename "$base")")
 
 [[ -n $selected ]] || exit
 
