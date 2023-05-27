@@ -13,7 +13,7 @@
     useUserPackages = true;
     users.${config.username} = {
       home.stateVersion = "22.05";
-      imports = [ ../modules/programs ];
+      imports = [ ./programs ];
     };
     extraSpecialArgs = { inherit tshmPlugin; };
   };
