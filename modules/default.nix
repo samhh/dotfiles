@@ -1,8 +1,0 @@
-{ ... }:
-
-{
-  imports = [
-    ./programs
-    ./services
-  ];
-}
