@@ -2,11 +2,11 @@
 
 stdenv.mkDerivation rec {
   pname = "proton-ge-custom";
-  version = "GE-Proton7-55";
+  version = "GE-Proton8-3";
 
   src = fetchurl {
     url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/${version}.tar.gz";
-    sha512 = "8fa9ad9d0e1957ced72cf48a0e5234203b4abec28bd039df8f57aea71d7fe8da5e1cbef0d208d324ebc77559b0e278abf54aa7f6c15bfcb4fb1a136de0652903";
+    sha512 = "2a5f04d42e685c19c5fe590d26734f1179f1d12a25a58e5023df7eac2ad1d333e2abe3e3f18b35f2a6610fd5f1816ed2f426fbf63e6ddef4f84a24f87289072b";
   };
 
   installPhase = ''
