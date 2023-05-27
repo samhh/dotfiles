@@ -20,7 +20,7 @@
 
       nix-colors.url = "github:misterio77/nix-colors";
 
-      nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+      nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
 
       tshm-plugin = {
         url = "https://registry.yarnpkg.com/typescript-tshm-plugin/-/typescript-tshm-plugin-0.1.0.tgz";
