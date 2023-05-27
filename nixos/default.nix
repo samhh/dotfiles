@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../modules/services
     ./config.nix
     ./core.nix
     ./locale.nix
