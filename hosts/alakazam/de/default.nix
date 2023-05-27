@@ -333,10 +333,6 @@ in
 
       # For backup script.
       tree
-
-      # For export script.
-      pandoc
-      zip
     ];
   };
 }
