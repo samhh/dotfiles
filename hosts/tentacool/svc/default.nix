@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./caterpie.nix
     ./chansey.nix
     ./cloyster.nix
     ./exeggutor.nix
