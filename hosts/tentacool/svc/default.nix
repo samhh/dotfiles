@@ -7,7 +7,6 @@
     ./exeggutor.nix
     ./krabby.nix
     ./magnemite.nix
-    ./metapod.nix
     ./onix.nix
     ./spearow.nix
     ./starmie.nix
