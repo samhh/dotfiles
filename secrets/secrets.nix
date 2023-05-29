@@ -17,5 +17,4 @@ in
   "restic.age".publicKeys = [ alakazam tentacool ];
   "sonarr-api-key.age".publicKeys = [ tentacool ];
   "sonarr-host.age".publicKeys = [ tentacool ];
-  "zwave-env.age".publicKeys = [ tentacool ];
 }

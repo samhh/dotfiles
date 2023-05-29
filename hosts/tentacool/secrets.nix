@@ -12,6 +12,5 @@
     };
     sonarr-api-key.file = ../../secrets/sonarr-api-key.age;
     sonarr-host.file = ../../secrets/sonarr-host.age;
-    zwave-env.file = ../../secrets/zwave-env.age;
   };
 }
