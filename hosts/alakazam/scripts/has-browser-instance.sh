@@ -10,4 +10,4 @@ ws=$(
   jq ".nodes[] | select(.name==\"$output\") | .nodes[] | select($is_active_ws)"
 )
 
-echo "$ws" | gron | grep -iE "json\.(nodes\[[0-9]+]\.)+name = \".*LibreWolf\""
+echo "$ws" | gron | grep -iE "json\.(nodes\[[0-9]+]\.)+name = \".*(LibreWolf|Mozilla Firefox)\""
