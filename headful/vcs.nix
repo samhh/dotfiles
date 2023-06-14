@@ -30,6 +30,7 @@ in
     };
     aliases = {
       br = "branch";
+      brd = "branch -D @{-1}";
       df = "diff";
       dfs = "diff --staged";
       ca = "commit --amend --no-edit";
