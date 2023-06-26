@@ -14,6 +14,7 @@ in
   services.bangin-server-node = {
     enable = true;
     port = port;
+    fallback = "https://kagi.com/search?q={{{s}}}";
   };
 
   home-manager.users.${config.username} = {
