@@ -20,6 +20,13 @@ let
         '';
     });
 
+  # This (as a derivation) appears unwilling to be placed in `pluginPkgs` above
+  # for some reason, so we'll source it directly in `shellInit`.
+  fish-completion-sync = pkgs.fetchzip {
+    url = "https://github.com/pfgray/fish-completion-sync/archive/ba70b6457228af520751eab48430b1b995e3e0e2.tar.gz";
+    sha256 = "04pniwccm2a4kwf6gzd6xjyahmv70ks8ndihxxpm8m3mjsqqplr5";
+  };
+
 in
 {
   users.users.${config.username}.shell = customFish;
@@ -39,6 +46,8 @@ in
         set -x MANPAGER ${editorBin} +Man!
         set -x DIFFPROG ${editorBin} -d
         set -x DIRENV_LOG_FORMAT ""
+
+        source ${fish-completion-sync}/init.fish
       '';
       shellAbbrs = {
         "diff" = "nvim -d";
