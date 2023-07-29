@@ -245,11 +245,6 @@ in
       }];
     };
 
-    services.gammastep = {
-      enable = true;
-      inherit (config.location) latitude longitude;
-    };
-
     services.mako = {
       enable = true;
       backgroundColor = "#${config.colorScheme.colors.base00}${bgOpacityHex}";
