@@ -247,9 +247,7 @@ in
 
     services.gammastep = {
       enable = true;
-      # Roughly London.
-      latitude = 51.5941;
-      longitude = 0.1298;
+      inherit (config.location) latitude longitude;
     };
 
     services.mako = {
