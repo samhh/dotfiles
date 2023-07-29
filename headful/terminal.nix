@@ -13,10 +13,7 @@ let
   customFish =
     pkgs.fish.overrideAttrs (attrs: {
       fixupPhase =
-        let
-          overrides = {
-            pluginPkgs = with pkgs.fishPlugins; [ fish-minimal-theme ];
-          };
+        let overrides.pluginPkgs = with pkgs.fishPlugins; [ fish-minimal-theme ];
         in
         ''
           cp ${pkgs.wrapFish overrides}/bin/fish $out/bin/fish
