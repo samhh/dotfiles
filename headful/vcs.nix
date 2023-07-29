@@ -40,6 +40,7 @@ in
       cmx = "commit --fixup";
       cp = "cherry-pick";
       ft = "fetch";
+      ignore = "!sh -c 'git add -N $0 && git update-index --skip-worktree $0'";
       lg = "log --graph --pretty=format:'%Cblue%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold red)[%an]%Creset' --abbrev-commit --date=relative";
       pl = "pull";
       ps = "push";
