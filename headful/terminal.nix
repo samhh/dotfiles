@@ -82,9 +82,6 @@ in
     programs.zoxide.enable = true;
 
     programs.git.ignores = [
-      "flake.nix"
-      "flake.lock"
-      "shell.nix"
       "result"
       ".envrc"
       ".direnv/"
