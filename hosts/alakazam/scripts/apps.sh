@@ -1,7 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-read -r -d '' apps << fin
-1password
+apps="1password
 chromium
 cider
 emote
@@ -16,10 +15,9 @@ pavucontrol
 piper
 prismlauncher
 slack
-steam
-fin
+steam"
 
 app=$(echo "$apps" | tofi --prompt gui)
-[[ -n $app ]] || exit
+[ -n "$app" ] || exit
 
-exec $app & disown
+exec $app &
