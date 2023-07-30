@@ -10,7 +10,8 @@ gddccontrol
 librewolf
 librewolf --private-window
 lutris
-obsidian
+obsidian obsidian://open?vault=vault
+obsidian obsidian://open?vault=docs
 pavucontrol
 piper
 prismlauncher
