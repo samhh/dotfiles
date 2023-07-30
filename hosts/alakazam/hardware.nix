@@ -4,7 +4,7 @@
   boot = {
     loader = {
       efi.canTouchEfiVariables = true;
-      timeout = 30;
+      timeout = 2;
       systemd-boot = {
         enable = true;
         # My boot partition is only 100MB. This leaves space for only one
