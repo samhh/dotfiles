@@ -10,7 +10,6 @@ with lib; {
     fullName = mkOption { type = types.str; };
     email = {
       address = mkOption { type = types.str; };
-      pass.path = mkOption { type = types.str; };
     };
     nas = {
       path = mkOption { type = types.str; };
