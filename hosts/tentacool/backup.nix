@@ -93,7 +93,7 @@ in
               remoteuser = config.email.address;
               remotepassfile = config.age.secrets.migadu.path;
               folderfilter =
-                "lambda folder: folder in ['Archive', 'Awaiting', 'Unfulfilled', 'Jobs 2021', 'INBOX', 'Sent']";
+                "lambda folder: folder in ['Archive', 'Awaiting', 'Unfulfilled', 'INBOX', 'Sent']";
             };
           };
         };
