@@ -13,4 +13,12 @@
 
     mutableUsers = false;
   };
+
+  # This, if set, allows the specified user to be automatically logged in
+  # without a password.
+  #
+  # Whilst this'd be reasonably secure on TTY1 directly following LUKS, it
+  # becomes a vulnerability when one can freely switch to another TTY. Most
+  # lockers don't prevent this.
+  services.getty.autologinUser = null;
 }
