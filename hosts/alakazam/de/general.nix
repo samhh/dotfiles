@@ -77,7 +77,13 @@ in
           # Ideally the likes of tofi would be packaged up in there as well
           # and not exposed in $PATH.
           keybindings = mkOptionDefault {
-            "XF86AudioMicMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+            "XF86AudioMicMute" =
+              let
+                mute = "${pkgs.pulseaudio}/bin/pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+                isMuted = "${pkgs.pulseaudio}/bin/pactl get-source-mute @DEFAULT_SOURCE@";
+                notify = "${pkgs.libnotify}/bin/notify-send -t 2500 \"Mic $(${isMuted})\"";
+              in
+              "exec ${mute} && ${notify}";
             "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
             "XF86AudioLowerVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -1%";
             "XF86AudioRaiseVolume" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +1%";
