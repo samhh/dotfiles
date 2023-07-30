@@ -1,6 +1,6 @@
 lua <<EOF
   require'kanagawa'.setup {
-    transparent = true,
+    transparent = false,
     commentStyle = {},
     functionStyle = {},
     keywordStyle = {},

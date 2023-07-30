@@ -47,6 +47,7 @@
         vim-just
 
         # Theming
+        vim-lumen
         lightline-vim
         kanagawa-nvim
       ];
@@ -98,6 +99,9 @@
       # Tools w/ language server interop
       hlint
       stylish-haskell
+
+      # For vim-lumen to access gdbus
+      glib
     ];
   };
 }
