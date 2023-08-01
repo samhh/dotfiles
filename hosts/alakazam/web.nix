@@ -32,6 +32,7 @@ in
         "privacy.clearOnShutdown.cookies" = false;
         "privacy.clearOnShutdown.cache" = false;
         "media.autoplay.blocking_policy" = 2;
+        "webgl.disabled" = false;
         # Breaks dark mode. However...: https://amiunique.org/fp
         "privacy.resistFingerprinting" = false;
       };
