@@ -9,6 +9,7 @@
     ./network.nix
     ./secrets.nix
     ./ssh.nix
+    ./virt.nix
 
     ./svc
   ];
