@@ -3,7 +3,6 @@
 {
   age.secrets = {
     ddns-token.file = ../../secrets/ddns-token.age;
-    pihole-env.file = ../../secrets/pihole-env.age;
     radarr-api-key.file = ../../secrets/radarr-api-key.age;
     radarr-host.file = ../../secrets/radarr-host.age;
     radicale-htpasswd = {
