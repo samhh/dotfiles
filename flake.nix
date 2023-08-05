@@ -1,4 +1,6 @@
 {
+  description = "Configuring the universe with Nix";
+
   inputs =
     {
       agenix = {
