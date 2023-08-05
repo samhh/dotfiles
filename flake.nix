@@ -24,10 +24,7 @@
     };
 
   outputs = { self, agenix, flake-utils, home-manager, nix-colors, nixpkgs, tshm-plugin }:
-    let
-      getLib = { lib, ... }: lib // import ./lib { inherit lib; };
-    in
-    with getLib nixpkgs; let
+    with nixpkgs.lib; let
       overlay = system: final: prev:
         self.packages.${system} //
         {
@@ -71,7 +68,7 @@
         let pkgs = getPkgs system;
         in
         {
-          nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
+          nixosConfigurations.${hostname} = nixosSystem {
             inherit pkgs system;
 
             modules = baseModules ++
@@ -82,9 +79,6 @@
               ];
 
             specialArgs = {
-              # This essentially acts as a `lib` overlay (an actual overlay
-              # change only affects `pkgs.lib`).
-              lib = getLib pkgs;
               inherit nix-colors;
               tshmPlugin = tshm-plugin;
             };
@@ -103,14 +97,14 @@
       {
         devShells.default = import ./shell.nix { inherit pkgs; };
 
-        packages = with pkgs.lib;
+        packages =
           let isSupportedPlatform = pkg: ! pkg.meta.unsupported;
           in filterAttrs (const isSupportedPlatform) (import ./pkgs { inherit pkgs; });
       }
     )) //
 
     (
-      let f = fold (compose [ getSystem recursiveUpdate ]) { };
+      let f = fold (sys: pipe sys [ getSystem recursiveUpdate ]) { };
       in f (import ./hosts { systems = flake-utils.lib.system; })
     ) //
 
