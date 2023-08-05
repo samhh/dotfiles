@@ -62,19 +62,20 @@
         };
       };
 
-      getSystem = hostCfg:
-        nixosSystem {
-          inherit pkgs system;
+      commonModules = [
+        home-manager.nixosModules.home-manager
+        agenix.nixosModules.default
+        (import ./common)
+        (import ./config)
+        baseCfg
+      ];
 
-          modules =
-            [
-              home-manager.nixosModules.home-manager
-              agenix.nixosModules.default
-              (import ./common)
-              (import ./config)
-              baseCfg
-              hostCfg
-            ];
+    in
+    {
+      nixosConfigurations = {
+        alakazam = nixosSystem {
+          inherit pkgs system;
+          modules = commonModules ++ [ ./hosts/alakazam ];
 
           specialArgs = {
             inherit nix-colors;
@@ -82,11 +83,10 @@
           };
         };
 
-    in
-    {
-      nixosConfigurations = {
-        alakazam = getSystem ./hosts/alakazam;
-        tentacool = getSystem ./hosts/tentacool;
+        tentacool = nixosSystem {
+          inherit pkgs system;
+          modules = commonModules ++ [ ./hosts/tentacool ];
+        };
       };
 
       devShells.${system}.default = import ./shell.nix { inherit pkgs; };
