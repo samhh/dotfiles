@@ -11,10 +11,11 @@ Keybindings are with [my keymap](https://git.sr.ht/~samhh/qmk_firmware/tree/samh
 
 ## Usage
 
-Build your desired host with `nixos-rebuild --flake`.
+Build your desired host with `nixos-rebuild --flake`. Additionally Alakazam can deploy to Tentacool.
 
 ```console
 # nixos-rebuild switch --flake ".#alakazam"
+$ deploy ".#tentacool"
 ```
 
 For now some Alakazam scripts presume the repo will be at `~/dotfiles/`.

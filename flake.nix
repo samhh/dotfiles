@@ -8,6 +8,8 @@
         inputs.nixpkgs.follows = "nixpkgs";
       };
 
+      deploy-rs.url = "github:serokell/deploy-rs";
+
       home-manager = {
         url = "github:nix-community/home-manager/release-23.05";
         inputs.nixpkgs.follows = "nixpkgs";
@@ -23,7 +25,7 @@
       };
     };
 
-  outputs = { self, agenix, home-manager, nix-colors, nixpkgs, tshm-plugin }:
+  outputs = { self, agenix, deploy-rs, home-manager, nix-colors, nixpkgs, tshm-plugin }:
     with nixpkgs.lib; let
       system = "x86_64-linux";
 
@@ -51,6 +53,14 @@
         inherit system;
         overlays = [ overlay ];
         config.allowUnfreePredicate = isAllowedUnfree;
+      };
+
+      deployPkgs = import nixpkgs {
+        inherit system;
+        overlays = [
+          deploy-rs.overlay
+          (self: super: { deploy-rs = { inherit (pkgs) deploy-rs; lib = super.deploy-rs.lib; }; })
+        ];
       };
 
       baseCfg = {
@@ -86,6 +96,24 @@
         tentacool = nixosSystem {
           inherit pkgs system;
           modules = commonModules ++ [ ./hosts/tentacool ];
+        };
+      };
+
+      deploy.nodes.tentacool = {
+        hostname = "tentacool";
+        profiles.system = {
+          path =
+            deployPkgs.deploy-rs.lib.activate.nixos self.nixosConfigurations.tentacool;
+          sshUser = self.nixosConfigurations.tentacool.config.username;
+          user = "root";
+          # For password-based sudo, see:
+          #   https://github.com/serokell/deploy-rs/issues/78#issuecomment-1367467086
+          sshOpts = [ "-t" ];
+          magicRollback = false;
+          # Local builds would require messing with trusted users or signature
+          # paths, see:
+          #   https://github.com/serokell/deploy-rs/issues/25#issuecomment-740262646
+          remoteBuild = true;
         };
       };
 
