@@ -6,8 +6,6 @@
         inputs.nixpkgs.follows = "nixpkgs";
       };
 
-      flake-utils.url = "github:numtide/flake-utils";
-
       home-manager = {
         url = "github:nix-community/home-manager/release-23.05";
         inputs.nixpkgs.follows = "nixpkgs";
@@ -23,9 +21,11 @@
       };
     };
 
-  outputs = { self, agenix, flake-utils, home-manager, nix-colors, nixpkgs, tshm-plugin }:
+  outputs = { self, agenix, home-manager, nix-colors, nixpkgs, tshm-plugin }:
     with nixpkgs.lib; let
-      overlay = system: final: prev:
+      system = "x86_64-linux";
+
+      overlay = final: prev:
         self.packages.${system} //
         {
           agenix = agenix.packages.${final.system}.default;
@@ -34,81 +34,61 @@
           vimPlugins = prev.vimPlugins // (final.callPackage ./pkgs/vimPlugins { });
         };
 
-      getPkgs = system: import nixpkgs {
+      isAllowedUnfree = pkg:
+        let pkgName = getName pkg;
+        in
+        builtins.elem pkgName [
+          "1password"
+          "obsidian"
+          "slack"
+        ] ||
+        # Steam includes a few unfree packages.
+        (builtins.match "^steam(-.*)?" pkgName != null);
+
+      pkgs = import nixpkgs {
         inherit system;
-
-        overlays = [ (overlay system) ];
-
-        config.allowUnfreePredicate = pkg:
-          let pkgName = getName pkg;
-          in
-          builtins.elem pkgName [
-            "1password"
-            "obsidian"
-            "slack"
-          ] ||
-          # Steam includes a few unfree packages.
-          (builtins.match "^steam(-.*)?" pkgName != null);
+        overlays = [ overlay ];
+        config.allowUnfreePredicate = isAllowedUnfree;
       };
 
-      baseModules = [
-        {
-          nix = {
-            # Modern nix CLI
-            registry.nixpkgs.flake = nixpkgs;
-            # Legacy nix-* CLI
-            nixPath = [ "nixpkgs=${nixpkgs}" ];
-          };
-        }
-        agenix.nixosModules.default
-        (import ./cfg)
-      ];
+      baseCfg = {
+        nix = {
+          # Modern nix CLI
+          registry.nixpkgs.flake = nixpkgs;
+          # Legacy nix-* CLI
+          nixPath = [ "nixpkgs=${nixpkgs}" ];
+        };
+      };
 
-      getSystem = { hostname, system, config }:
-        let pkgs = getPkgs system;
-        in
-        {
-          nixosConfigurations.${hostname} = nixosSystem {
-            inherit pkgs system;
+      getSystem = hostCfg:
+        nixosSystem {
+          inherit pkgs system;
 
-            modules = baseModules ++
-              [
-                home-manager.nixosModules.home-manager
-                (import ./nixos)
-                config
-              ];
+          modules =
+            [
+              home-manager.nixosModules.home-manager
+              agenix.nixosModules.default
+              (import ./nixos)
+              (import ./cfg)
+              baseCfg
+              hostCfg
+            ];
 
-            specialArgs = {
-              inherit nix-colors;
-              tshmPlugin = tshm-plugin;
-            };
+          specialArgs = {
+            inherit nix-colors;
+            tshmPlugin = tshm-plugin;
           };
         };
 
     in
-    (flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = import nixpkgs {
-          inherit system;
-
-          overlays = [ (const (const { agenix = agenix.packages.${system}.default; })) ];
-        };
-      in
-      {
-        devShells.default = import ./shell.nix { inherit pkgs; };
-
-        packages =
-          let isSupportedPlatform = pkg: ! pkg.meta.unsupported;
-          in filterAttrs (const isSupportedPlatform) (import ./pkgs { inherit pkgs; });
-      }
-    )) //
-
-    (
-      let f = fold (sys: pipe sys [ getSystem recursiveUpdate ]) { };
-      in f (import ./hosts { systems = flake-utils.lib.system; })
-    ) //
-
     {
+      nixosConfigurations = {
+        alakazam = getSystem ./hosts/alakazam;
+        tentacool = getSystem ./hosts/tentacool;
+      };
+
+      devShells.${system}.default = import ./shell.nix { inherit pkgs; };
+      packages.${system} = import ./pkgs { inherit pkgs; };
       templates = import ./templates;
     };
 }
