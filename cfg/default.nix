@@ -19,7 +19,6 @@ with lib; {
     };
     apps = {
       terminal.bin = mkOption { type = types.str; };
-      launcher.bin = mkOption { type = types.str; };
       webBrowser.bin = mkOption { type = types.str; };
     };
   };
