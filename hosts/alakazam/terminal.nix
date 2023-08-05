@@ -57,24 +57,6 @@ in
       };
     };
 
-    programs.fish.shellAbbrs = {
-      "mann" = "tldr";
-      "find" = "fd";
-      "tree" = "tre";
-      "sed" = "sd";
-      "df" = "duf";
-      "du" = "gdu";
-      "ping" = "gping";
-      "mpc" = "vimpc";
-      "top" = "gotop";
-      "cat" = "bat";
-
-      "sys" = "systemctl";
-      "sysu" = "systemctl --user";
-      "up" = "nixos-rebuild --flake .# build";
-      "upp" = "doas nixos-rebuild --flake .# switch";
-    };
-
     home.packages = with pkgs; [
       upterm
     ];

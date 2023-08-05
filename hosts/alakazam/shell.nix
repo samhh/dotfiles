@@ -35,6 +35,7 @@ in
     programs.fish = {
       enable = true;
       package = customFish;
+
       shellInit = ''
         set fish_greeting
         fish_vi_key_bindings
@@ -49,15 +50,32 @@ in
 
         source ${fish-completion-sync}/init.fish
       '';
+
       shellAbbrs = {
         "diff" = "nvim -d";
         "grep" = "rg";
         "vi" = "nvim";
+        "mann" = "tldr";
+        "find" = "fd";
+        "tree" = "tre";
+        "sed" = "sd";
+        "df" = "duf";
+        "du" = "gdu";
+        "ping" = "gping";
+        "mpc" = "vimpc";
+        "top" = "gotop";
+        "cat" = "bat";
 
         "sh" = "nix shell nixpkgs#";
         "nixh" = "nix-prefetch-url";
         "nixhu" = "nix-prefetch-url --unpack";
+
+        "sys" = "systemctl";
+        "sysu" = "systemctl --user";
+        "up" = "nixos-rebuild --flake .# build";
+        "upp" = "doas nixos-rebuild --flake .# switch";
       };
+
       functions = {
         mkcd = "mkdir -p $argv; cd $argv;";
         mktouch = "mkdir -p (dirname $argv); touch $argv;";

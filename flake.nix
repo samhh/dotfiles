@@ -67,7 +67,7 @@
         (import ./cfg)
       ];
 
-      getSystem = { hostname, system, isHeadful, config }:
+      getSystem = { hostname, system, config }:
         let pkgs = getPkgs system;
         in
         {
@@ -78,19 +78,16 @@
               [
                 home-manager.nixosModules.home-manager
                 (import ./nixos)
-                (if isHeadful then import ./headful else { })
                 config
               ];
 
-            specialArgs =
+            specialArgs = {
               # This essentially acts as a `lib` overlay (an actual overlay
               # change only affects `pkgs.lib`).
-              { lib = getLib pkgs; } //
-
-              (if isHeadful then {
-                inherit nix-colors;
-                tshmPlugin = tshm-plugin;
-              } else { });
+              lib = getLib pkgs;
+              inherit nix-colors;
+              tshmPlugin = tshm-plugin;
+            };
           };
         };
 
