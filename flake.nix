@@ -65,7 +65,6 @@
         }
         agenix.nixosModules.default
         (import ./cfg)
-        (import ./shared)
       ];
 
       getSystem = { hostname, system, isHeadful, config }:
