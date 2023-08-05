@@ -14,7 +14,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.${config.username}.imports = [ ./programs ];
+    users.${config.username}.imports = [ ./home-manager/programs ];
     extraSpecialArgs = { inherit tshmPlugin; };
   };
 }
