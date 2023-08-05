@@ -11,10 +11,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.${config.username} = {
-      home.stateVersion = "22.05";
-      imports = [ ./programs ];
-    };
+    users.${config.username}.imports = [ ./programs ];
     extraSpecialArgs = { inherit tshmPlugin; };
   };
 }
