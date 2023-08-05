@@ -57,28 +57,22 @@ in
       };
     };
 
-    programs.fish = {
-      shellInit = ''
-        set -x SSH_AUTH_SOCK /run/user/${toString uid}/ssh-agent
-      '';
+    programs.fish.shellAbbrs = {
+      "mann" = "tldr";
+      "find" = "fd";
+      "tree" = "tre";
+      "sed" = "sd";
+      "df" = "duf";
+      "du" = "gdu";
+      "ping" = "gping";
+      "mpc" = "vimpc";
+      "top" = "gotop";
+      "cat" = "bat";
 
-      shellAbbrs = {
-        "mann" = "tldr";
-        "find" = "fd";
-        "tree" = "tre";
-        "sed" = "sd";
-        "df" = "duf";
-        "du" = "gdu";
-        "ping" = "gping";
-        "mpc" = "vimpc";
-        "top" = "gotop";
-        "cat" = "bat";
-
-        "sys" = "systemctl";
-        "sysu" = "systemctl --user";
-        "up" = "nixos-rebuild --flake .# build";
-        "upp" = "doas nixos-rebuild --flake .# switch";
-      };
+      "sys" = "systemctl";
+      "sysu" = "systemctl --user";
+      "up" = "nixos-rebuild --flake .# build";
+      "upp" = "doas nixos-rebuild --flake .# switch";
     };
 
     home.packages = with pkgs; [
