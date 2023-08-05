@@ -54,7 +54,7 @@ in
         "grep" = "rg";
         "vi" = "nvim";
 
-        "sh" = "nix shell";
+        "sh" = "nix shell nixpkgs#";
         "nixh" = "nix-prefetch-url";
         "nixhu" = "nix-prefetch-url --unpack";
       };
