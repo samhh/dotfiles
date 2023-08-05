@@ -11,5 +11,6 @@
     ./spearow.nix
     ./starmie.nix
     ./tauros.nix
+    ./vaporeon.nix
   ];
 }
