@@ -11,17 +11,17 @@ Keybindings are with [my keymap](https://git.sr.ht/~samhh/qmk_firmware/tree/samh
 
 ## Usage
 
-Build your desired host with `nixos-rebuild --flake`. Example:
+Build your desired host with `nixos-rebuild --flake`.
 
 ```console
 # nixos-rebuild switch --flake ".#alakazam"
 ```
 
-For now some Alakazam scripts presume the repo will be at `~/dotfiles/`. Anything that couldn't be configured in Home Manager lives in `./cfg/` (NB not `:/cfg/`, which defines custom Nix configuration).
+For now some Alakazam scripts presume the repo will be at `~/dotfiles/`.
 
 ### Packages
 
-Some packages not in nixpkgs are defined in `:/pkgs/`. These can be built and run as flake outputs. Example:
+Some packages not in nixpkgs are defined in `:/packages/`. These can be built and run as flake outputs.
 
 ```console
 $ echo "declare const foo: Bar" | nix run ".#tshm" -- -a

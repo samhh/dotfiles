@@ -30,8 +30,8 @@
         {
           agenix = agenix.packages.${final.system}.default;
 
-          fishPlugins = prev.fishPlugins // (final.callPackage ./pkgs/fishPlugins { });
-          vimPlugins = prev.vimPlugins // (final.callPackage ./pkgs/vimPlugins { });
+          fishPlugins = prev.fishPlugins // (final.callPackage ./packages/fishPlugins { });
+          vimPlugins = prev.vimPlugins // (final.callPackage ./packages/vimPlugins { });
         };
 
       isAllowedUnfree = pkg:
@@ -69,7 +69,7 @@
               home-manager.nixosModules.home-manager
               agenix.nixosModules.default
               (import ./common)
-              (import ./cfg)
+              (import ./config)
               baseCfg
               hostCfg
             ];
@@ -88,7 +88,7 @@
       };
 
       devShells.${system}.default = import ./shell.nix { inherit pkgs; };
-      packages.${system} = import ./pkgs { inherit pkgs; };
+      packages.${system} = import ./packages { inherit pkgs; };
       templates = import ./templates;
     };
 }
