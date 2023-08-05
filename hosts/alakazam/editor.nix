@@ -78,7 +78,7 @@
     };
 
     programs.tshm = {
-      enable = pkgs.stdenv.isLinux;
+      enable = true;
       installEditorPlugin = true;
     };
 
