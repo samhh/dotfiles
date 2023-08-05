@@ -68,7 +68,7 @@
             [
               home-manager.nixosModules.home-manager
               agenix.nixosModules.default
-              (import ./nixos)
+              (import ./common)
               (import ./cfg)
               baseCfg
               hostCfg
