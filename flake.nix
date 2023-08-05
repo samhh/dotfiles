@@ -6,11 +6,6 @@
         inputs.nixpkgs.follows = "nixpkgs";
       };
 
-      darwin = {
-        url = "github:lnl7/nix-darwin";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
-
       flake-utils.url = "github:numtide/flake-utils";
 
       home-manager = {
@@ -28,7 +23,7 @@
       };
     };
 
-  outputs = { self, agenix, darwin, flake-utils, home-manager, nix-colors, nixpkgs, tshm-plugin }:
+  outputs = { self, agenix, flake-utils, home-manager, nix-colors, nixpkgs, tshm-plugin }:
     let
       getLib = { lib, ... }: lib // import ./lib { inherit lib; };
     in
@@ -73,29 +68,17 @@
         (import ./shared)
       ];
 
-      sysModules = isNixOS:
-        if isNixOS
-        then [ home-manager.nixosModules.home-manager (import ./nixos) ]
-        else [ home-manager.darwinModules.home-manager ];
-
-      getSystem = { hostname, system, isNixOS, isHeadful, config }:
-        let
-          pkgs = getPkgs system;
-          cfgs =
-            if isNixOS
-            then "nixosConfigurations"
-            else "darwinConfigurations";
-          sys =
-            if isNixOS
-            then nixpkgs.lib.nixosSystem
-            else darwin.lib.darwinSystem;
+      getSystem = { hostname, system, isHeadful, config }:
+        let pkgs = getPkgs system;
         in
         {
-          ${cfgs}.${hostname} = sys {
+          nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
             inherit pkgs system;
 
-            modules = baseModules ++ sysModules isNixOS ++
+            modules = baseModules ++
               [
+                home-manager.nixosModules.home-manager
+                (import ./nixos)
                 (if isHeadful then import ./headful else { })
                 config
               ];
