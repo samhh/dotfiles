@@ -135,9 +135,6 @@ in
       ".psc-ide-port"
       ".psci_modules/"
 
-      # Haskell
-      "hie.yaml"
-
       # npm
       ".npmrc"
 
