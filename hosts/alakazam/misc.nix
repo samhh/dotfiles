@@ -3,6 +3,10 @@
 let
   home = config.users.users.${config.username}.home;
   qrcpPort = 8090;
+  vaporeon = pkgs.writeShellScriptBin "vaporeon" ''
+    exec ${pkgs.blocky}/bin/blocky --apiHost tentacool "$@"
+  '';
+
 in
 {
   networking.firewall.allowedTCPPorts = [
@@ -78,6 +82,7 @@ in
       dogdns
       duf
       fd
+      ffmpeg_6-full # For `ffplay`.
       gdu
       gnupg
       gping
@@ -98,11 +103,11 @@ in
       tldr
       tre-command
       unzip
+      vaporeon
       vimpc
       wf-recorder
       wl-clipboard
       zathura
-      ffmpeg_6-full # For `ffplay`.
 
       # GUI
       obsidian
