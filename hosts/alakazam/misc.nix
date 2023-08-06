@@ -94,6 +94,7 @@ in
       lftp
       libnotify
       libqalculate
+      nix-alien
       nvd
       qrcp
       ripgrep

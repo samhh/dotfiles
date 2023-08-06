@@ -15,6 +15,8 @@
         inputs.nixpkgs.follows = "nixpkgs";
       };
 
+      nix-alien.url = "github:thiagokokada/nix-alien";
+
       nix-colors.url = "github:misterio77/nix-colors";
 
       nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
@@ -25,7 +27,7 @@
       };
     };
 
-  outputs = { self, agenix, deploy-rs, home-manager, nix-colors, nixpkgs, tshm-plugin }:
+  outputs = { self, agenix, deploy-rs, home-manager, nix-alien, nix-colors, nixpkgs, tshm-plugin }:
     with nixpkgs.lib; let
       system = "x86_64-linux";
 
@@ -33,6 +35,7 @@
         self.packages.${system} //
         {
           agenix = agenix.packages.${final.system}.default;
+          nix-alien = nix-alien.packages.${final.system}.nix-alien;
 
           fishPlugins = prev.fishPlugins // (final.callPackage ./packages/fishPlugins { });
           vimPlugins = prev.vimPlugins // (final.callPackage ./packages/vimPlugins { });
