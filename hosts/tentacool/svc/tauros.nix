@@ -3,17 +3,11 @@
 let port = 1234;
 in
 {
-  services.nginx.virtualHosts."tauros.samhh.com" = {
-    enableACME = true;
-    forceSSL = true;
-    locations."/".proxyPass = "http://127.0.0.1:${toString port}";
-  };
-
-  services.ddclient.domains = [ "tauros" ];
+  networking.firewall.allowedTCPPorts = [ port ];
 
   services.bangin-server-node = {
     enable = true;
-    port = port;
+    inherit port;
     fallback = "https://kagi.com/search?q={{{s}}}";
   };
 
