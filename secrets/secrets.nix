@@ -5,7 +5,6 @@ let
 in
 {
   "b2-env.age".publicKeys = [ alakazam tentacool ];
-  "ddns-token.age".publicKeys = [ tentacool ];
   "gmail.age".publicKeys = [ alakazam ];
   "irc-token.age".publicKeys = [ alakazam ];
   "krabby.age".publicKeys = [ alakazam ];

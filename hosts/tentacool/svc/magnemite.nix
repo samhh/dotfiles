@@ -18,6 +18,4 @@ in
       proxyWebsockets = true;
     };
   };
-
-  services.ddclient.domains = [ name ];
 }

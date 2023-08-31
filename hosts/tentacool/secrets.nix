@@ -2,7 +2,6 @@
 
 {
   age.secrets = {
-    ddns-token.file = ../../secrets/ddns-token.age;
     radarr-api-key.file = ../../secrets/radarr-api-key.age;
     radarr-host.file = ../../secrets/radarr-host.age;
     radicale-htpasswd = {
