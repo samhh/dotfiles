@@ -4,6 +4,8 @@ let
 
 in
 {
+  # Whilst the timed backups only run on Tentacool, Alakazam should have
+  # access at any time for restores or whatever else.
   "b2-env.age".publicKeys = [ alakazam tentacool ];
   "gmail.age".publicKeys = [ alakazam ];
   "irc-token.age".publicKeys = [ alakazam ];

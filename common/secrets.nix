@@ -12,8 +12,6 @@ in
 {
   age = {
     identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-    # Whilst the timed backups only run on Tentacool, Alakazam should have
-    # access at any time for restores or whatever else.
     secrets = {
       b2-env = {
         file = ../secrets/b2-env.age;
