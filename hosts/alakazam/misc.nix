@@ -9,6 +9,22 @@ let
 
 in
 {
+  age.secrets = {
+    irc-token = {
+      file = ../../secrets/irc-token.age;
+      # For senpai.
+      owner = config.username;
+      group = "users";
+    };
+
+    krabby = {
+      file = ../../secrets/krabby.age;
+      # For vdirsyncer.
+      owner = config.username;
+      group = "users";
+    };
+  };
+
   networking.firewall.allowedTCPPorts = [
     qrcpPort
   ];

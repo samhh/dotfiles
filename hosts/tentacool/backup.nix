@@ -22,6 +22,21 @@ let
   '';
 in
 {
+
+  age.secrets = {
+    migadu = {
+      file = ../../secrets/migadu.age;
+      # For offlineimap.
+      owner = config.username;
+      group = "users";
+    };
+
+    radarr-api-key.file = ../../secrets/radarr-api-key.age;
+    radarr-host.file = ../../secrets/radarr-host.age;
+    sonarr-api-key.file = ../../secrets/sonarr-api-key.age;
+    sonarr-host.file = ../../secrets/sonarr-host.age;
+  };
+
   # The B2 buckets presumably need creating in the web UI first. Remember to
   # set file lifecycle to "keep only the last version".
   services.restic.backups =

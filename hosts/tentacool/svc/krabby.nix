@@ -3,6 +3,11 @@
 let webPort = 5232;
 in
 {
+  age.secrets.radicale-htpasswd = {
+    file = ../../../secrets/radicale-htpasswd.age;
+    owner = "radicale";
+  };
+
   services.radicale = {
     enable = true;
     settings.auth = {

@@ -1,6 +1,22 @@
 { config, pkgs, ... }:
 
 {
+  age.secrets = {
+    migadu = {
+      file = ../../secrets/migadu.age;
+      # For aerc.
+      owner = config.username;
+      group = "users";
+    };
+
+    gmail = {
+      file = ../../secrets/gmail.age;
+      # For aerc.
+      owner = config.username;
+      group = "users";
+    };
+  };
+
   home-manager.users.${config.username}.programs.aerc = {
     enable = true;
 
