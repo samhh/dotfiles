@@ -1,3 +1,3 @@
 #!/bin/sh
 
-"$(dirname "$0")/browser-launch.sh" "http://tentacool:1234/?q=$(wl-paste -p)!d"
+"$(dirname "$0")/browser-launch.sh" "https://tauros.samhh.com/?q=$(wl-paste -p)!d"

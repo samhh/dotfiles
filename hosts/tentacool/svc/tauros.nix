@@ -3,7 +3,13 @@
 let port = 1234;
 in
 {
-  networking.firewall.allowedTCPPorts = [ port ];
+  services.nginx.virtualHosts."tauros.samhh.com" = {
+    enableACME = true;
+    forceSSL = true;
+    locations."/".proxyPass = "http://127.0.0.1:${toString port}";
+  };
+
+  services.ddclient.domains = [ "tauros" ];
 
   services.bangin-server-node = {
     enable = true;
