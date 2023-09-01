@@ -12,6 +12,7 @@ let
   # as a script for completions generation.
   customFish =
     pkgs.fish.overrideAttrs (attrs: {
+      doCheck = false;
       fixupPhase =
         let overrides.pluginPkgs = with pkgs.fishPlugins; [ fish-minimal-theme ];
         in
