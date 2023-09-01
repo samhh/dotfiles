@@ -28,7 +28,6 @@ in
       file = ../../secrets/migadu.age;
       # For offlineimap.
       owner = config.username;
-      group = "users";
     };
 
     radarr-api-key.file = ../../secrets/radarr-api-key.age;

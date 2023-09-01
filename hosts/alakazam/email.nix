@@ -6,14 +6,12 @@
       file = ../../secrets/migadu.age;
       # For aerc.
       owner = config.username;
-      group = "users";
     };
 
     gmail = {
       file = ../../secrets/gmail.age;
       # For aerc.
       owner = config.username;
-      group = "users";
     };
   };
 
