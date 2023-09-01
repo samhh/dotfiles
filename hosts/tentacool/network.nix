@@ -18,4 +18,9 @@
       linkConfig.RequiredForOnline = "routable";
     };
   };
+
+  # The stub listener conflicts with Vaporeon on port 53.
+  services.resolved.extraConfig = ''
+    DNSStubListener=no
+  '';
 }
