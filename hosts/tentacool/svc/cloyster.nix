@@ -11,7 +11,7 @@ in
   };
 
   virtualisation.oci-containers.containers.scrypted = {
-    image = "koush/scrypted:18-jammy-thin-v0.41.0";
+    image = "koush/scrypted:18-jammy-thin-v0.48.0";
     volumes = [
       "scrypted:/server/volume"
     ];
