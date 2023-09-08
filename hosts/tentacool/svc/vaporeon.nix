@@ -76,7 +76,7 @@ in
           in
           {
             personal = [ personalWhitelist ];
-            work = [ workWhitelist ];
+            work = [ personalWhitelist workWhitelist ];
           };
 
         clientGroupsBlock = {
