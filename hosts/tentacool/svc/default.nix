@@ -8,6 +8,7 @@
     ./exeggutor.nix
     ./krabby.nix
     ./magnemite.nix
+    ./ponyta.nix
     ./spearow.nix
     ./starmie.nix
     ./tauros.nix

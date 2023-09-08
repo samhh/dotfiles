@@ -59,7 +59,7 @@ in
     {
       archive = baseCfg // {
         repository = "b2:archive-restic2";
-        paths = [ (config.nas.path + "/archive/") ];
+        paths = [ config.services.paperless.mediaDir ];
       };
 
       keys = baseCfg // {

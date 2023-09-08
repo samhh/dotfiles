@@ -11,6 +11,7 @@ in
   "irc-token.age".publicKeys = [ alakazam ];
   "krabby.age".publicKeys = [ alakazam ];
   "migadu.age".publicKeys = [ alakazam tentacool ];
+  "ponyta.age".publicKeys = [ tentacool ];
   "radarr-api-key.age".publicKeys = [ tentacool ];
   "radarr-host.age".publicKeys = [ tentacool ];
   "radicale-htpasswd.age".publicKeys = [ tentacool ];
