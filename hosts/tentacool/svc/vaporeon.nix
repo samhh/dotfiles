@@ -64,6 +64,7 @@ in
           #   https://github.com/0xERR0R/blocky/issues/556#issuecomment-1150731243
           let
             personalWhitelist = pkgs.writeText "vaporeon-personal-whitelist" ''
+              www.googleadservices.com
               /(\.|^)sonos\.com$/
             '';
             workWhitelist = pkgs.writeText "vaporeon-work-whitelist" ''
