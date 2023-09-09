@@ -7,7 +7,6 @@
     ./cloyster.nix
     ./exeggutor.nix
     ./krabby.nix
-    ./magnemite.nix
     ./ponyta.nix
     ./spearow.nix
     ./starmie.nix
