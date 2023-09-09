@@ -59,10 +59,7 @@ in
     {
       archive = baseCfg // {
         repository = "b2:archive-restic2";
-        paths = [
-          config.services.paperless.mediaDir
-          (config.nas.path + "/archive/tentacool/")
-        ];
+        paths = [ (config.nas.path + "/archive/") ];
       };
 
       keys = baseCfg // {
