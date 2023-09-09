@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
   editorBin = "${config.home-manager.users.${config.username}.programs.neovim.finalPackage}/bin/nvim";
@@ -11,7 +11,7 @@ let
   # binary, and Home Manager relies upon other stuff in the package such
   # as a script for completions generation.
   customFish =
-    pkgs.fish.overrideAttrs (attrs: {
+    pkgs.fish.overrideAttrs (_attrs: {
       doCheck = false;
       fixupPhase =
         let overrides.pluginPkgs = with pkgs.fishPlugins; [ fish-minimal-theme ];

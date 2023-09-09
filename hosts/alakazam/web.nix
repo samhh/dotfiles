@@ -1,10 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  editorBin = "${config.home-manager.users.${config.username}.programs.neovim.finalPackage}/bin/nvim";
-  mpvBin = "${config.home-manager.users.${config.username}.programs.mpv.finalPackage}/bin/mpv";
   scripts = "${config.users.users.${config.username}.home}/dotfiles/hosts/alakazam/scripts";
-
   desktopName = "workspaceConditionalBrowser";
 in
 {

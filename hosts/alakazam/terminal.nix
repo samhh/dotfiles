@@ -1,8 +1,5 @@
 { config, pkgs, ... }:
 
-let
-  uid = config.users.users.${config.username}.uid;
-in
 {
   security.doas.extraRules = [{
     users = [ config.username ];

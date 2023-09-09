@@ -1,4 +1,4 @@
-{ config, lib, pkgs, tshmPlugin, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   home-manager.users.${config.username} = {
