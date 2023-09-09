@@ -16,6 +16,7 @@
     ./network.nix
     ./security.nix
     ./shell.nix
+    ./ssh.nix
     ./terminal.nix
     ./user.nix
     ./vcs.nix
