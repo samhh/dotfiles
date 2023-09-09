@@ -2,7 +2,6 @@
 
 apps="1password
 chromium
-cider
 emote
 ffplay /dev/video0
 firefox
