@@ -4,7 +4,7 @@ on:
   push:
 
 jobs:
-  test:
+  check:
     name: Validate Nix
     runs-on: ubuntu-latest
     steps:
@@ -12,7 +12,7 @@ jobs:
       - uses: cachix/install-nix-action@v22
       - run: nix flake check
 
-  fmt-check:
+  fmt:
     name: Check formatting
     runs-on: ubuntu-latest
     steps:
