@@ -9,7 +9,7 @@ let
 
     ${pkgs.gnutar}/bin/tar -c -C ${config.services.zigbee2mqtt.dataDir} --exclude ./log . > "$tmp"
 
-    mv "$tmp" ${config.nas.path}/archive/tentacool/zigbee2mqtt.tar
+    mv "$tmp" ${config.nas.path}/backups/tentacool/zigbee2mqtt.tar
   '';
 in
 {

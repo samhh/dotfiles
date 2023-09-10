@@ -13,7 +13,7 @@ let
     ${pkgs.podman}/bin/podman volume export hass > "$tmp"
     ${pkgs.gnutar}/bin/tar -f "$tmp" --wildcards --delete 'home-assistant_v2.*'
 
-    mv "$tmp" ${config.nas.path}/archive/tentacool/hass.tar
+    mv "$tmp" ${config.nas.path}/backups/tentacool/hass.tar
   '';
 in
 {

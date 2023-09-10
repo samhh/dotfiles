@@ -3,8 +3,10 @@
 { config, pkgs, ... }:
 
 let
-  logsBackupsPath = config.nas.path + "/logs";
-  mailBackupsPath = config.nas.path + "/mail";
+  backupsPath = config.nas.path + "/backups";
+
+  logsBackupsPath = backupsPath + "/logs";
+  mailBackupsPath = backupsPath + "/mail";
 
   radarrLogs = pkgs.writeShellScript "radarr-logs" ''
     endpoint="$(cat ${config.age.secrets.radarr-host.path})/api/v3/movie"
@@ -60,19 +62,9 @@ in
       # UI when I tried to create them matching the usual schema.
     in
     {
-      archive = baseCfg // {
-        repository = "b2:archive-restic2";
-        paths = [ (config.nas.path + "/archive/") ];
-      };
-
-      logs = baseCfg // {
-        repository = "b2:logs-restic";
-        paths = [ logsBackupsPath ];
-      };
-
-      mail = baseCfg // {
-        repository = "b2:mail-restic2";
-        paths = [ mailBackupsPath ];
+      backups = baseCfg // {
+        repository = "b2:backups-restic";
+        paths = [ backupsPath ];
       };
     };
 
