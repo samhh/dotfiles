@@ -5,7 +5,7 @@ let
   mDNSPort = 5353;
   homekitBridgePort = 21064;
 
-  backup = pkgs.writeShellScript "starmie-backup" ''
+  backup = pkgs.writeShellScript "hass-backup" ''
     set -e
 
     tmp=$(mktemp)
@@ -13,7 +13,7 @@ let
     ${pkgs.podman}/bin/podman volume export hass > "$tmp"
     ${pkgs.gnutar}/bin/tar -f "$tmp" --wildcards --delete 'home-assistant_v2.*'
 
-    mv "$tmp" ${config.nas.path}/archive/tentacool/starmie.tar
+    mv "$tmp" ${config.nas.path}/archive/tentacool/hass.tar
   '';
 in
 {
@@ -34,8 +34,8 @@ in
   };
 
   systemd = {
-    services."starmie-backup" = {
-      description = "Starmie backup";
+    services."hass-backup" = {
+      description = "HASS backup";
       wantedBy = [ "multi-user.target" ];
       requires = [ "podman-hass.service" ];
       serviceConfig = {
@@ -44,8 +44,8 @@ in
       };
     };
 
-    timers."starmie-backup" = {
-      description = "Run Starmie backup";
+    timers."hass-backup" = {
+      description = "Run HASS backup";
       wantedBy = [ "timers.target" ];
       timerConfig.OnCalendar = "daily";
     };

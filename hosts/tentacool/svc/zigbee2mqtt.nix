@@ -2,14 +2,14 @@
 
 let
   webPort = 8080;
-  backup = pkgs.writeShellScript "exeggutor-backup" ''
+  backup = pkgs.writeShellScript "zigbee2mqtt-backup" ''
     set -e
 
     tmp=$(mktemp)
 
     ${pkgs.gnutar}/bin/tar -c -C ${config.services.zigbee2mqtt.dataDir} --exclude ./log . > "$tmp"
 
-    mv "$tmp" ${config.nas.path}/archive/tentacool/exeggutor.tar
+    mv "$tmp" ${config.nas.path}/archive/tentacool/zigbee2mqtt.tar
   '';
 in
 {
@@ -28,8 +28,8 @@ in
   };
 
   systemd = {
-    services."exeggutor-backup" = {
-      description = "Exeggutor backup";
+    services."zigbee2mqtt-backup" = {
+      description = "zigbee2mqtt backup";
       wantedBy = [ "multi-user.target" ];
       requires = [ "zigbee2mqtt.service" ];
       serviceConfig = {
@@ -38,8 +38,8 @@ in
       };
     };
 
-    timers."exeggutor-backup" = {
-      description = "Run Exeggutor backup";
+    timers."zigbee2mqtt-backup" = {
+      description = "Run zigbee2mqtt backup";
       wantedBy = [ "timers.target" ];
       timerConfig.OnCalendar = "daily";
     };

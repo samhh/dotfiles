@@ -2,11 +2,11 @@
 
 {
   imports = [
-    ./caterpie.nix
-    ./cloyster.nix
-    ./exeggutor.nix
-    ./spearow.nix
-    ./starmie.nix
-    ./vaporeon.nix
+    ./blocky.nix
+    ./hass.nix
+    ./mosquitto.nix
+    ./scrypted.nix
+    ./seedsync.nix
+    ./zigbee2mqtt.nix
   ];
 }
