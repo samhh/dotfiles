@@ -62,11 +62,6 @@ in
         paths = [ (config.nas.path + "/archive/") ];
       };
 
-      keys = baseCfg // {
-        repository = "b2:keys-restic";
-        paths = [ (config.nas.path + "/keys/") ];
-      };
-
       logs = baseCfg // {
         repository = "b2:logs-restic";
         paths = [ (config.nas.path + "/logs/") ];
@@ -75,11 +70,6 @@ in
       mail = baseCfg // {
         repository = "b2:mail-restic2";
         paths = [ (config.nas.path + "/mail/") ];
-      };
-
-      manuals = baseCfg // {
-        repository = "b2:manuals-restic";
-        paths = [ (config.nas.path + "/manuals/") ];
       };
     };
 
