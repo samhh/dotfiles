@@ -55,10 +55,7 @@
         always-show-mime = true;
       };
 
-      compose = {
-        header-layout = "To|From,Subject";
-        address-book-cmd = "${pkgs.khard}/bin/khard email --parsable --remove-first-line '%s'";
-      };
+      compose.header-layout = "To|From,Subject";
 
       filters =
         let

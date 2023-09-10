@@ -9,18 +9,10 @@ let
 
 in
 {
-  age.secrets = {
-    irc-token = {
-      file = ../../secrets/irc-token.age;
-      # For senpai.
-      owner = config.username;
-    };
-
-    krabby = {
-      file = ../../secrets/krabby.age;
-      # For vdirsyncer.
-      owner = config.username;
-    };
+  age.secrets.irc-token = {
+    file = ../../secrets/irc-token.age;
+    # For senpai.
+    owner = config.username;
   };
 
   networking.firewall.allowedTCPPorts = [
@@ -38,48 +30,12 @@ in
 
   virtualisation.podman.enable = true;
 
-  services.vdirsyncer = {
-    enable = true;
-    jobs.krabby = {
-      # So that we can read the decryped secret, which is owned by this user.
-      user = config.username;
-      group = "users";
-      forceDiscover = true;
-      config = {
-        pairs.contacts = {
-          a = "contacts_local";
-          b = "contacts_remote";
-          collections = [ "from a" "from b" ];
-        };
-        storages = {
-          contacts_local = {
-            type = "filesystem";
-            path = "~/contacts/";
-            fileext = ".vcf";
-          };
-          contacts_remote = {
-            type = "carddav";
-            url = "https://krabby.samhh.com";
-            username = "sam";
-            # Without the quotes the config output will be corrupt.
-            "password.fetch" = [ "command" "cat" config.age.secrets.krabby.path ];
-          };
-        };
-      };
-    };
-  };
-
-  # Hack to allow the vdirsyncer unit to write to $HOME.
-  systemd.services."vdirsyncer@krabby".serviceConfig.ProtectHome = lib.mkForce false;
-
   programs._1password-gui = {
     enable = true;
     polkitPolicyOwners = [ config.username ];
   };
 
   home-manager.users.${config.username} = {
-    xdg.configFile."khard/khard.conf".source = ./cfg/khard.conf;
-
     # The Home Manager config module is outdated. See:
     #   https://github.com/nix-community/home-manager/issues/2534
     xdg.configFile."senpai/senpai.scfg".text = ''

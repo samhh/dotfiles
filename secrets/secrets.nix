@@ -9,7 +9,6 @@ in
   "b2-env.age".publicKeys = [ alakazam tentacool ];
   "gmail.age".publicKeys = [ alakazam ];
   "irc-token.age".publicKeys = [ alakazam ];
-  "krabby.age".publicKeys = [ alakazam ];
   "migadu.age".publicKeys = [ alakazam tentacool ];
   "radarr-api-key.age".publicKeys = [ tentacool ];
   "radarr-host.age".publicKeys = [ tentacool ];
