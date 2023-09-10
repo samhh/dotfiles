@@ -3,13 +3,16 @@
 { config, pkgs, ... }:
 
 let
+  logsBackupsPath = config.nas.path + "/logs";
+  mailBackupsPath = config.nas.path + "/mail";
+
   radarrLogs = pkgs.writeShellScript "radarr-logs" ''
     endpoint="$(cat ${config.age.secrets.radarr-host.path})/api/v3/movie"
     auth="X-Api-Key: $(cat ${config.age.secrets.radarr-api-key.path})"
 
     ${pkgs.curl}/bin/curl -s -H "$auth" "$endpoint" | \
         ${pkgs.jq}/bin/jq -r 'map(.title + " HASFILE:" + (.hasFile | tostring)) | join("\n")' > \
-          ${config.nas.path}/logs/radarr.txt
+          ${logsBackupsPath}/radarr.txt
   '';
 
   sonarrLogs = pkgs.writeShellScript "sonarr-logs" ''
@@ -18,7 +21,7 @@ let
 
     ${pkgs.curl}/bin/curl -s -H "$auth" "$endpoint" | \
         ${pkgs.jq}/bin/jq 'map(.title) | join(", ")' > \
-          ${config.nas.path}/logs/sonarr.txt
+          ${logsBackupsPath}/sonarr.txt
   '';
 in
 {
@@ -64,12 +67,12 @@ in
 
       logs = baseCfg // {
         repository = "b2:logs-restic";
-        paths = [ (config.nas.path + "/logs/") ];
+        paths = [ logsBackupsPath ];
       };
 
       mail = baseCfg // {
         repository = "b2:mail-restic2";
-        paths = [ (config.nas.path + "/mail/") ];
+        paths = [ mailBackupsPath ];
       };
     };
 
@@ -90,7 +93,7 @@ in
         offlineimap = {
           enable = true;
           extraConfig = {
-            local.localfolders = config.nas.path + "/mail/";
+            local.localfolders = mailBackupsPath;
             remote = {
               type = "IMAP";
               remotehost = host;
