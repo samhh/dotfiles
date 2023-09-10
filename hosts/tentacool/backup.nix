@@ -63,8 +63,8 @@ in
       # UI when I tried to create them matching the usual schema.
     in
     {
-      backups = baseCfg // {
-        repository = "b2:backups-restic";
+      snorlax = baseCfg // {
+        repository = "b2:snorlax-restic";
         paths = [ backupsPath ];
       };
     };
