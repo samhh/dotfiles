@@ -12,7 +12,6 @@ in
   "migadu.age".publicKeys = [ alakazam tentacool ];
   "radarr-api-key.age".publicKeys = [ tentacool ];
   "radarr-host.age".publicKeys = [ tentacool ];
-  "radicale-htpasswd.age".publicKeys = [ tentacool ];
   "restic.age".publicKeys = [ alakazam tentacool ];
   "sonarr-api-key.age".publicKeys = [ tentacool ];
   "sonarr-host.age".publicKeys = [ tentacool ];
