@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  dir = "${config.nas.path}/bgs";
+  dir = "${config.nas.path}/wallpapers/static";
   excludes =
     let f = x: "-not -path '*/" + x + "*'";
     in lib.concatStringsSep " " (map f config.nas.hiddenFiles);
