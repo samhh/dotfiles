@@ -59,12 +59,10 @@ in
           timerConfig.OnCalendar = "04:00";
           extraBackupArgs = map (x: "--exclude=${x}") config.nas.hiddenFiles;
         };
-      # The bucket names appended with "2" aren't typos. There was a bug in the
-      # UI when I tried to create them matching the usual schema.
     in
     {
       snorlax = baseCfg // {
-        repository = "b2:snorlax-restic";
+        repository = "b2:snorlax-restic2";
         paths = [ backupsPath ];
       };
     };
