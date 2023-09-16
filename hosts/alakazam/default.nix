@@ -19,6 +19,7 @@
     ./terminal.nix
     ./user.nix
     ./vcs.nix
+    ./virt.nix
     ./web.nix
   ];
 }

@@ -28,8 +28,6 @@ in
     KERNEL=="ttyACM*", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789B]?", MODE:="0666"
   '';
 
-  virtualisation.podman.enable = true;
-
   programs._1password-gui = {
     enable = true;
     polkitPolicyOwners = [ config.username ];
