@@ -22,16 +22,28 @@ in
     allowedUDPPorts = [ mDNSPort ];
   };
 
-  virtualisation.oci-containers.containers.hass = {
-    image = "ghcr.io/home-assistant/home-assistant:2023.9.0";
-    volumes = [
-      "hass:/config"
-    ];
-    extraOptions = [
-      "--network=host"
-    ];
-    environment.TZ = "Europe/London";
-  };
+  virtualisation.oci-containers.containers =
+    let hostNetworking = "--network=host";
+    in
+    {
+      hass = {
+        image = "ghcr.io/home-assistant/home-assistant:2023.9.0";
+        volumes = [
+          "hass:/config"
+        ];
+        extraOptions = [ hostNetworking ];
+        environment.TZ = "Europe/London";
+      };
+
+      matter = {
+        image = "ghcr.io/home-assistant-libs/python-matter-server:3.7.0";
+        volumes = [
+          "hass-matter:/data"
+          "/run/dbus:/run/dbus:ro"
+        ];
+        extraOptions = [ hostNetworking ];
+      };
+    };
 
   systemd = {
     services."hass-backup" = {
