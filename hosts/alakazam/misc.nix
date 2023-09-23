@@ -58,7 +58,6 @@ in
       sway-contrib.grimshot
       hyperfine
       imv
-      khard
       lftp
       libnotify
       libqalculate
