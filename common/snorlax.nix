@@ -9,6 +9,6 @@ in
   fileSystems.${config.nas.path} = {
     device = "${ip}:/volume1/media/";
     fsType = "nfs";
-    options = [ "nfsvers=4" "noauto" "x-systemd.automount" ];
+    options = [ "nfsvers=4" "x-systemd.automount" ];
   };
 }
