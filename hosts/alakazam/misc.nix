@@ -44,7 +44,6 @@ in
 
     home.packages = with pkgs; [
       # CLI
-      bandwhich
       bat
       distrobox
       dogdns
@@ -53,7 +52,6 @@ in
       ffmpeg_6-full # For `ffplay`.
       gdu
       gnupg
-      gping
       gotop
       sway-contrib.grimshot
       hyperfine
@@ -62,10 +60,8 @@ in
       libnotify
       libqalculate
       nix-alien
-      nvd
       qrcp
       ripgrep
-      qrencode
       sd
       senpai
       tldr

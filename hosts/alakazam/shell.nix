@@ -56,13 +56,11 @@ in
         "diff" = "nvim -d";
         "grep" = "rg";
         "vi" = "nvim";
-        "mann" = "tldr";
         "find" = "fd";
         "tree" = "tre";
         "sed" = "sd";
         "df" = "duf";
         "du" = "gdu";
-        "ping" = "gping";
         "mpc" = "vimpc";
         "top" = "gotop";
         "cat" = "bat";
