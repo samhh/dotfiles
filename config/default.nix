@@ -17,9 +17,5 @@ with lib; {
         description = "Files which you'd typically want excluded, such as metadata and other dotfiles.";
       };
     };
-    apps = {
-      terminal.bin = mkOption { type = types.str; };
-      webBrowser.bin = mkOption { type = types.str; };
-    };
   };
 }

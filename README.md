@@ -2,23 +2,16 @@
 
 Configuring the universe with [Nix](https://nixos.org).
 
-The repo configures two hosts:
-
-- Alakazam: Desktop, NixOS
-- Tentacool: Homelab, NixOS
-
-Keybindings are with [my keymap](https://git.sr.ht/~samhh/qmk_firmware/tree/samhh/item/keyboards/ergodox_ez/keymaps/samhh/README.md) in mind.
+The repo currently configures two hosts, a macOS development machine and a NixOS homelab.
 
 ## Usage
 
-Build your desired host with `nixos-rebuild --flake`. Additionally Alakazam can deploy to Tentacool.
+Build the Home Manager config for macOS or the NixOS config for the homelab. I manage the latter over SSH from the former.
 
 ```console
-# nixos-rebuild switch --flake ".#alakazam"
-$ deploy ".#tentacool"
+$ home-manager switch --flake .
+# nixos-rebuild switch --flake ".#"
 ```
-
-For now some Alakazam scripts presume the repo will be at `~/dotfiles/`.
 
 ### Packages
 
@@ -33,5 +26,6 @@ foo :: Bar
 
 I used to run various different operating systems and window managers. Those configs are preserved in this repo's commit history.
 
+- NixOS/Sway/Neovim: `macos-redux~1`
 - Arch/XMonad: `nixos~1`
 - nix-darwin: `rm-darwin~1`

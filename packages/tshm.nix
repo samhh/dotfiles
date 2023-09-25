@@ -1,12 +1,12 @@
-{ fetchurl, lib, pkgs, stdenv }:
+{ fetchurl, lib, stdenv }:
 
 stdenv.mkDerivation rec {
   pname = "tshm";
   version = "0.4.2";
 
   src = fetchurl {
-    url = "https://github.com/samhh/tshm/releases/download/${version}/tshm-${version}-linux-x86_64";
-    sha256 = "0bcc029kricsnz3ixqknrnl99hgdi07nk5r8gzj0kz6d5xal2c3k";
+    url = "https://github.com/samhh/tshm/releases/download/${version}/tshm-${version}-macos-x86_64";
+    sha256 = "0mrw84pz4hjx6rzzmnj1kzvz8wgh0hxpviq3f9gj7wg7c1hvickm";
   };
 
   dontUnpack = true;
@@ -17,16 +17,6 @@ stdenv.mkDerivation rec {
     cp $src $out/bin/tshm
     chmod +x $out/bin/tshm
   '';
-
-  preFixup =
-    let
-      patchelf = "${pkgs.patchelf}/bin/patchelf";
-      linker = stdenv.cc.bintools.dynamicLinker;
-      libPath = with pkgs; lib.makeLibraryPath [ gmp ];
-    in
-    ''
-      ${patchelf} --set-interpreter ${linker} --set-rpath ${libPath} $out/bin/tshm
-    '';
 
   meta = {
     homepage = "https://github.com/samhh/tshm";

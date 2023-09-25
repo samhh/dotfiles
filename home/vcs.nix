@@ -1,10 +1,7 @@
-{ config, pkgs, ... }:
+{ ... }:
 
-let
-  editorBin = "${config.home-manager.users.${config.username}.programs.neovim.finalPackage}/bin/nvim";
-in
 {
-  home-manager.users.${config.username}.programs.git = {
+  programs.git = {
     enable = true;
 
     delta.enable = true;
@@ -13,8 +10,8 @@ in
       push.default = "simple";
       pull.ff = "only";
       user = {
-        name = config.fullName;
-        email = config.email.address;
+        name = "Sam A. Horvath-Hunt";
+        email = "hello@samhh.com";
         signingkey = "4667250BD56735A8";
       };
       commit.gpgSign = true;
@@ -27,7 +24,7 @@ in
       init.defaultBranch = "master";
       merge.tool = "vimdiff";
       mergetool = {
-        vimdiff.path = editorBin;
+        vimdiff.path = "nvim";
         keepBackup = false;
       };
       blame.date = "short";
@@ -62,23 +59,6 @@ in
       sw = "switch";
       sw-gh-pr = "!sh -c 'git ft origin pull/$0/head:pr/$0 && git sw pr/$0'";
       wt = "worktree";
-    };
-
-    # send-email
-    package = pkgs.gitFull;
-    extraConfig = {
-      sendemail = {
-        smtpserver = "smtp.migadu.com";
-        smtpuser = config.email.address;
-        smtpencryption = "ssl";
-      };
-      credential."smtp://hello%40samhh.com@smtp.migadu.com%3a465".helper =
-        let
-          script = pkgs.writeShellScriptBin "cat-git-credential" ''
-            echo "password=$(cat "$1")"
-          '';
-        in
-        "!${script}/bin/cat-git-credential ${config.age.secrets.migadu.path}";
     };
   };
 }
