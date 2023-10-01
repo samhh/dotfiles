@@ -39,7 +39,7 @@
           agenix.nixosModules.default
           ./common
           ./config
-          ./hosts/tentacool
+          ./homelab
         ];
       };
 
