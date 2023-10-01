@@ -22,5 +22,7 @@ stdenv.mkDerivation rec {
     homepage = "https://github.com/samhh/tshm";
     description = "A parser and formatter for TypeScript declarations that outputs HM-style type signatures.";
     license = lib.licenses.mit;
+    # Assuming Rosetta.
+    platforms = [ "aarch64-darwin" "x86_64-darwin" ];
   };
 }
