@@ -5,5 +5,6 @@ pkgs.mkShell {
     agenix
     deadnix
     nixpkgs-fmt
+    nushell
   ];
 }
