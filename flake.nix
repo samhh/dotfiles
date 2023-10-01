@@ -52,8 +52,21 @@
         extraSpecialArgs.tshmPlugin = tshm-plugin;
       };
 
-      devShells.${system}.default = pkgs.callPackage ./shell.nix { };
+      devShells = {
+        ${system}.default = pkgs.callPackage ./shell.nix { };
+
+        "x86_64-linux".ci =
+          let pkgs = import nixpkgs { system = "x86_64-linux"; };
+          in pkgs.mkShell {
+            nativeBuildInputs = with pkgs; [
+              deadnix
+              nixpkgs-fmt
+            ];
+          };
+      };
+
       packages.${system} = import ./packages { inherit pkgs; };
+
       templates = import ./templates;
     };
 }

@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: cachix/install-nix-action@v22
-      - run: nix develop -c nixpkgs-fmt --check .
+      - run: nix develop .#ci -c nixpkgs-fmt --check .
 
   lint:
     name: Lint
@@ -26,4 +26,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: cachix/install-nix-action@v22
-      - run: nix develop -c deadnix -f --exclude ./templates/**/*
+      - run: nix develop .#ci -c deadnix -f --exclude ./templates/**/*
