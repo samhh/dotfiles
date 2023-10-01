@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   username = "sam";
