@@ -6,6 +6,7 @@
 
     settings = {
       theme = "kanagawa";
+      editor.rulers = [ 80 ];
       keys =
         let
           movement = {
