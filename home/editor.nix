@@ -32,7 +32,9 @@
             };
           };
 
-          select = movement;
+          select = movement // {
+            space.q = ":reflow";
+          };
         };
     };
 
