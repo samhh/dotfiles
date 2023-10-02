@@ -30,15 +30,15 @@ in
 
   age.secrets = {
     migadu = {
-      file = ../../secrets/migadu.age;
+      file = ../secrets/migadu.age;
       # For offlineimap.
       owner = config.username;
     };
 
-    radarr-api-key.file = ../../secrets/radarr-api-key.age;
-    radarr-host.file = ../../secrets/radarr-host.age;
-    sonarr-api-key.file = ../../secrets/sonarr-api-key.age;
-    sonarr-host.file = ../../secrets/sonarr-host.age;
+    radarr-api-key.file = ../secrets/radarr-api-key.age;
+    radarr-host.file = ../secrets/radarr-host.age;
+    sonarr-api-key.file = ../secrets/sonarr-api-key.age;
+    sonarr-host.file = ../secrets/sonarr-host.age;
   };
 
   # B2 buckets which don't already exist will be created (assuming the name is
