@@ -6,7 +6,9 @@
 
     settings = {
       theme = "kanagawa";
+
       editor.rulers = [ 80 ];
+
       keys =
         let
           movement = {
@@ -15,7 +17,6 @@
           };
         in
         {
-          select = movement;
           normal = movement // {
             # https://github.com/helix-editor/helix/issues/3001
             c = "change_selection_noyank";
@@ -30,8 +31,11 @@
               z = ":format";
             };
           };
+
+          select = movement;
         };
     };
+
     languages.language = [
       {
         name = "typescript";
