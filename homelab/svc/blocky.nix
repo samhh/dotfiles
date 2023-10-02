@@ -82,7 +82,7 @@ in
 
         clientGroupsBlock = {
           default = [ "personal" ];
-          "alakazam.localdomain" = [ "work" ];
+          "Sams-Laptop.localdomain" = [ "work" ];
         };
 
         # Similar to `caching.cacheTimeNegative`, it's more practical for
