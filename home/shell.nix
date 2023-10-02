@@ -92,6 +92,8 @@ in
     enable = true;
     keyMode = "vi";
     mouse = true;
+    # https://github.com/helix-editor/helix/wiki/Troubleshooting#when-using-tmux-or-screen-there-is-a-delay-after-hitting-escape-before-its-registered
+    escapeTime = 0;
   };
 
   # Keep the GUI Alacritty installation roughly up to date and in sync with this.
