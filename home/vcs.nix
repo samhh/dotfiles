@@ -60,5 +60,9 @@
       sw-gh-pr = "!sh -c 'git ft origin pull/$0/head:pr/$0 && git sw pr/$0'";
       wt = "worktree";
     };
+
+    ignores = [
+      ".DS_Store"
+    ];
   };
 }
