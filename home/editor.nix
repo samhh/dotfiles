@@ -7,7 +7,10 @@
     settings = {
       theme = "kanagawa";
 
-      editor.rulers = [ 80 ];
+      editor = {
+        soft-wrap.enable = true;
+        rulers = [ 80 ];
+      };
 
       keys =
         let
