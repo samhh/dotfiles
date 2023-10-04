@@ -81,8 +81,8 @@
     ## project's Nix dev shell.
     nodePackages.bash-language-server
     dhall-lsp-server
+    nil
     nodePackages.purescript-language-server
-    rnix-lsp
     rust-analyzer
     # Needed for rust-analyzer.
     rustc
