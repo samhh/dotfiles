@@ -81,6 +81,8 @@
     ## project's Nix dev shell.
     nodePackages.bash-language-server
     dhall-lsp-server
+    # For HLS.
+    hlint
     nil
     nodePackages.purescript-language-server
     rust-analyzer
@@ -88,9 +90,5 @@
     rustc
     nodePackages.typescript-language-server
     nodePackages.vscode-langservers-extracted
-
-    # Tools w/ language server interop
-    hlint
-    stylish-haskell
   ];
 }
