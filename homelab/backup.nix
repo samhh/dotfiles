@@ -3,7 +3,7 @@
 { config, pkgs, ... }:
 
 let
-  backupsPath = config.nas.path + "/backups";
+  backupsPath = "/home/${config.username}/backups";
 
   logsBackupsPath = backupsPath + "/logs";
   mailBackupsPath = backupsPath + "/mail";
