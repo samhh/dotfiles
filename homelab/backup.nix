@@ -57,7 +57,14 @@ in
             "--keep-monthly 6"
           ];
           timerConfig.OnCalendar = "04:00";
-          extraBackupArgs = map (x: "--exclude=${x}") config.nas.hiddenFiles;
+          extraBackupArgs =
+            let
+              xs = [
+                "@eaDir"
+                ".DS_Store"
+              ];
+            in
+            map (x: "--exclude=${x}") xs;
         };
     in
     {
