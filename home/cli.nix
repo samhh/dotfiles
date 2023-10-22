@@ -36,7 +36,7 @@ in
     ".npmrc"
 
     # Obsidian
-    ".obsidian"
-    ".trash"
+    ".obsidian/"
+    ".trash/"
   ];
 }
