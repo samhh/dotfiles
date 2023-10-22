@@ -9,16 +9,13 @@ in
   home.packages = with pkgs; [
     bat
     dogdns
-    duf
     fd
     gdu
-    lftp
     ripgrep
     sd
     shellcheck
     tldr
     tre-command
-    unzip
     vaporeon
     nodePackages.yalc
   ];
