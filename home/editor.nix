@@ -52,6 +52,21 @@
         ];
       }
     ];
+    
+    # Don't install HLS as it's version-dependent.
+    extraPackages = with pkgs; [
+      nodePackages.bash-language-server
+      dhall-lsp-server
+      # For HLS.
+      hlint
+      nil
+      nodePackages.purescript-language-server
+      rust-analyzer
+      # Needed for rust-analyzer.
+      rustc
+      nodePackages.typescript-language-server
+      nodePackages.vscode-langservers-extracted
+    ];
   };
 
   # TODO: Awaiting multi-LSP support in Helix.
@@ -74,21 +89,4 @@
     enable = true;
     installEditorPlugin = true;
   };
-
-  home.packages = with pkgs; [
-    # Language servers
-    ## Don't install HLS as it's version-dependent. Instead install in the
-    ## project's Nix dev shell.
-    nodePackages.bash-language-server
-    dhall-lsp-server
-    # For HLS.
-    hlint
-    nil
-    nodePackages.purescript-language-server
-    rust-analyzer
-    # Needed for rust-analyzer.
-    rustc
-    nodePackages.typescript-language-server
-    nodePackages.vscode-langservers-extracted
-  ];
 }
