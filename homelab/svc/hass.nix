@@ -16,7 +16,7 @@ in
     in
     {
       hass = {
-        image = "ghcr.io/home-assistant/home-assistant:2023.10.3";
+        image = "ghcr.io/home-assistant/home-assistant:2023.12.1";
         volumes = [
           "hass:/config"
         ];
