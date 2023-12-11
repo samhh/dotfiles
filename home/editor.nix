@@ -57,7 +57,29 @@
             }
           ];
         };
+
+        efm = {
+          command = "efm-langserver";
+          config.documentFormatting = true;
+        };
       };
+
+      language = [
+        {
+          name = "typescript";
+          language-servers = [
+            {
+              name = "typescript-language-server";
+              except-features = [ "format" ];
+            }
+
+            {
+              name = "efm";
+              only-features = [ "format" ];
+            }
+          ];
+        }
+      ];
     };
 
     # Don't install HLS as it's version-dependent.
@@ -76,7 +98,6 @@
     ];
   };
 
-  # TODO: Awaiting multi-LSP support in Helix.
   programs.efm-langserver = {
     enable = true;
     languages =
