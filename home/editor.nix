@@ -41,18 +41,25 @@
         };
     };
 
-    languages.language = [
-      {
-        name = "typescript";
-        config.plugins = [
-          {
-            name = "typescript-tshm-plugin";
-            location = "/Users/sam/.local/share/npmlibs/";
-          }
-        ];
-      }
-    ];
-    
+    languages = {
+      language-server = {
+        typescript-language-server = {
+          # These are the defaults:
+          #   https://github.com/helix-editor/helix/blob/23.10/languages.toml#L132
+          command = "typescript-language-server";
+          args = [ "--stdio" ];
+          config.hostInfo = "helix";
+
+          config.plugins = [
+            {
+              name = "typescript-tshm-plugin";
+              location = "/Users/sam/.local/share/npmlibs/";
+            }
+          ];
+        };
+      };
+    };
+
     # Don't install HLS as it's version-dependent.
     extraPackages = with pkgs; [
       nodePackages.bash-language-server
