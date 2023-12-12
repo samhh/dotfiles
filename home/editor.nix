@@ -58,6 +58,11 @@
           ];
         };
 
+        snippets-ls = {
+          command = "snippets-ls";
+          args = [ "-config" ./snippets/typescript.json ];
+        };
+
         efm = {
           command = "efm-langserver";
           config.documentFormatting = true;
@@ -77,6 +82,8 @@
               name = "efm";
               only-features = [ "format" ];
             }
+
+            "snippets-ls"
           ];
         }
       ];
@@ -93,6 +100,7 @@
       rust-analyzer
       # Needed for rust-analyzer.
       rustc
+      snippets-ls
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
     ];

@@ -15,18 +15,26 @@
 
       nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
 
+      snippets-ls = {
+        url = "github:samhh/snippets-ls";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
+
       tshm-plugin = {
         url = "https://registry.yarnpkg.com/typescript-tshm-plugin/-/typescript-tshm-plugin-0.1.0.tgz";
         flake = false;
       };
     };
 
-  outputs = { self, agenix, home-manager, nixpkgs, tshm-plugin }:
+  outputs = { self, agenix, home-manager, nixpkgs, snippets-ls, tshm-plugin }:
     let
       system = "aarch64-darwin";
       overlays = with nixpkgs.lib; [
         (const (const self.packages.${system}))
-        (const (const { agenix = agenix.packages.${system}.default; }))
+        (const (const {
+          agenix = agenix.packages.${system}.default;
+          snippets-ls = snippets-ls.packages.${system}.snippets-ls;
+        }))
       ];
       pkgs = import nixpkgs { inherit system overlays; };
     in

@@ -107,7 +107,28 @@
         "agenix": "agenix",
         "home-manager": "home-manager_2",
         "nixpkgs": "nixpkgs",
+        "snippets-ls": "snippets-ls",
         "tshm-plugin": "tshm-plugin"
+      }
+    },
+    "snippets-ls": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1702376939,
+        "narHash": "sha256-YzRkEg5+kqLqErYAV0xhK2TGvW4FqDlL6Dh8g7l4yBQ=",
+        "owner": "samhh",
+        "repo": "snippets-ls",
+        "rev": "a444d1dc25448464b26927a52d9c9e0cd2e9528d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "samhh",
+        "repo": "snippets-ls",
+        "type": "github"
       }
     },
     "tshm-plugin": {
