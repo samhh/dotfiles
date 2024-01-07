@@ -8,22 +8,22 @@ jobs:
     name: Validate Nix
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: cachix/install-nix-action@v22
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v24
       - run: nix flake check
 
   fmt:
     name: Check formatting
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: cachix/install-nix-action@v22
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v24
       - run: nix develop .#ci -c nixpkgs-fmt --check .
 
   lint:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: cachix/install-nix-action@v22
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v24
       - run: nix develop .#ci -c deadnix -f --exclude ./templates/**/*
