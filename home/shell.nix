@@ -64,7 +64,6 @@ in
       "find" = "fd";
       "tree" = "tre";
       "sed" = "sd";
-      "df" = "duf";
       "du" = "gdu";
       "cat" = "bat";
 
