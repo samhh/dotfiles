@@ -58,6 +58,13 @@
           ];
         };
 
+        # This is currently a bit opinionated in terms of the binary being
+        # sourced by Yarn.
+        biome = {
+          command = "yarn";
+          args = [ "run" "biome" "lsp-proxy" ];
+        };
+
         snippets-ls = {
           command = "snippets-ls";
           args = [ "-config" ./snippets/typescript.json ];
@@ -75,6 +82,11 @@
           language-servers = [
             {
               name = "typescript-language-server";
+              except-features = [ "format" ];
+            }
+
+            {
+              name = "biome";
               except-features = [ "format" ];
             }
 
