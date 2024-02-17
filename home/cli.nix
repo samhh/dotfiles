@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-  vaporeon = pkgs.writeShellScriptBin "vaporeon" ''
+  blocky-tentacool = pkgs.writeShellScriptBin "blocky" ''
     exec ${pkgs.blocky}/bin/blocky --apiHost tentacool "$@"
   '';
 in
@@ -9,6 +9,7 @@ in
   home.packages = with pkgs; [
     ast-grep
     bat
+    blocky-tentacool
     dogdns
     fd
     gdu
@@ -17,7 +18,6 @@ in
     shellcheck
     tldr
     tre-command
-    vaporeon
     nodePackages.yalc
   ];
 
