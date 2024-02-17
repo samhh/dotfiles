@@ -28,6 +28,7 @@
         keepBackup = false;
       };
       blame.date = "short";
+      interactive.singleKey = true;
     };
 
     aliases = {
