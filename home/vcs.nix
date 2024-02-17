@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   programs.git = {
@@ -66,4 +66,8 @@
       ".DS_Store"
     ];
   };
+
+  home.packages = with pkgs; [
+    git-absorb
+  ];
 }
