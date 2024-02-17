@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   programs.helix = {
@@ -69,11 +69,6 @@
           command = "snippets-ls";
           args = [ "-config" ./snippets/typescript.json ];
         };
-
-        efm = {
-          command = "efm-langserver";
-          config.documentFormatting = true;
-        };
       };
 
       language = [
@@ -85,18 +80,16 @@
               except-features = [ "format" ];
             }
 
-            {
-              name = "biome";
-              except-features = [ "format" ];
-            }
-
-            {
-              name = "efm";
-              only-features = [ "format" ];
-            }
+            "biome"
 
             "snippets-ls"
           ];
+          # This shouldn't be necessary but it doesn't work through LSP, see:
+          #   https://github.com/biomejs/biome/pull/1031#issuecomment-1906278211
+          formatter = {
+            command = "yarn";
+            args = [ "run" "biome" "format" "--stdin-file-path" "foo.ts" ];
+          };
         }
       ];
     };
@@ -116,21 +109,6 @@
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
     ];
-  };
-
-  programs.efm-langserver = {
-    enable = true;
-    languages =
-      let
-        js = [ "javascript" "typescript" "typescriptreact" ];
-        prettier = {
-          root-markers = [ "node_modules/prettier/" ];
-          format-command = "./node_modules/.bin/prettier --stdin-filepath \${INPUT}";
-          format-stdin = true;
-        };
-        f = x: { name = x; value = [ prettier ]; };
-      in
-      lib.listToAttrs (map f js);
   };
 
   programs.tshm = {
