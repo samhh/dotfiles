@@ -119,15 +119,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1702376939,
-        "narHash": "sha256-YzRkEg5+kqLqErYAV0xhK2TGvW4FqDlL6Dh8g7l4yBQ=",
-        "owner": "samhh",
+        "lastModified": 1702995973,
+        "narHash": "sha256-LnGCTdl4x7uGWnLvYScQXcO/fAGyg9Fwo+qW5L2uSvc=",
+        "owner": "quantonganh",
         "repo": "snippets-ls",
-        "rev": "a444d1dc25448464b26927a52d9c9e0cd2e9528d",
+        "rev": "12314f2175fe34fd781d89dc85c4e234f8d0f34e",
         "type": "github"
       },
       "original": {
-        "owner": "samhh",
+        "owner": "quantonganh",
         "repo": "snippets-ls",
         "type": "github"
       }

@@ -16,7 +16,7 @@
       nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
 
       snippets-ls = {
-        url = "github:samhh/snippets-ls";
+        url = "github:quantonganh/snippets-ls";
         inputs.nixpkgs.follows = "nixpkgs";
       };
 
