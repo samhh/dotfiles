@@ -58,11 +58,11 @@
           ];
         };
 
-        # This is currently a bit opinionated in terms of the binary being
-        # sourced by Yarn.
+        # This is currently a bit opinionated in terms of where the binary is
+        # located.
         biome = {
-          command = "yarn";
-          args = [ "run" "biome" "lsp-proxy" ];
+          command = "./node_modules/.bin/biome";
+          args = [ "lsp-proxy" ];
         };
 
         snippets-ls = {
@@ -87,8 +87,8 @@
           # This shouldn't be necessary but it doesn't work through LSP, see:
           #   https://github.com/biomejs/biome/pull/1031#issuecomment-1906278211
           formatter = {
-            command = "yarn";
-            args = [ "run" "biome" "format" "--stdin-file-path" "foo.ts" ];
+            command = "./node_modules/.bin/biome";
+            args = [ "format" "--stdin-file-path" "foo.ts" ];
           };
         }
       ];
