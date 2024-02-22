@@ -25,7 +25,7 @@ in
       };
 
       matter = {
-        image = "ghcr.io/home-assistant-libs/python-matter-server:5.1.4";
+        image = "ghcr.io/home-assistant-libs/python-matter-server:5.5.3";
         volumes = [
           "hass-matter:/data"
           "/run/dbus:/run/dbus:ro"
