@@ -111,6 +111,10 @@
     ];
   };
 
+  programs.git.ignores = [
+    ".helix/"
+  ];
+
   programs.tshm = {
     enable = true;
     installEditorPlugin = true;
