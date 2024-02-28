@@ -6,8 +6,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "samhh";
       repo = name;
-      rev = "f1d159b9d6b6f212f4de143afc743eef45a29533";
-      sha256 = "07nfnajmvhr3908gvjgx83rfnxm5pnvri6ahybyqhs7cqpnl8h4q";
+      rev = "497234460d5812f09a317f75e8293f07ccf174ed";
+      sha256 = "sha256-AxC7C30ekRG3ykhN7q0GuZagfzf+IUI86HrBQIL7aJ0=";
     };
   };
 
