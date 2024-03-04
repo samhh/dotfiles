@@ -19,6 +19,9 @@ in
     tldr
     tre-command
     nodePackages.yalc
+
+    # Unsplash
+    saml2aws
   ];
 
   programs.git.ignores = [
