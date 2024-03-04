@@ -106,6 +106,7 @@
       # Needed for rust-analyzer.
       rustc
       snippets-ls
+      terraform-ls
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
     ];
