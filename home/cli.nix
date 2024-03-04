@@ -15,7 +15,6 @@ in
     gdu
     ripgrep
     sd
-    shellcheck
     tldr
     tre-command
     nodePackages.yalc
