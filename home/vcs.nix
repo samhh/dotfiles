@@ -37,7 +37,7 @@
       df = "diff";
       dfs = "diff --staged";
       ca = "commit --amend --no-edit";
-      cam = "commit --amend";
+      cam = "commit --amend --only";
       cm = "commit";
       cma = "commit -a";
       cmx = "commit --fixup";
