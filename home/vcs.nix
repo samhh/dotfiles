@@ -32,6 +32,17 @@
     };
 
     aliases = {
+      attr =
+        let attr = pkgs.writeShellScript "git-attr" ''
+          set -e
+          repo="''${1:-.}"
+          recent=$(cd "$repo" && git shortlog -sec --since=1.month | ${pkgs.sd}/bin/sd '^\s*[0-9]+\s*(.+)$' '$1')
+          prefix='Co-authored-by: '
+          # Beware a trailing \n coming from fzf.
+          msg=$(echo "$recent" | ${pkgs.fzf}/bin/fzf -m | sd '^(.+)' "$prefix\$1")
+          git commit --amend --only -m "$(git log --format=%B -n1)" -m "$msg"
+        '';
+        in "!${attr}";
       br = "branch";
       brd = "branch -D @{-1}";
       df = "diff";
