@@ -43,7 +43,7 @@
       cmx = "commit --fixup";
       cp = "cherry-pick";
       ft = "fetch";
-      ignore = "!sh -c 'git add -N $0 && git update-index --skip-worktree $0'";
+      ignore = "!sh -c 'git add -N $1 && git update-index --skip-worktree $1' sh";
       lg = "log --graph --pretty=format:'%Cblue%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold red)[%an]%Creset' --abbrev-commit --date=relative";
       pl = "pull";
       ps = "push";
@@ -58,7 +58,7 @@
       sh = "stash";
       st = "status --short";
       sw = "switch";
-      sw-gh-pr = "!sh -c 'git ft origin pull/$0/head:pr/$0 && git sw pr/$0'";
+      sw-gh-pr = "!sh -c 'git ft origin pull/$1/head:pr/$1 && git sw pr/$1' sh";
       wt = "worktree";
     };
 
