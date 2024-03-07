@@ -16,7 +16,7 @@ in
     in
     {
       hass = {
-        image = "ghcr.io/home-assistant/home-assistant:2024.2.2";
+        image = "ghcr.io/home-assistant/home-assistant:2024.3.0";
         volumes = [
           "hass:/config"
         ];
@@ -25,7 +25,7 @@ in
       };
 
       matter = {
-        image = "ghcr.io/home-assistant-libs/python-matter-server:5.5.3";
+        image = "ghcr.io/home-assistant-libs/python-matter-server:5.8.1";
         volumes = [
           "hass-matter:/data"
           "/run/dbus:/run/dbus:ro"
