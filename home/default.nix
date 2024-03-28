@@ -8,5 +8,6 @@
     ./editor.nix
     ./shell.nix
     ./vcs.nix
+    ./virt.nix
   ];
 }
