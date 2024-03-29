@@ -98,12 +98,6 @@ in
     '';
   };
 
-  # Keep the GUI Alacritty installation roughly up to date and in sync with this.
-  programs.alacritty = {
-    enable = true;
-    settings.window.option_as_alt = "Both";
-  };
-
   programs.git.ignores = [
     "result"
     ".envrc"
