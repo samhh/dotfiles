@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs-unstable, ... }:
 
 {
   programs.helix = {
@@ -95,7 +95,7 @@
     };
 
     # Don't install HLS as it's version-dependent.
-    extraPackages = with pkgs; [
+    extraPackages = with pkgs-unstable; [
       nodePackages.bash-language-server
       dhall-lsp-server
       # For HLS.
