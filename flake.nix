@@ -15,6 +15,8 @@
 
       nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
 
+      nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
       snippets-ls = {
         url = "github:quantonganh/snippets-ls";
         inputs.nixpkgs.follows = "nixpkgs";
@@ -26,7 +28,7 @@
       };
     };
 
-  outputs = { self, agenix, home-manager, nixpkgs, snippets-ls, tshm-plugin }:
+  outputs = { self, agenix, home-manager, nixpkgs, nixpkgs-unstable, snippets-ls, tshm-plugin }:
     let
       system = "aarch64-darwin";
       overlays = with nixpkgs.lib; [
@@ -37,6 +39,7 @@
         }))
       ];
       pkgs = import nixpkgs { inherit system overlays; };
+      pkgs-unstable = import nixpkgs-unstable { inherit system overlays; };
     in
     {
       nixosConfigurations.tentacool = nixpkgs.lib.nixosSystem rec {
@@ -58,7 +61,7 @@
           ./home
         ];
         extraSpecialArgs = {
-          inherit tshm-plugin;
+          inherit pkgs-unstable tshm-plugin;
         };
       };
 
