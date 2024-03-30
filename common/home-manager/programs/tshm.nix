@@ -1,4 +1,4 @@
-{ config, lib, pkgs, tshmPlugin, ... }:
+{ config, lib, pkgs, tshm-plugin, ... }:
 
 with lib;
 let
@@ -19,6 +19,6 @@ in
     mkIf cfg.enable {
       home.packages = [ pkgs.tshm ];
 
-      xdg.dataFile."npmlibs/node_modules/typescript-tshm-plugin".source = tshmPlugin;
+      xdg.dataFile."npmlibs/node_modules/typescript-tshm-plugin".source = tshm-plugin;
     };
 }

@@ -57,7 +57,9 @@
           ./common/home-manager/programs
           ./home
         ];
-        extraSpecialArgs.tshmPlugin = tshm-plugin;
+        extraSpecialArgs = {
+          inherit tshm-plugin;
+        };
       };
 
       devShells = {
