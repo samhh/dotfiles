@@ -58,10 +58,8 @@
           ];
         };
 
-        # This is currently a bit opinionated in terms of where the binary is
-        # located.
         biome = {
-          command = "./node_modules/.bin/biome";
+          command = "biome";
           args = [ "lsp-proxy" ];
         };
 
@@ -87,7 +85,7 @@
           # This shouldn't be necessary but it doesn't work through LSP, see:
           #   https://github.com/biomejs/biome/pull/1031#issuecomment-1906278211
           formatter = {
-            command = "./node_modules/.bin/biome";
+            command = "biome";
             args = [ "format" "--stdin-file-path" "foo.ts" ];
           };
         }
@@ -97,6 +95,7 @@
     # Don't install HLS as it's version-dependent.
     extraPackages = with pkgs-unstable; [
       nodePackages.bash-language-server
+      biome
       dhall-lsp-server
       # For HLS.
       hlint
