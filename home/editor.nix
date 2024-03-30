@@ -63,6 +63,23 @@
           args = [ "lsp-proxy" ];
         };
 
+        eslint = {
+          command = "vscode-eslint-language-server";
+          args = [ "--stdio" ];
+          config = {
+            experimental.useFlatConfig = true;
+
+            # These seem to be necessary for the language server to start at
+            # all, see:
+            #   https://github.com/helix-editor/helix/issues/3520#issuecomment-1439987347
+            validate = "on";
+            rulesCustomizations = [ ];
+            run = "onType";
+            problems.shortenToSingleLine = false;
+            nodePath = "";
+          };
+        };
+
         snippets-ls = {
           command = "snippets-ls";
           args = [ "-config" ./snippets/typescript.json ];
@@ -79,6 +96,8 @@
             }
 
             "biome"
+
+            "eslint"
 
             "snippets-ls"
           ];
