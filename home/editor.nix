@@ -97,7 +97,9 @@
 
             "biome"
 
-            "eslint"
+            # There's an annoying error in Unsplash Web at the top of files on
+            # load that doesn't surface via the CLI.
+            # "eslint"
 
             "snippets-ls"
           ];
