@@ -3,6 +3,7 @@
 {
   programs.helix = {
     enable = true;
+    package = pkgs-unstable.helix;
 
     settings = {
       theme = "kanagawa";
