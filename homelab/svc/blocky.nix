@@ -10,9 +10,7 @@ in
     dnsPort
     apiPort
   ];
-  networking.firewall.allowedUDPPorts = [
-    dnsPort
-  ];
+  networking.firewall.allowedUDPPorts = [ dnsPort ];
 
   services.blocky = {
     enable = true;
@@ -77,7 +75,10 @@ in
           in
           {
             personal = [ personalWhitelist ];
-            work = [ personalWhitelist workWhitelist ];
+            work = [
+              personalWhitelist
+              workWhitelist
+            ];
           };
 
         clientGroupsBlock = {

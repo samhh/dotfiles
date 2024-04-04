@@ -1,7 +1,5 @@
 { ... }:
 
 {
-  imports = [
-    ./bangin-server-node.nix
-  ];
+  imports = [ ./bangin-server-node.nix ];
 }

@@ -1,34 +1,42 @@
 {
   description = "Configuring the universe with Nix";
 
-  inputs =
-    {
-      agenix = {
-        url = "github:ryantm/agenix";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
-
-      home-manager = {
-        url = "github:nix-community/home-manager/release-23.11";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
-
-      nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
-
-      nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-
-      snippets-ls = {
-        url = "github:quantonganh/snippets-ls";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
-
-      tshm-plugin = {
-        url = "https://registry.yarnpkg.com/typescript-tshm-plugin/-/typescript-tshm-plugin-0.1.0.tgz";
-        flake = false;
-      };
+  inputs = {
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
-  outputs = { self, agenix, home-manager, nixpkgs, nixpkgs-unstable, snippets-ls, tshm-plugin }:
+    home-manager = {
+      url = "github:nix-community/home-manager/release-23.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    snippets-ls = {
+      url = "github:quantonganh/snippets-ls";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    tshm-plugin = {
+      url = "https://registry.yarnpkg.com/typescript-tshm-plugin/-/typescript-tshm-plugin-0.1.0.tgz";
+      flake = false;
+    };
+  };
+
+  outputs =
+    {
+      self,
+      agenix,
+      home-manager,
+      nixpkgs,
+      nixpkgs-unstable,
+      snippets-ls,
+      tshm-plugin,
+    }:
     let
       system = "aarch64-darwin";
       overlays = with nixpkgs.lib; [
@@ -69,12 +77,10 @@
         ${system}.default = pkgs.callPackage ./shell.nix { };
 
         "x86_64-linux".ci =
-          let pkgs = import nixpkgs { system = "x86_64-linux"; };
-          in pkgs.mkShell {
-            nativeBuildInputs = with pkgs; [
-              deadnix
-            ];
-          };
+          let
+            pkgs = import nixpkgs { system = "x86_64-linux"; };
+          in
+          pkgs.mkShell { nativeBuildInputs = with pkgs; [ deadnix ]; };
       };
 
       packages.${system} = import ./packages { inherit pkgs; };

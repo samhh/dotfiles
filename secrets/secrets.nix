@@ -1,6 +1,5 @@
 let
   tentacool = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH2TgCqWTnBiqaNYjFi1mFnhmhEG7Me+n3FFcck4IgTb";
-
 in
 {
   "b2-env.age".publicKeys = [ tentacool ];

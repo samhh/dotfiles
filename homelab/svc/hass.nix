@@ -7,19 +7,21 @@ let
 in
 {
   networking.firewall = {
-    allowedTCPPorts = [ lanPort homekitBridgePort ];
+    allowedTCPPorts = [
+      lanPort
+      homekitBridgePort
+    ];
     allowedUDPPorts = [ mDNSPort ];
   };
 
   virtualisation.oci-containers.containers =
-    let hostNetworking = "--network=host";
+    let
+      hostNetworking = "--network=host";
     in
     {
       hass = {
         image = "ghcr.io/home-assistant/home-assistant:2024.3.0";
-        volumes = [
-          "hass:/config"
-        ];
+        volumes = [ "hass:/config" ];
         extraOptions = [ hostNetworking ];
         environment.TZ = "Europe/London";
       };

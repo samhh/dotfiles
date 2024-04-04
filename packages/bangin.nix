@@ -1,4 +1,10 @@
-{ fetchurl, installShellFiles, lib, pkgs, stdenv }:
+{
+  fetchurl,
+  installShellFiles,
+  lib,
+  pkgs,
+  stdenv,
+}:
 
 stdenv.mkDerivation rec {
   pname = "bangin";

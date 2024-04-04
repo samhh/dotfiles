@@ -46,26 +46,25 @@ in
   # "keep only the last version".
   services.restic.backups =
     let
-      baseCfg =
-        {
-          initialize = true;
-          passwordFile = config.age.secrets.restic.path;
-          environmentFile = config.age.secrets.b2-env.path;
-          pruneOpts = [
-            "--keep-daily 7"
-            "--keep-weekly 4"
-            "--keep-monthly 6"
-          ];
-          timerConfig.OnCalendar = "04:00";
-          extraBackupArgs =
-            let
-              xs = [
-                "@eaDir"
-                ".DS_Store"
-              ];
-            in
-            map (x: "--exclude=${x}") xs;
-        };
+      baseCfg = {
+        initialize = true;
+        passwordFile = config.age.secrets.restic.path;
+        environmentFile = config.age.secrets.b2-env.path;
+        pruneOpts = [
+          "--keep-daily 7"
+          "--keep-weekly 4"
+          "--keep-monthly 6"
+        ];
+        timerConfig.OnCalendar = "04:00";
+        extraBackupArgs =
+          let
+            xs = [
+              "@eaDir"
+              ".DS_Store"
+            ];
+          in
+          map (x: "--exclude=${x}") xs;
+      };
     in
     {
       snorlax = baseCfg // {
@@ -83,7 +82,8 @@ in
     programs.offlineimap.enable = true;
 
     accounts.email.accounts.main =
-      let host = "imap.migadu.com";
+      let
+        host = "imap.migadu.com";
       in
       {
         primary = true;
@@ -97,8 +97,7 @@ in
               remotehost = host;
               remoteuser = config.email.address;
               remotepassfile = config.age.secrets.migadu.path;
-              folderfilter =
-                "lambda folder: folder in ['Archive', 'Awaiting', 'Unfulfilled', 'INBOX', 'Sent']";
+              folderfilter = "lambda folder: folder in ['Archive', 'Awaiting', 'Unfulfilled', 'INBOX', 'Sent']";
             };
           };
         };

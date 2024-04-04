@@ -1,4 +1,8 @@
-{ lib, pkgs, stdenv }:
+{
+  lib,
+  pkgs,
+  stdenv,
+}:
 
 stdenv.mkDerivation rec {
   pname = "bangup";
@@ -6,9 +10,7 @@ stdenv.mkDerivation rec {
 
   src = ./bangup.sh;
 
-  nativeBuildInputs = with pkgs; [
-    makeWrapper
-  ];
+  nativeBuildInputs = with pkgs; [ makeWrapper ];
 
   dontUnpack = true;
 
@@ -19,6 +21,11 @@ stdenv.mkDerivation rec {
 
   fixupPhase = with pkgs; ''
     wrapProgram $out/bin/bangup \
-      --set PATH ${lib.makeBinPath [ coreutils curl ]}
+      --set PATH ${
+        lib.makeBinPath [
+          coreutils
+          curl
+        ]
+      }
   '';
 }

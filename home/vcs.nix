@@ -75,9 +75,7 @@
       wt = "worktree";
     };
 
-    ignores = [
-      ".DS_Store"
-    ];
+    ignores = [ ".DS_Store" ];
   };
 
   home.packages = with pkgs; [

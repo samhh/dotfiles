@@ -1,14 +1,19 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
-let cfg = config.services.bangin-server-node;
+let
+  cfg = config.services.bangin-server-node;
 in
-with lib; {
+with lib;
+{
   options.services.bangin-server-node = {
     enable = mkEnableOption "bangin-server-node";
 
-    port = mkOption {
-      type = types.int;
-    };
+    port = mkOption { type = types.int; };
 
     fallback = mkOption {
       type = types.str;
@@ -22,8 +27,7 @@ with lib; {
       serviceConfig = {
         # So that bangin has access to its config.
         User = config.username;
-        ExecStart =
-          "${pkgs.bangin-server-node}/bin/bangin-server-node ${toString cfg.port} ${cfg.fallback}";
+        ExecStart = "${pkgs.bangin-server-node}/bin/bangin-server-node ${toString cfg.port} ${cfg.fallback}";
       };
     };
   };

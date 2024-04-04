@@ -83,7 +83,10 @@
 
         snippets-ls = {
           command = "snippets-ls";
-          args = [ "-config" ./snippets/typescript.json ];
+          args = [
+            "-config"
+            ./snippets/typescript.json
+          ];
         };
       };
 
@@ -108,7 +111,11 @@
           #   https://github.com/biomejs/biome/pull/1031#issuecomment-1906278211
           formatter = {
             command = "biome";
-            args = [ "format" "--stdin-file-path" "foo.ts" ];
+            args = [
+              "format"
+              "--stdin-file-path"
+              "foo.ts"
+            ];
           };
         }
       ];
@@ -133,9 +140,7 @@
     ];
   };
 
-  programs.git.ignores = [
-    ".helix/"
-  ];
+  programs.git.ignores = [ ".helix/" ];
 
   programs.tshm = {
     enable = true;

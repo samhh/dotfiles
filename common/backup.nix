@@ -23,6 +23,8 @@ in
     };
   };
 
-  environment.systemPackages = with pkgs; [ restic restic-wrapper ];
+  environment.systemPackages = with pkgs; [
+    restic
+    restic-wrapper
+  ];
 }
-

@@ -1,4 +1,9 @@
-{ fetchurl, lib, pkgs, stdenv }:
+{
+  fetchurl,
+  lib,
+  pkgs,
+  stdenv,
+}:
 
 let
   bangin = pkgs.callPackage ./bangin.nix { };
@@ -29,7 +34,12 @@ stdenv.mkDerivation rec {
 
   fixupPhase = with pkgs; ''
     wrapProgram $out/bin/bangin-server-node \
-      --set PATH ${lib.makeBinPath [ nodejs bangin ]}
+      --set PATH ${
+        lib.makeBinPath [
+          nodejs
+          bangin
+        ]
+      }
   '';
 
   meta = {

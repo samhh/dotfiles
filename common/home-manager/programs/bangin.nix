@@ -1,8 +1,15 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
-let cfg = config.programs.bangin;
+let
+  cfg = config.programs.bangin;
 in
-with lib; {
+with lib;
+{
   options.programs.bangin = {
     enable = mkEnableOption "bangin";
 
@@ -31,7 +38,8 @@ with lib; {
   };
 
   config =
-    let unlines = builtins.concatStringsSep "\n";
+    let
+      unlines = builtins.concatStringsSep "\n";
     in
     mkIf cfg.enable {
       home.packages = [ pkgs.bangin ];
@@ -39,13 +47,13 @@ with lib; {
       xdg.configFile = {
         "bangin/bangin.bangs" = mkIf (cfg.bangs != { }) {
           text =
-            let unpairs = mapAttrsToList (k: v: k + " " + v);
-            in unlines (unpairs cfg.bangs);
+            let
+              unpairs = mapAttrsToList (k: v: k + " " + v);
+            in
+            unlines (unpairs cfg.bangs);
         };
 
-        "bangin/bangin.lists" = mkIf (cfg.lists != [ ]) {
-          text = unlines cfg.lists;
-        };
+        "bangin/bangin.lists" = mkIf (cfg.lists != [ ]) { text = unlines cfg.lists; };
       };
     };
 }

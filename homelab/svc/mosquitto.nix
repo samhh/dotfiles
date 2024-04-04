@@ -1,11 +1,10 @@
 { ... }:
 
-let brokerPort = 1883;
+let
+  brokerPort = 1883;
 in
 {
-  networking.firewall.allowedTCPPorts = [
-    brokerPort
-  ];
+  networking.firewall.allowedTCPPorts = [ brokerPort ];
 
   services.mosquitto = {
     enable = true;
@@ -15,9 +14,7 @@ in
         port = brokerPort;
         omitPasswordAuth = true;
         settings.allow_anonymous = true;
-        acl = [
-          "topic readwrite #"
-        ];
+        acl = [ "topic readwrite #" ];
       }
     ];
   };

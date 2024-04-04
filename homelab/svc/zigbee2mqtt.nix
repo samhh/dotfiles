@@ -1,11 +1,10 @@
 { ... }:
 
-let webPort = 8080;
+let
+  webPort = 8080;
 in
 {
-  networking.firewall.allowedTCPPorts = [
-    webPort
-  ];
+  networking.firewall.allowedTCPPorts = [ webPort ];
 
   services.zigbee2mqtt = {
     enable = true;

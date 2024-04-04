@@ -3,7 +3,8 @@
 
 { lib, ... }:
 
-with lib; {
+with lib;
+{
   options = {
     username = mkOption { type = types.str; };
     fullName = mkOption { type = types.str; };

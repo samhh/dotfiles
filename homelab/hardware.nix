@@ -11,7 +11,12 @@
       };
     };
 
-    initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "sd_mod" ];
+    initrd.availableKernelModules = [
+      "xhci_pci"
+      "ahci"
+      "usbhid"
+      "sd_mod"
+    ];
     kernelModules = [ "kvm-intel" ];
   };
 
