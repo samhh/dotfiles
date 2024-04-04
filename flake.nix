@@ -39,6 +39,7 @@
     }:
     let
       system = "aarch64-darwin";
+      system-ci = "x86_64-linux";
       overlays = with nixpkgs.lib; [
         (const (const self.packages.${system}))
         (const (const {
@@ -47,7 +48,9 @@
         }))
       ];
       pkgs = import nixpkgs { inherit system overlays; };
+      pkgs-ci = import nixpkgs { system = system-ci; };
       pkgs-unstable = import nixpkgs-unstable { inherit system overlays; };
+      pkgs-unstable-ci = import nixpkgs-unstable { system = system-ci; };
     in
     {
       nixosConfigurations.tentacool = nixpkgs.lib.nixosSystem rec {
@@ -76,16 +79,15 @@
       devShells = {
         ${system}.default = pkgs.callPackage ./shell.nix { };
 
-        "x86_64-linux".ci =
-          let
-            pkgs = import nixpkgs { system = "x86_64-linux"; };
-          in
-          pkgs.mkShell { nativeBuildInputs = with pkgs; [ deadnix ]; };
+        "${system-ci}".ci = pkgs-ci.mkShell { nativeBuildInputs = with pkgs-ci; [ deadnix ]; };
       };
 
       packages.${system} = import ./packages { inherit pkgs; };
 
-      formatter.${system} = pkgs-unstable.nixfmt-rfc-style;
+      formatter = {
+        ${system} = pkgs-unstable.nixfmt-rfc-style;
+        ${system-ci} = pkgs-unstable-ci.nixfmt-rfc-style;
+      };
 
       templates = import ./templates;
     };
