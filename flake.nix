@@ -73,12 +73,13 @@
           in pkgs.mkShell {
             nativeBuildInputs = with pkgs; [
               deadnix
-              nixpkgs-fmt
             ];
           };
       };
 
       packages.${system} = import ./packages { inherit pkgs; };
+
+      formatter.${system} = pkgs.nixpkgs-fmt;
 
       templates = import ./templates;
     };

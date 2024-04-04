@@ -18,7 +18,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: cachix/install-nix-action@v24
-      - run: nix develop .#ci -c nixpkgs-fmt --check .
+      # `nix fmt` doesn't have a check/dry run option, so we'll run it against
+      # files in place and test if there are any diffs with Git.
+      - run: |
+          nix fmt .
+          git diff-index --exit-code HEAD
 
   lint:
     name: Lint
