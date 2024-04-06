@@ -118,6 +118,22 @@
             ];
           };
         }
+
+        {
+          name = "jsonc";
+          file-types = [
+            "json"
+            "jsonc"
+          ];
+          formatter = {
+            command = "biome";
+            args = [
+              "format"
+              "--stdin-file-path"
+              "foo.jsonc"
+            ];
+          };
+        }
       ];
     };
 
