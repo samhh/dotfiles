@@ -8,4 +8,6 @@
     username = "sam";
     homeDirectory = "/Users/${username}";
   };
+
+  xdg.enable = true;
 }

@@ -4,10 +4,9 @@
   programs.helix = {
     enable = true;
     package = pkgs-unstable.helix;
+    catppuccin.enable = true;
 
     settings = {
-      theme = "kanagawa";
-
       editor = {
         soft-wrap.enable = true;
         rulers = [ 80 ];

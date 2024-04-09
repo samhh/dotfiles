@@ -7,6 +7,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    catppuccin.url = "github:catppuccin/nix";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,6 +33,7 @@
     {
       self,
       agenix,
+      catppuccin,
       home-manager,
       nixpkgs,
       nixpkgs-unstable,
@@ -68,6 +71,7 @@
       homeConfigurations.sam = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
+          catppuccin.homeManagerModules.catppuccin
           ./common/home-manager/programs
           ./home
         ];

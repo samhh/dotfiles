@@ -1,0 +1,5 @@
+{ ... }:
+
+{
+  catppuccin.flavour = "mocha";
+}

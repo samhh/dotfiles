@@ -6,9 +6,13 @@ let
   '';
 in
 {
+  programs.bat = {
+    enable = true;
+    catppuccin.enable = true;
+  };
+
   home.packages = with pkgs; [
     ast-grep
-    bat
     blocky-tentacool
     dogdns
     fd

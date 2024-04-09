@@ -34,6 +34,7 @@ in
 {
   programs.fish = {
     enable = true;
+    catppuccin.enable = true;
 
     # Nota bene the incompatibililty between nixpkgs fish plugins and
     # home-manager:
@@ -47,8 +48,6 @@ in
     shellInit = ''
       set fish_greeting
       fish_vi_key_bindings
-
-      source ${pkgs.vimPlugins.kanagawa-nvim}/extras/kanagawa.fish
 
       if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
         fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
@@ -89,6 +88,7 @@ in
 
   programs.tmux = {
     enable = true;
+    catppuccin.enable = true;
     keyMode = "vi";
     mouse = true;
     # https://github.com/helix-editor/helix/wiki/Troubleshooting#when-using-tmux-or-screen-there-is-a-delay-after-hitting-escape-before-its-registered
