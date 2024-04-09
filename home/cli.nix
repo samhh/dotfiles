@@ -11,12 +11,18 @@ in
     catppuccin.enable = true;
   };
 
+  home.file."Library/Preferences/glow/glow.yml".text = ''
+    local: true
+    pager: true
+  '';
+
   home.packages = with pkgs; [
     ast-grep
     blocky-tentacool
     dogdns
     fd
     gdu
+    glow
     ripgrep
     sd
     tldr
