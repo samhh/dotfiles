@@ -1,6 +1,29 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
+  programs.jujutsu = {
+    enable = true;
+    package = pkgs-unstable.jujutsu;
+    settings = {
+      user = {
+        name = "Sam A. Horvath-Hunt";
+        email = "hello@samhh.com";
+      };
+      signing = {
+        sign-all = true;
+        backend = "gpg";
+        backends.gpg = {
+          program = "${pkgs.gnupg}/bin/gpg";
+          allow-expired-keys = false;
+        };
+        key = "4667250BD56735A8";
+      };
+      template-aliases = {
+        "format_timestamp(timestamp)" = "timestamp.ago()";
+      };
+    };
+  };
+
   programs.git = {
     enable = true;
 
