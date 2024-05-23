@@ -1,6 +1,6 @@
 { ... }:
 
 {
-  catppuccin.flavour = "mocha";
+  catppuccin.flavor = "mocha";
   programs.glamour.catppuccin.enable = true;
 }
