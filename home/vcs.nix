@@ -41,11 +41,60 @@ in
         };
         key = "4667250BD56735A8";
       };
+      core.fsmonitor = "watchman";
       git.push-branch-prefix = "jj-";
       template-aliases = {
         "format_timestamp(timestamp)" = "timestamp.ago()";
       };
-      core.fsmonitor = "watchman";
+      aliases = {
+        "ab" = [ "abandon" ];
+        "br" = [ "branch" ];
+        "dup" = [ "duplicate" ];
+        "ft" = [
+          "git"
+          "fetch"
+        ];
+        "la" = [
+          "log"
+          "-r"
+          "anon()"
+        ];
+        "lah" = [
+          "log"
+          "-r"
+          "heads(anon())"
+          "--no-graph"
+        ];
+        "lar" = [
+          "log"
+          "-r"
+          "roots(anon())"
+          "--no-graph"
+        ];
+        "lb" = [
+          "log"
+          "-r"
+          "my_branches()"
+        ];
+        "lbh" = [
+          "log"
+          "-r"
+          "heads(my_branches())"
+          "--no-graph"
+        ];
+        "ps" = [
+          "git"
+          "push"
+        ];
+        "rb" = [ "rebase" ];
+        "sp" = [ "split" ];
+        "sq" = [ "squash" ];
+        "ws" = [ "workspace" ];
+      };
+      revset-aliases = {
+        "anon()" = "mine() ~ ::(branches() | remote_branches())";
+        "my_branches()" = "::branches() ~ ::trunk()";
+      };
     };
   };
 
