@@ -65,6 +65,7 @@ in
       "sed" = "sd";
       "du" = "gdu";
       "cat" = "bat";
+      "nn" = "jj";
 
       "sh" = "nix shell nixpkgs#";
       "nixh" = "nix-prefetch-url";
