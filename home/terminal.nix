@@ -17,10 +17,11 @@
     };
     keybindings = {
       "cmd+w" = "discard_event";
-      "cmd+t" = "new_window";
+      "cmd+t" = "launch --cwd=current";
       "cmd+l" = "next_layout";
       "cmd+e" = "focus_visible_window";
       "cmd+f" = "show_scrollback";
+      "cmd+p" = "show_last_command_output";
     };
   };
 
