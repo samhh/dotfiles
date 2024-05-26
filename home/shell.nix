@@ -62,6 +62,7 @@ in
       "du" = "gdu";
       "cat" = "bat";
       "nn" = "jj";
+      "nn-cp" = "jj-cp";
 
       "sh" = "nix shell nixpkgs#";
       "nixh" = "nix-prefetch-url";

@@ -6,6 +6,23 @@
   ...
 }:
 
+let
+  jj-cp =
+    let
+      jj = "${pkgs.jujutsu}/bin/jj";
+      rg = "${pkgs.ripgrep}/bin/rg";
+    in
+    pkgs.writeShellScriptBin "jj-cp" ''
+      set -e
+
+      src="$1"
+      dest=''${2:-@}
+
+      cid=$(${jj} duplicate "$src" 2>&1 | tee /dev/stderr | ${rg} -o -r '$1' 'Duplicated \w+ as (\w+)')
+
+      ${jj} rebase -s "$cid" -d "$dest"
+    '';
+in
 {
   programs.jujutsu = {
     enable = true;
@@ -119,6 +136,7 @@
 
   home.packages = with pkgs; [
     git-absorb
+    jj-cp
     tig
     watchman
   ];
