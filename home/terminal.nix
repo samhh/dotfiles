@@ -22,4 +22,7 @@
       "cmd+f" = "show_scrollback";
     };
   };
+
+  # Suppress login shell MOTD.
+  home.file.".hushlogin".text = "";
 }
