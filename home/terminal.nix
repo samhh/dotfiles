@@ -8,6 +8,7 @@
       package = pkgs.hasklig;
       name = "Hasklig Regular";
     };
+    shellIntegration.mode = "no-cursor";
     settings = {
       remember_window_size = false;
       enabled_layouts = "fat, grid";

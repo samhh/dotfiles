@@ -1,4 +1,10 @@
-{ pkgs, pkgs-unstable, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  pkgs-unstable,
+  ...
+}:
 
 {
   programs.jujutsu = {
@@ -22,6 +28,11 @@
         "format_timestamp(timestamp)" = "timestamp.ago()";
       };
     };
+  };
+
+  # See: https://github.com/nix-community/home-manager/pull/5207
+  home.sessionVariables = lib.mkIf (pkgs.stdenv.hostPlatform.isDarwin) {
+    JJ_CONFIG = "${config.xdg.configHome}/jj/config.toml";
   };
 
   programs.git = {
