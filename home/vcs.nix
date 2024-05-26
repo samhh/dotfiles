@@ -28,6 +28,7 @@
       template-aliases = {
         "format_timestamp(timestamp)" = "timestamp.ago()";
       };
+      core.fsmonitor = "watchman";
     };
   };
 
@@ -119,5 +120,6 @@
   home.packages = with pkgs; [
     git-absorb
     tig
+    watchman
   ];
 }
