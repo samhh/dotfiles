@@ -59,10 +59,6 @@ in
     '';
 
     shellAbbrs = {
-      "grep" = "rg";
-      "find" = "fd";
-      "tree" = "tre";
-      "sed" = "sd";
       "du" = "gdu";
       "cat" = "bat";
       "nn" = "jj";
