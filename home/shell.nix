@@ -63,6 +63,7 @@ in
       "cat" = "bat";
       "nn" = "jj";
       "nn-cp" = "jj-cp";
+      "nn-rv" = "jj-review";
 
       "sh" = "nix shell nixpkgs#";
       "nixh" = "nix-prefetch-url";

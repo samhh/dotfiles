@@ -22,6 +22,19 @@ let
 
       ${jj} rebase -s "$cid" -d "$dest"
     '';
+  jj-review =
+    let
+      jj = "${pkgs.jujutsu}/bin/jj";
+    in
+    pkgs.writeShellScriptBin "jj-review" ''
+      set -e
+
+      branch="$1"
+      remote=''${2:-origin}
+
+      ${jj} git fetch -b "$branch"
+      ${jj} new "$branch@$remote"
+    '';
 in
 {
   programs.jujutsu = {
@@ -186,6 +199,7 @@ in
   home.packages = with pkgs; [
     git-absorb
     jj-cp
+    jj-review
     tig
     watchman
   ];
