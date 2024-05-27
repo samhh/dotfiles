@@ -62,6 +62,7 @@ in
       "du" = "gdu";
       "cat" = "bat";
       "nn" = "jj";
+      "nn-attr" = "jj-attr";
       "nn-cp" = "jj-cp";
       "nn-rv" = "jj-review";
 

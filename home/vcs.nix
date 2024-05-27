@@ -7,6 +7,25 @@
 }:
 
 let
+  jj-attr =
+    let
+      fzf = "${pkgs.fzf}/bin/fzf";
+      git = "${pkgs.git}/bin/git";
+      jj = "${pkgs.jujutsu}/bin/jj";
+      sd = "${pkgs.sd}/bin/sd";
+    in
+    pkgs.writeShellScriptBin "jj-attr" ''
+      set -e
+
+      rev=''${1:-@};
+
+      recent=$(${git} shortlog -sec --since=1.month | ${sd} '^\s*[0-9]+\s*(.+)$' '$1')
+      prefix='Co-authored-by: '
+      # Beware a trailing \n coming from fzf.
+      msg=$(echo "$recent" | ${fzf} -m | ${sd} '^(.+)' "$prefix\$1")
+
+      ${jj} desc "$rev" -m "$(${jj} log --no-graph -r "$rev" -T description)" -m "$msg"
+    '';
   jj-cp =
     let
       jj = "${pkgs.jujutsu}/bin/jj";
@@ -198,6 +217,7 @@ in
 
   home.packages = with pkgs; [
     git-absorb
+    jj-attr
     jj-cp
     jj-review
     tig
