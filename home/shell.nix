@@ -98,18 +98,6 @@ in
 
   programs.zoxide.enable = true;
 
-  programs.tmux = {
-    enable = true;
-    catppuccin.enable = true;
-    keyMode = "vi";
-    mouse = true;
-    # https://github.com/helix-editor/helix/wiki/Troubleshooting#when-using-tmux-or-screen-there-is-a-delay-after-hitting-escape-before-its-registered
-    escapeTime = 0;
-    extraConfig = ''
-      set -g repeat-time 0
-    '';
-  };
-
   programs.git.ignores = [
     "result"
     ".envrc"
