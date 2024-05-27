@@ -75,6 +75,7 @@ in
     functions = {
       mkcd = "mkdir -p $argv; cd $argv;";
       mktouch = "mkdir -p (dirname $argv); touch $argv;";
+      touchx = "touch $argv; chmod +x $argv";
     };
   };
 
