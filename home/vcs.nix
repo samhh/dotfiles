@@ -73,7 +73,6 @@ in
         };
         key = "4667250BD56735A8";
       };
-      core.fsmonitor = "watchman";
       git.push-branch-prefix = "jj-";
       template-aliases = {
         "format_timestamp(timestamp)" = "timestamp.ago()";
@@ -221,6 +220,5 @@ in
     jj-cp
     jj-review
     tig
-    watchman
   ];
 }
