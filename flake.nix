@@ -19,9 +19,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     snippets-ls = {
-      # Awaiting merge:
-      #   https://github.com/quantonganh/snippets-ls/pull/11
-      url = "github:samhh/snippets-ls/push-mpzywskurqrp";
+      url = "github:quantonganh/snippets-ls";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

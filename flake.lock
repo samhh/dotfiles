@@ -152,16 +152,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1716733844,
+        "lastModified": 1716735863,
         "narHash": "sha256-9hjDvcrlAJ6tOmbwNcbMJfSOwG9Xk7tBXCqPZJBta58=",
-        "owner": "samhh",
+        "owner": "quantonganh",
         "repo": "snippets-ls",
-        "rev": "b486dfcb8c1b869af63ebfb99bb7b37f8e173f36",
+        "rev": "4673aff3d4a07900605ca040d6ffc48a379ded29",
         "type": "github"
       },
       "original": {
-        "owner": "samhh",
-        "ref": "push-mpzywskurqrp",
+        "owner": "quantonganh",
         "repo": "snippets-ls",
         "type": "github"
       }
