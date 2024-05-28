@@ -113,6 +113,11 @@ in
           "heads(my_branches())"
           "--no-graph"
         ];
+        "lt" = [
+          "log"
+          "-r"
+          "trunk()..@"
+        ];
         "ps" = [
           "git"
           "push"
