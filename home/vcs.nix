@@ -197,7 +197,6 @@ in
       cmx = "commit --fixup";
       cp = "cherry-pick";
       ft = "fetch";
-      ignore = "!sh -c 'git add -N $1 && git update-index --skip-worktree $1' sh";
       lg = "log --graph --pretty=format:'%Cblue%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold red)[%an]%Creset' --abbrev-commit --date=relative";
       pl = "pull";
       ps = "push";
@@ -213,14 +212,12 @@ in
       st = "status --short";
       sw = "switch";
       sw-gh-pr = "!sh -c 'git ft origin pull/$1/head:pr/$1 && git sw pr/$1' sh";
-      wt = "worktree";
     };
 
     ignores = [ ".DS_Store" ];
   };
 
   home.packages = with pkgs; [
-    git-absorb
     jj-attr
     jj-cp
     jj-review
