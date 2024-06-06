@@ -42,7 +42,7 @@ in
   };
 
   # B2 buckets which don't already exist will be created (assuming the name is
-  # available/valid, however the file lifecycle will need manually setting to
+  # available/valid), however the file lifecycle will need manually setting to
   # "keep only the last version".
   services.restic.backups =
     let
