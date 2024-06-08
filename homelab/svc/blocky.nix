@@ -29,7 +29,7 @@ in
 
       # Point to the router for local hostname resolution...
       clientLookup.upstream = router;
-      # ...as well as for non-FQDN hostnames e.g. `tentacool` (else blocky sees
+      # ...as well as for non-FQDN hostnames e.g. `tentacool` (else Blocky sees
       # `tentacool.localdomain`). This is also necessary for UniFi adoption.
       conditional.mapping."." = router;
 
@@ -47,7 +47,7 @@ in
             "https://zerodot1.gitlab.io/CoinBlockerLists/hosts_browser"
           ];
 
-          # The way whitelists work in blocky is a bit surprising. Without
+          # The way whitelists work in Blocky is a bit surprising. Without
           # associated blocklists, whitelists actually work to block everything
           # not explicitly whitelisted. Like this they work as expected,
           # negating the associated blacklist.
@@ -91,7 +91,7 @@ in
         blockTTL = "1m";
 
         # Briefly expose the network to unfiltered DNS to get the network up as
-        # fast as possible when blocky restarts.
+        # fast as possible when Blocky restarts.
         startStrategy = "fast";
       };
 
