@@ -41,13 +41,11 @@ in
     sonarr-host.file = ../secrets/sonarr-host.age;
   };
 
-  # B2 buckets which don't already exist will be created (assuming the name is
-  # available/valid), however the file lifecycle will need manually setting to
-  # "keep only the last version".
+  # New buckets must be created manually and have their file lifecycle set as
+  # appropriate.
   services.restic.backups =
     let
       baseCfg = {
-        initialize = true;
         passwordFile = config.age.secrets.restic.path;
         environmentFile = config.age.secrets.b2-env.path;
         pruneOpts = [
