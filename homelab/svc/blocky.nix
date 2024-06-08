@@ -20,8 +20,8 @@ in
         http = apiPort;
       };
 
-      # Blocky picks two servers at random and races them. This also has various
-      # privacy implications.
+      # Blocky picks two servers at random and races them. This trades off
+      # privacy for reliability and performance.
       upstream.default = [
         "9.9.9.9" # Quad9
         "8.8.8.8" # Google
