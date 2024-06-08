@@ -148,7 +148,10 @@
       rust-analyzer
       # Needed for rust-analyzer.
       rustc
-      snippets-ls
+      (pkgs.buildGoModule {
+        inherit (snippets-ls) pname version src;
+        vendorHash = "sha256-0FGBtSYKaSjaJlxr8mpXyRKG88ThJCSL3Qutf8gkllw=";
+      })
       terraform-ls
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
