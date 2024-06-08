@@ -41,35 +41,26 @@ in
     sonarr-host.file = ../secrets/sonarr-host.age;
   };
 
-  # New buckets must be created manually and have their file lifecycle set as
-  # appropriate.
-  services.restic.backups =
-    let
-      baseCfg = {
-        passwordFile = config.age.secrets.restic.path;
-        environmentFile = config.age.secrets.b2-env.path;
-        pruneOpts = [
-          "--keep-daily 7"
-          "--keep-weekly 4"
-          "--keep-monthly 6"
+  services.restic.backups.snorlax = {
+    repository = "b2:snorlax-restic2";
+    paths = [ backupsPath ];
+    passwordFile = config.age.secrets.restic.path;
+    environmentFile = config.age.secrets.b2-env.path;
+    pruneOpts = [
+      "--keep-daily 7"
+      "--keep-weekly 4"
+      "--keep-monthly 6"
+    ];
+    timerConfig.OnCalendar = "04:00";
+    extraBackupArgs =
+      let
+        xs = [
+          "@eaDir"
+          ".DS_Store"
         ];
-        timerConfig.OnCalendar = "04:00";
-        extraBackupArgs =
-          let
-            xs = [
-              "@eaDir"
-              ".DS_Store"
-            ];
-          in
-          map (x: "--exclude=${x}") xs;
-      };
-    in
-    {
-      snorlax = baseCfg // {
-        repository = "b2:snorlax-restic2";
-        paths = [ backupsPath ];
-      };
-    };
+      in
+      map (x: "--exclude=${x}") xs;
+  };
 
   services.offlineimap = {
     enable = true;
