@@ -30,7 +30,7 @@ in
     nodePackages.yalc
 
     # Unsplash
-    saml2aws
+    okta-aws-cli
   ];
 
   programs.git.ignores = [
