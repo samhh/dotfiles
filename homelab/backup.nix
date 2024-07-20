@@ -6,7 +6,6 @@ let
   backupsPath = "/home/${config.username}/backups";
 
   logsBackupsPath = backupsPath + "/logs";
-  mailBackupsPath = backupsPath + "/mail";
 
   radarrLogs = pkgs.writeShellScript "radarr-logs" ''
     endpoint="$(cat ${config.age.secrets.radarr-host.path})/api/v3/movie"
@@ -29,12 +28,6 @@ in
 {
 
   age.secrets = {
-    migadu = {
-      file = ../secrets/migadu.age;
-      # For offlineimap.
-      owner = config.username;
-    };
-
     radarr-api-key.file = ../secrets/radarr-api-key.age;
     radarr-host.file = ../secrets/radarr-host.age;
     sonarr-api-key.file = ../secrets/sonarr-api-key.age;
@@ -60,37 +53,6 @@ in
         ];
       in
       map (x: "--exclude=${x}") xs;
-  };
-
-  services.offlineimap = {
-    enable = true;
-    install = true;
-  };
-
-  home-manager.users.${config.username} = {
-    programs.offlineimap.enable = true;
-
-    accounts.email.accounts.main =
-      let
-        host = "imap.migadu.com";
-      in
-      {
-        primary = true;
-        imap.host = host;
-        offlineimap = {
-          enable = true;
-          extraConfig = {
-            local.localfolders = mailBackupsPath;
-            remote = {
-              type = "IMAP";
-              remotehost = host;
-              remoteuser = config.email.address;
-              remotepassfile = config.age.secrets.migadu.path;
-              folderfilter = "lambda folder: folder in ['Archive', 'Awaiting', 'Unfulfilled', 'INBOX', 'Sent']";
-            };
-          };
-        };
-      };
   };
 
   systemd = {

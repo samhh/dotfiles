@@ -3,7 +3,6 @@ let
 in
 {
   "b2-env.age".publicKeys = [ tentacool ];
-  "migadu.age".publicKeys = [ tentacool ];
   "radarr-api-key.age".publicKeys = [ tentacool ];
   "radarr-host.age".publicKeys = [ tentacool ];
   "restic.age".publicKeys = [ tentacool ];
