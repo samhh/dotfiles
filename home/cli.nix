@@ -19,7 +19,6 @@ in
   home.packages = with pkgs; [
     ast-grep
     blocky-tentacool
-    dogdns
     fd
     gdu
     glow
