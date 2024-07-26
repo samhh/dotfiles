@@ -61,11 +61,11 @@ in
           # Domains here will be matched exactly if not defined as regex, see:
           #   https://github.com/0xERR0R/blocky/issues/556#issuecomment-1150731243
           let
-            personalWhitelist = pkgs.writeText "vaporeon-personal-whitelist" ''
+            personalWhitelist = pkgs.writeText "blocky-personal-whitelist" ''
               www.googleadservices.com
               /(\.|^)sonos\.com$/
             '';
-            workWhitelist = pkgs.writeText "vaporeon-work-whitelist" ''
+            workWhitelist = pkgs.writeText "blocky-work-whitelist" ''
               /(\.|^)unsplash\.com$/
               /(\.|^)replay\.io$/
               /(\.|^)speedcurve\.com$/
@@ -83,6 +83,7 @@ in
 
         clientGroupsBlock = {
           default = [ "personal" ];
+          # TODO currently seeing Mac.localdomain 😒
           "SamsWorkLaptop.localdomain" = [ "work" ];
         };
 

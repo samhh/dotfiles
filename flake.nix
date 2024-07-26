@@ -2,11 +2,6 @@
   description = "Configuring the universe with Nix";
 
   inputs = {
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     catppuccin.url = "github:catppuccin/nix";
 
     home-manager = {
@@ -32,7 +27,6 @@
   outputs =
     {
       self,
-      agenix,
       catppuccin,
       home-manager,
       nixpkgs,
@@ -46,7 +40,6 @@
       overlays = with nixpkgs.lib; [
         (const (const self.packages.${system}))
         (const (const {
-          agenix = agenix.packages.${system}.default;
           snippets-ls = snippets-ls.packages.${system}.snippets-ls;
         }))
       ];
@@ -61,7 +54,6 @@
         pkgs = import nixpkgs { inherit system; };
         modules = [
           home-manager.nixosModules.home-manager
-          agenix.nixosModules.default
           ./common
           ./config
           ./homelab
