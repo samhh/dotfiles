@@ -29,8 +29,8 @@ in
 
       # Point to the router for local hostname resolution...
       clientLookup.upstream = router;
-      # ...as well as for non-FQDN hostnames e.g. `tentacool` (else Blocky sees
-      # `tentacool.localdomain`). This is also necessary for UniFi adoption.
+      # ...as well as for non-FQDN hostnames e.g. `homelab` (else Blocky sees
+      # `homelab.localdomain`). This is also necessary for UniFi adoption.
       conditional.mapping."." = router;
 
       blocking = {

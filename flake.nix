@@ -49,7 +49,7 @@
       pkgs-unstable-ci = import nixpkgs-unstable { system = system-ci; };
     in
     {
-      nixosConfigurations.tentacool = nixpkgs.lib.nixosSystem rec {
+      nixosConfigurations.homelab = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         pkgs = import nixpkgs { inherit system; };
         modules = [

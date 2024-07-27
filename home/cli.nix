@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 let
-  blocky-tentacool = pkgs.writeShellScriptBin "blocky" ''
-    exec ${pkgs.blocky}/bin/blocky --apiHost tentacool "$@"
+  blocky-homelab = pkgs.writeShellScriptBin "blocky" ''
+    exec ${pkgs.blocky}/bin/blocky --apiHost homelab "$@"
   '';
 in
 {
@@ -18,7 +18,7 @@ in
 
   home.packages = with pkgs; [
     ast-grep
-    blocky-tentacool
+    blocky-homelab
     fd
     gdu
     glow
