@@ -1,10 +1,5 @@
 { pkgs, ... }:
 
-let
-  blocky-homelab = pkgs.writeShellScriptBin "blocky" ''
-    exec ${pkgs.blocky}/bin/blocky --apiHost homelab "$@"
-  '';
-in
 {
   programs.bat = {
     enable = true;
@@ -18,7 +13,6 @@ in
 
   home.packages = with pkgs; [
     ast-grep
-    blocky-homelab
     fd
     gdu
     glow
