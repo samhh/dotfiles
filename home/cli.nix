@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
   programs.bat = {
@@ -7,7 +7,7 @@
   };
 
   home.packages = with pkgs; [
-    ast-grep
+    pkgs-unstable.ast-grep
     fd
     gdu
     ripgrep
