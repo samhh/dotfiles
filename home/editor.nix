@@ -158,10 +158,15 @@
     ];
   };
 
-  programs.git.ignores = [ ".helix/" ];
+  programs.git.ignores = [
+    ".helix/"
+    ".zed/"
+  ];
 
   programs.tshm = {
     enable = true;
     installEditorPlugin = true;
   };
+
+  xdg.configFile."zed/snippets".source = ./snippets;
 }
