@@ -20,7 +20,7 @@ in
     in
     {
       hass = {
-        image = "ghcr.io/home-assistant/home-assistant:2024.8.1";
+        image = "ghcr.io/home-assistant/home-assistant:2024.9.1";
         volumes = [ "hass:/config" ];
         extraOptions = [ hostNetworking ];
         environment.TZ = "Europe/London";
