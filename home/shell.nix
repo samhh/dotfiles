@@ -58,7 +58,7 @@ in
       "nixh" = "nix-prefetch-url";
       "nixhu" = "nix-prefetch-url --unpack";
 
-      "up" = "home-manager switch --flake ~/Dotfiles/";
+      "up" = "home-manager switch --flake ~/Dev/dotfiles/";
     };
 
     functions = {
