@@ -3,7 +3,6 @@
 {
   programs.kitty = {
     enable = true;
-    catppuccin.enable = true;
     font = {
       package = pkgs.hasklig;
       name = "Hasklig Regular";

@@ -144,10 +144,7 @@ in
   programs.git = {
     enable = true;
 
-    delta = {
-      enable = true;
-      catppuccin.enable = true;
-    };
+    delta.enable = true;
 
     extraConfig = {
       push.default = "simple";

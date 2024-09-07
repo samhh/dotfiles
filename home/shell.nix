@@ -24,7 +24,6 @@ in
 {
   programs.fish = {
     enable = true;
-    catppuccin.enable = true;
 
     # Nota bene the incompatibililty between nixpkgs fish plugins and
     # home-manager:
