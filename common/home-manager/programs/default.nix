@@ -1,9 +1,5 @@
 { ... }:
 
 {
-  imports = [
-    ./bangin.nix
-    ./efm-langserver.nix
-    ./tshm.nix
-  ];
+  imports = [ ./efm-langserver.nix ];
 }

@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./services
     ./config.nix
     ./core.nix
     ./locale.nix

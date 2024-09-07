@@ -43,21 +43,6 @@
 
     languages = {
       language-server = {
-        typescript-language-server = {
-          # These are the defaults:
-          #   https://github.com/helix-editor/helix/blob/23.10/languages.toml#L132
-          command = "typescript-language-server";
-          args = [ "--stdio" ];
-          config.hostInfo = "helix";
-
-          config.plugins = [
-            {
-              name = "typescript-tshm-plugin";
-              location = "/Users/sam/.local/share/npmlibs/";
-            }
-          ];
-        };
-
         biome = {
           command = "biome";
           args = [ "lsp-proxy" ];
@@ -162,11 +147,6 @@
     ".helix/"
     ".zed/"
   ];
-
-  programs.tshm = {
-    enable = true;
-    installEditorPlugin = true;
-  };
 
   xdg.configFile."zed/snippets".source = ./snippets;
 }

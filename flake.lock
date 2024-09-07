@@ -74,8 +74,7 @@
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "snippets-ls": "snippets-ls",
-        "tshm-plugin": "tshm-plugin"
+        "snippets-ls": "snippets-ls"
       }
     },
     "snippets-ls": {
@@ -96,19 +95,6 @@
         "owner": "quantonganh",
         "repo": "snippets-ls",
         "type": "github"
-      }
-    },
-    "tshm-plugin": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1627497812,
-        "narHash": "sha256-mpU9leR6NolT2xJhqkW6qmUVp/Ed9m8WHMEBFxmNR/Q=",
-        "type": "tarball",
-        "url": "https://registry.yarnpkg.com/typescript-tshm-plugin/-/typescript-tshm-plugin-0.1.0.tgz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://registry.yarnpkg.com/typescript-tshm-plugin/-/typescript-tshm-plugin-0.1.0.tgz"
       }
     }
   },

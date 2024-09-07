@@ -15,11 +15,10 @@ $ home-manager switch --flake .
 
 ### Packages
 
-Some packages not in nixpkgs are defined in `:/packages/`. These can be built and run as flake outputs.
+Packages not in nixpkgs can be defined in `:/packages/`. These are available as flake outputs.
 
 ```console
-$ echo "declare const foo: Bar" | nix run ".#tshm" -- -a
-foo :: Bar
+$ nix run ".#foo" -- --bar
 ```
 
 ## History

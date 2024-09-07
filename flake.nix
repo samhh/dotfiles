@@ -17,11 +17,6 @@
       url = "github:quantonganh/snippets-ls";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    tshm-plugin = {
-      url = "https://registry.yarnpkg.com/typescript-tshm-plugin/-/typescript-tshm-plugin-0.1.0.tgz";
-      flake = false;
-    };
   };
 
   outputs =
@@ -32,7 +27,6 @@
       nixpkgs,
       nixpkgs-unstable,
       snippets-ls,
-      tshm-plugin,
     }:
     let
       system = "aarch64-darwin";
@@ -68,7 +62,7 @@
           ./home
         ];
         extraSpecialArgs = {
-          inherit pkgs-unstable tshm-plugin;
+          inherit pkgs-unstable;
         };
       };
 
