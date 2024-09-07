@@ -103,6 +103,5 @@ in
   programs.git.ignores = [
     "result"
     ".envrc"
-    ".direnv/"
   ];
 }
