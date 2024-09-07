@@ -1,16 +1,6 @@
 { pkgs, ... }:
 
 let
-  fishMinimalTheme = rec {
-    name = "fish-minimal-theme";
-    src = pkgs.fetchFromGitHub {
-      owner = "samhh";
-      repo = name;
-      rev = "fd543ceffd883085992cdb5102c527b90f0a63e0";
-      sha256 = "sha256-uJj6hYD8RZSEkBFHg4LUznsGJyw1VCETAkFHOWg081M=";
-    };
-  };
-
   fishForeignEnv = {
     name = "foreign-env";
     src = pkgs.fetchFromGitHub {
@@ -40,14 +30,12 @@ in
     # home-manager:
     #   https://github.com/nix-community/home-manager/issues/2451
     plugins = [
-      fishMinimalTheme
       fishForeignEnv
       fishCompletionSync
     ];
 
     shellInit = ''
       set fish_greeting
-      fish_vi_key_bindings
 
       if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
         fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
@@ -77,6 +65,27 @@ in
       mkcd = "mkdir -p $argv; cd $argv;";
       mktouch = "mkdir -p (dirname $argv); touch $argv;";
       touchx = "touch $argv; chmod +x $argv";
+    };
+  };
+
+  programs.starship = {
+    enable = true;
+    settings = {
+      scan_timeout = 5;
+
+      character = {
+        success_symbol = "λ";
+        error_symbol = "!";
+      };
+      format = "$character";
+      right_format = "$nix_shell$directory$cmd_duration";
+
+      nix_shell.format = "[$symbol]($style)";
+      directory.style = "purple";
+      cmd_duration = {
+        format = "[$duration]($style)";
+        style = "yellow";
+      };
     };
   };
 
