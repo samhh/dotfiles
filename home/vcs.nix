@@ -128,6 +128,12 @@ in
         "anon()" = "mine() ~ ::(branches() | remote_branches())";
         "my_branches()" = "::branches() ~ ::trunk()";
       };
+      # Until there's a programs.jujutsu.delta.enable option:
+      #   https://github.com/nix-community/home-manager/issues/4887
+      ui = {
+        pager = "${pkgs.delta}/bin/delta";
+        diff.format = "git";
+      };
     };
   };
 
@@ -140,8 +146,6 @@ in
 
   programs.git = {
     enable = true;
-
-    delta.enable = true;
 
     extraConfig = {
       user = {
