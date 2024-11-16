@@ -11,7 +11,7 @@ let
     let
       fzf = "${pkgs.fzf}/bin/fzf";
       git = "${pkgs.git}/bin/git";
-      jj = "${pkgs.jujutsu}/bin/jj";
+      jj = "${pkgs-unstable.jujutsu}/bin/jj";
       sd = "${pkgs.sd}/bin/sd";
     in
     pkgs.writeShellScriptBin "jj-attr" ''
@@ -28,7 +28,7 @@ let
     '';
   jj-cp =
     let
-      jj = "${pkgs.jujutsu}/bin/jj";
+      jj = "${pkgs-unstable.jujutsu}/bin/jj";
       rg = "${pkgs.ripgrep}/bin/rg";
     in
     pkgs.writeShellScriptBin "jj-cp" ''
@@ -43,7 +43,7 @@ let
     '';
   jj-review =
     let
-      jj = "${pkgs.jujutsu}/bin/jj";
+      jj = "${pkgs-unstable.jujutsu}/bin/jj";
     in
     pkgs.writeShellScriptBin "jj-review" ''
       set -e
