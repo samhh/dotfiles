@@ -1,9 +1,9 @@
-{ pkgs-unstable, ... }:
+{ pkgs, ... }:
 
 {
   programs.helix = {
     enable = true;
-    package = pkgs-unstable.helix;
+    package = pkgs.helix;
 
     settings = {
       editor = {
