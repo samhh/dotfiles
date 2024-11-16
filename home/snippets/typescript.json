@@ -1,59 +1,27 @@
 {
-  "sum": {
-    "description": "Sum type",
-    "prefix": "sum",
-    "body": [
-      "export type ${1:X} = Sum.Member<'${2:Y}'${0}>",
-      "export const $1 = Sum.create<$1>()"
-    ]
-  },
-  "new": {
-    "description": "Newtype",
-    "prefix": "new",
-    "body": [
-      "type ${1:X}Symbol = { readonly $1: unique symbol }",
-      "export type $1 = Newtype<$1Symbol, ${2:Y}>"
-    ]
-  },
   "nsi": {
     "description": "Namespace import",
     "prefix": "nsi",
-    "body": [
-      "import * as ${2:X} from '${1:Y}'"
-    ]
+    "body": ["import * as ${2:X} from '${1:Y}'"]
   },
   "desc": {
     "description": "Describe block",
     "prefix": "desc",
-    "body": [
-      "describe('${0}', () => {",
-      "})"
-    ]
+    "body": ["describe('${0}', () => {", "})"]
   },
   "it": {
     "description": "It block",
     "prefix": "it",
-    "body": [
-      "it('${0}', () => {",
-      "})"
-    ]
+    "body": ["it('${0}', () => {", "})"]
   },
   "pbt": {
     "description": "Property-based test",
     "prefix": "pbt",
-    "body": [
-      "fc.assert(fc.property(",
-      "  ${0}",
-      "))"
-    ]
+    "body": ["fc.assert(fc.property(", "  ${0}", "))"]
   },
   "pbta": {
     "description": "Property-based test (async)",
     "prefix": "pbta",
-    "body": [
-      "fc.assert(fc.asyncProperty(",
-      "  ${0}",
-      "))"
-    ]
+    "body": ["fc.assert(fc.asyncProperty(", "  ${0}", "))"]
   }
 }
