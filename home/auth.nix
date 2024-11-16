@@ -1,5 +1,8 @@
 { ... }:
 
 {
-  programs.gpg.enable = true;
+  programs.ssh = {
+    enable = true;
+    addKeysToAgent = "yes";
+  };
 }

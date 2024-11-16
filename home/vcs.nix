@@ -7,6 +7,7 @@
 }:
 
 let
+  pub-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICF3PGCLbd7QTcz4cSYONosH7tyJFsncXDTA/qRBo7/A";
   jj-attr =
     let
       fzf = "${pkgs.fzf}/bin/fzf";
@@ -66,12 +67,8 @@ in
       };
       signing = {
         sign-all = true;
-        backend = "gpg";
-        backends.gpg = {
-          program = "${pkgs.gnupg}/bin/gpg";
-          allow-expired-keys = false;
-        };
-        key = "4667250BD56735A8";
+        backend = "ssh";
+        key = pub-key;
       };
       git.push-branch-prefix = "jj-";
       template-aliases = {
@@ -150,8 +147,9 @@ in
       user = {
         name = "Sam A. Horvath-Hunt";
         email = "hello@samhh.com";
-        signingkey = "4667250BD56735A8";
+        signingkey = pub-key;
       };
+      gpg.format = "ssh";
       tag.gpgSign = true;
       url = {
         "git@git.sr.ht:~".insteadOf = "sh:";
