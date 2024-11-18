@@ -47,4 +47,9 @@
   ];
 
   xdg.configFile."zed/snippets".source = ./snippets;
+
+  home.packages = with pkgs; [
+    # For Biome language server in Zed.
+    nodejs
+  ];
 }
