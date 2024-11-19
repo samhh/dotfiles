@@ -131,9 +131,7 @@ in
       # Until there's a programs.jujutsu.delta.enable option:
       #   https://github.com/nix-community/home-manager/issues/4887
       ui = {
-        # Workaround for Zed - I'm typically working during the day - see:
-        #   https://github.com/zed-industries/zed/issues/20761
-        pager = "${pkgs.delta}/bin/delta --light";
+        pager = "${pkgs.delta}/bin/delta";
         diff.format = "git";
       };
     };
