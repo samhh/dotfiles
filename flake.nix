@@ -5,11 +5,11 @@
     catppuccin.url = "github:catppuccin/nix";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
 
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
   };
@@ -31,7 +31,6 @@
       pkgs = import nixpkgs { inherit system overlays; };
       pkgs-ci = import nixpkgs { system = system-ci; };
       pkgs-unstable = import nixpkgs-unstable { inherit system overlays; };
-      pkgs-unstable-ci = import nixpkgs-unstable { system = system-ci; };
     in
     {
       nixosConfigurations.homelab = nixpkgs.lib.nixosSystem rec {
@@ -66,8 +65,8 @@
       packages.${system} = import ./packages { inherit pkgs; };
 
       formatter = {
-        ${system} = pkgs-unstable.nixfmt-rfc-style;
-        ${system-ci} = pkgs-unstable-ci.nixfmt-rfc-style;
+        ${system} = pkgs.nixfmt-rfc-style;
+        ${system-ci} = pkgs-ci.nixfmt-rfc-style;
       };
 
       templates = import ./templates;

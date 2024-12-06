@@ -1,6 +1,4 @@
 {
-  config,
-  lib,
   pkgs,
   pkgs-unstable,
   ...
@@ -135,13 +133,6 @@ in
         diff.format = "git";
       };
     };
-  };
-
-  # Will probably be fixed in 24.11, see:
-  #   https://github.com/nix-community/home-manager/pull/5207
-  #   https://github.com/nix-community/home-manager/pull/5416
-  home.sessionVariables = lib.mkIf (pkgs.stdenv.hostPlatform.isDarwin) {
-    JJ_CONFIG = "${config.xdg.configHome}/jj/config.toml";
   };
 
   programs.git = {
