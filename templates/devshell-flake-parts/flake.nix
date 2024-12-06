@@ -16,7 +16,11 @@
       perSystem =
         { pkgs, ... }:
         {
-          devShells.default = pkgs.mkShell { nativeBuildInputs = with pkgs; [ git ]; };
+          devShells.default = pkgs.mkShell {
+            nativeBuildInputs = with pkgs; [
+              cowsay
+            ];
+          };
         };
     };
 }
