@@ -23,7 +23,7 @@ $ nix run ".#foo" -- --bar
 
 ## History
 
-I used to run various different operating systems and window managers. Those configs are preserved in this repo's commit history.
+Over the years I've run various different operating systems, window managers, and editors. Those configs are preserved in this repo's commit history:
 
 - Helix: `zed~1`
 - NixOS/Sway/Neovim: `macos-redux~1`
