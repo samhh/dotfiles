@@ -25,6 +25,7 @@ $ nix run ".#foo" -- --bar
 
 I used to run various different operating systems and window managers. Those configs are preserved in this repo's commit history.
 
+- Helix: `zed~1`
 - NixOS/Sway/Neovim: `macos-redux~1`
 - Arch/XMonad: `nixos~1`
 - nix-darwin: `rm-darwin~1`
