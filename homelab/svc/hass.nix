@@ -20,14 +20,14 @@ in
     in
     {
       hass = {
-        image = "ghcr.io/home-assistant/home-assistant:2024.11.0";
+        image = "ghcr.io/home-assistant/home-assistant:2024.12.0";
         volumes = [ "hass:/config" ];
         extraOptions = [ hostNetworking ];
         environment.TZ = "Europe/London";
       };
 
       matter = {
-        image = "ghcr.io/home-assistant-libs/python-matter-server:6.6.0";
+        image = "ghcr.io/home-assistant-libs/python-matter-server:6.6.1";
         volumes = [
           "hass-matter:/data"
           "/run/dbus:/run/dbus:ro"
