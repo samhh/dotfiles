@@ -12,11 +12,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
 
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    snippets-ls = {
-      url = "github:quantonganh/snippets-ls";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -26,16 +21,12 @@
       home-manager,
       nixpkgs,
       nixpkgs-unstable,
-      snippets-ls,
     }:
     let
       system = "aarch64-darwin";
       system-ci = "x86_64-linux";
       overlays = with nixpkgs.lib; [
         (const (const self.packages.${system}))
-        (const (const {
-          snippets-ls = snippets-ls.packages.${system}.snippets-ls;
-        }))
       ];
       pkgs = import nixpkgs { inherit system overlays; };
       pkgs-ci = import nixpkgs { system = system-ci; };
