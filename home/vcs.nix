@@ -68,13 +68,13 @@ in
         backend = "ssh";
         key = pub-key;
       };
-      git.push-branch-prefix = "jj-";
+      git.push-bookmark-prefix = "jj-";
       template-aliases = {
         "format_timestamp(timestamp)" = "timestamp.ago()";
       };
       aliases = {
         "ab" = [ "abandon" ];
-        "br" = [ "branch" ];
+        "bm" = [ "bookmark" ];
         "dup" = [ "duplicate" ];
         "ft" = [
           "git"
@@ -100,12 +100,12 @@ in
         "lb" = [
           "log"
           "-r"
-          "my_branches()"
+          "my_bookmarks()"
         ];
         "lbh" = [
           "log"
           "-r"
-          "heads(my_branches())"
+          "heads(my_bookmarks())"
           "--no-graph"
         ];
         "lt" = [
@@ -123,8 +123,8 @@ in
         "ws" = [ "workspace" ];
       };
       revset-aliases = {
-        "anon()" = "mine() ~ ::(branches() | remote_branches())";
-        "my_branches()" = "::branches() ~ ::trunk()";
+        "anon()" = "mine() ~ ::(bookmarks() | remote_bookmarks())";
+        "my_bookmarks()" = "::bookmarks() ~ ::trunk()";
       };
       # Until there's a programs.jujutsu.delta.enable option:
       #   https://github.com/nix-community/home-manager/issues/4887
