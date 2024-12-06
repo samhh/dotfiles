@@ -9,7 +9,6 @@
     gdu
     ripgrep
     sd
-    tldr
     tre-command
 
     # Unsplash
