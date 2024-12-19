@@ -60,7 +60,7 @@ in
       aliases = {
         "ab" = [ "abandon" ];
         "bm" = [ "bookmark" ];
-        "dup" = [ "duplicate" ];
+        "dp" = [ "duplicate" ];
         "ft" = [
           "git"
           "fetch"
