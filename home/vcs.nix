@@ -60,6 +60,12 @@ in
       aliases = {
         "ab" = [ "abandon" ];
         "bm" = [ "bookmark" ];
+        "co" = [
+          "util"
+          "exec"
+          "--"
+          "${jj-attr}/bin/jj-attr"
+        ];
         "dp" = [ "duplicate" ];
         "ft" = [
           "git"
@@ -103,6 +109,12 @@ in
           "push"
         ];
         "rb" = [ "rebase" ];
+        "rv" = [
+          "util"
+          "exec"
+          "--"
+          "${jj-review}/bin/jj-review"
+        ];
         "sp" = [ "split" ];
         "sq" = [ "squash" ];
         "ws" = [ "workspace" ];
@@ -142,8 +154,6 @@ in
   };
 
   home.packages = with pkgs; [
-    jj-attr
-    jj-review
     tig
   ];
 }

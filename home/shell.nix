@@ -49,8 +49,6 @@ in
       "du" = "gdu";
       "cat" = "bat";
       "nn" = "jj";
-      "nn-attr" = "jj-attr";
-      "nn-rv" = "jj-review";
 
       "sh" = "nix shell nixpkgs#";
       "nixh" = "nix-prefetch-url";
