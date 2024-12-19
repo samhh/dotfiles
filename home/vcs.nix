@@ -25,21 +25,6 @@ let
 
       ${jj} desc "$rev" -m "$(${jj} log --no-graph -r "$rev" -T description)" -m "$msg"
     '';
-  jj-cp =
-    let
-      jj = "${pkgs-unstable.jujutsu}/bin/jj";
-      rg = "${pkgs.ripgrep}/bin/rg";
-    in
-    pkgs.writeShellScriptBin "jj-cp" ''
-      set -e
-
-      src="$1"
-      dest=''${2:-@}
-
-      cid=$(${jj} duplicate "$src" 2>&1 | tee /dev/stderr | ${rg} -o -r '$1' 'Duplicated \w+ as (\w+)')
-
-      ${jj} rebase -s "$cid" -d "$dest"
-    '';
   jj-review =
     let
       jj = "${pkgs-unstable.jujutsu}/bin/jj";
@@ -158,7 +143,6 @@ in
 
   home.packages = with pkgs; [
     jj-attr
-    jj-cp
     jj-review
     tig
   ];

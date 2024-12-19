@@ -50,7 +50,6 @@ in
       "cat" = "bat";
       "nn" = "jj";
       "nn-attr" = "jj-attr";
-      "nn-cp" = "jj-cp";
       "nn-rv" = "jj-review";
 
       "sh" = "nix shell nixpkgs#";
