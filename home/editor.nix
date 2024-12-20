@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
   programs.helix = {
@@ -39,12 +39,46 @@
     };
   };
 
+  programs.zed-editor = {
+    enable = true;
+    package = pkgs-unstable.zed-editor;
+    extensions = [
+      "catppuccin"
+
+      "biome"
+      "dockerfile"
+      "haskell"
+      "html"
+      "nix"
+      "purescript"
+      "terraform"
+      "toml"
+    ];
+    userSettings = {
+      assistant = {
+        default_model = {
+          provider = "zed.dev";
+          model = "claude-3-5-sonnet-latest";
+        };
+        version = "2";
+      };
+      ui_font_size = 14;
+      buffer_font_size = 12;
+      theme = {
+        light = "Catppuccin Latte - No Italics";
+        dark = "Catppuccin Mocha - No Italics";
+      };
+      git.inline_blame.enabled = false;
+      wrap_guides = [ 80 ];
+    };
+  };
+
+  xdg.configFile."zed/snippets".source = ./snippets;
+
   programs.git.ignores = [
     ".helix/"
     ".zed/"
   ];
-
-  xdg.configFile."zed/snippets".source = ./snippets;
 
   home.packages = with pkgs; [
     # For Biome language server in Zed.
