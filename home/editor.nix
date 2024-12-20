@@ -1,4 +1,4 @@
-{ pkgs-unstable, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
   programs.helix = {
@@ -70,6 +70,20 @@
       };
       git.inline_blame.enabled = false;
       wrap_guides = [ 80 ];
+
+      languages.Nix.language_servers = [
+        "nil"
+        "!nixd"
+      ];
+      lsp = {
+        nil = {
+          binary.path = "${pkgs.nil}/bin/nil";
+          settings = {
+            formatting.command = [ "${pkgs.nixfmt-rfc-style}/bin/nixfmt" ];
+            nix.flake.autoEvalInputs = true;
+          };
+        };
+      };
     };
   };
 
