@@ -104,6 +104,14 @@ in
           "-r"
           "(trunk()..@)::"
         ];
+        "pl" = [
+          "bookmark"
+          "move"
+          "--from"
+          "heads(::@- & bookmarks())"
+          "--to"
+          "@-"
+        ];
         "ps" = [
           "git"
           "push"
