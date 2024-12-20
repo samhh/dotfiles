@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs-unstable, ... }:
 
 {
   programs.helix = {
@@ -78,10 +78,5 @@
   programs.git.ignores = [
     ".helix/"
     ".zed/"
-  ];
-
-  home.packages = with pkgs; [
-    # For Biome language server in Zed.
-    nodejs
   ];
 }
