@@ -3,8 +3,6 @@
 {
   programs.helix = {
     enable = true;
-    package = pkgs.helix;
-
     settings = {
       editor = {
         soft-wrap.enable = true;
