@@ -1,4 +1,9 @@
-{ pkgs, pkgs-unstable, ... }:
+{
+  lib,
+  pkgs,
+  pkgs-unstable,
+  ...
+}:
 
 {
   programs.helix = {
@@ -43,8 +48,6 @@
     enable = true;
     package = pkgs-unstable.zed-editor;
     extensions = [
-      "catppuccin"
-
       "biome"
       "dockerfile"
       "haskell"
@@ -64,10 +67,6 @@
       };
       ui_font_size = 14;
       buffer_font_size = 12;
-      theme = {
-        light = "Catppuccin Latte - No Italics";
-        dark = "Catppuccin Mocha - No Italics";
-      };
       git.inline_blame.enabled = false;
       wrap_guides = [ 80 ];
 
@@ -84,6 +83,10 @@
           };
         };
       };
+
+      # catppuccin currently only supports one universal theme:
+      #   https://github.com/catppuccin/nix/issues/420
+      theme.light = lib.mkForce "Catppuccin Latte - No Italics";
     };
   };
 
