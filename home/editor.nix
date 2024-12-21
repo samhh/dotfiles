@@ -69,6 +69,7 @@
       buffer_font_size = 12;
       git.inline_blame.enabled = false;
       wrap_guides = [ 80 ];
+      terminal.env.VISUAL = "zed --wait";
 
       languages.Nix.language_servers = [
         "nil"

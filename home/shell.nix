@@ -41,7 +41,7 @@ in
       end
 
       set -x DIRENV_LOG_FORMAT ""
-      set -x VISUAL hx
+      if not set -q VISUAL; set -x VISUAL hx; end
     '';
 
     shellAbbrs = {
