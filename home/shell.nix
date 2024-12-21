@@ -40,9 +40,8 @@ in
         fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
       end
 
-      set -x VISUAL hx
-      set -x EDITOR hx
       set -x DIRENV_LOG_FORMAT ""
+      set -x VISUAL hx
     '';
 
     shellAbbrs = {
