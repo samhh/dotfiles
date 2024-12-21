@@ -1,3 +1,6 @@
+# Colima must be started manually on boot:
+# $ colima start
+
 { pkgs, ... }:
 
 {
