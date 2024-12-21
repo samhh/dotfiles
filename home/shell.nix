@@ -46,7 +46,6 @@ in
     '';
 
     shellAbbrs = {
-      "du" = "gdu";
       "cat" = "bat";
       "nn" = "jj";
 
