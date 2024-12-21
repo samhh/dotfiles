@@ -9,8 +9,8 @@ The repo currently configures two hosts, a macOS development machine and a NixOS
 Build the Home Manager config for macOS or the NixOS config for the homelab. I manage the latter over SSH from the former.
 
 ```console
-$ home-manager switch --flake .
-# nixos-rebuild switch --flake ".#"
+$ home-manager switch --flake path/to/repo
+# nixos-rebuild switch --flake 'path/to/repo#'
 ```
 
 ### Packages
@@ -18,7 +18,7 @@ $ home-manager switch --flake .
 Packages not in nixpkgs can be defined in `:/packages/`. These are available as flake outputs.
 
 ```console
-$ nix run ".#foo" -- --bar
+$ nix run 'path/to/repo#foo' -- --bar
 ```
 
 ## History
