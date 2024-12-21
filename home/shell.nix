@@ -105,6 +105,9 @@ in
 
   programs.zoxide.enable = true;
 
+  # Suppress login shell MOTD.
+  home.file.".hushlogin".text = "";
+
   programs.git.ignores = [
     "result"
     ".envrc"

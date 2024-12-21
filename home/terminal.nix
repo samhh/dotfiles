@@ -23,7 +23,4 @@
       "cmd+p" = "show_last_command_output";
     };
   };
-
-  # Suppress login shell MOTD.
-  home.file.".hushlogin".text = "";
 }
