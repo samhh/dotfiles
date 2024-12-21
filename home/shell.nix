@@ -1,16 +1,6 @@
 { pkgs, ... }:
 
 let
-  fishForeignEnv = {
-    name = "foreign-env";
-    src = pkgs.fetchFromGitHub {
-      owner = "oh-my-fish";
-      repo = "plugin-foreign-env";
-      rev = "dddd9213272a0ab848d474d0cbde12ad034e65bc";
-      sha256 = "00xqlyl3lffc5l0viin1nyp819wf81fncqyz87jx8ljjdhilmgbs";
-    };
-  };
-
   fishCompletionSync = rec {
     name = "fish-completion-sync";
     src = pkgs.fetchFromGitHub {
@@ -29,16 +19,13 @@ in
     # home-manager:
     #   https://github.com/nix-community/home-manager/issues/2451
     plugins = [
-      fishForeignEnv
       fishCompletionSync
     ];
 
     shellInit = ''
       set -g fish_greeting
 
-      if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-        fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-      end
+      source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
 
       set -x DIRENV_LOG_FORMAT ""
       if not set -q VISUAL; set -x VISUAL hx; end
