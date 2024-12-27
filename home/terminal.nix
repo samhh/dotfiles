@@ -1,3 +1,5 @@
+# Ghostty's installation is managed outside of Nix.
+
 { ... }:
 
 {
