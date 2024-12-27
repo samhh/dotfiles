@@ -12,5 +12,6 @@
     shell-integration-features = no-cursor
     theme = light:catppuccin-latte,dark:catppuccin-mocha
     window-padding-x = 8
+    window-padding-y = 8
   '';
 }
