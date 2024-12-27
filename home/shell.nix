@@ -72,7 +72,7 @@ in
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
-    silent = true;
+    config.global.hide_env_diff = true;
     # Avoid cluttering project directories which often conflicts with tooling,
     # as per:
     #   https://github.com/direnv/direnv/wiki/Customizing-cache-location
