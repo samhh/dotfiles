@@ -63,13 +63,14 @@ in
       direnv = {
         disabled = false;
         format = "[$allowed]($style)";
+        style = "red";
         allowed_msg = "";
         not_allowed_msg = "? ";
-        denied_msg = "🚫 ";
+        denied_msg = " ";
       };
       nix_shell = {
         format = "[$symbol]($style)";
-        symbol = "❄️ ";
+        symbol = " ";
       };
       directory.style = "purple";
       cmd_duration = {
@@ -106,5 +107,9 @@ in
   programs.git.ignores = [
     "result"
     ".envrc"
+  ];
+
+  home.packages = with pkgs; [
+    fira-code-nerdfont
   ];
 }

@@ -67,6 +67,7 @@
       };
       ui_font_size = 14;
       buffer_font_size = 12;
+      buffer_font_fallbacks = [ "FiraCode Nerd Font Mono" ];
       git.inline_blame.enabled = false;
       wrap_guides = [ 80 ];
       terminal.env.VISUAL = "zed --wait";
