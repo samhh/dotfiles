@@ -60,7 +60,10 @@ in
       format = "$character";
       right_format = "$nix_shell$directory$cmd_duration";
 
-      nix_shell.format = "[$symbol]($style)";
+      nix_shell = {
+        format = "[$symbol]($style)";
+        symbol = "❄️ ";
+      };
       directory.style = "purple";
       cmd_duration = {
         format = "[$duration]($style)";
