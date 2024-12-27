@@ -1,9 +1,4 @@
 {
-  "nsi": {
-    "description": "Namespace import",
-    "prefix": "nsi",
-    "body": ["import * as ${2:X} from '${1:Y}'"]
-  },
   "desc": {
     "description": "Describe block",
     "prefix": "desc",
