@@ -1,21 +1,21 @@
 {
   "desc": {
-    "description": "Describe block",
+    "description": "describe()",
     "prefix": "desc",
     "body": ["describe('${0}', () => {", "})"]
   },
   "it": {
-    "description": "It block",
+    "description": "it()",
     "prefix": "it",
     "body": ["it('${0}', () => {", "})"]
   },
   "pbt": {
-    "description": "Property-based test",
+    "description": "fc.assert(fc.property())",
     "prefix": "pbt",
     "body": ["fc.assert(fc.property(", "  ${0}", "))"]
   },
   "pbta": {
-    "description": "Property-based test (async)",
+    "description": "fc.assert(fc.asyncProperty())",
     "prefix": "pbta",
     "body": ["fc.assert(fc.asyncProperty(", "  ${0}", "))"]
   }
