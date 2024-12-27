@@ -27,7 +27,6 @@ in
 
       source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
 
-      set -x DIRENV_LOG_FORMAT ""
       if not set -q VISUAL; set -x VISUAL hx; end
     '';
 
@@ -73,6 +72,7 @@ in
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
+    silent = true;
     # Avoid cluttering project directories which often conflicts with tooling,
     # as per:
     #   https://github.com/direnv/direnv/wiki/Customizing-cache-location
