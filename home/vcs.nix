@@ -155,7 +155,7 @@ in
         "git@git.sr.ht:~".insteadOf = "sh:";
         "git@github.com:".insteadOf = "gh:";
       };
-      init.defaultBranch = "master";
+      init.defaultBranch = "trunk";
     };
 
     ignores = [ ".DS_Store" ];
