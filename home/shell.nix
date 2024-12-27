@@ -64,7 +64,7 @@ in
       directory.style = "purple";
       cmd_duration = {
         format = "[$duration]($style)";
-        style = "yellow";
+        style = "blue";
       };
     };
   };
