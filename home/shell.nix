@@ -58,8 +58,15 @@ in
         error_symbol = "!";
       };
       format = "$character";
-      right_format = "$nix_shell$directory$cmd_duration";
+      right_format = "$direnv$nix_shell$directory$cmd_duration";
 
+      direnv = {
+        disabled = false;
+        format = "[$allowed]($style)";
+        allowed_msg = "";
+        not_allowed_msg = "? ";
+        denied_msg = "🚫 ";
+      };
       nix_shell = {
         format = "[$symbol]($style)";
         symbol = "❄️ ";
