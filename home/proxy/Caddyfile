@@ -3,10 +3,10 @@
 # The .localhost TLD is used instead of .internal as it avoids needing to mess
 # with /etc/hosts.
 
-unsplash.localhost {
+https://unsplash.localhost {
 	reverse_proxy :3001
 }
 
-demos.localhost {
+https://demos.localhost {
 	reverse_proxy :3002
 }
