@@ -10,3 +10,8 @@ https://unsplash.localhost {
 https://demos.localhost {
 	reverse_proxy :3002
 }
+
+# Must be http:// to support insecure ws:// protocol.
+http://samhh.localhost {
+	reverse_proxy :3100
+}
