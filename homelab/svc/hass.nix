@@ -3,15 +3,20 @@
 let
   lanPort = 8123;
   mDNSPort = 5353;
+  matterPort = 5540;
   homekitBridgePort = 21064;
 in
 {
   networking.firewall = {
     allowedTCPPorts = [
       lanPort
+      matterPort
       homekitBridgePort
     ];
-    allowedUDPPorts = [ mDNSPort ];
+    allowedUDPPorts = [
+      mDNSPort
+      matterPort
+    ];
   };
 
   virtualisation.oci-containers.containers =
