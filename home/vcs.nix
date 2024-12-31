@@ -128,8 +128,9 @@ in
         "ws" = [ "workspace" ];
       };
       revset-aliases = {
-        "anon()" = "mine() ~ ::(bookmarks() | remote_bookmarks())";
+        "anon()" = "mine() ~ (null() & heads(::)) ~ ::(bookmarks() | remote_bookmarks())";
         "my_bookmarks()" = "::bookmarks() ~ ::trunk()";
+        "null()" = "empty() & description(exact:'')";
       };
       # Until there's a programs.jujutsu.delta.enable option:
       #   https://github.com/nix-community/home-manager/issues/4887
