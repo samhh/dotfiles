@@ -17,6 +17,7 @@
       "haskell"
       "html"
       "nix"
+      "nu"
       "purescript"
       "terraform"
       "toml"
