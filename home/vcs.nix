@@ -108,7 +108,7 @@ in
           "bookmark"
           "move"
           "--from"
-          "heads(::@- & bookmarks())"
+          "heads(::@- & bookmarks()) ~ trunk()"
           "--to"
           "@-"
         ];
