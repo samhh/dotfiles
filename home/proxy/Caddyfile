@@ -11,7 +11,9 @@ https://demos.localhost {
 	reverse_proxy :3002
 }
 
-# Must be http:// to support insecure ws:// protocol.
+# Must be http:// to support insecure ws:// protocol until live-server cuts a
+# release including:
+#   https://github.com/lomirus/live-server/pull/124
 http://samhh.localhost {
 	reverse_proxy :3100
 }
