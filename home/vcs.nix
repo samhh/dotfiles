@@ -104,11 +104,19 @@ in
           "-r"
           "(trunk()..@)::"
         ];
-        "pl" = [
+        "plb" = [
           "bookmark"
           "move"
           "--from"
           "heads(::@- & bookmarks()) ~ trunk()"
+          "--to"
+          "@-"
+        ];
+        "plt" = [
+          "bookmark"
+          "move"
+          "--from"
+          "trunk()"
           "--to"
           "@-"
         ];
