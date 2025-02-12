@@ -1,7 +1,8 @@
 # Everything here depends upon other per-project configs.
 #
-# The .localhost TLD is used instead of .internal as it avoids needing to mess
-# with /etc/hosts.
+# Caddy is unable to generate certificates for .internal, hence the use of
+# .localhost. Additionally Chrome and Firefox automatically resolve .localhost
+# to loopback, however Safari requires modifying /etc/hosts.
 
 https://unsplash.localhost {
 	reverse_proxy :3001
