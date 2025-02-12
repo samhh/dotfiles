@@ -36,17 +36,6 @@
       pkgs-unstable = import nixpkgs-unstable { inherit system overlays; };
     in
     {
-      nixosConfigurations.homelab = nixpkgs.lib.nixosSystem rec {
-        system = "x86_64-linux";
-        pkgs = import nixpkgs { inherit system; };
-        modules = [
-          home-manager.nixosModules.home-manager
-          ./common
-          ./config
-          ./homelab
-        ];
-      };
-
       homeConfigurations.sam = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
