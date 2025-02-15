@@ -51,14 +51,14 @@
         };
       };
 
-      # catppuccin currently doesn't support icons in Zed:
-      #   https://github.com/catppuccin/nix/pull/467
-      # And Zed doesn't currently support light/dark icon themes:
-      #   https://github.com/zed-industries/zed/discussions/24370
-      icon_theme = "Catppuccin Latte";
-
       # catppuccin currently only supports one universal theme:
       #   https://github.com/catppuccin/nix/issues/420
+      # catppuccin also currently doesn't support icons in Zed:
+      #   https://github.com/catppuccin/nix/pull/467
+      icon_theme = {
+        light = "Catppuccin Latte";
+        dark = "Catppuccin Mocha";
+      };
       theme.light = lib.mkForce "Catppuccin Latte - No Italics";
     };
   };
