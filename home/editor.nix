@@ -30,6 +30,7 @@
         };
         version = "2";
       };
+      features.edit_prediction_provider = "zed";
       ui_font_size = 14;
       buffer_font_size = 12;
       buffer_font_fallbacks = [ "FiraCode Nerd Font Mono" ];
