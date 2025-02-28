@@ -26,7 +26,7 @@
       assistant = {
         default_model = {
           provider = "zed.dev";
-          model = "claude-3-5-sonnet-latest";
+          model = "claude-3-7-sonnet-latest";
         };
         version = "2";
       };
