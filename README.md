@@ -22,7 +22,7 @@ $ nix run 'path/to/repo#foo' -- --bar
 
 Over the years I've run various different operating systems, window managers, and editors. Those configs are preserved in this repo's commit history:
 
-- Homelab: `rm-homelab~1`
+- NixOS/Home Assistant: `rm-homelab~1`
 - Helix: `zed~1`
 - NixOS/Sway/Neovim: `macos-redux~1`
 - Arch/XMonad: `nixos~1`
