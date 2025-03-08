@@ -40,7 +40,6 @@
         inherit pkgs;
         modules = [
           catppuccin.homeManagerModules.catppuccin
-          ./common/home-manager/programs
           ./home
         ];
         extraSpecialArgs = {
