@@ -54,9 +54,7 @@
 
       # catppuccin currently only supports one universal theme:
       #   https://github.com/catppuccin/nix/issues/420
-      # catppuccin also currently doesn't support icons in Zed:
-      #   https://github.com/catppuccin/nix/pull/467
-      icon_theme = {
+      icon_theme = lib.mkForce {
         light = "Catppuccin Latte";
         dark = "Catppuccin Mocha";
       };
