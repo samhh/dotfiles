@@ -16,6 +16,7 @@
       "dockerfile"
       "haskell"
       "html"
+      "just"
       "nix"
       "nu"
       "purescript"
