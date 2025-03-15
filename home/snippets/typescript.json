@@ -6,6 +6,19 @@
       "})"
     ]
   },
+  "fc": {
+    "body": [
+      "type Props = {",
+      "  ${2:props}",
+      "}",
+      "",
+      "export const ${1:name}: FC<Props> = (p) => {",
+      "  return (",
+      "    $0",
+      "  )",
+      "}"
+    ]
+  },
   "it": {
     "body": [
       "it('${1:name}', () => {",
