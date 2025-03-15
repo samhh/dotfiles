@@ -32,6 +32,7 @@
         version = "2";
       };
       features.edit_prediction_provider = "zed";
+      edit_predictions.mode = "subtle";
       diagnostics.inline.enabled = true;
       ui_font_size = 14;
       buffer_font_size = 12;
