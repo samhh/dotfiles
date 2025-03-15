@@ -8,25 +8,41 @@ let
   name = "Sam A. Horvath-Hunt";
   email = "hello@samhh.com";
   pub-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICF3PGCLbd7QTcz4cSYONosH7tyJFsncXDTA/qRBo7/A";
+
+  jj-trailer =
+    let
+      jj = "${pkgs-unstable.jujutsu}/bin/jj";
+    in
+    pkgs.writeShellScriptBin "jj-trailer" ''
+      set -e
+
+      key="$1";
+      val="$2";
+      rev=''${3:-@};
+
+      msg="$1: $2"
+
+      ${jj} desc "$rev" -m "$(${jj} log --no-graph -r "$rev" -T description)" -m "$msg"
+    '';
+
   jj-coauthor =
     let
       fzf = "${pkgs.fzf}/bin/fzf";
       git = "${pkgs.git}/bin/git";
-      jj = "${pkgs-unstable.jujutsu}/bin/jj";
       sd = "${pkgs.sd}/bin/sd";
+      trailer = "${jj-trailer}/bin/jj-trailer";
     in
     pkgs.writeShellScriptBin "jj-coauthor" ''
       set -e
 
-      rev=''${1:-@};
+      rev="$1";
 
-      recent=$(${git} shortlog -sec --since=1.month | ${sd} '^\s*[0-9]+\s*(.+)$' '$1')
-      prefix='Co-authored-by: '
       # Beware a trailing \n coming from fzf.
-      msg=$(echo "$recent" | ${fzf} -m | ${sd} '^(.+)' "$prefix\$1")
+      coauthor=$(${git} shortlog -sec --since=1.month | ${sd} '^\s*[0-9]+\s*(.+)$' '$1' | ${fzf} -m)
 
-      ${jj} desc "$rev" -m "$(${jj} log --no-graph -r "$rev" -T description)" -m "$msg"
+      ${trailer} Co-authored-by "$coauthor" "$rev"
     '';
+
   jj-review =
     let
       jj = "${pkgs-unstable.jujutsu}/bin/jj";
