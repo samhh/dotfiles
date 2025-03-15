@@ -5,6 +5,8 @@
 }:
 
 let
+  name = "Sam A. Horvath-Hunt";
+  email = "hello@samhh.com";
   pub-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICF3PGCLbd7QTcz4cSYONosH7tyJFsncXDTA/qRBo7/A";
   jj-attr =
     let
@@ -45,8 +47,7 @@ in
     package = pkgs-unstable.jujutsu;
     settings = {
       user = {
-        name = "Sam A. Horvath-Hunt";
-        email = "hello@samhh.com";
+        inherit name email;
       };
       signing = {
         sign-all = true;
@@ -154,8 +155,7 @@ in
 
     extraConfig = {
       user = {
-        name = "Sam A. Horvath-Hunt";
-        email = "hello@samhh.com";
+        inherit name email;
         signingkey = pub-key;
       };
       gpg.format = "ssh";
