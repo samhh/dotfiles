@@ -25,6 +25,8 @@ let
       ${jj} desc "$rev" -m "$(${jj} log --no-graph -r "$rev" -T description)" -m "$msg"
     '';
 
+  # Supported by:
+  #   - GitHub: https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors#creating-co-authored-commits-on-the-command-line
   jj-coauthor =
     let
       fzf = "${pkgs.fzf}/bin/fzf";
