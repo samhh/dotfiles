@@ -2,21 +2,35 @@
   "desc": {
     "description": "describe()",
     "prefix": "desc",
-    "body": ["describe('${0}', () => {", "})"]
+    "body": [
+      "describe('${0}', () => {",
+      "})"
+    ]
   },
   "it": {
     "description": "it()",
     "prefix": "it",
-    "body": ["it('${0}', () => {", "})"]
+    "body": [
+      "it('${0}', () => {",
+      "})"
+    ]
   },
   "pbt": {
     "description": "fc.assert(fc.property())",
     "prefix": "pbt",
-    "body": ["fc.assert(fc.property(", "  ${0}", "))"]
+    "body": [
+      "fc.assert(fc.property(",
+      "  ${0}",
+      "))"
+    ]
   },
   "pbta": {
     "description": "fc.assert(fc.asyncProperty())",
     "prefix": "pbta",
-    "body": ["fc.assert(fc.asyncProperty(", "  ${0}", "))"]
+    "body": [
+      "fc.assert(fc.asyncProperty(",
+      "  ${0}",
+      "))"
+    ]
   }
 }
