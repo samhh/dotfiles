@@ -1,27 +1,31 @@
 {
   "desc": {
     "body": [
-      "describe('${0}', () => {",
+      "describe('${1:name}', () => {",
+      "  $0",
       "})"
     ]
   },
   "it": {
     "body": [
-      "it('${0}', () => {",
+      "it('${1:name}', () => {",
+      "  $0",
       "})"
     ]
   },
   "pbt": {
     "body": [
       "fc.assert(fc.property(",
-      "  ${0}",
+      "  ${1:arbs},",
+      "  $0",
       "))"
     ]
   },
   "pbta": {
     "body": [
       "fc.assert(fc.asyncProperty(",
-      "  ${0}",
+      "  ${1:arbs},",
+      "  $0",
       "))"
     ]
   }
