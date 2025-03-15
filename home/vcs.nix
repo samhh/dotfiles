@@ -8,14 +8,14 @@ let
   name = "Sam A. Horvath-Hunt";
   email = "hello@samhh.com";
   pub-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICF3PGCLbd7QTcz4cSYONosH7tyJFsncXDTA/qRBo7/A";
-  jj-attr =
+  jj-coauthor =
     let
       fzf = "${pkgs.fzf}/bin/fzf";
       git = "${pkgs.git}/bin/git";
       jj = "${pkgs-unstable.jujutsu}/bin/jj";
       sd = "${pkgs.sd}/bin/sd";
     in
-    pkgs.writeShellScriptBin "jj-attr" ''
+    pkgs.writeShellScriptBin "jj-coauthor" ''
       set -e
 
       rev=''${1:-@};
@@ -65,7 +65,7 @@ in
           "util"
           "exec"
           "--"
-          "${jj-attr}/bin/jj-attr"
+          "${jj-coauthor}/bin/jj-coauthor"
         ];
         "dp" = [ "duplicate" ];
         "ft" = [
