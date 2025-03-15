@@ -45,6 +45,52 @@ let
       ${trailer} Co-authored-by "$coauthor" "$rev"
     '';
 
+  # Supported by:
+  #   - Sourcehut: https://man.sr.ht/git.sr.ht/#closes
+  #   - GitHub: https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword
+  jj-closes =
+    let
+      trailer = "${jj-trailer}/bin/jj-trailer";
+    in
+    pkgs.writeShellScriptBin "jj-closes" ''
+      set -e
+
+      url="$1"
+      rev="$2";
+
+      ${trailer} Closes "$url" "$rev"
+    '';
+
+  # Supported by:
+  #   - Sourcehut: https://man.sr.ht/git.sr.ht/#fixes
+  #   - GitHub: https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword
+  jj-fixes =
+    let
+      trailer = "${jj-trailer}/bin/jj-trailer";
+    in
+    pkgs.writeShellScriptBin "jj-fixes" ''
+      set -e
+
+      url="$1"
+      rev="$2";
+
+      ${trailer} Fixes "$url" "$rev"
+    '';
+
+  # Supported by:
+  #   - GitHub: https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/skipping-workflow-runs
+  jj-skipchecks =
+    let
+      trailer = "${jj-trailer}/bin/jj-trailer";
+    in
+    pkgs.writeShellScriptBin "jj-skipchecks" ''
+      set -e
+
+      rev="$1";
+
+      ${trailer} skip-checks true "$rev"
+    '';
+
   jj-review =
     let
       jj = "${pkgs-unstable.jujutsu}/bin/jj";
@@ -79,6 +125,12 @@ in
       aliases = {
         "ab" = [ "abandon" ];
         "bm" = [ "bookmark" ];
+        "cl" = [
+          "util"
+          "exec"
+          "--"
+          "${jj-closes}/bin/jj-closes"
+        ];
         "co" = [
           "util"
           "exec"
@@ -89,6 +141,12 @@ in
         "ft" = [
           "git"
           "fetch"
+        ];
+        "fx" = [
+          "util"
+          "exec"
+          "--"
+          "${jj-fixes}/bin/jj-fixes"
         ];
         "la" = [
           "log"
@@ -149,6 +207,12 @@ in
           "exec"
           "--"
           "${jj-review}/bin/jj-review"
+        ];
+        "sc" = [
+          "util"
+          "exec"
+          "--"
+          "${jj-skipchecks}/bin/jj-skipchecks"
         ];
         "sp" = [ "split" ];
         "sq" = [ "squash" ];
