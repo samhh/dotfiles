@@ -158,7 +158,12 @@ in
         inherit name email;
         signingkey = pub-key;
       };
-      gpg.format = "ssh";
+      gpg = {
+        format = "ssh";
+        ssh.allowedSignersFile = builtins.toFile "allowed_signers" ''
+          ${email} ${pub-key}
+        '';
+      };
       tag.gpgSign = true;
       url = {
         "git@git.sr.ht:~".insteadOf = "sh:";
