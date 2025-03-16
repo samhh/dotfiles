@@ -119,7 +119,7 @@ in
         inherit name email;
       };
       signing = {
-        sign-all = true;
+        behavior = "own";
         backend = "ssh";
         backends.ssh = {
           inherit allowed-signers;
