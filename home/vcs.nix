@@ -236,6 +236,7 @@ in
       ui = {
         pager = "${pkgs.delta}/bin/delta";
         diff.format = "git";
+        show-cryptographic-signatures = true;
       };
     };
   };
