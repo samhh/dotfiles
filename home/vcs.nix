@@ -264,6 +264,8 @@ in
   };
 
   home.packages = with pkgs; [
+    # For verifying others' commit signatures.
+    gnupg
     tig
   ];
 }
