@@ -8,6 +8,9 @@ let
   name = "Sam A. Horvath-Hunt";
   email = "hello@samhh.com";
   pub-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICF3PGCLbd7QTcz4cSYONosH7tyJFsncXDTA/qRBo7/A";
+  allowed-signers = builtins.toFile "allowed-signers" ''
+    ${email} ${pub-key}
+  '';
 
   jj-trailer =
     let
@@ -118,6 +121,9 @@ in
       signing = {
         sign-all = true;
         backend = "ssh";
+        backends.ssh = {
+          inherit allowed-signers;
+        };
         key = pub-key;
       };
       git.push-bookmark-prefix = "jj-";
@@ -244,9 +250,7 @@ in
       };
       gpg = {
         format = "ssh";
-        ssh.allowedSignersFile = builtins.toFile "allowed_signers" ''
-          ${email} ${pub-key}
-        '';
+        ssh.allowedSignersFile = allowed-signers;
       };
       tag.gpgSign = true;
       url = {
