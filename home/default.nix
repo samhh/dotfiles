@@ -6,7 +6,6 @@
     ./cli.nix
     ./core.nix
     ./editor.nix
-    ./llm.nix
     ./proxy.nix
     ./shell.nix
     ./terminal.nix
