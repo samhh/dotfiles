@@ -133,13 +133,13 @@ in
       aliases = {
         "ab" = [ "abandon" ];
         "bm" = [ "bookmark" ];
-        "cl" = [
+        "closes" = [
           "util"
           "exec"
           "--"
           "${jj-closes}/bin/jj-closes"
         ];
-        "co" = [
+        "coauthor" = [
           "util"
           "exec"
           "--"
@@ -149,7 +149,7 @@ in
           "git"
           "fetch"
         ];
-        "fx" = [
+        "fixes" = [
           "util"
           "exec"
           "--"
@@ -214,13 +214,13 @@ in
           "-d"
           "trunk()"
         ];
-        "rv" = [
+        "review" = [
           "util"
           "exec"
           "--"
           "${jj-review}/bin/jj-review"
         ];
-        "sc" = [
+        "skipchecks" = [
           "util"
           "exec"
           "--"
