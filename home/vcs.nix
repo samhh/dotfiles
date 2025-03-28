@@ -145,7 +145,6 @@ in
           "--"
           "${jj-coauthor}/bin/jj-coauthor"
         ];
-        "dp" = [ "duplicate" ];
         "ft" = [
           "git"
           "fetch"
@@ -229,7 +228,6 @@ in
         ];
         "sp" = [ "split" ];
         "sq" = [ "squash" ];
-        "ws" = [ "workspace" ];
       };
       revset-aliases = {
         "anon()" = "mine() ~ (null() & heads(::)) ~ ::(bookmarks() | remote_bookmarks())";
