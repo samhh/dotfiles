@@ -210,6 +210,11 @@ in
           "push"
         ];
         "rb" = [ "rebase" ];
+        "rbt" = [
+          "rebase"
+          "-d"
+          "trunk()"
+        ];
         "rv" = [
           "util"
           "exec"
