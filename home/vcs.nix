@@ -191,17 +191,17 @@ in
         "plb" = [
           "bookmark"
           "move"
-          "--from"
+          "-f"
           "heads(::@- & bookmarks()) ~ trunk()"
-          "--to"
+          "-t"
           "@-"
         ];
         "plt" = [
           "bookmark"
           "move"
-          "--from"
+          "-f"
           "trunk()"
-          "--to"
+          "-t"
           "@-"
         ];
         "ps" = [
