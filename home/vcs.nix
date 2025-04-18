@@ -192,9 +192,9 @@ in
           "bookmark"
           "move"
           "-f"
-          "heads(::@- & bookmarks()) ~ trunk()"
+          "heads(::@ & bookmarks()) ~ trunk()"
           "-t"
-          "@-"
+          "heads(::@ & mutable() ~ null())"
         ];
         "plt" = [
           "bookmark"
@@ -202,7 +202,7 @@ in
           "-f"
           "trunk()"
           "-t"
-          "@-"
+          "heads(::@ & mutable() ~ null())"
         ];
         "ps" = [
           "git"
