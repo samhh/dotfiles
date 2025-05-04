@@ -198,13 +198,13 @@ in
                 jj = "${pkgs-unstable.jujutsu}/bin/jj";
               in
               pkgs.writeShellScriptBin "jj-review" ''
-                set -e
-
                 branch="$1"
                 remote=''${2:-origin}
+                args="''${*:3}"
 
+                set -e
                 ${jj} git fetch -b "$branch"
-                ${jj} new "$branch@$remote"
+                ${jj} new "$branch@$remote" "$args"
               '';
           in
           [
