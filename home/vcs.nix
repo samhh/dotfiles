@@ -29,86 +29,6 @@ let
         ${jj} desc "$commit" -m "$(${jj} log --no-graph -r "$commit" -T description)" -m "$msg"
       done
     '';
-
-  # Supported by:
-  #   - GitHub: https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors#creating-co-authored-commits-on-the-command-line
-  jj-coauthor =
-    let
-      fzf = "${pkgs.fzf}/bin/fzf";
-      git = "${pkgs.git}/bin/git";
-      sd = "${pkgs.sd}/bin/sd";
-      trailer = "${jj-trailer}/bin/jj-trailer";
-    in
-    pkgs.writeShellScriptBin "jj-coauthor" ''
-      set -e
-
-      rev="$1";
-
-      # Beware a trailing \n coming from fzf.
-      coauthor=$(${git} shortlog -sec --since=1.month | ${sd} '^\s*[0-9]+\s*(.+)$' '$1' | ${fzf} -m)
-
-      ${trailer} Co-authored-by "$coauthor" "$rev"
-    '';
-
-  # Supported by:
-  #   - Sourcehut: https://man.sr.ht/git.sr.ht/#closes
-  #   - GitHub: https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword
-  jj-closes =
-    let
-      trailer = "${jj-trailer}/bin/jj-trailer";
-    in
-    pkgs.writeShellScriptBin "jj-closes" ''
-      set -e
-
-      url="$1"
-      rev="$2";
-
-      ${trailer} Closes "$url" "$rev"
-    '';
-
-  # Supported by:
-  #   - Sourcehut: https://man.sr.ht/git.sr.ht/#fixes
-  #   - GitHub: https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword
-  jj-fixes =
-    let
-      trailer = "${jj-trailer}/bin/jj-trailer";
-    in
-    pkgs.writeShellScriptBin "jj-fixes" ''
-      set -e
-
-      url="$1"
-      rev="$2";
-
-      ${trailer} Fixes "$url" "$rev"
-    '';
-
-  # Supported by:
-  #   - GitHub: https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/skipping-workflow-runs
-  jj-skipchecks =
-    let
-      trailer = "${jj-trailer}/bin/jj-trailer";
-    in
-    pkgs.writeShellScriptBin "jj-skipchecks" ''
-      set -e
-
-      rev="$1";
-
-      ${trailer} skip-checks true "$rev"
-    '';
-
-  jj-review =
-    let
-      jj = "${pkgs-unstable.jujutsu}/bin/jj";
-    in
-    pkgs.writeShellScriptBin "jj-review" ''
-      set -e
-
-      branch="$1"
-      remote=''${2:-origin}
-
-      ${jj} git fetch -b "$branch"
-      ${jj} new "$branch@$remote"
-    '';
 in
 {
   programs.jujutsu = {
@@ -133,28 +53,86 @@ in
       aliases = {
         "ab" = [ "abandon" ];
         "bm" = [ "bookmark" ];
-        "closes" = [
-          "util"
-          "exec"
-          "--"
-          "${jj-closes}/bin/jj-closes"
-        ];
-        "coauthor" = [
-          "util"
-          "exec"
-          "--"
-          "${jj-coauthor}/bin/jj-coauthor"
-        ];
+        # Supported by:
+        #   - Sourcehut: https://man.sr.ht/git.sr.ht/#closes
+        #   - GitHub: https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword
+        "closes" =
+          let
+            jj-closes =
+              let
+                trailer = "${jj-trailer}/bin/jj-trailer";
+              in
+              pkgs.writeShellScriptBin "jj-closes" ''
+                set -e
+
+                url="$1"
+                rev="$2";
+
+                ${trailer} Closes "$url" "$rev"
+              '';
+          in
+          [
+            "util"
+            "exec"
+            "--"
+            "${jj-closes}/bin/jj-closes"
+          ];
+        # Supported by:
+        #   - GitHub: https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors#creating-co-authored-commits-on-the-command-line
+        "coauthor" =
+          let
+            jj-coauthor =
+              let
+                fzf = "${pkgs.fzf}/bin/fzf";
+                git = "${pkgs.git}/bin/git";
+                sd = "${pkgs.sd}/bin/sd";
+                trailer = "${jj-trailer}/bin/jj-trailer";
+              in
+              pkgs.writeShellScriptBin "jj-coauthor" ''
+                set -e
+
+                rev="$1";
+
+                # Beware a trailing \n coming from fzf.
+                coauthor=$(${git} shortlog -sec --since=1.month | ${sd} '^\s*[0-9]+\s*(.+)$' '$1' | ${fzf} -m)
+
+                ${trailer} Co-authored-by "$coauthor" "$rev"
+              '';
+          in
+          [
+            "util"
+            "exec"
+            "--"
+            "${jj-coauthor}/bin/jj-coauthor"
+          ];
         "ft" = [
           "git"
           "fetch"
         ];
-        "fixes" = [
-          "util"
-          "exec"
-          "--"
-          "${jj-fixes}/bin/jj-fixes"
-        ];
+        # Supported by:
+        #   - Sourcehut: https://man.sr.ht/git.sr.ht/#fixes
+        #   - GitHub: https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword
+        "fixes" =
+          let
+            jj-fixes =
+              let
+                trailer = "${jj-trailer}/bin/jj-trailer";
+              in
+              pkgs.writeShellScriptBin "jj-fixes" ''
+                set -e
+
+                url="$1"
+                rev="$2";
+
+                ${trailer} Fixes "$url" "$rev"
+              '';
+          in
+          [
+            "util"
+            "exec"
+            "--"
+            "${jj-fixes}/bin/jj-fixes"
+          ];
         "la" = [
           "log"
           "-r"
@@ -214,18 +192,50 @@ in
           "-d"
           "trunk()"
         ];
-        "review" = [
-          "util"
-          "exec"
-          "--"
-          "${jj-review}/bin/jj-review"
-        ];
-        "skipchecks" = [
-          "util"
-          "exec"
-          "--"
-          "${jj-skipchecks}/bin/jj-skipchecks"
-        ];
+        "review" =
+          let
+            jj-review =
+              let
+                jj = "${pkgs-unstable.jujutsu}/bin/jj";
+              in
+              pkgs.writeShellScriptBin "jj-review" ''
+                set -e
+
+                branch="$1"
+                remote=''${2:-origin}
+
+                ${jj} git fetch -b "$branch"
+                ${jj} new "$branch@$remote"
+              '';
+          in
+          [
+            "util"
+            "exec"
+            "--"
+            "${jj-review}/bin/jj-review"
+          ];
+        # Supported by:
+        #   - GitHub: https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/skipping-workflow-runs
+        "skipchecks" =
+          let
+            jj-skipchecks =
+              let
+                trailer = "${jj-trailer}/bin/jj-trailer";
+              in
+              pkgs.writeShellScriptBin "jj-skipchecks" ''
+                set -e
+
+                rev="$1";
+
+                ${trailer} skip-checks true "$rev"
+              '';
+          in
+          [
+            "util"
+            "exec"
+            "--"
+            "${jj-skipchecks}/bin/jj-skipchecks"
+          ];
         "sp" = [ "split" ];
         "sq" = [ "squash" ];
       };
