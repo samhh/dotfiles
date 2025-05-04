@@ -139,18 +139,6 @@ in
           "-r"
           "anon()"
         ];
-        "lah" = [
-          "log"
-          "-r"
-          "heads(anon())"
-          "--no-graph"
-        ];
-        "lar" = [
-          "log"
-          "-r"
-          "roots(anon())"
-          "--no-graph"
-        ];
         "ps" = [
           "git"
           "push"
