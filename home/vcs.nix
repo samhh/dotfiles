@@ -19,9 +19,21 @@ let
     pkgs.writeShellScriptBin "jj-trailer" ''
       set -e
 
+      rest=()
+      while [[ $# -gt 0 ]]; do
+        case "$1" in
+          -r|--revision)
+            rev="$2"; shift 2;;
+          *)
+            rest+=("$1"); shift;;
+        esac
+      done
+      set -- "''${rest[@]}"
+
+      rev=''${rev:-@}
+
       key="$1"
       val="$2"
-      rev=''${3:-@}
 
       msg=
       readarray -t vals <<< "$val"
@@ -112,85 +124,6 @@ in
           "heads(::@ & mutable() ~ null())"
         ];
 
-        # Supported by:
-        #   - Sourcehut: https://man.sr.ht/git.sr.ht/#closes
-        #   - GitHub: https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword
-        "closes" =
-          let
-            jj-closes =
-              let
-                trailer = "${jj-trailer}/bin/jj-trailer";
-              in
-              pkgs.writeShellScriptBin "jj-closes" ''
-                set -e
-
-                rev="$1"
-                url="$2"
-
-                ${trailer} Closes "$url" "$rev"
-              '';
-          in
-          [
-            "util"
-            "exec"
-            "--"
-            "${jj-closes}/bin/jj-closes"
-          ];
-
-        # Supported by:
-        #   - GitHub: https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors#creating-co-authored-commits-on-the-command-line
-        "coauthor" =
-          let
-            jj-coauthor =
-              let
-                fzf = "${pkgs.fzf}/bin/fzf";
-                git = "${pkgs.git}/bin/git";
-                sd = "${pkgs.sd}/bin/sd";
-                trailer = "${jj-trailer}/bin/jj-trailer";
-              in
-              pkgs.writeShellScriptBin "jj-coauthor" ''
-                set -e
-
-                rev="$1"
-                args=''${@:2}
-
-                coauthors=$(${git} shortlog -sec --since=1.month | ${sd} '^\s*[0-9]+\s*(.+)$' '$1' | ${fzf} -m "$args")
-
-                ${trailer} Co-authored-by "$coauthors" "$rev"
-              '';
-          in
-          [
-            "util"
-            "exec"
-            "--"
-            "${jj-coauthor}/bin/jj-coauthor"
-          ];
-
-        # Supported by:
-        #   - Sourcehut: https://man.sr.ht/git.sr.ht/#fixes
-        #   - GitHub: https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword
-        "fixes" =
-          let
-            jj-fixes =
-              let
-                trailer = "${jj-trailer}/bin/jj-trailer";
-              in
-              pkgs.writeShellScriptBin "jj-fixes" ''
-                set -e
-
-                rev="$1"
-                url="$2"
-
-                ${trailer} Fixes "$url" "$rev"
-              '';
-          in
-          [
-            "util"
-            "exec"
-            "--"
-            "${jj-fixes}/bin/jj-fixes"
-          ];
-
         "review" =
           let
             jj-review =
@@ -198,11 +131,24 @@ in
                 jj = "${pkgs-unstable.jujutsu}/bin/jj";
               in
               pkgs.writeShellScriptBin "jj-review" ''
-                branch="$1"
-                remote=''${2:-origin}
-                args="''${*:3}"
-
                 set -e
+
+                rest=()
+                while [[ $# -gt 0 ]]; do
+                  case "$1" in
+                    --remote)
+                      remote="$2"; shift 2;;
+                    *)
+                      rest+=("$1"); shift;;
+                  esac
+                done
+                set -- "''${rest[@]}"
+
+                remote=''${remote:-origin}
+
+                branch="$1"
+                args="''${*:2}"
+
                 ${jj} git fetch -b "$branch"
                 ${jj} new "$branch@$remote" "$args"
               '';
@@ -214,27 +160,73 @@ in
             "${jj-review}/bin/jj-review"
           ];
 
+        "trailer" = [
+          "util"
+          "exec"
+          "--"
+          "${jj-trailer}/bin/jj-trailer"
+        ];
+
+        # Supported by:
+        #   - Sourcehut: https://man.sr.ht/git.sr.ht/#closes
+        #   - GitHub: https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword
+        "closes" = [
+          "trailer"
+          "Closes"
+        ];
+
+        # Supported by:
+        #   - Sourcehut: https://man.sr.ht/git.sr.ht/#fixes
+        #   - GitHub: https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword
+        "fixes" = [
+          "trailer"
+          "Fixes"
+        ];
+
         # Supported by:
         #   - GitHub: https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/skipping-workflow-runs
-        "skipchecks" =
+        "skipchecks" = [
+          "trailer"
+          "skip-checks"
+          "true"
+        ];
+
+        # Supported by:
+        #   - GitHub: https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors#creating-co-authored-commits-on-the-command-line
+        "coauthor" =
           let
-            jj-skipchecks =
+            jj-coauthor =
               let
-                trailer = "${jj-trailer}/bin/jj-trailer";
+                fzf = "${pkgs.fzf}/bin/fzf";
+                git = "${pkgs.git}/bin/git";
+                sd = "${pkgs.sd}/bin/sd";
               in
-              pkgs.writeShellScriptBin "jj-skipchecks" ''
+              pkgs.writeShellScriptBin "jj-coauthor" ''
                 set -e
 
-                rev="$1"
+                rest=()
+                while [[ $# -gt 0 ]]; do
+                  case "$1" in
+                    -r|--revision)
+                      rev="$2"; shift 2;;
+                    *)
+                      rest+=("$1"); shift;;
+                  esac
+                done
+                set -- "''${rest[@]}"
 
-                ${trailer} skip-checks true "$rev"
+                rev=''${rev:-@}
+
+                coauthors=$(${git} shortlog -sec --since=1.month | ${sd} '^\s*[0-9]+\s*(.+)$' '$1' | ${fzf} -m "$@")
+
+                jj trailer Co-authored-by "$coauthors" -r "$rev"
               '';
           in
           [
             "util"
             "exec"
             "--"
-            "${jj-skipchecks}/bin/jj-skipchecks"
+            "${jj-coauthor}/bin/jj-coauthor"
           ];
       };
     };
