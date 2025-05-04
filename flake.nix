@@ -39,7 +39,7 @@
       homeConfigurations.sam = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
-          catppuccin.homeManagerModules.catppuccin
+          catppuccin.homeModules.catppuccin
           ./home
         ];
         extraSpecialArgs = {
