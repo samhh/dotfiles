@@ -166,22 +166,6 @@ in
           "-r"
           "(trunk()..@)::"
         ];
-        "plb" = [
-          "bookmark"
-          "move"
-          "-f"
-          "heads(::@ & bookmarks()) ~ trunk()"
-          "-t"
-          "heads(::@ & mutable() ~ null())"
-        ];
-        "plt" = [
-          "bookmark"
-          "move"
-          "-f"
-          "trunk()"
-          "-t"
-          "heads(::@ & mutable() ~ null())"
-        ];
         "ps" = [
           "git"
           "push"
@@ -238,6 +222,22 @@ in
           ];
         "sp" = [ "split" ];
         "sq" = [ "squash" ];
+        "tug" = [
+          "bookmark"
+          "move"
+          "-f"
+          "heads(::@ & bookmarks()) ~ trunk()"
+          "-t"
+          "heads(::@ & mutable() ~ null())"
+        ];
+        "tugt" = [
+          "bookmark"
+          "move"
+          "-f"
+          "trunk()"
+          "-t"
+          "heads(::@ & mutable() ~ null())"
+        ];
       };
       revset-aliases = {
         "anon()" = "mine() ~ (null() & heads(::)) ~ ::(bookmarks() | remote_bookmarks())";
