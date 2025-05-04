@@ -152,10 +152,11 @@ in
                 set -e
 
                 rev="$1"
+                args=''${@:2}
 
-                coauthor=$(${git} shortlog -sec --since=1.month | ${sd} '^\s*[0-9]+\s*(.+)$' '$1' | ${fzf} -m)
+                coauthors=$(${git} shortlog -sec --since=1.month | ${sd} '^\s*[0-9]+\s*(.+)$' '$1' | ${fzf} -m "$args")
 
-                ${trailer} Co-authored-by "$coauthor" "$rev"
+                ${trailer} Co-authored-by "$coauthors" "$rev"
               '';
           in
           [
