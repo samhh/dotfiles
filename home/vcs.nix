@@ -150,17 +150,6 @@ in
           "roots(anon())"
           "--no-graph"
         ];
-        "lb" = [
-          "log"
-          "-r"
-          "my_bookmarks()"
-        ];
-        "lbh" = [
-          "log"
-          "-r"
-          "heads(my_bookmarks())"
-          "--no-graph"
-        ];
         "lt" = [
           "log"
           "-r"
@@ -239,7 +228,6 @@ in
       };
       revset-aliases = {
         "anon()" = "mine() ~ (null() & heads(::)) ~ ::(bookmarks() | remote_bookmarks())";
-        "my_bookmarks()" = "::bookmarks() ~ ::trunk()";
         "null()" = "empty() & description(exact:'')";
       };
       # Until there's a programs.jujutsu.delta.enable option:
