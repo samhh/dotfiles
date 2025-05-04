@@ -47,6 +47,7 @@ in
         key = pub-key;
       };
       git.push-bookmark-prefix = "jj-";
+      revsets.log = "(trunk()..@)::";
       template-aliases = {
         "format_timestamp(timestamp)" = "timestamp.ago()";
       };
@@ -149,11 +150,6 @@ in
           "-r"
           "roots(anon())"
           "--no-graph"
-        ];
-        "lt" = [
-          "log"
-          "-r"
-          "(trunk()..@)::"
         ];
         "ps" = [
           "git"
