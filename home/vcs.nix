@@ -19,9 +19,9 @@ let
     pkgs.writeShellScriptBin "jj-trailer" ''
       set -e
 
-      key="$1";
-      val="$2";
-      rev=''${3:-@};
+      key="$1"
+      val="$2"
+      rev=''${3:-@}
 
       msg=
       readarray -t vals <<< "$val"
@@ -125,7 +125,7 @@ in
                 set -e
 
                 url="$1"
-                rev="$2";
+                rev="$2"
 
                 ${trailer} Closes "$url" "$rev"
               '';
@@ -151,9 +151,8 @@ in
               pkgs.writeShellScriptBin "jj-coauthor" ''
                 set -e
 
-                rev="$1";
+                rev="$1"
 
-                # Beware a trailing \n coming from fzf.
                 coauthor=$(${git} shortlog -sec --since=1.month | ${sd} '^\s*[0-9]+\s*(.+)$' '$1' | ${fzf} -m)
 
                 ${trailer} Co-authored-by "$coauthor" "$rev"
@@ -179,7 +178,7 @@ in
                 set -e
 
                 url="$1"
-                rev="$2";
+                rev="$2"
 
                 ${trailer} Fixes "$url" "$rev"
               '';
@@ -225,7 +224,7 @@ in
               pkgs.writeShellScriptBin "jj-skipchecks" ''
                 set -e
 
-                rev="$1";
+                rev="$1"
 
                 ${trailer} skip-checks true "$rev"
               '';
