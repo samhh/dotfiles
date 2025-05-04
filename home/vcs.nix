@@ -47,13 +47,61 @@ in
         key = pub-key;
       };
       git.push-bookmark-prefix = "jj-";
+      ui = {
+        # Until there's a programs.jujutsu.delta.enable option:
+        #   https://github.com/nix-community/home-manager/issues/4887
+        pager = "${pkgs.delta}/bin/delta";
+        diff.format = "git";
+        show-cryptographic-signatures = true;
+      };
       revsets.log = "(trunk()..@)::";
       template-aliases = {
         "format_timestamp(timestamp)" = "timestamp.ago()";
       };
+      revset-aliases = {
+        "anon()" = "mine() ~ (null() & heads(::)) ~ ::(bookmarks() | remote_bookmarks())";
+        "null()" = "empty() & description(exact:'')";
+      };
       aliases = {
         "ab" = [ "abandon" ];
         "bm" = [ "bookmark" ];
+        "ft" = [
+          "git"
+          "fetch"
+        ];
+        "ps" = [
+          "git"
+          "push"
+        ];
+        "sq" = [ "squash" ];
+
+        "loga" = [
+          "log"
+          "-r"
+          "anon()"
+        ];
+        "rbt" = [
+          "rebase"
+          "-d"
+          "trunk()"
+        ];
+        "tug" = [
+          "bookmark"
+          "move"
+          "-f"
+          "heads(::@ & bookmarks()) ~ trunk()"
+          "-t"
+          "heads(::@ & mutable() ~ null())"
+        ];
+        "tugt" = [
+          "bookmark"
+          "move"
+          "-f"
+          "trunk()"
+          "-t"
+          "heads(::@ & mutable() ~ null())"
+        ];
+
         # Supported by:
         #   - Sourcehut: https://man.sr.ht/git.sr.ht/#closes
         #   - GitHub: https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword
@@ -78,6 +126,7 @@ in
             "--"
             "${jj-closes}/bin/jj-closes"
           ];
+
         # Supported by:
         #   - GitHub: https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors#creating-co-authored-commits-on-the-command-line
         "coauthor" =
@@ -106,10 +155,7 @@ in
             "--"
             "${jj-coauthor}/bin/jj-coauthor"
           ];
-        "ft" = [
-          "git"
-          "fetch"
-        ];
+
         # Supported by:
         #   - Sourcehut: https://man.sr.ht/git.sr.ht/#fixes
         #   - GitHub: https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword
@@ -134,20 +180,7 @@ in
             "--"
             "${jj-fixes}/bin/jj-fixes"
           ];
-        "loga" = [
-          "log"
-          "-r"
-          "anon()"
-        ];
-        "ps" = [
-          "git"
-          "push"
-        ];
-        "rbt" = [
-          "rebase"
-          "-d"
-          "trunk()"
-        ];
+
         "review" =
           let
             jj-review =
@@ -170,6 +203,7 @@ in
             "--"
             "${jj-review}/bin/jj-review"
           ];
+
         # Supported by:
         #   - GitHub: https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/skipping-workflow-runs
         "skipchecks" =
@@ -192,34 +226,6 @@ in
             "--"
             "${jj-skipchecks}/bin/jj-skipchecks"
           ];
-        "sq" = [ "squash" ];
-        "tug" = [
-          "bookmark"
-          "move"
-          "-f"
-          "heads(::@ & bookmarks()) ~ trunk()"
-          "-t"
-          "heads(::@ & mutable() ~ null())"
-        ];
-        "tugt" = [
-          "bookmark"
-          "move"
-          "-f"
-          "trunk()"
-          "-t"
-          "heads(::@ & mutable() ~ null())"
-        ];
-      };
-      revset-aliases = {
-        "anon()" = "mine() ~ (null() & heads(::)) ~ ::(bookmarks() | remote_bookmarks())";
-        "null()" = "empty() & description(exact:'')";
-      };
-      # Until there's a programs.jujutsu.delta.enable option:
-      #   https://github.com/nix-community/home-manager/issues/4887
-      ui = {
-        pager = "${pkgs.delta}/bin/delta";
-        diff.format = "git";
-        show-cryptographic-signatures = true;
       };
     };
   };
