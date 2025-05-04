@@ -134,7 +134,7 @@ in
             "--"
             "${jj-fixes}/bin/jj-fixes"
           ];
-        "la" = [
+        "loga" = [
           "log"
           "-r"
           "anon()"
