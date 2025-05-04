@@ -80,6 +80,10 @@ in
           "-r"
           "anon()"
         ];
+        "newt" = [
+          "new"
+          "trunk()"
+        ];
         "rbt" = [
           "rebase"
           "-d"
