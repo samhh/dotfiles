@@ -170,7 +170,6 @@ in
           "git"
           "push"
         ];
-        "rb" = [ "rebase" ];
         "rbt" = [
           "rebase"
           "-d"
@@ -220,7 +219,6 @@ in
             "--"
             "${jj-skipchecks}/bin/jj-skipchecks"
           ];
-        "sp" = [ "split" ];
         "sq" = [ "squash" ];
         "tug" = [
           "bookmark"
