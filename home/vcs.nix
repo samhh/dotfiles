@@ -124,8 +124,8 @@ in
               pkgs.writeShellScriptBin "jj-closes" ''
                 set -e
 
-                url="$1"
-                rev="$2"
+                rev="$1"
+                url="$2"
 
                 ${trailer} Closes "$url" "$rev"
               '';
@@ -178,8 +178,8 @@ in
               pkgs.writeShellScriptBin "jj-fixes" ''
                 set -e
 
-                url="$1"
-                rev="$2"
+                rev="$1"
+                url="$2"
 
                 ${trailer} Fixes "$url" "$rev"
               '';
