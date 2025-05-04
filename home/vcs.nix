@@ -23,7 +23,12 @@ let
       val="$2";
       rev=''${3:-@};
 
-      msg="$1: $2"
+      msg=
+      readarray -t vals <<< "$val"
+      for val in "''${vals[@]}"; do
+        if [ -n "$msg" ]; then msg+=$'\n'; fi
+        msg+="$key: $val"
+      done
 
       for commit in ''$(${jj} log --no-graph -r "$rev" -T 'commit_id ++ "\n"'); do
         ${jj} desc "$commit" -m "$(${jj} log --no-graph -r "$commit" -T description)" -m "$msg"
