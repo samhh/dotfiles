@@ -69,6 +69,7 @@ in
           "git"
           "fetch"
         ];
+        "lg" = [ "log" ];
         "ps" = [
           "git"
           "push"
