@@ -5,7 +5,7 @@
 {
   programs.ghostty = {
     enable = true;
-    package = pkgs.emptyDirectory;
+    package = pkgs.noop;
     # https://github.com/nix-community/home-manager/pull/6235#issuecomment-2567896192
     installBatSyntax = false;
     settings = {

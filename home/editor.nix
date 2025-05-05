@@ -10,7 +10,7 @@
 
   programs.zed-editor = {
     enable = true;
-    package = pkgs.emptyDirectory;
+    package = pkgs.noop;
     extensions = [
       "biome"
       "dockerfile"
