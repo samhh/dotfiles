@@ -71,7 +71,6 @@ in
       };
       aliases = {
         "ab" = [ "abandon" ];
-        "bm" = [ "bookmark" ];
         "ft" = [
           "git"
           "fetch"
