@@ -16,7 +16,7 @@ let
     let
       jj = "${pkgs-unstable.jujutsu}/bin/jj";
     in
-    pkgs.writeShellScriptBin "jj-trailer" ''
+    pkgs.writeShellScript "jj-trailer" ''
       set -e
 
       rest=()
@@ -130,7 +130,7 @@ in
               let
                 jj = "${pkgs-unstable.jujutsu}/bin/jj";
               in
-              pkgs.writeShellScriptBin "jj-review" ''
+              pkgs.writeShellScript "jj-review" ''
                 set -e
 
                 rest=()
@@ -157,14 +157,14 @@ in
             "util"
             "exec"
             "--"
-            "${jj-review}/bin/jj-review"
+            "${jj-review}"
           ];
 
         "trailer" = [
           "util"
           "exec"
           "--"
-          "${jj-trailer}/bin/jj-trailer"
+          "${jj-trailer}"
         ];
 
         # Supported by:
@@ -201,7 +201,7 @@ in
                 git = "${pkgs.git}/bin/git";
                 sd = "${pkgs.sd}/bin/sd";
               in
-              pkgs.writeShellScriptBin "jj-coauthor" ''
+              pkgs.writeShellScript "jj-coauthor" ''
                 set -e
 
                 rest=()
@@ -226,7 +226,7 @@ in
             "util"
             "exec"
             "--"
-            "${jj-coauthor}/bin/jj-coauthor"
+            "${jj-coauthor}"
           ];
       };
     };
