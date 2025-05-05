@@ -173,6 +173,7 @@ in
           let
             jj-coauthor =
               let
+                jj = lib.getExe pkgs-unstable.jujutsu;
                 fzf = lib.getExe pkgs.fzf;
                 git = lib.getExe pkgs.git;
                 sd = lib.getExe pkgs.sd;
@@ -185,7 +186,7 @@ in
 
                 set -l coauthors (${git} shortlog -sec --since=1.month | ${sd} '^\s*[0-9]+\s*(.+)$' '$1' | ${fzf} -m $fzf_args)
 
-                jj trailer -r $rev Co-authored-by $coauthors
+                ${jj} trailer -r $rev Co-authored-by $coauthors
               '';
           in
           [
