@@ -28,8 +28,14 @@
     let
       system = "aarch64-darwin";
       system-ci = "x86_64-linux";
-      overlays = with nixpkgs.lib; [
-        (const (const self.packages.${system}))
+      overlays = [
+        (final: prev: self.packages.${system})
+        (
+          final: prev:
+          import ./packages/builders.nix {
+            inherit (prev) lib writeScript fish;
+          }
+        )
       ];
       pkgs = import nixpkgs { inherit system overlays; };
       pkgs-ci = import nixpkgs { system = system-ci; };
