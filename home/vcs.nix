@@ -59,6 +59,7 @@ in
         pager = lib.getExe pkgs.delta;
         diff.format = "git";
         show-cryptographic-signatures = true;
+        default-command = "log";
       };
       revsets.log = "(trunk()..@)::";
       template-aliases = {
@@ -75,7 +76,6 @@ in
           "git"
           "fetch"
         ];
-        "lg" = [ "log" ];
         "ps" = [
           "git"
           "push"
