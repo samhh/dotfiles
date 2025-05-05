@@ -134,14 +134,14 @@ in
             "util"
             "exec"
             "--"
-            "${jj-review}"
+            jj-review
           ];
 
         "trailer" = [
           "util"
           "exec"
           "--"
-          "${jj-trailer}"
+          jj-trailer
         ];
 
         # Supported by:
@@ -193,7 +193,7 @@ in
             "util"
             "exec"
             "--"
-            "${jj-coauthor}"
+            jj-coauthor
           ];
       };
     };
