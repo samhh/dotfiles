@@ -47,9 +47,9 @@
       ];
       lsp = {
         nil = {
-          binary.path = "${pkgs.nil}/bin/nil";
+          binary.path = lib.getExe pkgs.nil;
           settings = {
-            formatting.command = [ "${pkgs.nixfmt-rfc-style}/bin/nixfmt" ];
+            formatting.command = [ (lib.getExe pkgs.nixfmt-rfc-style) ];
             nix.flake.autoEvalInputs = true;
           };
         };

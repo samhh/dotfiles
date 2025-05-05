@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   pkgs-unstable,
   ...
@@ -14,7 +15,7 @@ let
 
   jj-trailer =
     let
-      jj = "${pkgs-unstable.jujutsu}/bin/jj";
+      jj = lib.getExe pkgs-unstable.jujutsu;
     in
     pkgs.writeFishScript "jj-trailer" ''
       argparse -N 2 'r/revisions=' -- $argv; or exit $status
@@ -55,7 +56,7 @@ in
       ui = {
         # Until there's a programs.jujutsu.delta.enable option:
         #   https://github.com/nix-community/home-manager/issues/4887
-        pager = "${pkgs.delta}/bin/delta";
+        pager = lib.getExe pkgs.delta;
         diff.format = "git";
         show-cryptographic-signatures = true;
       };
@@ -116,7 +117,7 @@ in
           let
             jj-review =
               let
-                jj = "${pkgs-unstable.jujutsu}/bin/jj";
+                jj = lib.getExe pkgs-unstable.jujutsu;
               in
               pkgs.writeFishScript "jj-review" ''
                 argparse -i 'remote=' -- $argv; or exit $status
@@ -173,9 +174,9 @@ in
           let
             jj-coauthor =
               let
-                fzf = "${pkgs.fzf}/bin/fzf";
-                git = "${pkgs.git}/bin/git";
-                sd = "${pkgs.sd}/bin/sd";
+                fzf = lib.getExe pkgs.fzf;
+                git = lib.getExe pkgs.git;
+                sd = lib.getExe pkgs.sd;
               in
               pkgs.writeFishScript "jj-coauthor" ''
                 argparse -i 'r/revisions=' -- $argv; or exit $status
