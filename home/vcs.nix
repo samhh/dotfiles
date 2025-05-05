@@ -95,22 +95,27 @@ in
           "-d"
           "trunk()"
         ];
-        "tug" = [
-          "bookmark"
-          "move"
-          "-f"
-          "heads(::@ & bookmarks()) ~ trunk()"
-          "-t"
-          "heads(::@ & mutable() ~ null())"
-        ];
-        "tugt" = [
-          "bookmark"
-          "move"
-          "-f"
-          "trunk()"
-          "-t"
-          "heads(::@ & mutable() ~ null())"
-        ];
+
+        "tug" =
+          let
+            jj-tug =
+              let
+                jj = lib.getExe pkgs-unstable.jujutsu;
+              in
+              pkgs.writeFishScript "jj-tug" ''
+                argparse -i 'trunk' -- $argv; or exit $status
+
+                set -l from (set -q _flag_trunk; and echo 'trunk()'; or echo 'heads(::@ & bookmarks()) ~ trunk()')
+
+                ${jj} bookmark move -f $from -t 'heads(::@ & mutable() ~ null())' $argv
+              '';
+          in
+          [
+            "util"
+            "exec"
+            "--"
+            jj-tug
+          ];
 
         "review" =
           let
