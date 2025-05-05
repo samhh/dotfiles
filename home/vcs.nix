@@ -16,35 +16,23 @@ let
     let
       jj = "${pkgs-unstable.jujutsu}/bin/jj";
     in
-    pkgs.writeShellScript "jj-trailer" ''
-      set -e
+    pkgs.writeFishScript "jj-trailer" ''
+      argparse -N 2 'r/revisions=' -- $argv; or exit $status
 
-      rest=()
-      while [[ $# -gt 0 ]]; do
-        case "$1" in
-          -r|--revision)
-            rev="$2"; shift 2;;
-          *)
-            rest+=("$1"); shift;;
-        esac
-      done
-      set -- "''${rest[@]}"
+      set -l rev $_flag_revisions; and if test -z $rev; set rev @; end
+      set -l key $argv[1]
+      set -l vals $argv[2..]
 
-      rev=''${rev:-@}
+      set -l trailers
 
-      key="$1"
-      val="$2"
+      for i in (seq (count $vals))
+        set trailers[$i] "$key: $vals[$i]"
+      end
 
-      msg=
-      readarray -t vals <<< "$val"
-      for val in "''${vals[@]}"; do
-        if [ -n "$msg" ]; then msg+=$'\n'; fi
-        msg+="$key: $val"
-      done
-
-      for commit in ''$(${jj} log --no-graph -r "$rev" -T 'commit_id ++ "\n"'); do
-        ${jj} desc "$commit" -m "$(${jj} log --no-graph -r "$commit" -T description)" -m "$msg"
-      done
+      for commit in (${jj} log --no-graph -r $rev -T 'commit_id ++ "\n"')
+        set -l prev (${jj} log --no-graph -r $commit -T description)
+        ${jj} desc $commit -m "$prev" -m "$(string join \n $trailers)"
+      end
     '';
 in
 {
@@ -130,27 +118,15 @@ in
               let
                 jj = "${pkgs-unstable.jujutsu}/bin/jj";
               in
-              pkgs.writeShellScript "jj-review" ''
-                set -e
+              pkgs.writeFishScript "jj-review" ''
+                argparse -i 'remote=' -- $argv; or exit $status
 
-                rest=()
-                while [[ $# -gt 0 ]]; do
-                  case "$1" in
-                    --remote)
-                      remote="$2"; shift 2;;
-                    *)
-                      rest+=("$1"); shift;;
-                  esac
-                done
-                set -- "''${rest[@]}"
+                set -l remote $_flag_remote; and if test -z $remote; set remote origin; end
+                set -l branch $argv[1]
+                set -l args $argv[2..]
 
-                remote=''${remote:-origin}
-
-                branch="$1"
-                args="''${*:2}"
-
-                ${jj} git fetch -b "$branch"
-                ${jj} new "$branch@$remote" "$args"
+                ${jj} git fetch -b $branch
+                ${jj} new "$branch@$remote" $args
               '';
           in
           [
@@ -201,25 +177,15 @@ in
                 git = "${pkgs.git}/bin/git";
                 sd = "${pkgs.sd}/bin/sd";
               in
-              pkgs.writeShellScript "jj-coauthor" ''
-                set -e
+              pkgs.writeFishScript "jj-coauthor" ''
+                argparse -i 'r/revisions=' -- $argv; or exit $status
 
-                rest=()
-                while [[ $# -gt 0 ]]; do
-                  case "$1" in
-                    -r|--revision)
-                      rev="$2"; shift 2;;
-                    *)
-                      rest+=("$1"); shift;;
-                  esac
-                done
-                set -- "''${rest[@]}"
+                set -l rev $_flag_revisions; and if test -z $rev; set rev @; end
+                set -l fzf_args $argv
 
-                rev=''${rev:-@}
+                set -l coauthors (${git} shortlog -sec --since=1.month | ${sd} '^\s*[0-9]+\s*(.+)$' '$1' | ${fzf} -m $fzf_args)
 
-                coauthors=$(${git} shortlog -sec --since=1.month | ${sd} '^\s*[0-9]+\s*(.+)$' '$1' | ${fzf} -m "$@")
-
-                jj trailer Co-authored-by "$coauthors" -r "$rev"
+                jj trailer -r $rev Co-authored-by $coauthors
               '';
           in
           [
