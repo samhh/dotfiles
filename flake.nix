@@ -29,9 +29,9 @@
       system = "aarch64-darwin";
       system-ci = "x86_64-linux";
       overlays = [
-        (final: prev: self.packages.${system})
+        (_final: _prev: self.packages.${system})
         (
-          final: prev:
+          _final: prev:
           import ./packages/builders.nix {
             inherit (prev) lib writeTextFile fish;
           }
