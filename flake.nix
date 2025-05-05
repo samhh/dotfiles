@@ -33,7 +33,7 @@
         (
           final: prev:
           import ./packages/builders.nix {
-            inherit (prev) lib writeScript fish;
+            inherit (prev) lib writeTextFile fish;
           }
         )
       ];
