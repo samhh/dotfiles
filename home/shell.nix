@@ -102,6 +102,8 @@ in
 
   programs.zoxide.enable = true;
 
+  programs.bat.enable = true;
+
   # Suppress login shell MOTD.
   home.file.".hushlogin".text = "";
 
@@ -111,6 +113,15 @@ in
   ];
 
   home.packages = with pkgs; [
+    ast-grep
+    fd
     nerd-fonts.fira-code
+    gdu
+    ripgrep
+    sd
+    tre-command
+
+    # Unsplash
+    okta-aws-cli
   ];
 }

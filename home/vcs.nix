@@ -218,7 +218,16 @@ in
       init.defaultBranch = "trunk";
     };
 
-    ignores = [ ".DS_Store" ];
+    ignores = [
+      ".DS_Store"
+
+      # npm
+      ".npmrc"
+
+      # PureScript
+      ".psc-ide-port"
+      ".psci_modules/"
+    ];
   };
 
   home.packages = with pkgs; [
