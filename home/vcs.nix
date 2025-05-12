@@ -68,28 +68,6 @@ in
         "null()" = "empty() & description(exact:'')";
       };
       aliases = {
-        "ab" = [ "abandon" ];
-        "ft" = [
-          "git"
-          "fetch"
-        ];
-        "ps" = [
-          "git"
-          "push"
-        ];
-        "sq" = [ "squash" ];
-
-        "anon" = [
-          "log"
-          "-r"
-          "anon()"
-        ];
-        "rbt" = [
-          "rebase"
-          "-d"
-          "trunk()"
-        ];
-
         "tug" =
           let
             jj-tug =
@@ -198,9 +176,24 @@ in
     };
   };
 
-  programs.fish.shellAbbrs = {
-    nn = "jj";
-  };
+  programs.fish.shellAbbrs =
+    let
+      subcmd = expansion: {
+        inherit expansion;
+        position = "anywhere";
+        command = "jj";
+      };
+    in
+    {
+      nn = "jj";
+
+      ab = subcmd "abandon";
+      anon = subcmd "log -r 'anon()'";
+      ft = subcmd "git fetch";
+      ps = subcmd "git push";
+      rbt = subcmd "rebase -d 'trunk()'";
+      sq = subcmd "squash";
+    };
 
   programs.git = {
     enable = true;
