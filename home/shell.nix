@@ -60,7 +60,7 @@ in
         error_symbol = "!";
       };
       format = "$character";
-      right_format = "$direnv$nix_shell$directory$cmd_duration";
+      right_format = "$direnv$nix_shell$directory";
 
       direnv = {
         disabled = false;
@@ -75,10 +75,6 @@ in
         symbol = " ";
       };
       directory.style = "purple";
-      cmd_duration = {
-        format = "[$duration]($style)";
-        style = "blue";
-      };
     };
   };
 
