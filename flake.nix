@@ -8,13 +8,11 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
   };
 
   outputs =
@@ -23,7 +21,6 @@
       catppuccin,
       home-manager,
       nixpkgs,
-      nixpkgs-unstable,
     }:
     let
       system = "aarch64-darwin";
@@ -39,7 +36,6 @@
       ];
       pkgs = import nixpkgs { inherit system overlays; };
       pkgs-ci = import nixpkgs { system = system-ci; };
-      pkgs-unstable = import nixpkgs-unstable { inherit system overlays; };
     in
     {
       homeConfigurations.sam = home-manager.lib.homeManagerConfiguration {
@@ -48,9 +44,6 @@
           catppuccin.homeModules.catppuccin
           ./home
         ];
-        extraSpecialArgs = {
-          inherit pkgs-unstable;
-        };
       };
 
       devShells = {

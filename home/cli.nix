@@ -1,10 +1,10 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, ... }:
 
 {
   programs.bat.enable = true;
 
   home.packages = with pkgs; [
-    pkgs-unstable.ast-grep
+    ast-grep
     fd
     gdu
     ripgrep

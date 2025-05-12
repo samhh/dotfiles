@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  pkgs-unstable,
   ...
 }:
 
@@ -15,7 +14,7 @@ let
 
   jj-trailer =
     let
-      jj = lib.getExe pkgs-unstable.jujutsu;
+      jj = lib.getExe pkgs.jujutsu;
     in
     pkgs.writeFishScript "jj-trailer" ''
       argparse -N 2 'r/revisions=' -- $argv; or exit $status
@@ -39,7 +38,6 @@ in
 {
   programs.jujutsu = {
     enable = true;
-    package = pkgs-unstable.jujutsu;
     settings = {
       user = {
         inherit name email;
@@ -100,7 +98,7 @@ in
           let
             jj-tug =
               let
-                jj = lib.getExe pkgs-unstable.jujutsu;
+                jj = lib.getExe pkgs.jujutsu;
               in
               pkgs.writeFishScript "jj-tug" ''
                 argparse -i 'trunk' -- $argv; or exit $status
@@ -121,7 +119,7 @@ in
           let
             jj-review =
               let
-                jj = lib.getExe pkgs-unstable.jujutsu;
+                jj = lib.getExe pkgs.jujutsu;
               in
               pkgs.writeFishScript "jj-review" ''
                 argparse -i 'remote=' -- $argv; or exit $status
@@ -178,7 +176,7 @@ in
           let
             jj-coauthor =
               let
-                jj = lib.getExe pkgs-unstable.jujutsu;
+                jj = lib.getExe pkgs.jujutsu;
                 fzf = lib.getExe pkgs.fzf;
                 git = lib.getExe pkgs.git;
                 sd = lib.getExe pkgs.sd;
