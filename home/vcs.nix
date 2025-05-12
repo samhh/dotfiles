@@ -79,7 +79,7 @@ in
         ];
         "sq" = [ "squash" ];
 
-        "loga" = [
+        "anon" = [
           "log"
           "-r"
           "anon()"
