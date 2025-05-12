@@ -198,6 +198,10 @@ in
     };
   };
 
+  programs.fish.shellAbbrs = {
+    nn = "jj";
+  };
+
   programs.git = {
     enable = true;
 

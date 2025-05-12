@@ -33,14 +33,7 @@ in
     '';
 
     shellAbbrs = {
-      "cat" = "bat";
-      "nn" = "jj";
-
-      "sh" = "nix shell nixpkgs#";
-      "nixh" = "nix-prefetch-url";
-      "nixhu" = "nix-prefetch-url --unpack";
-
-      "up" = "home-manager switch --flake ~/Dev/dotfiles/";
+      cat = "bat";
     };
 
     functions = {
