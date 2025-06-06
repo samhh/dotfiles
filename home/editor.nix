@@ -24,14 +24,13 @@
       "toml"
     ];
     userSettings = {
-      assistant = {
+      agent = {
+        version = "2";
         default_model = {
           provider = "zed.dev";
-          model = "claude-3-7-sonnet-latest";
+          model = "claude-sonnet-4";
         };
-        version = "2";
       };
-      features.edit_prediction_provider = "zed";
       edit_predictions.mode = "subtle";
       diagnostics.inline.enabled = true;
       ui_font_size = 14;
