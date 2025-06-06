@@ -89,30 +89,6 @@ in
             jj-tug
           ];
 
-        "review" =
-          let
-            jj-review =
-              let
-                jj = lib.getExe pkgs.jujutsu;
-              in
-              pkgs.writeFishScript "jj-review" ''
-                argparse -i 'remote=' -- $argv; or exit $status
-
-                set -l remote $_flag_remote; and if test -z $remote; set remote origin; end
-                set -l branch $argv[1]
-                set -l args $argv[2..]
-
-                ${jj} git fetch -b $branch
-                ${jj} new "$branch@$remote" $args
-              '';
-          in
-          [
-            "util"
-            "exec"
-            "--"
-            jj-review
-          ];
-
         "trailer" = [
           "util"
           "exec"
