@@ -30,7 +30,7 @@ let
       end
 
       for commit in (${jj} log --no-graph -r $rev -T 'commit_id ++ "\n"')
-        set -l prev (${jj} log --no-graph -r $commit -T description)
+        set -l prev (${jj} log --no-graph -r $commit -T description | string collect)
         ${jj} desc $commit -m "$prev" -m "$(string join \n $trailers)"
       end
     '';
