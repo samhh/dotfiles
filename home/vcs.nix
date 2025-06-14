@@ -162,6 +162,7 @@ in
     in
     {
       nn = "jj";
+      nnui = "jjui";
 
       ab = subcmd "abandon";
       anon = subcmd "log -r 'anon()'";
@@ -206,6 +207,7 @@ in
   home.packages = with pkgs; [
     # For verifying others' commit signatures.
     gnupg
+    jjui
     tig
   ];
 }
