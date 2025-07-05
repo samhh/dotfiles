@@ -52,12 +52,12 @@ in
       };
       git.push-bookmark-prefix = "jj-";
       ui = {
+        show-cryptographic-signatures = true;
+        default-command = "log";
         # Until there's a programs.jujutsu.delta.enable option:
         #   https://github.com/nix-community/home-manager/issues/4887
         pager = lib.getExe pkgs.delta;
         diff.format = "git";
-        show-cryptographic-signatures = true;
-        default-command = "log";
       };
       revsets.log = "(trunk()..@)::";
       template-aliases = {
