@@ -39,6 +39,7 @@
       git.inline_blame.enabled = false;
       wrap_guides = [ 80 ];
       terminal.env.VISUAL = "zed --wait";
+      helix_mode = true;
 
       languages.Nix.language_servers = [
         "nil"
