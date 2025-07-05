@@ -50,14 +50,14 @@ in
         };
         key = pub-key;
       };
-      git.push-bookmark-prefix = "jj-";
+      templates.git_push_bookmark = "\"jj-\" ++ change_id.short()";
       ui = {
         show-cryptographic-signatures = true;
         default-command = "log";
         # Until there's a programs.jujutsu.delta.enable option:
         #   https://github.com/nix-community/home-manager/issues/4887
         pager = lib.getExe pkgs.delta;
-        diff.format = "git";
+        diff.formatter = ":git";
       };
       revsets.log = "(trunk()..@)::";
       template-aliases = {
