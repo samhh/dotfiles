@@ -64,7 +64,7 @@ in
         "format_timestamp(timestamp)" = "timestamp.ago()";
       };
       revset-aliases = {
-        "anon()" = "mine() ~ (null() & heads(::)) ~ ::(bookmarks() | remote_bookmarks())";
+        "anon()" = "mine() ~ ::remote_bookmarks() ~ null()";
         "null()" = "empty() & description(exact:'')";
       };
       aliases = {
