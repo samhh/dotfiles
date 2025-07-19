@@ -116,7 +116,8 @@ in
         #   - GitHub: https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/skipping-workflow-runs
         "skipchecks" = [
           "trailer"
-          "skip-checks"
+          # Needs two preceding newlines as per GitHub's docs.
+          "\nskip-checks"
           "true"
         ];
 
