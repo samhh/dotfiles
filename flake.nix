@@ -54,8 +54,8 @@
       packages.${system} = import ./packages { inherit pkgs; };
 
       formatter = {
-        ${system} = pkgs.nixfmt-rfc-style;
-        ${system-ci} = pkgs-ci.nixfmt-rfc-style;
+        ${system} = pkgs.nixfmt-tree;
+        ${system-ci} = pkgs-ci.nixfmt-tree;
       };
 
       templates = import ./templates;
