@@ -24,12 +24,9 @@
       "toml"
     ];
     userSettings = {
-      agent = {
-        version = "2";
-        default_model = {
-          provider = "zed.dev";
-          model = "claude-sonnet-4";
-        };
+      agent.default_model = {
+        provider = "zed.dev";
+        model = "claude-sonnet-4";
       };
       edit_predictions.mode = "subtle";
       diagnostics.inline.enabled = true;
