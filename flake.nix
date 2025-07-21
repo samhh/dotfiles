@@ -48,8 +48,7 @@
 
       devShells = {
         ${system}.default = pkgs.callPackage ./shell.nix { };
-
-        ${system-ci}.ci = pkgs-ci.mkShell { nativeBuildInputs = with pkgs-ci; [ deadnix ]; };
+        ${system-ci}.ci = pkgs-ci.callPackage ./shell.nix { };
       };
 
       packages.${system} = import ./packages { inherit pkgs; };
