@@ -8,10 +8,6 @@ https://unsplash.localhost {
 	reverse_proxy :3001
 }
 
-https://demos.localhost {
-	reverse_proxy :3002
-}
-
 https://samhh.localhost {
 	reverse_proxy :3100
 }
