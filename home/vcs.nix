@@ -206,6 +206,7 @@ in
   };
 
   home.packages = with pkgs; [
+    git-who
     # For verifying others' commit signatures.
     gnupg
     jjui
