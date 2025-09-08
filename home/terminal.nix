@@ -22,7 +22,7 @@
 
       # catppuccin currently only supports one universal theme:
       #   https://github.com/catppuccin/nix/issues/420
-      theme = lib.mkForce "light:catppuccin-latte,dark:catppuccin-mocha";
+      theme = lib.mkForce "light:Catppuccin Latte,dark:Catppuccin Mocha";
     };
   };
 }
