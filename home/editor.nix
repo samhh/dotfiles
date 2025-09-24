@@ -16,6 +16,7 @@
       "dockerfile"
       "haskell"
       "html"
+      "jj_lsp"
       "just"
       "nix"
       "nu"
