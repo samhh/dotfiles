@@ -210,6 +210,7 @@ in
     # For verifying others' commit signatures.
     gnupg
     jjui
+    mergiraf
     tig
     # For cleaner shell abbreviation.
     rust-petname
