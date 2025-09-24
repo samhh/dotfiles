@@ -58,12 +58,13 @@ in
         pager = lib.getExe pkgs.delta;
         diff.formatter = ":git";
       };
-      revsets.log = "(trunk()..@)::";
+      revsets.log = "here()";
       template-aliases = {
         "format_timestamp(timestamp)" = "timestamp.ago()";
       };
       revset-aliases = {
         "anon()" = "mine() ~ ::remote_bookmarks() ~ null()";
+        "here()" = "(trunk()..@)::";
         "null()" = "empty() & description(exact:'')";
       };
       aliases = {
