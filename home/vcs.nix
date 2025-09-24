@@ -174,6 +174,110 @@ in
       sq = subcmd "squash";
     };
 
+  programs.jjui = {
+    enable = true;
+    settings = {
+      leader = {
+        f = {
+          help = "fix";
+          send = [
+            "$"
+            "jj fix"
+            "enter"
+          ];
+        };
+        g.help = "git";
+        gp.help = "git push";
+        gpc = {
+          help = "petname";
+          context = [ "$change_id" ];
+          send = [
+            "$"
+            "jj git push --named $(petname)=$change_id"
+            "enter"
+          ];
+        };
+        L.help = "revset";
+        La = {
+          help = "anon()";
+          send = [
+            "L"
+            "anon()"
+            "enter"
+          ];
+        };
+        Lh = {
+          help = "here()";
+          send = [
+            "L"
+            "here()"
+            "enter"
+          ];
+        };
+        r.help = "rebase";
+        rt = {
+          help = "trunk";
+          send = [
+            "$"
+            "jj rebase -d trunk()"
+            "enter"
+          ];
+        };
+        t = {
+          help = "trailer";
+          context = [ "$change_id" ];
+        };
+        tc = {
+          help = "closes";
+          send = [
+            "$"
+            "jj closes -r $change_id "
+          ];
+        };
+        tf = {
+          help = "fixes";
+          send = [
+            "$"
+            "jj fixes -r $change_id "
+          ];
+        };
+        tk = {
+          help = "skipchecks";
+          send = [
+            "$"
+            "jj skipchecks -r $change_id"
+            "enter"
+          ];
+        };
+        to = {
+          help = "coauthor";
+          send = [
+            "$"
+            "jj coauthor -r $change_id"
+            "enter"
+          ];
+        };
+        z.help = "resolve";
+        zz = {
+          help = "interactive";
+          send = [
+            "$"
+            "jj resolve"
+            "enter"
+          ];
+        };
+        zm = {
+          help = "mergiraf";
+          send = [
+            "$"
+            "jj resolve --tool mergiraf"
+            "enter"
+          ];
+        };
+      };
+    };
+  };
+
   programs.git = {
     enable = true;
 
