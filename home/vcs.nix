@@ -50,6 +50,7 @@ in
         };
         key = pub-key;
       };
+      templates.git_push_bookmark = "\"samhh/\" ++ change_id.shortest(3)";
       ui = {
         show-cryptographic-signatures = true;
         default-command = "log";
@@ -169,7 +170,6 @@ in
       anon = subcmd "log -r 'anon()'";
       ft = subcmd "git fetch";
       ps = subcmd "git push";
-      psc = subcmd "git push --named (petname)=";
       rbt = subcmd "rebase -d 'trunk()'";
       sq = subcmd "squash";
     };
@@ -183,17 +183,6 @@ in
           send = [
             "$"
             "jj fix"
-            "enter"
-          ];
-        };
-        g.help = "git";
-        gp.help = "git push";
-        gpc = {
-          help = "petname";
-          context = [ "$change_id" ];
-          send = [
-            "$"
-            "jj git push --named $(petname)=$change_id"
             "enter"
           ];
         };
@@ -317,7 +306,5 @@ in
     jjui
     mergiraf
     tig
-    # For cleaner shell abbreviation.
-    rust-petname
   ];
 }
