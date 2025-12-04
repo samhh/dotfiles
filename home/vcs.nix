@@ -53,13 +53,16 @@ in
       templates.git_push_bookmark = "\"samhh/\" ++ change_id.shortest(3)";
       ui = {
         show-cryptographic-signatures = true;
-        default-command = "log";
+        default-command = [
+          "log"
+          "-r"
+          "here()"
+        ];
         # Until there's a programs.jujutsu.delta.enable option:
         #   https://github.com/nix-community/home-manager/issues/4887
         pager = lib.getExe pkgs.delta;
         diff.formatter = ":git";
       };
-      revsets.log = "here()";
       template-aliases = {
         "format_timestamp(timestamp)" = "timestamp.ago()";
       };
