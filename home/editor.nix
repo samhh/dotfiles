@@ -23,6 +23,7 @@
       "purescript"
       "terraform"
       "toml"
+      "tsgo"
     ];
     userSettings = {
       agent.default_model = {
@@ -40,10 +41,15 @@
       colorize_brackets = true;
       terminal.env.VISUAL = "zed --wait";
 
-      languages.Nix.language_servers = [
-        "nil"
-        "!nixd"
-      ];
+      languages = {
+        Nix.language_servers = [
+          "nil"
+          "!nixd"
+        ];
+        TypeScript.language_servers = [
+          "tsgo"
+        ];
+      };
       lsp = {
         nil = {
           binary.path = lib.getExe pkgs.nil;
