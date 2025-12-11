@@ -38,6 +38,7 @@
       confirm_quit = true;
       git.inline_blame.enabled = false;
       wrap_guides = [ 80 ];
+      sticky_scroll.enabled = true;
       colorize_brackets = true;
       terminal.env.VISUAL = "zed --wait";
 
