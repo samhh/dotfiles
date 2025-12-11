@@ -272,8 +272,7 @@ in
 
   programs.git = {
     enable = true;
-
-    extraConfig = {
+    settings = {
       user = {
         inherit name email;
         signingkey = pub-key;
