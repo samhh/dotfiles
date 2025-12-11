@@ -71,7 +71,8 @@
     };
   };
 
-  xdg.configFile."zed/snippets".source = ./snippets;
+  xdg.configFile."zed/snippets/typescript.json".source = ./snippets/typescript.json;
+  xdg.configFile."zed/snippets/tsx.json".source = ./snippets/typescript.json;
 
   programs.git.ignores = [
     ".helix/"
