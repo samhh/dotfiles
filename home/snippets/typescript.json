@@ -26,6 +26,9 @@
       "})"
     ]
   },
+  "ns": {
+    "body": ["import $0* as ${2:namespace} from \"${1:package}\";"]
+  },
   "pbt": {
     "body": [
       "fc.assert(fc.property(",
@@ -41,5 +44,14 @@
       "  $0",
       "))"
     ]
+  },
+  // Snippets are currently only supported globally, hence these
+  // project-specific ones. See:
+  //   https://github.com/zed-industries/zed/discussions/20647
+  "styles": {
+    "body": ["import * as styles from \"./${1:component}.module.css\";$0"]
+  },
+  "uapi": {
+    "body": ["import type * as UAPI from \"domain/gen/unsplash\";$0"]
   }
 }
