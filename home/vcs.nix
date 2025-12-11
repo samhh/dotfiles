@@ -66,10 +66,19 @@ in
       template-aliases = {
         "format_timestamp(timestamp)" = "timestamp.ago()";
       };
+      # The stack() idea comes from:
+      #   https://gist.github.com/thoughtpolice/8f2fd36ae17cd11b8e7bd93a70e31ad6
+      #   https://andre.arko.net/2025/09/28/stupid-jj-tricks/#revsets
       revset-aliases = {
-        "anon()" = "mine() ~ ::remote_bookmarks() ~ null()";
-        "here()" = "(trunk()..@)::";
+        "anon()" = "stack(mine() ~ ::remote_bookmarks(), 1)";
+        "here()" = "stack(@, 1)";
         "null()" = "empty() & description(exact:'')";
+        "open()" = "stack(mine() | @, 1)";
+        "ready()" = "open() ~ stack(wip(), 1)";
+        "stack()" = "stack(@)";
+        "stack(x)" = "stack(x, 2)";
+        "stack(x, n)" = "ancestors(reachable(x, mutable()), n)";
+        "wip()" = "null() | description(regex:\"^[A-Z]+:\")";
       };
       aliases = {
         "tug" =
