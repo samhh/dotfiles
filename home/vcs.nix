@@ -12,28 +12,25 @@ let
     ${email} ${pub-key}
   '';
 
-  jj-trailer =
-    let
-      jj = lib.getExe pkgs.jujutsu;
-    in
-    pkgs.writeFishScript "jj-trailer" ''
-      argparse -N 2 'r/revisions=' -- $argv; or exit $status
+  jj = lib.getExe pkgs.jujutsu;
+  jj-trailer = pkgs.writeFishScript "jj-trailer" ''
+    argparse -N 2 'r/revisions=' -- $argv; or exit $status
 
-      set -l rev $_flag_revisions; and if test -z $rev; set rev @; end
-      set -l key $argv[1]
-      set -l vals $argv[2..]
+    set -l rev $_flag_revisions; and if test -z $rev; set rev @; end
+    set -l key $argv[1]
+    set -l vals $argv[2..]
 
-      set -l trailers
+    set -l trailers
 
-      for i in (seq (count $vals))
-        set trailers[$i] "$key: $vals[$i]"
-      end
+    for i in (seq (count $vals))
+      set trailers[$i] "$key: $vals[$i]"
+    end
 
-      for commit in (${jj} log --no-graph -r $rev -T 'commit_id ++ "\n"')
-        set -l prev (${jj} log --no-graph -r $commit -T description | string collect)
-        ${jj} desc $commit -m "$prev" -m "$(string join \n $trailers)"
-      end
-    '';
+    for commit in (${jj} log --no-graph -r $rev -T 'commit_id ++ "\n"')
+      set -l prev (${jj} log --no-graph -r $commit -T description | string collect)
+      ${jj} desc $commit -m "$prev" -m "$(string join \n $trailers)"
+    end
+  '';
 in
 {
   programs.jujutsu = {
@@ -81,19 +78,35 @@ in
         "wip()" = "null() | description(regex:\"^[A-Z]+:\")";
       };
       aliases = {
+        "adopt" =
+          let
+            jj-adopt = pkgs.writeFishScript "jj-adopt" ''
+              argparse -i 'r/revisions=' -- $argv; or exit $status
+
+              set -l rev $_flag_revisions; and if test -z $rev; set rev @; end
+
+              for commit in (${jj} log --no-graph -r "$rev ~ mine()" -T 'commit_id ++ "\n"')
+                set -l desc (${jj} log --no-graph -r $commit -T 'description ++ "\nCo-authored-by: " ++ author' | string collect)
+                ${jj} metaedit $commit --update-author -m "$desc"
+              end
+            '';
+          in
+          [
+            "util"
+            "exec"
+            "--"
+            jj-adopt
+          ];
+
         "tug" =
           let
-            jj-tug =
-              let
-                jj = lib.getExe pkgs.jujutsu;
-              in
-              pkgs.writeFishScript "jj-tug" ''
-                argparse -i 'trunk' -- $argv; or exit $status
+            jj-tug = pkgs.writeFishScript "jj-tug" ''
+              argparse -i 'trunk' -- $argv; or exit $status
 
-                set -l from (set -q _flag_trunk; and echo 'trunk()'; or echo 'heads(::@ & bookmarks()) ~ trunk()')
+              set -l from (set -q _flag_trunk; and echo 'trunk()'; or echo 'heads(::@ & bookmarks()) ~ trunk()')
 
-                ${jj} bookmark move -f $from -t 'heads(::@ & mutable() ~ null())' $argv
-              '';
+              ${jj} bookmark move -f $from -t 'heads(::@ & mutable() ~ null())' $argv
+            '';
           in
           [
             "util"
@@ -140,7 +153,6 @@ in
           let
             jj-coauthor =
               let
-                jj = lib.getExe pkgs.jujutsu;
                 fzf = lib.getExe pkgs.fzf;
                 git = lib.getExe pkgs.git;
                 sd = lib.getExe pkgs.sd;
