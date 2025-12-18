@@ -55,10 +55,6 @@ in
           "-r"
           "here()"
         ];
-        # Until there's a programs.jujutsu.delta.enable option:
-        #   https://github.com/nix-community/home-manager/issues/4887
-        pager = lib.getExe pkgs.delta;
-        diff.formatter = ":git";
       };
       template-aliases = {
         "format_timestamp(timestamp)" = "timestamp.ago()";
@@ -289,6 +285,11 @@ in
         };
       };
     };
+  };
+
+  programs.delta = {
+    enable = true;
+    enableJujutsuIntegration = true;
   };
 
   programs.git = {
