@@ -1,13 +1,9 @@
-# Ghostty's installation is managed outside of Nix.
-
-{ pkgs, lib, ... }:
+{ lib, ... }:
 
 {
   programs.ghostty = {
     enable = true;
-    package = pkgs.noop;
-    # https://github.com/nix-community/home-manager/pull/6235#issuecomment-2567896192
-    installBatSyntax = false;
+    package = null;
     settings = {
       background-blur-radius = 20;
       background-opacity = 0.92;

@@ -1,5 +1,3 @@
-# Zed's installation is managed outside of Nix.
-
 { lib, pkgs, ... }:
 
 {
@@ -10,7 +8,7 @@
 
   programs.zed-editor = {
     enable = true;
-    package = pkgs.noop;
+    package = null;
     extensions = [
       "biome"
       "dockerfile"
