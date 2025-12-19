@@ -178,8 +178,11 @@ in
     let
       subcmd = expansion: {
         inherit expansion;
-        position = "anywhere";
         command = "jj";
+        # Ideally these'd all only expand as immediate subcommands, not
+        # anywhere; they can conflict with change ID prefixes. As a workaround
+        # such prefixes can be wrapped in quotes.
+        position = "anywhere";
       };
     in
     {
