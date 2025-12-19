@@ -32,10 +32,6 @@ in
       if not set -q VISUAL; set -x VISUAL hx; end
     '';
 
-    shellAbbrs = {
-      cat = "bat";
-    };
-
     functions = {
       mkcd = "mkdir -p $argv; cd $argv;";
       mktouch = "mkdir -p (dirname $argv); touch $argv;";
