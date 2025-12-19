@@ -174,27 +174,43 @@ in
     };
   };
 
-  programs.fish.shellAbbrs =
+  programs.fish =
     let
-      subcmd = expansion: {
-        inherit expansion;
-        command = "jj";
-        # Ideally these'd all only expand as immediate subcommands, not
-        # anywhere; they can conflict with change ID prefixes. As a workaround
-        # such prefixes can be wrapped in quotes.
-        position = "anywhere";
-      };
+      subcmds_fn = "_jj_subcmds";
     in
     {
-      nn = "jj";
-      nnui = "jjui";
+      # Improved subcmd matching behaviour than a plain abbreviation, see:
+      #   https://github.com/fish-shell/fish-shell/issues/11944#issuecomment-3420024197
+      functions.${subcmds_fn} = ''
+        set -l subcmd (string match --groups-only --regex '^jj\s+(\S+)\b' (commandline))
+        switch $subcmd
+          case ab
+            echo abandon
+          case anon
+            echo log -r "'anon()'"
+          case ft
+            echo git fetch
+          case ps
+            echo git push
+          case rbt
+            echo rebase -d "'trunk()'"
+          case sq
+            echo squash
+          case '*'
+            return 1
+        end
+      '';
 
-      ab = subcmd "abandon";
-      anon = subcmd "log -r 'anon()'";
-      ft = subcmd "git fetch";
-      ps = subcmd "git push";
-      rbt = subcmd "rebase -d 'trunk()'";
-      sq = subcmd "squash";
+      shellAbbrs = {
+        jj_subcmds = {
+          command = "jj";
+          function = subcmds_fn;
+          regex = "\\S+";
+        };
+
+        nn = "jj";
+        nnui = "jjui";
+      };
     };
 
   programs.jjui = {
