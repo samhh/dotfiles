@@ -311,12 +311,7 @@ in
       init.defaultBranch = "trunk";
     };
 
-    ignores = [
-      ".DS_Store"
-
-      # npm
-      ".npmrc"
-    ];
+    ignores = [ ".DS_Store" ];
   };
 
   home.packages = with pkgs; [
