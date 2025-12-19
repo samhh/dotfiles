@@ -18,7 +18,6 @@
       "just"
       "nix"
       "nu"
-      "purescript"
       "terraform"
       "toml"
       "tsgo"

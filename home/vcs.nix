@@ -316,10 +316,6 @@ in
 
       # npm
       ".npmrc"
-
-      # PureScript
-      ".psc-ide-port"
-      ".psci_modules/"
     ];
   };
 
