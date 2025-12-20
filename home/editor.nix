@@ -11,6 +11,7 @@
     package = null;
     extensions = [
       "biome"
+      "comment"
       "dockerfile"
       "haskell"
       "html"
