@@ -38,6 +38,7 @@
       sticky_scroll.enabled = true;
       colorize_brackets = true;
       terminal.env.VISUAL = "zed --wait";
+      helix_mode = true;
 
       languages = {
         Nix.language_servers = [
