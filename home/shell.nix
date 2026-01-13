@@ -34,8 +34,8 @@ in
 
     functions = {
       mkcd = "mkdir -p $argv; cd $argv;";
+      mkscript = "for f in $argv; printf '#!/bin/sh\\n\\n' > $f; end; chmod +x $argv; cmd=(string split -- ' ' $VISUAL) $cmd $argv & disown";
       mktouch = "mkdir -p (dirname $argv); touch $argv;";
-      touchx = "touch $argv; chmod +x $argv";
     };
   };
 
