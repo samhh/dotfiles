@@ -65,12 +65,17 @@ in
       revset-aliases = {
         "anon()" = "stack(mine() ~ ::remote_bookmarks(), 1)";
         "here()" = "stack(@, 1)";
+        # https://github.com/jj-vcs/jj/discussions/7588#discussioncomment-14832469
+        "mega()" = "heads(merges() & ::@)";
         "null()" = "empty() & description(exact:'')";
         "open()" = "stack(mine() | @, 1)";
         "ready()" = "open() ~ stack(wip(), 1)";
         "stack()" = "stack(@)";
         "stack(x)" = "stack(x, 2)";
         "stack(x, n)" = "ancestors(reachable(x, mutable()), n)";
+        "symdiff(x, y)" = "(x ~ y) | (y ~ x)";
+        "toggle(x)" = "toggle(mega(), x)";
+        "toggle(x, y)" = "symdiff(parents(x), y)";
         "wip()" = "null() | description(regex:\"^[A-Z]+:\")";
       };
       aliases = {
@@ -192,10 +197,19 @@ in
             echo git fetch
           case ps
             echo git push
-          case rbt
+          case remega rem
+            # It's worth running simplify-parents from time to time. See also:
+            #   https://github.com/jj-vcs/jj/issues/7711
+            #   https://github.com/jj-vcs/jj/issues/6612
+            echo rebase -s "'mega()'" -d "'mega()'" -d "'trunk()'"
+          case retrunk ret
             echo rebase -d "'trunk()'"
+          case sandwich sw
+            echo squash -B "'mega()'" -A "'trunk()'"
           case sq
             echo squash
+          case toggle
+            echo rebase -s "'mega()'" -d "'toggle()'"
           case '*'
             return 1
         end
