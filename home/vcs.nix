@@ -201,7 +201,7 @@ in
             # It's worth running simplify-parents from time to time. See also:
             #   https://github.com/jj-vcs/jj/issues/7711
             #   https://github.com/jj-vcs/jj/issues/6612
-            echo rebase -s "'mega()'" -d "'mega()'" -d "'trunk()'"
+            echo rebase -s "'mega()'" -d "'mega()-'" -d "'trunk()'"
           case retrunk ret
             echo rebase -d "'trunk()'"
           case sandwich sw
