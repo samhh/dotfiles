@@ -103,6 +103,7 @@ in
 
   home.packages = with pkgs; [
     ast-grep
+    curl
     fd
     nerd-fonts.fira-code
     gdu
