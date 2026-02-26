@@ -63,7 +63,7 @@ in
       #   https://gist.github.com/thoughtpolice/8f2fd36ae17cd11b8e7bd93a70e31ad6
       #   https://andre.arko.net/2025/09/28/stupid-jj-tricks/#revsets
       revset-aliases = {
-        "anon()" = "stack(mine() ~ ::remote_bookmarks(), 1)";
+        "anon()" = "stack(mine() ~ stack(mega(), 1) ~ ::remote_bookmarks(), 1)";
         "here()" = "stack(@, 1)";
         # https://github.com/jj-vcs/jj/discussions/7588#discussioncomment-14832469
         "mega()" = "heads(merges() & ::@)";
