@@ -76,7 +76,7 @@ in
         "symdiff(x, y)" = "(x ~ y) | (y ~ x)";
         "toggle(x)" = "toggle(mega(), x)";
         "toggle(x, y)" = "symdiff(parents(x), y)";
-        "wip()" = "null() | description(regex:\"^[A-Z]+:\")";
+        "wip()" = "mine() & (null() | description(regex:\"^[A-Z]+:\") ~ ::trunk())";
       };
       aliases = {
         "adopt" =
