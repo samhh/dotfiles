@@ -350,7 +350,7 @@ in
   home.packages =
     with pkgs;
     let
-      but = pkgs.writeShellScriptBin "but" ''
+      but = writeShellScriptBin "but" ''
         exec /Applications/GitButler.app/Contents/MacOS/gitbutler-tauri "$@"
       '';
     in
