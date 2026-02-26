@@ -64,7 +64,7 @@ in
       #   https://andre.arko.net/2025/09/28/stupid-jj-tricks/#revsets
       revset-aliases = {
         "anon()" = "stack(mine() ~ stack(mega(), 1) ~ ::remote_bookmarks(), 1)";
-        "here()" = "stack(@, 1)";
+        "here()" = "(trunk()..@)::";
         # https://github.com/jj-vcs/jj/discussions/7588#discussioncomment-14832469
         "mega()" = "heads(merges() & ::@)";
         "null()" = "empty() & description(exact:'')";
