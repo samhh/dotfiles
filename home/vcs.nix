@@ -102,11 +102,16 @@ in
         "tug" =
           let
             jj-tug = pkgs.writeFishScript "jj-tug" ''
-              argparse -i 'trunk' -- $argv; or exit $status
+              argparse -i 't/trunk' 'm/mega=' -- $argv; or exit $status
 
-              set -l from (set -q _flag_trunk; and echo 'trunk()'; or echo 'heads(::@ & bookmarks()) ~ trunk()')
-
-              ${jj} bookmark move -f $from -t 'heads(::@ & mutable() ~ null())' $argv
+              if set -q _flag_trunk
+                ${jj} bookmark move -f 'trunk()' -t 'heads(::@ & mutable() ~ null())' $argv
+              else if set -q _flag_mega
+                set -l bm $_flag_mega
+                ${jj} bookmark move -f $bm -t "heads($bm::mega()-)" $argv
+              else
+                ${jj} bookmark move -f 'heads(::@ & bookmarks()) ~ trunk()' -t 'heads(::@ & mutable() ~ null())' $argv
+              end
             '';
           in
           [
