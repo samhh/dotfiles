@@ -236,7 +236,7 @@ in
             echo rebase -s "'mega()'" -d "'mega()-'" -d "'trunk()'"
           case retrunk ret
             echo rebase -d "'trunk()'"
-          case sandwich sw
+          case sub
             echo squash -B "'mega()'" -A "'trunk()'"
           case sq
             echo squash
