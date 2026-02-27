@@ -16,7 +16,7 @@ let
   jj-trailer = pkgs.writeFishScript "jj-trailer" ''
     argparse -N 2 'r/revisions=' -- $argv; or exit $status
 
-    set -l rev $_flag_revisions; and if test -z $rev; set rev @; end
+    set -l rev $_flag_revisions
     set -l key $argv[1]
     set -l vals $argv[2..]
 
@@ -84,7 +84,7 @@ in
             jj-adopt = pkgs.writeFishScript "jj-adopt" ''
               argparse -i 'r/revisions=' -- $argv; or exit $status
 
-              set -l rev $_flag_revisions; and if test -z $rev; set rev @; end
+              set -l rev $_flag_revisions
 
               for commit in (${jj} log --no-graph -r "$rev ~ mine()" -T 'commit_id ++ "\n"')
                 set -l desc (${jj} log --no-graph -r $commit -T 'description ++ "\nCo-authored-by: " ++ author' | string collect)
@@ -161,7 +161,7 @@ in
               pkgs.writeFishScript "jj-coauthor" ''
                 argparse -i 'r/revisions=' -- $argv; or exit $status
 
-                set -l rev $_flag_revisions; and if test -z $rev; set rev @; end
+                set -l rev $_flag_revisions
                 set -l fzf_args $argv
 
                 set -l coauthors (${git} shortlog -sec --since=1.month | ${sd} '^\s*[0-9]+\s*(.+)$' '$1' | ${fzf} -m $fzf_args)
