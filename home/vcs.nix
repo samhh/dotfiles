@@ -242,6 +242,8 @@ in
             echo squash
           case toggle
             echo rebase -s "'mega()'" -d "'toggle()'"
+          case top
+            echo squash -B "'mega()'" -A "'latest(trunk()..mega()-)'"
           case '*'
             return 1
         end
