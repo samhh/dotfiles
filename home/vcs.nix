@@ -65,6 +65,9 @@ in
       revset-aliases = {
         "anon()" = "stack(mine() ~ stack(mega(), 1) ~ ::remote_bookmarks(), 1)";
         "here()" = "(trunk()..@)::";
+        # trunk() points to remote which isn't always what we want when local diverges. See also:
+        #   https://github.com/jj-vcs/jj/issues/7990
+        "local_trunk()" = "bookmarks(glob:'{trunk,master,main}')";
         # https://github.com/jj-vcs/jj/discussions/7588#discussioncomment-14832469
         "mega()" = "heads(merges() & ::@)";
         "null()" = "empty() & description(exact:'')";
@@ -105,7 +108,7 @@ in
               argparse -i 't/trunk' 'm/mega=' -- $argv; or exit $status
 
               if set -q _flag_trunk
-                ${jj} bookmark move -f 'trunk()' -t 'heads(::@ & mutable() ~ null())' $argv
+                ${jj} bookmark move -f 'local_trunk()' -t 'heads(::@ & mutable() ~ null())' $argv
               else if set -q _flag_mega
                 set -l bm $_flag_mega
                 ${jj} bookmark move -f $bm -t "heads($bm::mega()-)" $argv
