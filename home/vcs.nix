@@ -230,6 +230,8 @@ in
             echo log -r "'anon()'"
           case ft
             echo git fetch
+          case merge
+            echo "new --no-edit -m 'Merge trunk' -B 'mega()' -A 'trunk()' -A"
           case ps
             echo git push
           case remega rem
