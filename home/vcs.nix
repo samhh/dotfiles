@@ -235,10 +235,7 @@ in
           case ps
             echo git push
           case remega rem
-            # In the future this can be one command:
-            #   https://github.com/jj-vcs/jj/issues/7711
-            #   https://github.com/jj-vcs/jj/issues/6612
-            echo "rebase -s 'mega()' -d 'mega()-' -d 'trunk()' && jj simplify-parents -r 'mega()'"
+            echo "rebase -s 'mega()' -d 'mega()-' -d 'trunk()' --simplify-parents"
           case retrunk ret
             echo rebase -d "'trunk()'"
           case sub
