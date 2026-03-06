@@ -37,6 +37,21 @@
       };
       theme.light = lib.mkForce "Catppuccin Latte - No Italics";
     };
+    userKeymaps = [
+      {
+        context = "Terminal";
+        bindings = {
+          "shift-up" = [
+            "terminal::SendText"
+            "\u001b[1;2A"
+          ];
+          "shift-down" = [
+            "terminal::SendText"
+            "\u001b[1;2B"
+          ];
+        };
+      }
+    ];
   };
 
   xdg.configFile."zed/snippets/typescript.json".source = ./snippets/typescript.json;
