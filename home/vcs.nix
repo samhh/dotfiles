@@ -7,7 +7,8 @@
 let
   name = "Sam A. Horvath-Hunt";
   email = "hello@samhh.com";
-  pub-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICF3PGCLbd7QTcz4cSYONosH7tyJFsncXDTA/qRBo7/A";
+  pub-key = "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFNMGuWpQIu3YXZGSM1dF0CYLlk/JL+xwwF+Sh/f5PX6J1wmebo5rAkYUG/FyUKnUP4MwoQz+u55JaX95zI1AX4=";
+  pub-key-path = "~/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/PublicKeys/3a93c2e2caf842f53c640d8d123a1858.pub";
   allowed-signers = builtins.toFile "allowed-signers" ''
     ${email} ${pub-key}
   '';
@@ -40,22 +41,20 @@ in
         inherit name email;
       };
       signing = {
-        behavior = "own";
+        behavior = "drop";
         backend = "ssh";
         backends.ssh = {
           inherit allowed-signers;
         };
-        key = pub-key;
+        key = pub-key-path;
       };
+      git.sign-on-push = true;
       templates.git_push_bookmark = "\"samhh/\" ++ change_id.shortest(3)";
-      ui = {
-        show-cryptographic-signatures = true;
-        default-command = [
-          "log"
-          "-r"
-          "here()"
-        ];
-      };
+      ui.default-command = [
+        "log"
+        "-r"
+        "here()"
+      ];
       template-aliases = {
         "format_timestamp(timestamp)" = "timestamp.ago()";
       };
@@ -366,7 +365,7 @@ in
     settings = {
       user = {
         inherit name email;
-        signingkey = pub-key;
+        signingkey = pub-key-path;
       };
       gpg = {
         format = "ssh";

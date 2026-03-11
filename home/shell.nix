@@ -27,8 +27,6 @@ in
 
       source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
 
-      ssh-add 2> /dev/null &
-
       if not set -q VISUAL; set -x VISUAL hx; end
     '';
 
