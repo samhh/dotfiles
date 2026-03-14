@@ -68,21 +68,8 @@
       codex = writeShellScriptBin "codex" ''
         exec /Applications/Codex.app/Contents/Resources/codex "$@"
       '';
-      skills = writeShellApplication {
-        name = "skills";
-
-        runtimeInputs = [
-          nodejs
-          pnpm
-        ];
-
-        text = ''
-          exec pnpx skills "$@"
-        '';
-      };
     in
     [
       codex
-      skills
     ];
 }

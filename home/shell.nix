@@ -105,6 +105,7 @@ in
     fd
     nerd-fonts.fira-code
     gdu
+    nodejs
     ripgrep
     sd
     tre-command
