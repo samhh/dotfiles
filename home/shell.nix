@@ -99,6 +99,10 @@ in
     ".envrc"
   ];
 
+  home.sessionPath = [
+    "$HOME/.local/bin"
+  ];
+
   home.packages = with pkgs; [
     ast-grep
     curl

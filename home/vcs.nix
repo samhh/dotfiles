@@ -382,20 +382,12 @@ in
     ignores = [ ".DS_Store" ];
   };
 
-  home.packages =
-    with pkgs;
-    let
-      but = writeShellScriptBin "but" ''
-        exec /Applications/GitButler.app/Contents/MacOS/gitbutler-tauri "$@"
-      '';
-    in
-    [
-      but
-      git-who
-      # For verifying others' commit signatures.
-      gnupg
-      jjui
-      mergiraf
-      tig
-    ];
+  home.packages = with pkgs; [
+    git-who
+    # For verifying others' commit signatures.
+    gnupg
+    jjui
+    mergiraf
+    tig
+  ];
 }
