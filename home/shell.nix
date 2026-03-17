@@ -115,8 +115,5 @@ in
     ripgrep
     sd
     tre-command
-
-    # Unsplash
-    okta-aws-cli
   ];
 }
