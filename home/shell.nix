@@ -111,6 +111,7 @@ in
     fd
     nerd-fonts.fira-code
     gdu
+    gh
     nodejs
     ripgrep
     sd
