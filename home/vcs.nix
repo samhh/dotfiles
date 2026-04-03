@@ -361,13 +361,15 @@ in
 
   programs.git = {
     enable = true;
+    signing = {
+      format = "ssh";
+      key = pub-key;
+    };
     settings = {
       user = {
         inherit name email;
-        signingkey = pub-key;
       };
       gpg = {
-        format = "ssh";
         ssh.allowedSignersFile = allowed-signers;
       };
       tag.gpgSign = true;
