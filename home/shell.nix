@@ -101,8 +101,12 @@ in
     ".envrc"
   ];
 
+  # Support npm i -g.
+  programs.npm.enable = true;
+
   home.sessionPath = [
     "$HOME/.local/bin"
+    "$HOME/.npm/bin"
   ];
 
   home.packages = with pkgs; [
