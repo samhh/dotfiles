@@ -29,7 +29,7 @@
         (_final: _prev: self.packages.${system})
         (
           _final: prev:
-          import ./packages/builders.nix {
+          import ./lib/builders.nix {
             inherit (prev) lib writeTextFile fish;
           }
         )
