@@ -387,7 +387,6 @@ in
     git-who
     # For verifying others' commit signatures.
     gnupg
-    jjui
     mergiraf
     tig
   ];
