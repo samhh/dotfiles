@@ -16,7 +16,6 @@
     package = null;
     extensions = [
       "comment"
-      "mcp-server-context7"
     ];
     userSettings = {
       edit_predictions.mode = "subtle";
