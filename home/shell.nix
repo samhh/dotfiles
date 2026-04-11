@@ -100,8 +100,15 @@ in
     ".envrc"
   ];
 
-  # Support npm i -g.
-  programs.npm.enable = true;
+  programs.npm = {
+    enable = true;
+    settings = {
+      # Support npm i -g.
+      prefix = "\${HOME}/.npm";
+      # Suppress funding message.
+      fund = false;
+    };
+  };
 
   home.sessionPath = [
     "$HOME/.local/bin"
