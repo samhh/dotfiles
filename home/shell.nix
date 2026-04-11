@@ -116,6 +116,7 @@ in
   ];
 
   home.packages = with pkgs; [
+    amoxide
     ast-grep
     curl
     fd
