@@ -25,9 +25,9 @@ in
     shellInit = ''
       set -g fish_greeting
 
-      source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
-
       ssh-add 2> /dev/null &
+      source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+      am init fish | source
 
       if not set -q VISUAL; set -x VISUAL hx; end
     '';
@@ -89,6 +89,31 @@ in
   };
 
   programs.zoxide.enable = true;
+
+  xdg.configFile."amoxide/config.toml".source =
+    (pkgs.formats.toml { }).generate "amoxide/config.toml"
+      {
+        shell.fish.use_abbr = true;
+
+        aliases = {
+          nn = "jj";
+          nnui = "jjui";
+        };
+
+        subcommands = {
+          "jj:ab" = [ "abandon" ];
+          "jj:anon" = [ "log -r 'anon()'" ];
+          "jj:ft" = [ "git fetch" ];
+          "jj:merge" = [ "new --no-edit -m 'Merge trunk' -B 'mega()' -A 'trunk()' -A" ];
+          "jj:ps" = [ "git push" ];
+          "jj:remega" = [ "rebase -s 'mega()' -d 'mega()-' -d 'trunk()' --simplify-parents" ];
+          "jj:retrunk" = [ "rebase -d 'trunk()'" ];
+          "jj:sq" = [ "squash" ];
+          "jj:sub" = [ "rebase -B 'mega()' -A 'trunk()'" ];
+          "jj:toggle" = [ "rebase -s 'mega()' -d 'toggle({{1}})'" ];
+          "jj:top" = [ "squash -B 'mega()' -A 'latest(trunk()..mega()-)'" ];
+        };
+      };
 
   programs.bat.enable = true;
 

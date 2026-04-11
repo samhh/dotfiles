@@ -212,55 +212,6 @@ in
     };
   };
 
-  programs.fish =
-    let
-      subcmds_fn = "_jj_subcmds";
-    in
-    {
-      # Improved subcmd matching behaviour than a plain abbreviation, see:
-      #   https://github.com/fish-shell/fish-shell/issues/11944#issuecomment-3420024197
-      functions.${subcmds_fn} = ''
-        set -l subcmd (string match --groups-only --regex '^jj\s+(\S+)\b' (commandline))
-        switch $subcmd
-          case ab
-            echo abandon
-          case anon
-            echo log -r "'anon()'"
-          case ft
-            echo git fetch
-          case merge
-            echo "new --no-edit -m 'Merge trunk' -B 'mega()' -A 'trunk()' -A"
-          case ps
-            echo git push
-          case remega rem
-            echo "rebase -s 'mega()' -d 'mega()-' -d 'trunk()' --simplify-parents"
-          case retrunk ret
-            echo rebase -d "'trunk()'"
-          case sub
-            echo squash -B "'mega()'" -A "'trunk()'"
-          case sq
-            echo squash
-          case toggle
-            echo rebase -s "'mega()'" -d "'toggle()'"
-          case top
-            echo squash -B "'mega()'" -A "'latest(trunk()..mega()-)'"
-          case '*'
-            return 1
-        end
-      '';
-
-      shellAbbrs = {
-        jj_subcmds = {
-          command = "jj";
-          function = subcmds_fn;
-          regex = "\\S+";
-        };
-
-        nn = "jj";
-        nnui = "jjui";
-      };
-    };
-
   programs.jjui.enable = true;
 
   programs.delta = {
