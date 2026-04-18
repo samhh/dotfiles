@@ -18,11 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: cachix/install-nix-action@v31
-      # `nix fmt` doesn't have a check/dry run option, so we'll run it against
-      # files in place and test if there are any diffs with Git.
-      - run: |
-          nix fmt .
-          git diff-index --exit-code HEAD
+      - run: nix fmt -- --ci
 
   lint:
     name: Lint
