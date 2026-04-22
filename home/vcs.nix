@@ -7,7 +7,7 @@
 let
   name = "Sam A. Horvath-Hunt";
   email = "hello@samhh.com";
-  pub-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICF3PGCLbd7QTcz4cSYONosH7tyJFsncXDTA/qRBo7/A";
+  pub-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHrtxBybcDSLc41RPT3tmmLBXRlaqpPfUOtYF86aWlIA";
   allowed-signers = builtins.toFile "allowed-signers" ''
     ${email} ${pub-key}
   '';
