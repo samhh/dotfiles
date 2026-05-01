@@ -48,23 +48,31 @@ in
         error_symbol = "!";
       };
       format = "$character";
-      right_format = "$direnv$nix_shell$directory";
+      right_format = "$direnv$nix_shell$mise$directory";
 
       direnv = {
         disabled = false;
         format = "[$allowed]($style)";
-        style = "red";
+        style = "blue";
         allowed_msg = "";
         not_allowed_msg = "? ";
-        denied_msg = " ";
+        denied_msg = "";
       };
       nix_shell = {
         format = "[$symbol]($style)";
         symbol = " ";
       };
+      mise = {
+        disabled = false;
+        format = "[$symbol]($style)";
+        symbol = " ";
+        style = "red";
+      };
       directory.style = "purple";
     };
   };
+
+  programs.mise.enable = true;
 
   programs.direnv = {
     enable = true;
