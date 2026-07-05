@@ -65,7 +65,7 @@
     with pkgs;
     let
       codex = writeShellScriptBin "codex" ''
-        exec /Applications/Codex.app/Contents/Resources/codex "$@"
+        exec /Applications/ChatGPT.app/Contents/Resources/codex "$@"
       '';
     in
     [
