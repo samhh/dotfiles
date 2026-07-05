@@ -153,7 +153,6 @@ in
     curl
     fd
     nerd-fonts.fira-code
-    gdu
     gh
     nodejs
     ripgrep
