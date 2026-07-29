@@ -3,8 +3,10 @@
 {
   programs.ssh = {
     enable = true;
-    extraConfig = ''
-      IdentityFile ~/.ssh/id_ed25519
-    '';
+    enableDefaultConfig = false;
+
+    settings."*" = {
+      IdentityFile = "~/.ssh/id_ed25519";
+    };
   };
 }
