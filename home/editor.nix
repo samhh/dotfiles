@@ -57,6 +57,7 @@
   xdg.configFile."zed/snippets/tsx.json".source = ./snippets/typescript.json;
 
   programs.git.ignores = [
+    ".codex/"
     ".helix/"
     ".zed/"
   ];
