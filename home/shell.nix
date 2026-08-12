@@ -72,7 +72,21 @@ in
     };
   };
 
-  programs.mise.enable = true;
+  programs.mise = {
+    enable = true;
+    globalConfig.settings.idiomatic_version_file_enable_tools = [
+      "node"
+      "pnpm"
+      "rust"
+    ];
+  };
+
+  # Codex runs commands in non-interactive Zsh login shells, outside the
+  # interactive Fish shell where Home Manager activates mise. Expose mise's
+  # shims there so project-selected toolchains work without `mise exec --`.
+  home.file.".zprofile".text = ''
+    eval "$(${pkgs.mise}/bin/mise activate zsh --shims)"
+  '';
 
   programs.direnv = {
     enable = true;
