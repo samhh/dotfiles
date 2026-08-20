@@ -1,26 +1,8 @@
 { pkgs, ... }:
 
-let
-  fishCompletionSync = rec {
-    name = "fish-completion-sync";
-    src = pkgs.fetchFromGitHub {
-      owner = "pfgray";
-      repo = name;
-      rev = "ba70b6457228af520751eab48430b1b995e3e0e2";
-      sha256 = "sha256-JdOLsZZ1VFRv7zA2i/QEZ1eovOym/Wccn0SJyhiP9hI=";
-    };
-  };
-in
 {
   programs.fish = {
     enable = true;
-
-    # Nota bene the incompatibililty between nixpkgs fish plugins and
-    # home-manager:
-    #   https://github.com/nix-community/home-manager/issues/2451
-    plugins = [
-      fishCompletionSync
-    ];
 
     shellInit = ''
       set -g fish_greeting
@@ -42,72 +24,14 @@ in
     enable = true;
     settings = {
       scan_timeout = 5;
-
       character = {
         success_symbol = "λ";
         error_symbol = "!";
       };
       format = "$character";
-      right_format = "$direnv$nix_shell$mise$directory";
-
-      direnv = {
-        disabled = false;
-        format = "[$allowed]($style)";
-        style = "blue";
-        allowed_msg = "";
-        not_allowed_msg = "? ";
-        denied_msg = "";
-      };
-      nix_shell = {
-        format = "[$symbol]($style)";
-        symbol = " ";
-      };
-      mise = {
-        disabled = false;
-        format = "[$symbol]($style)";
-        symbol = " ";
-        style = "red";
-      };
+      right_format = "$directory";
       directory.style = "purple";
     };
-  };
-
-  programs.mise = {
-    enable = true;
-    globalConfig.settings.idiomatic_version_file_enable_tools = [
-      "node"
-      "pnpm"
-      "rust"
-    ];
-  };
-
-  # Codex runs commands in non-interactive Zsh login shells, outside the
-  # interactive Fish shell where Home Manager activates mise. Expose mise's
-  # shims there so project-selected toolchains work without `mise exec --`.
-  home.file.".zprofile".text = ''
-    eval "$(${pkgs.mise}/bin/mise activate zsh --shims)"
-  '';
-
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-    config.global = {
-      hide_env_diff = true;
-      warn_timeout = 0;
-    };
-    # Avoid cluttering project directories which often conflicts with tooling,
-    # as per:
-    #   https://github.com/direnv/direnv/wiki/Customizing-cache-location
-    stdlib = ''
-      : ''${XDG_CACHE_HOME:=$HOME/.cache}
-      declare -A direnv_layout_dirs
-      direnv_layout_dir() {
-      	echo "''${direnv_layout_dirs[$PWD]:=$(
-      		echo -n "$XDG_CACHE_HOME"/direnv/layouts/
-      		echo -n "$PWD" | ${pkgs.coreutils}/bin/sha1sum | cut -d ' ' -f 1
-      	)}"
-      }
-    '';
   };
 
   programs.zoxide.enable = true;
@@ -144,7 +68,6 @@ in
 
   programs.git.ignores = [
     "result"
-    ".envrc"
   ];
 
   programs.npm = {
@@ -172,5 +95,9 @@ in
     ripgrep
     sd
     tre-command
+
+    # Per-language x project runtime managers.
+    pnpm
+    rustup
   ];
 }
