@@ -50,14 +50,9 @@
           "jj:ab" = [ "abandon" ];
           "jj:anon" = [ "log -r 'anon()'" ];
           "jj:ft" = [ "git fetch" ];
-          "jj:merge" = [ "new --no-edit -m 'Merge trunk' -B 'mega()' -A 'trunk()' -A" ];
           "jj:ps" = [ "git push" ];
-          "jj:remega" = [ "rebase -s 'mega()' -d 'mega()-' -d 'trunk()' --simplify-parents" ];
           "jj:retrunk" = [ "rebase -d 'trunk()'" ];
           "jj:sq" = [ "squash" ];
-          "jj:sub" = [ "rebase -B 'mega()' -A 'trunk()'" ];
-          "jj:toggle" = [ "rebase -s 'mega()' -d 'toggle({{1}})'" ];
-          "jj:top" = [ "squash -B 'mega()' -A 'latest(trunk()..mega()-)'" ];
         };
       };
 

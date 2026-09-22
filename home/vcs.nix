@@ -61,13 +61,11 @@ in
       #   https://gist.github.com/thoughtpolice/8f2fd36ae17cd11b8e7bd93a70e31ad6
       #   https://andre.arko.net/2025/09/28/stupid-jj-tricks/#revsets
       revset-aliases = {
-        "anon()" = "stack(mine() ~ stack(mega(), 1) ~ ::remote_bookmarks(), 1)";
+        "anon()" = "stack(mine() ~ ::remote_bookmarks(), 1)";
         "here()" = "(trunk()..@)::";
         # trunk() points to remote which isn't always what we want when local diverges. See also:
         #   https://github.com/jj-vcs/jj/issues/7990
         "local_trunk()" = "bookmarks(glob:'{trunk,master,main}')";
-        # https://github.com/jj-vcs/jj/discussions/7588#discussioncomment-14832469
-        "mega()" = "heads(merges() & ::@)";
         "null()" = "empty() & description(exact:'')";
         "open()" = "stack(mine() | @, 1)";
         "ready()" = "open() ~ stack(wip(), 1)";
@@ -75,8 +73,6 @@ in
         "stack(x)" = "stack(x, 2)";
         "stack(x, n)" = "ancestors(reachable(x, mutable()), n)";
         "symdiff(x, y)" = "(x ~ y) | (y ~ x)";
-        "toggle(x)" = "toggle(mega(), x)";
-        "toggle(x, y)" = "symdiff(parents(x), y)";
         "wip()" = "mine() & (null() | description(regex:\"^[A-Z]+:\") ~ ::trunk())";
       };
       aliases = {
@@ -103,13 +99,10 @@ in
         "tug" =
           let
             jj-tug = pkgs.writeFishScript "jj-tug" ''
-              argparse -i 't/trunk' 'm/mega=' -- $argv; or exit $status
+              argparse -i 't/trunk' -- $argv; or exit $status
 
               if set -q _flag_trunk
                 ${jj} bookmark move -f 'local_trunk()' -t 'heads(::@ & mutable() ~ null())' $argv
-              else if set -q _flag_mega
-                set -l bm $_flag_mega
-                ${jj} bookmark move -f $bm -t "heads($bm::mega()-)" $argv
               else
                 ${jj} bookmark move -f 'heads(::@ & bookmarks()) ~ trunk()' -t 'heads(::@ & mutable() ~ null())' $argv
               end
