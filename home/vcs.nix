@@ -73,6 +73,27 @@ in
         "stack(x, n)" = "ancestors(reachable(x, mutable()), n)";
       };
       aliases = {
+        ab = [ "abandon" ];
+        anon = [
+          "log"
+          "-r"
+          "anon()"
+        ];
+        ft = [
+          "git"
+          "fetch"
+        ];
+        ps = [
+          "git"
+          "push"
+        ];
+        retrunk = [
+          "rebase"
+          "-d"
+          "trunk()"
+        ];
+        sq = [ "squash" ];
+
         "tug" =
           let
             jj-tug = pkgs.writeFishScript "jj-tug" ''

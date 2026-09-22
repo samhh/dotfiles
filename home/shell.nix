@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   programs.fish = {
@@ -9,10 +9,14 @@
 
       ssh-add 2> /dev/null &
       source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
-      am init fish | source
 
       if not set -q VISUAL; set -x VISUAL hx; end
     '';
+
+    shellAbbrs = {
+      nn = "jj";
+      nnui = "jjui";
+    };
 
     functions = {
       mkcd = "mkdir -p $argv; cd $argv;";
@@ -35,26 +39,6 @@
   };
 
   programs.zoxide.enable = true;
-
-  xdg.configFile."amoxide/config.toml".source =
-    (pkgs.formats.toml { }).generate "amoxide/config.toml"
-      {
-        shell.fish.use_abbr = true;
-
-        aliases = {
-          nn = "jj";
-          nnui = "jjui";
-        };
-
-        subcommands = {
-          "jj:ab" = [ "abandon" ];
-          "jj:anon" = [ "log -r 'anon()'" ];
-          "jj:ft" = [ "git fetch" ];
-          "jj:ps" = [ "git push" ];
-          "jj:retrunk" = [ "rebase -d 'trunk()'" ];
-          "jj:sq" = [ "squash" ];
-        };
-      };
 
   programs.bat.enable = true;
 

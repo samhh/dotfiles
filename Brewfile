@@ -1,4 +1,3 @@
-tap "sassman/tap"
 # Browser automation CLI for AI agents
 brew "agent-browser"
 # Container runtimes on MacOS (and Linux) with minimal setup
@@ -43,8 +42,4 @@ brew "skills"
 brew "tig"
 # Lightweight, POSIX-compliant regular expression (regex) library
 brew "tre"
-# Shell alias manager — manage aliases globally via profiles or per-project
-brew "sassman/tap/amoxide", trusted: true
-# Interactive TUI for amoxide — manage aliases and profiles visually
-brew "sassman/tap/amoxide-tui", trusted: true
 cask "font-fira-code-nerd-font"
