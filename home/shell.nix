@@ -65,34 +65,10 @@
     "result"
   ];
 
-  programs.npm = {
-    enable = true;
-    settings = {
-      # Support npm i -g.
-      prefix = "\${HOME}/.npm";
-      # Suppress funding message.
-      fund = false;
-    };
-  };
-
   home.sessionPath = [
+    # Rustup
+    "/opt/homebrew/opt/rustup/bin"
+    # GitButler
     "$HOME/.local/bin"
-    "$HOME/.npm/bin"
-  ];
-
-  home.packages = with pkgs; [
-    amoxide
-    curl
-    fd
-    nerd-fonts.fira-code
-    gh
-    nodejs
-    ripgrep
-    sd
-    tre-command
-
-    # Per-language x project runtime managers.
-    pnpm
-    rustup
   ];
 }

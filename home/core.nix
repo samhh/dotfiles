@@ -14,5 +14,6 @@
   programs.fish.shellAbbrs = {
     sh = "nix shell nixpkgs#";
     up = "home-manager switch --flake ~/Dev/dotfiles/";
+    down = "brew bundle dump -f --file ~/Dev/dotfiles/Brewfile";
   };
 }

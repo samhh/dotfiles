@@ -1,6 +1,6 @@
 # dotfiles
 
-Configuring the universe with [Nix](https://nixos.org).
+Configuring the universe.
 
 ## Usage
 
@@ -10,12 +10,10 @@ Build the Home Manager config for macOS.
 $ home-manager switch --flake path/to/repo
 ```
 
-### Packages
-
-Packages not in nixpkgs can be defined in `:/packages/`. These are available as flake outputs.
+Many packages are installed with Homebrew instead as for my needs the UX is better. A Brewfile is periodically dumped for unversioned redundancy. Homebrew itself is installed manually, like Nix.
 
 ```console
-$ nix run 'path/to/repo#foo' -- --bar
+$ brew bundle dump -f --file path/to/repo/Brewfile
 ```
 
 ## History

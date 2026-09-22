@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -12,7 +13,6 @@ let
     ${email} ${pub-key}
   '';
 
-  jj = lib.getExe pkgs.jujutsu;
   jj-trailer = pkgs.writeFishScript "jj-trailer" ''
     argparse -N 2 'r/revisions=' -- $argv; or exit $status
 
@@ -26,15 +26,16 @@ let
       set trailers[$i] "$key: $vals[$i]"
     end
 
-    for commit in (${jj} log --no-graph -r $rev -T 'commit_id ++ "\n"')
-      set -l prev (${jj} log --no-graph -r $commit -T description | string collect)
-      ${jj} desc $commit -m "$prev" -m "$(string join \n $trailers)"
+    for commit in (jj log --no-graph -r $rev -T 'commit_id ++ "\n"')
+      set -l prev (jj log --no-graph -r $commit -T description | string collect)
+      jj desc $commit -m "$prev" -m "$(string join \n $trailers)"
     end
   '';
 in
 {
   programs.jujutsu = {
-    enable = true;
+    enable = false;
+    package = null;
     settings = {
       user = {
         inherit name email;
@@ -78,9 +79,9 @@ in
               argparse -i 't/trunk' -- $argv; or exit $status
 
               if set -q _flag_trunk
-                ${jj} bookmark move -f 'local_trunk()' -t 'heads(::@ & mutable() ~ null())' $argv
+                jj bookmark move -f 'local_trunk()' -t 'heads(::@ & mutable() ~ null())' $argv
               else
-                ${jj} bookmark move -f 'heads(::@ & bookmarks()) ~ trunk()' -t 'heads(::@ & mutable() ~ null())' $argv
+                jj bookmark move -f 'heads(::@ & bookmarks()) ~ trunk()' -t 'heads(::@ & mutable() ~ null())' $argv
               end
             '';
           in
@@ -124,7 +125,10 @@ in
     };
   };
 
-  programs.jjui.enable = true;
+  # Workaround for programs.jujutsu.package being broken when null.
+  xdg.configFile."jj/config.toml".source =
+    (pkgs.formats.toml { }).generate "jujutsu-config"
+      config.programs.jujutsu.settings;
 
   programs.delta = {
     enable = true;
@@ -133,6 +137,7 @@ in
 
   programs.git = {
     enable = true;
+    package = null;
     signing = {
       format = "ssh";
       key = pub-key;
@@ -151,12 +156,4 @@ in
 
     ignores = [ ".DS_Store" ];
   };
-
-  home.packages = with pkgs; [
-    git-who
-    # For verifying others' commit signatures.
-    gnupg
-    mergiraf
-    tig
-  ];
 }

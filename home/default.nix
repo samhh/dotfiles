@@ -9,6 +9,5 @@
     ./terminal.nix
     ./theme.nix
     ./vcs.nix
-    ./virt.nix
   ];
 }

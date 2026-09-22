@@ -26,7 +26,6 @@
       system = "aarch64-darwin";
       system-ci = "x86_64-linux";
       overlays = [
-        (_final: _prev: self.packages.${system})
         (
           _final: prev:
           import ./lib/builders.nix {
@@ -51,13 +50,9 @@
         ${system-ci}.ci = pkgs-ci.callPackage ./shell.nix { };
       };
 
-      packages.${system} = import ./packages { inherit pkgs; };
-
       formatter = {
         ${system} = pkgs.nixfmt-tree;
         ${system-ci} = pkgs-ci.nixfmt-tree;
       };
-
-      templates = import ./templates;
     };
 }
