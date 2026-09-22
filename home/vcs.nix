@@ -67,13 +67,9 @@ in
         #   https://github.com/jj-vcs/jj/issues/7990
         "local_trunk()" = "bookmarks(glob:'{trunk,master,main}')";
         "null()" = "empty() & description(exact:'')";
-        "open()" = "stack(mine() | @, 1)";
-        "ready()" = "open() ~ stack(wip(), 1)";
         "stack()" = "stack(@)";
         "stack(x)" = "stack(x, 2)";
         "stack(x, n)" = "ancestors(reachable(x, mutable()), n)";
-        "symdiff(x, y)" = "(x ~ y) | (y ~ x)";
-        "wip()" = "mine() & (null() | description(regex:\"^[A-Z]+:\") ~ ::trunk())";
       };
       aliases = {
         "tug" =
@@ -93,33 +89,6 @@ in
             "exec"
             "--"
             jj-tug
-          ];
-
-        "wip" =
-          let
-            jj-wip = pkgs.writeFishScript "jj-wip" ''
-              argparse -i 'r/revisions=' -- $argv; or exit $status
-
-              set -l rev $_flag_revisions
-
-              for commit in (${jj} log --no-graph -r $rev -T 'commit_id ++ "\n"')
-                set -l desc (${jj} log --no-graph -r $commit -T description | string collect)
-
-                if string match -q 'WIP: *' $desc
-                  set desc (string sub -s 6 $desc)
-                else
-                  set desc "WIP: $desc"
-                end
-
-                ${jj} desc $commit -m "$desc"
-              end
-            '';
-          in
-          [
-            "util"
-            "exec"
-            "--"
-            jj-wip
           ];
 
         "trailer" = [
