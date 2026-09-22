@@ -28,6 +28,7 @@
       wrap_guides = [ 100 ];
       sticky_scroll.enabled = true;
       terminal.env.VISUAL = "zed --wait";
+      cli_default_open_behavior = "existing_window";
       # catppuccin currently only supports one universal theme:
       #   https://github.com/catppuccin/nix/issues/420
       icon_theme = lib.mkForce {
