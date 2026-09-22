@@ -150,7 +150,6 @@ in
         ];
 
         # Supported by:
-        #   - Sourcehut: https://man.sr.ht/git.sr.ht/#closes
         #   - GitHub: https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword
         "closes" = [
           "trailer"
@@ -158,7 +157,6 @@ in
         ];
 
         # Supported by:
-        #   - Sourcehut: https://man.sr.ht/git.sr.ht/#fixes
         #   - GitHub: https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword
         "fixes" = [
           "trailer"
@@ -226,10 +224,7 @@ in
         ssh.allowedSignersFile = allowed-signers;
       };
       tag.gpgSign = true;
-      url = {
-        "git@git.sr.ht:~".insteadOf = "sh:";
-        "git@github.com:".insteadOf = "gh:";
-      };
+      url."git@github.com:".insteadOf = "gh:";
       init.defaultBranch = "trunk";
     };
 
