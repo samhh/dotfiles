@@ -76,26 +76,6 @@ in
         "wip()" = "mine() & (null() | description(regex:\"^[A-Z]+:\") ~ ::trunk())";
       };
       aliases = {
-        "adopt" =
-          let
-            jj-adopt = pkgs.writeFishScript "jj-adopt" ''
-              argparse -i 'r/revisions=' -- $argv; or exit $status
-
-              set -l rev $_flag_revisions
-
-              for commit in (${jj} log --no-graph -r "$rev ~ mine()" -T 'commit_id ++ "\n"')
-                set -l desc (${jj} log --no-graph -r $commit -T 'description ++ "\nCo-authored-by: " ++ author' | string collect)
-                ${jj} metaedit $commit --update-author -m "$desc"
-              end
-            '';
-          in
-          [
-            "util"
-            "exec"
-            "--"
-            jj-adopt
-          ];
-
         "tug" =
           let
             jj-tug = pkgs.writeFishScript "jj-tug" ''
@@ -171,34 +151,6 @@ in
           "\nskip-checks"
           "true"
         ];
-
-        # Supported by:
-        #   - GitHub: https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors#creating-co-authored-commits-on-the-command-line
-        "coauthor" =
-          let
-            jj-coauthor =
-              let
-                fzf = lib.getExe pkgs.fzf;
-                git = lib.getExe pkgs.git;
-                sd = lib.getExe pkgs.sd;
-              in
-              pkgs.writeFishScript "jj-coauthor" ''
-                argparse -i 'r/revisions=' -- $argv; or exit $status
-
-                set -l rev $_flag_revisions
-                set -l fzf_args $argv
-
-                set -l coauthors (${git} shortlog -sec --since=1.month | ${sd} '^\s*[0-9]+\s*(.+)$' '$1' | ${fzf} -m $fzf_args)
-
-                ${jj} trailer -r $rev Co-authored-by $coauthors
-              '';
-          in
-          [
-            "util"
-            "exec"
-            "--"
-            jj-coauthor
-          ];
       };
     };
   };
