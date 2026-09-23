@@ -170,6 +170,7 @@ in
       gpg = {
         ssh.allowedSignersFile = allowed-signers;
       };
+      commit.gpgSign = true;
       tag.gpgSign = true;
       url."git@github.com:".insteadOf = "gh:";
       init.defaultBranch = "trunk";
