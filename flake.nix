@@ -17,10 +17,10 @@
 
   outputs =
     {
-      self,
       catppuccin,
       home-manager,
       nixpkgs,
+      ...
     }:
     let
       system = "aarch64-darwin";
