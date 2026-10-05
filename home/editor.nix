@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, ... }:
 
 {
   programs.helix = {
@@ -62,15 +62,4 @@
     ".helix/"
     ".zed/"
   ];
-
-  home.packages =
-    with pkgs;
-    let
-      codex = writeShellScriptBin "codex" ''
-        exec /Applications/ChatGPT.app/Contents/Resources/codex "$@"
-      '';
-    in
-    [
-      codex
-    ];
 }

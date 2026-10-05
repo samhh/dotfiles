@@ -42,4 +42,8 @@ brew "skills"
 brew "tig"
 # Lightweight, POSIX-compliant regular expression (regex) library
 brew "tre"
+# Terminal-based AI coding assistant
+cask "claude-code"
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
 cask "font-fira-code-nerd-font"
