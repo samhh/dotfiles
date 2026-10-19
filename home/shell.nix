@@ -9,6 +9,7 @@
 
       ssh-add 2> /dev/null &
       source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+      brew shellenv fish | source
 
       if not set -q VISUAL; set -x VISUAL hx; end
     '';
