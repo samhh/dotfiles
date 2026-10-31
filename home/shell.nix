@@ -34,8 +34,22 @@
         error_symbol = "!";
       };
       format = "$character";
-      right_format = "$directory";
+      right_format = "$vcs$directory";
       directory.style = "purple";
+      # Prefer jj in colocated repos, else git would win.
+      vcs.order = [
+        "jj"
+        "git"
+      ];
+      jj_bookmark.format = "[$bookmark(@$remote)$diverged]($style) ";
+      # Agents push branches that would otherwise crowd out local bookmarks.
+      jj_bookmark.ignore_remotes = [
+        "origin"
+        "git"
+      ];
+      git_branch.format = "[$branch(:$remote_branch)]($style) ";
+      # Shortest unique prefix only.
+      jj_change.change_hash_length = 1;
     };
   };
 
