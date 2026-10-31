@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./agents.nix
     ./auth.nix
     ./core.nix
     ./editor.nix
