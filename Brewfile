@@ -1,5 +1,7 @@
 # Browser automation CLI for AI agents
 brew "agent-browser"
+# Clone of cat with syntax highlighting
+brew "bat"
 # Container runtimes on MacOS (and Linux) with minimal setup
 brew "colima"
 # Create and run Linux containers using lightweight virtual machines
@@ -40,10 +42,14 @@ brew "rustup"
 brew "sd"
 # Open agent skills ecosystem
 brew "skills"
+# Cross-shell prompt
+brew "starship"
 # Text interface for Git repositories
 brew "tig"
 # Lightweight, POSIX-compliant regular expression (regex) library
 brew "tre"
+# Smarter directory navigation
+brew "zoxide"
 # Terminal-based AI coding assistant
 cask "claude-code"
 # OpenAI's coding agent that runs in your terminal
