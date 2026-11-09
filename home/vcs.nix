@@ -175,6 +175,11 @@ in
       init.defaultBranch = "trunk";
     };
 
-    ignores = [ ".DS_Store" ];
+    ignores = [
+      ".DS_Store"
+      ".codex/"
+      ".helix/"
+      ".zed/"
+    ];
   };
 }

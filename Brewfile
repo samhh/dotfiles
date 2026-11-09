@@ -20,6 +20,8 @@ brew "git"
 brew "git-who"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
+# Post-modern modal text editor
+brew "helix"
 # Git-compatible distributed version control system
 brew "jj"
 # TUI for interacting with the Jujutsu version control system
