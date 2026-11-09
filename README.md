@@ -2,26 +2,18 @@
 
 Configuring the universe.
 
-## Usage
+Over the years I've run various different operating systems, window managers, and development setups. The current incarnation reflects my desire for straightforward agentic development across devboxes, hence only a handful of plain, starter config files copied to machines as needed.
 
-Build the Home Manager config for macOS.
+Anything more can be wired up on demand by agents. It's a brave new world.
+
+## Setup
+
+Copy the desired files to `$XDG_CONFIG_HOME`.
+
+Suppress the terminal's last-login message:
 
 ```console
-$ home-manager switch --flake path/to/repo
+$ touch ~/.hushlogin
 ```
 
-Install tools with Homebrew as needed rather than maintaining a package inventory. Homebrew itself is installed manually, like Nix. The current config expects these tools:
-
-```console
-$ brew install git jj helix starship zoxide rustup
-```
-
-## History
-
-Over the years I've run various different operating systems, window managers, and editors. Those configs are preserved in this repo's commit history:
-
-- NixOS/Home Assistant: `rm-homelab~1`
-- Helix: `zed~1`
-- NixOS/Sway/Neovim: `macos-redux~1`
-- Arch/XMonad: `nixos~1`
-- nix-darwin: `rm-darwin~1`
+If using Fish, remember to set it as the login shell.

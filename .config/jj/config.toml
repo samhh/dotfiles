@@ -1,0 +1,8 @@
+[user]
+name = "Sam A. Horvath-Hunt"
+email = "hello@samhh.com"
+
+[signing]
+behavior = "own"
+backend = "ssh"
+key = "~/.ssh/id_ed25519"

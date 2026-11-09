@@ -1,0 +1,8 @@
+[user]
+    name = Sam A. Horvath-Hunt
+    email = hello@samhh.com
+    signingKey = ~/.ssh/id_ed25519
+[commit]
+    gpgSign = true
+[gpg]
+    format = ssh
