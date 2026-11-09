@@ -7,10 +7,7 @@
 let
   name = "Sam A. Horvath-Hunt";
   email = "hello@samhh.com";
-  pub-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHrtxBybcDSLc41RPT3tmmLBXRlaqpPfUOtYF86aWlIA";
-  allowed-signers = builtins.toFile "allowed-signers" ''
-    ${email} ${pub-key}
-  '';
+  signing-key = "~/.ssh/id_ed25519";
 in
 {
   programs.jujutsu = {
@@ -21,14 +18,10 @@ in
         inherit name email;
       };
       signing = {
-        behavior = "drop";
+        behavior = "own";
         backend = "ssh";
-        backends.ssh = {
-          inherit allowed-signers;
-        };
-        key = pub-key;
+        key = signing-key;
       };
-      git.sign-on-push = true;
     };
   };
 
@@ -42,14 +35,11 @@ in
     package = null;
     signing = {
       format = "ssh";
-      key = pub-key;
+      key = signing-key;
     };
     settings = {
       user = {
         inherit name email;
-      };
-      gpg = {
-        ssh.allowedSignersFile = allowed-signers;
       };
       commit.gpgSign = true;
     };
