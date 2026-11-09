@@ -2,11 +2,6 @@
   description = "Configuring the universe with Nix";
 
   inputs = {
-    catppuccin = {
-      url = "github:catppuccin/nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,7 +12,6 @@
 
   outputs =
     {
-      catppuccin,
       home-manager,
       nixpkgs,
       ...
@@ -31,10 +25,7 @@
     {
       homeConfigurations.sam = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [
-          catppuccin.homeModules.catppuccin
-          ./home
-        ];
+        modules = [ ./home ];
       };
 
       devShells = {

@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ ... }:
 
 {
   programs.ghostty = {
@@ -15,10 +15,6 @@
       shell-integration-features = "no-cursor";
       window-padding-x = 8;
       window-padding-y = 8;
-
-      # catppuccin currently only supports one universal theme:
-      #   https://github.com/catppuccin/nix/issues/420
-      theme = lib.mkForce "light:Catppuccin Latte,dark:Catppuccin Mocha";
     };
   };
 }

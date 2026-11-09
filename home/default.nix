@@ -7,7 +7,6 @@
     ./core.nix
     ./shell.nix
     ./terminal.nix
-    ./theme.nix
     ./vcs.nix
   ];
 }
