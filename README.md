@@ -10,10 +10,10 @@ Build the Home Manager config for macOS.
 $ home-manager switch --flake path/to/repo
 ```
 
-Many packages are installed with Homebrew instead as for my needs the UX is better. A Brewfile is periodically dumped for unversioned redundancy. Homebrew itself is installed manually, like Nix.
+Install tools with Homebrew as needed rather than maintaining a package inventory. Homebrew itself is installed manually, like Nix. The current config expects these tools:
 
 ```console
-$ brew bundle dump -f --file path/to/repo/Brewfile
+$ brew install git jj helix starship zoxide rustup
 ```
 
 ## History
