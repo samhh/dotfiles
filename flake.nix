@@ -25,15 +25,7 @@
     let
       system = "aarch64-darwin";
       system-ci = "x86_64-linux";
-      overlays = [
-        (
-          _final: prev:
-          import ./lib/builders.nix {
-            inherit (prev) lib writeTextFile fish;
-          }
-        )
-      ];
-      pkgs = import nixpkgs { inherit system overlays; };
+      pkgs = import nixpkgs { inherit system; };
       pkgs-ci = import nixpkgs { system = system-ci; };
     in
     {
